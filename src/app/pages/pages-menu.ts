@@ -18,11 +18,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Ajout Gerant',
-        link: '/pages/forms/ajoutGerant',
+        link: '/pages/limsmetik/ajoutGerant',
       },
       {
         title: 'List Gerant',
-        link: '/pages/forms/listeGerant',
+        link: '/pages/limsmetik/listeGerant',
       },
     ],
   },
@@ -32,42 +32,41 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Ajout categorie',
-        link: '/pages/forms/ajoutCategorie',
+        link: '/pages/limsmetik/ajoutCategorie',
       },
       {
         title: 'Liste categorie',
-        link: '/pages/forms/listeCategorie',
+        link: '/pages/limsmetik/listeCategorie',
       },
       {
         title: 'Ajout produit',
-        link: '/pages/forms/ajoutProduit',
+        link: '/pages/limsmetik/ajoutProduit',
       },
       {
         title: 'liste produit',
-        link: '/pages/forms/listeProduit',
+        link: '/pages/limsmetik/listeProduit',
       },
     ],
   },
   {
     title: 'Gestion Produit',
     icon: 'shopping-cart-outline',
-    link: '/pages/ui-features',
     children: [
       {
         title: 'Achat Produit',
-        link: '/pages/ui-features/grid',
+        link: '/pages/limsmetik/achatProduit',
       },
       {
         title: 'Vente produit',
-        link: '/pages/ui-features/icons',
+        link: '/pages/limsmetik/choixClient',
       },
       {
         title: 'Produit En Stock',
-        link: '/pages/ui-features/grid',
+        link: '/pages/limsmetik/stockProduit',
       },
       {
         title: 'Voir les Achats',
-        link: '/pages/ui-features/typography',
+        link: '/pages/limsmetik/listeAchat',
       },
     ],
   },
@@ -77,11 +76,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Caisse Journaliere',
-        link: '/pages/modal-overlays/dialog',
+        link: '/pages/limsmetik/caisseJournaliere',
       },
       {
         title: 'Caisse Mensuelle',
-        link: '/pages/modal-overlays/window',
+        link: '/pages/limsmetik/caisseMensuelle',
       },
     ],
   },

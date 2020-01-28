@@ -1,0 +1,142 @@
+<nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+  <nb-card-body>
+    <nb-stepper orientation="horizontal">
+      <nb-step [label]="labelOne">
+        <ng-template #labelOne>First step</ng-template>
+
+        <div class=".col-md-4 .offset-md-4">
+          <nb-card>
+            <nb-card-header style="background-color: #2d8ac7">Vente Particulier</nb-card-header>
+            <nb-card-body>
+              <form>
+                <div class="form-group">
+                  <label  class="label">Categorie</label>
+                  <nb-select selected='1' fullWidth="true">
+                    <nb-option value='1'>Option 1</nb-option>
+                    <nb-option value="2">Option 2</nb-option>
+                  </nb-select>
+                </div>
+                <div class="form-group">
+                  <label  class="label">Produit</label>
+                  <nb-select selected='1' fullWidth="true">
+                    <nb-option value='1'>Option 1</nb-option>
+                    <nb-option value="2">Option 2</nb-option>
+                  </nb-select>
+                </div>
+                <div class="form-group">
+                  <label  class="label">Quantite</label>
+                  <input type="number" nbInput fullWidth status="info"  placeholder="Enter la quantite">
+                </div>
+                <div class="form-group">
+                  <label  class="label">Prix unitaire</label>
+                  <input type="number" nbInput fullWidth status="info"  placeholder="Enter le prix unitaire">
+                </div>
+
+                <button type='"submit" 'nbButton status='success'>Submit</button>
+                <br>
+                <br>
+                <br>
+
+              </form>
+              <table class='table table-bordered'>
+                <thead style='background-color: #2d8ac7'>
+                <tr>
+                  <th>#</th>
+                  <th>Produit</th>
+                  <th>Quantite</th>
+                  <th>Prix</th>
+                  <th>Montant</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope='row'>1</th>
+                  <td>ordi</td>
+                  <td>12</td>
+                  <td>2000</td>
+                  <td>3000</td>
+                  <td><a class='btn btn-danger btn-xs' ><i class='fa fa-trash-o'></i> Supprimer </a></td>
+                </tr>
+                <tbody>
+                <tr>
+                  <th scope='row'>1</th>
+                  <td>ordi</td>
+                  <td>12</td>
+                  <td>2000</td>
+                  <td>3000</td>
+                  <td><a class='btn btn-danger btn-xs' ><i class='fa fa-trash-o'></i> Supprimer </a></td>
+                </tr>
+                <tbody>
+                <tr>
+                  <th scope='row'>1</th>
+                  <td>ordi</td>
+                  <td>12</td>
+                  <td>2000</td>
+                  <td>3000</td>
+                  <td><a class='btn btn-danger btn-xs' ><i class='fa fa-trash-o'></i> Supprimer </a></td>
+                </tr>
+                <tr>
+                  <td colspan='4' ><b>TOTAL:</b></td>
+
+                  <td><b>120000</b></td>
+                </tr>
+
+                </tbody>
+              </table>
+
+
+            </nb-card-body>
+          </nb-card>
+
+        </div>
+        <button nbButton disabled nbStepperNext>prev</button>
+        <button nbButton nbStepperNext>next</button>
+      </nb-step>
+      <nb-step [label]='labelTwo'>
+        <ng-template #labelTwo>Second step</ng-template>
+        <div class=".col-md-4 .offset-md-4">
+          <nb-card>
+            <nb-card-header style="background-color: #2d8ac7">Formulaire Particulier</nb-card-header>
+            <nb-card-body>
+              <form>
+                <div class="form-group">
+                  <label  class="label">Telephone</label>
+                  <input type="number" nbInput fullWidth status="info"  placeholder="Enter le numero de telephone">
+                </div>
+                <div class="form-group">
+                  <label  class="label">Prenon</label>
+                  <input type="text" nbInput fullWidth status="info"  placeholder="Enter le prenom">
+                </div>
+                <div class="form-group">
+                  <label  class="label">Nom</label>
+                  <input type="text" nbInput fullWidth status="info"  placeholder="Enter le nom">
+                </div>
+
+                <div class="form-group">
+                  <label  class="label">Adresse</label>
+                  <input type="text" nbInput fullWidth status="info"  placeholder="Enter l'adresse">
+                </div>
+
+
+                <button type='"submit" 'nbButton status='success'>Submit</button>
+                <br>
+                <br>
+                <br>
+
+              </form>
+
+
+
+            </nb-card-body>
+          </nb-card>
+
+        </div>
+        <button nbButton nbStepperPrevious>prev</button>
+        <button nbButton nbStepperNext>next</button>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>
+
+

@@ -1,0 +1,96 @@
+<nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+  <nb-card-body>
+    <div class="">
+      <nb-card>
+        <nb-card-header style="background-color: #2d8ac7">Achat Produit</nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="form-group">
+              <label  class="label">Categorie</label>
+              <nb-select selected='1' fullWidth="true">
+                <nb-option value='1'>Option 1</nb-option>
+                <nb-option value="2">Option 2</nb-option>
+              </nb-select>
+            </div>
+            <div class="form-group">
+              <label  class="label">Produit</label>
+              <nb-select selected='1' fullWidth="true">
+                <nb-option value='1'>Option 1</nb-option>
+                <nb-option value="2">Option 2</nb-option>
+              </nb-select>
+            </div>
+            <div class="form-group">
+              <label  class="label">Quantite</label>
+              <input type="number" nbInput fullWidth status="info"  placeholder="Enter la quantite">
+            </div>
+            <div class="form-group">
+              <label  class="label">Prix unitaire</label>
+              <input type="number" nbInput fullWidth status="info"  placeholder="Enter le prix unitaire">
+            </div>
+
+            <button type='"submit" 'nbButton status='success'>Submit</button>
+            <br>
+            <br>
+            <br>
+
+          </form>
+          <table class='table table-bordered'>
+            <thead style='background-color: #2d8ac7'>
+            <tr>
+              <th>#</th>
+              <th>Produit</th>
+              <th>Quantite</th>
+              <th>Prix</th>
+              <th>Montant</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope='row'>1</th>
+              <td>ordi</td>
+              <td>12</td>
+              <td>2000</td>
+              <td>3000</td>
+              <td><a class='btn btn-danger btn-xs' ><i class='fa fa-trash-o'></i> Supprimer </a></td>
+            </tr>
+            <tbody>
+            <tr>
+              <th scope='row'>1</th>
+              <td>ordi</td>
+              <td>12</td>
+              <td>2000</td>
+              <td>3000</td>
+              <td><a class='btn btn-danger btn-xs' ><i class='fa fa-trash-o'></i> Supprimer </a></td>
+            </tr>
+            <tbody>
+            <tr>
+              <th scope='row'>1</th>
+              <td>ordi</td>
+              <td>12</td>
+              <td>2000</td>
+              <td>3000</td>
+              <td><a class='btn btn-danger btn-xs' ><i class='fa fa-trash-o'></i> Supprimer </a></td>
+            </tr>
+            <tr>
+              <td colspan='4' ><b>TOTAL:</b></td>
+
+              <td><b>120000</b></td>
+            </tr>
+
+            </tbody>
+          </table>
+          <br>
+          <br>
+          <br>
+          <button  nbButton status="primary" >
+            Valider Achat
+          </button>
+        </nb-card-body>
+      </nb-card>
+
+    </div>
+  </nb-card-body>
+</nb-card>
+
+

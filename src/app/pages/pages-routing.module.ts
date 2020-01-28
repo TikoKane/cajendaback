@@ -24,9 +24,9 @@ const routes: Routes = [{
         .then(m => m.LayoutModule),
     },
     {
-      path: 'forms',
-      loadChildren: () => import('./forms/forms.module')
-        .then(m => m.FormsModule),
+      path: 'limsmetik',
+      loadChildren: () => import('./limsmetik/limsmetik.module')
+        .then(m => m.LimsmetikModule),
     },
     {
       path: 'ui-features',
