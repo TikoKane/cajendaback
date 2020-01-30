@@ -18,6 +18,7 @@ import {StockProduitComponent} from './stock-produit/stock-produit.component';
 import {ListeAchatComponent} from './liste-achat/liste-achat.component';
 import {CaisseJournaliereComponent} from './caisse-journaliere/caisse-journaliere.component';
 import {CaisseMensuelleComponent} from './caisse-mensuelle/caisse-mensuelle.component';
+import { RechercheFactureComponent } from './recherche-facture/recherche-facture.component';
 
 const routes: Routes = [
   {
@@ -88,6 +89,11 @@ const routes: Routes = [
         path: 'caisseMensuelle',
         component: CaisseMensuelleComponent,
       },
+      {
+        path: 'rechercheFacture',
+        component: RechercheFactureComponent,
+      },
+
     ],
   },
 ];

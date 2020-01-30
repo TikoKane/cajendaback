@@ -34,6 +34,7 @@ import { StockProduitComponent } from './stock-produit/stock-produit.component';
 import { ListeAchatComponent } from './liste-achat/liste-achat.component';
 import { CaisseJournaliereComponent } from './caisse-journaliere/caisse-journaliere.component';
 import { CaisseMensuelleComponent } from './caisse-mensuelle/caisse-mensuelle.component';
+import { RechercheFactureComponent } from './recherche-facture/recherche-facture.component';
 
 @NgModule({
   imports: [
@@ -78,6 +79,7 @@ import { CaisseMensuelleComponent } from './caisse-mensuelle/caisse-mensuelle.co
     ListeAchatComponent,
     CaisseJournaliereComponent,
     CaisseMensuelleComponent,
+    RechercheFactureComponent,
   ],
 })
 export class LimsmetikModule { }

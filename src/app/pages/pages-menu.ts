@@ -43,7 +43,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/limsmetik/ajoutProduit',
       },
       {
-        title: 'liste produit',
+        title: 'Liste produit',
         link: '/pages/limsmetik/listeProduit',
       },
     ],
@@ -90,7 +90,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Recherche Facture',
-        link: '/pages/extra-components/calendar',
+        link: '/pages/limsmetik/rechercheFacture',
       },
     ],
   },
