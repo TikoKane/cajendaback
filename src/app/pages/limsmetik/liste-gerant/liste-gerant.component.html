@@ -16,38 +16,17 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr *ngFor="let g of  gerant">
         <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>ordi</td>
-        <td>12</td>
+        <td>{{g[0].nom}}</td>
+        <td>{{g[0].prenom}}</td>
+        <td>{{g[0].telephone}}</td>
+        <td *ngIf="g[0].typeUser_id==1">Admin</td>
+        <td *ngIf="g[0].typeUser_id==2">Vendeur</td>
         <td><a class='btn btn-danger btn-xs' ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer </a>
          <a class='btn btn-warning btn-xs' ><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
       </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>ordi</td>
-        <td>12</td>
-        <td><a class='btn btn-danger btn-xs' ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer </a>
-          <a class='btn btn-warning btn-xs' ><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
-      </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>ordi</td>
-        <td>12</td>
-        <td><a class='btn btn-danger btn-xs' ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer </a>
-          <a class='btn btn-warning btn-xs' ><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
     
-      </tr>
-     
-
       </tbody>
     </table>
 
