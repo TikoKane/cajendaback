@@ -13,18 +13,61 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DataTablesModule } from 'angular-datatables';
 import {
-  NbChatModule,
+  NbAccordionModule,
+  NbActionsModule,
+  NbAlertModule, NbButtonModule,
+  NbCardModule,
+  NbChatModule, NbCheckboxModule,
   NbDatepickerModule,
-  NbDialogModule,
-  NbMenuModule,
-  NbSidebarModule,
-  NbToastrModule,
+  NbDialogModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule,
+  NbMenuModule, NbRadioModule, NbRouteTabsetModule, NbSelectModule,
+  NbSidebarModule, NbStepperModule, NbTabsetModule,
+  NbToastrModule, NbTreeGridModule, NbUserModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { LoginComponent } from './auth/login/login.component';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
+import {AuthGuard} from './auth/auth.guard';
+import {AuthService} from './auth/auth.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
+    NbInputModule,
+    NbCardModule,
+    NbButtonModule,
+    NbActionsModule,
+    NbUserModule,
+    NbCheckboxModule,
+    NbRadioModule,
+    NbDatepickerModule,
+    DataTablesModule,
+    NbSelectModule,
+    NbIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    Ng2SmartTableModule,
+    NbTabsetModule,
+    NbRouteTabsetModule,
+    NbStepperModule,
+    NbListModule,
+    NbTreeGridModule,
+    NbAccordionModule,
+    //
+    CommonModule,
+    NbLayoutModule,
+    NbCardModule,
+    NbCheckboxModule,
+    NbAlertModule,
+    NbInputModule,
+    NbButtonModule,
+    RouterModule,
+    FormsModule,
+    NbIconModule,
+    //
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -42,6 +85,7 @@ import {
     }),
     CoreModule.forRoot(),
   ],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {
