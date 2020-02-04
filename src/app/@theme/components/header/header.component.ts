@@ -6,7 +6,6 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {AuthService} from '../../../auth/auth.service';
-
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],

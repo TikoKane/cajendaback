@@ -30,16 +30,6 @@ export class VenteEntrepriseComponent implements OnInit {
     });
   }
 
-  onFirstSubmit() {
-    this.firstForm.markAsDirty();
-  }
 
-  onSecondSubmit() {
-    this.secondForm.markAsDirty();
-  }
-
-  onThirdSubmit() {
-    this.thirdForm.markAsDirty();
-  }
 
 }

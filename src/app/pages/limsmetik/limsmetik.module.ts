@@ -35,6 +35,7 @@ import { ListeAchatComponent } from './liste-achat/liste-achat.component';
 import { CaisseJournaliereComponent } from './caisse-journaliere/caisse-journaliere.component';
 import { CaisseMensuelleComponent } from './caisse-mensuelle/caisse-mensuelle.component';
 import { RechercheFactureComponent } from './recherche-facture/recherche-facture.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ import { RechercheFactureComponent } from './recherche-facture/recherche-facture
     NbListModule,
     NbTreeGridModule,
     NbAccordionModule,
+    CommonModule,
   ],
   declarations: [
     LimsmetikComponent,
