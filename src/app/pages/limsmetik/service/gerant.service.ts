@@ -5,11 +5,10 @@ import { Gerant } from './general.model';
   providedIn: 'root'
 })
 export class GerantService {
-  private host:string ="http://lims.alwaysdata.net/api";
-  constructor(private http:HttpClient) { }
-  ger : Gerant;
- 
-  public deleteGer(id){
+  private host: string = 'http://lims.alwaysdata.net/api';
+  constructor(private http: HttpClient) { }
+  ger: Gerant;
+  public deleteGer(id) {
     return this.http.delete(this.host+'/user/deleteById/'+id+"?token="+localStorage.getItem('token'));
   }
 
