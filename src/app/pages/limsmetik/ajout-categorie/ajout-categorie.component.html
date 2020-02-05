@@ -3,17 +3,17 @@
     <nb-card class="inline-form-card">
       <nb-card-header>Ajout Categorie</nb-card-header>
       <nb-card-body>
-        <form>
+        <form #form="ngForm" (ngSubmit)="AjouterCategorie(form)">
           <div class="form-group row">
             <label  class="label col-sm-3 col-form-label">Libelle Categorie</label>
             <div class="col-sm-9">
-              <input type="text" nbInput fullWidth  placeholder="Categorie" required="required">
+              <input type="text" #libelle="ngModel" id="first-name"  name="libelle" [(ngModel)]="service.cat.libelle" nbInput fullWidth  required="required" minlength="2" maxlength="50" size="50">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
-              <button type="submit" nbButton status="primary">Ajouter</button>
+              <button [disabled]="!form.valid" type="submit"  nbButton status="primary">Ajouter</button>
             </div>
           </div>
         </form>

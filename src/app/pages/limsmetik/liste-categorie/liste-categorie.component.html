@@ -13,29 +13,16 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-      
-        <td><a class='btn btn-danger btn-xs' ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer </a>
-         <a class='btn btn-warning btn-xs' ><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
-      </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-       
-        <td><a class='btn btn-danger btn-xs' ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer </a>
-          <a class='btn btn-warning btn-xs' ><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
-      </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-      
-        <td><a class='btn btn-danger btn-xs' ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer </a>
-          <a class='btn btn-warning btn-xs' ><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
+        <tr *ngFor="let g of categorie; let i =index" >
+          <th scope='row'>{{i+1}}</th>
+      <td class=''>{{g.libelle}}</td>
     
+
+      <td>
+        <button button nbButton (click)="openWithoutEscClose(dialog)"><i class="fa fa-trash" aria-hidden="true"></i>Nice</button>
+        <button class='btn btn-warning btn-xs' ><i class="fa fa-edit" aria-hidden="true"></i> Modifier </button></td>
+    
+   
       </tr>
      
 
@@ -49,4 +36,12 @@
 </nb-card-body>
 </nb-card>
 
-
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Template Dialog</nb-card-header>
+    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()">Close Dialog</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

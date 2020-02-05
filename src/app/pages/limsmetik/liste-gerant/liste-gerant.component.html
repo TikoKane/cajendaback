@@ -16,11 +16,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let g of  gerant">
-        <th scope='row'>1</th>
+      <tr *ngFor="let g of  gerant;let i =index">
+        <th scope='row'>{{i+1}}</th>
         <td>{{g[0].nom}}</td>
         <td>{{g[0].prenom}}</td>
-        <td>{{g[0].telephone}}</td>
+        <td>{{g[0].tel}}</td>
         <td *ngIf="g[0].typeUser_id==1">Admin</td>
         <td *ngIf="g[0].typeUser_id==2">Vendeur</td>
         <td><a class='btn btn-danger btn-xs' ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer </a>

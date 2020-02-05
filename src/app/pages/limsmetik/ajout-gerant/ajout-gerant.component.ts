@@ -15,7 +15,7 @@ export class AjoutGerantComponent implements OnInit {
   listetpeUser;
   ngOnInit() {
     this.resetForm()
-    this.magasin=localStorage.getItem('idmagasin');
+    this.magasin=1;
     this.service.getAllTypeUser().subscribe(data=>{
       this.listetpeUser=data;
       console.log(this.listetpeUser)  

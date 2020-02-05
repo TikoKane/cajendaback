@@ -22,7 +22,7 @@ export class GerantService {
 
 
   insertGerant(ger:Gerant,idMagasin){
-  return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);
+  return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin,Gerant);
   }
   updateGerant(ger:Gerant,id){
 
