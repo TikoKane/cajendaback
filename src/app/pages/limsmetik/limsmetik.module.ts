@@ -5,11 +5,11 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
-  NbDatepickerModule, NbIconModule,
-  NbInputModule, NbListModule,
+  NbDatepickerModule, NbDialogModule, NbIconModule,
+  NbInputModule, NbListModule, NbPopoverModule,
   NbRadioModule, NbRouteTabsetModule,
-  NbSelectModule, NbStepperModule, NbTabsetModule, NbTreeGridModule,
-  NbUserModule,
+  NbSelectModule, NbStepperModule, NbTabsetModule, NbTooltipModule, NbTreeGridModule,
+  NbUserModule, NbWindowModule,
 } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -36,9 +36,25 @@ import { CaisseJournaliereComponent } from './caisse-journaliere/caisse-journali
 import { CaisseMensuelleComponent } from './caisse-mensuelle/caisse-mensuelle.component';
 import { RechercheFactureComponent } from './recherche-facture/recherche-facture.component';
 import {CommonModule} from "@angular/common";
+import {ToastrComponent} from "../modal-overlays/toastr/toastr.component";
+import {ModalOverlaysRoutingModule} from "../modal-overlays/modal-overlays-routing.module";
+import {ModalOverlaysComponent} from "../modal-overlays/modal-overlays.component";
+import {DialogComponent} from "../modal-overlays/dialog/dialog.component";
+import {WindowComponent} from "../modal-overlays/window/window.component";
+import {PopoversComponent} from "../modal-overlays/popovers/popovers.component";
+import {TooltipComponent} from "../modal-overlays/tooltip/tooltip.component";
+import { FactureComponent } from './facture/facture.component';
+import {NgxPrintModule} from "ngx-print";
+import { VoirProduitAcheterComponent } from './voir-produit-acheter/voir-produit-acheter.component';
 
 @NgModule({
   imports: [
+    NgxPrintModule,
+    ModalOverlaysRoutingModule,
+    NbDialogModule.forChild(),
+    NbWindowModule.forChild(),
+    NbPopoverModule,
+    NbTooltipModule,
     ThemeModule,
     NbInputModule,
     NbCardModule,
@@ -63,7 +79,13 @@ import {CommonModule} from "@angular/common";
     NbAccordionModule,
     CommonModule,
   ],
-  declarations: [
+  declarations:[
+  ModalOverlaysComponent,
+    DialogComponent,
+    WindowComponent,
+    PopoversComponent,
+    TooltipComponent,
+    ToastrComponent,
     LimsmetikComponent,
     FormInputsComponent,
     AjoutGerantComponent,
@@ -82,6 +104,8 @@ import {CommonModule} from "@angular/common";
     CaisseJournaliereComponent,
     CaisseMensuelleComponent,
     RechercheFactureComponent,
+    FactureComponent,
+    VoirProduitAcheterComponent,
   ],
 })
 export class LimsmetikModule { }

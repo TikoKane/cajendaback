@@ -2,7 +2,7 @@
   <nb-card-body>
     <div class="">
       <nb-card>
-        <nb-card-header style="background-color: #2d8ac7">Stock Produit</nb-card-header>
+        <nb-card-header style="background-color: #2d8ac7">LISTE DES PRODUITS EN STOCK</nb-card-header>
         <nb-card-body>
     <table class='table table-bordered'>
       <thead style='background-color: #2d8ac7'>
@@ -11,33 +11,17 @@
         <th>Libelle Produit</th>
         <th>Catégorie</th>
         <th>Quantité</th>
-      
+
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>12</td>
-        
+      <tr *ngFor="let t of tableau ;let i =index">
+        <th scope='row'>{{i+1}}</th>
+        <td>{{t.produit}}</td>
+        <td>{{t.categorie}}</td>
+        <td>{{t.quantite}}</td>
+
       </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>12</td>
-      </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>12</td>
-    
-      </tr>
-     
 
       </tbody>
     </table>

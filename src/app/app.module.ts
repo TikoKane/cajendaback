@@ -32,10 +32,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {AuthGuard} from './auth/auth.guard';
 import {AuthService} from './auth/auth.service';
+import {NgxPrintModule} from "ngx-print";
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   imports: [
+    NgxPrintModule,
     NbInputModule,
     NbCardModule,
     NbButtonModule,
