@@ -35,7 +35,7 @@ export class VenteProduitService {
   }
   validerventeRapide(){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?magasin_id="+localStorage.getItem('idmagasin')/*+"&token="+localStorage.getItem('token')*/+"&typeClient_id=3&user_id="+localStorage.getItem('iduser'),{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?magasin_id="+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token')+"&typeClient_id=3&user_id="+localStorage.getItem('iduser'),{observe : 'response'});
   }
   validerventeParticulier(value:Particulier){
     //a faire api

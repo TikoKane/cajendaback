@@ -6,7 +6,7 @@ import {Users} from '../users.model';
 export class AuthService {
 
   value: Users;
-  private host: string = 'http://limsmetik.alwaysdata.net/api';
+  private host: string = 'http://lims.alwaysdata.net/api';
   isLoggedIn = false;
   role: number;
 
