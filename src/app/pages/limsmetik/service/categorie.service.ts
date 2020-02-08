@@ -10,10 +10,10 @@ export class CategorieService {
   constructor(private http:HttpClient) { }
   cat : Categorie;
   getAllCategorieByMagasin(id){
-   return this.http.get(this.host+'/categorie/bymagasin/'+id);
+   return this.http.get(this.host+'/categorie/bymagasin/'+id+'?token='+localStorage.getItem('token'));
   }
   addCategorie(cat: Categorie,id){
-    return this.http.post(this.host+'/categorie?libelle='+cat.libelle+'&'+'magasin_id='+id,Categorie);
+    return this.http.post(this.host+'/categorie?libelle='+cat.libelle+'&'+'magasin_id='+id+"&token="+localStorage.getItem('token'),Categorie);
   }
   updateCategorie(cat: Categorie,id){
     return this.http.put(this.host+'/categorie/'+id+'?libelle='+cat.libelle+"&token="+localStorage.getItem('token'),Categorie);

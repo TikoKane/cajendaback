@@ -6,9 +6,12 @@ import { Gerant } from './general.model';
 })
 export class GerantService {
   private host: string = 'http://lims.alwaysdata.net/api';
-  constructor(private http: HttpClient) { }
-  ger: Gerant;
-  public deleteGer(id) {
+  constructor(private http:HttpClient) { }
+  ger : Gerant;
+  getAllGerant(){
+   return this.http.get(this.host+"/user/getAllUser?token="+localStorage.getItem('token'));
+  }
+  public deleteGer(id){
     return this.http.delete(this.host+'/user/deleteById/'+id+"?token="+localStorage.getItem('token'));
   }
 
@@ -16,12 +19,12 @@ export class GerantService {
     return this.http.get(this.host+'/user/byid/'+id+"?token="+localStorage.getItem('token'));
   }
   getAllGerantByMagasin(id){
-    return this.http.get(this.host+'/user/bymagasin/'+id);
+    return this.http.get(this.host+'/user/bymagasin/'+id+'?token='+localStorage.getItem('token'));
    }
 
 
   insertGerant(ger:Gerant,idMagasin){
-  return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin,Gerant);
+  return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);
   }
   updateGerant(ger:Gerant,id){
 
@@ -29,7 +32,7 @@ export class GerantService {
 
     }
   getAllTypeUser(){
-    return this.http.get(this.host+"/typeuser/getAllTypeUser");
+    return this.http.get(this.host+"/typeuser/getAllTypeUser?token="+localStorage.getItem('token'));
    }
 
 }

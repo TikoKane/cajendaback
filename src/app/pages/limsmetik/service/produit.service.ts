@@ -11,7 +11,7 @@ export class ProduitService {
   constructor(private http:HttpClient) { }
   prod : Produit;
   getAllProduitByMagasin(id){
-    return this.http.get(this.host+'/produit/bymagasin/'+id+'?token='+localStorage.getItem('token'));
+   return this.http.get(this.host+'/produit/bymagasin/'+id+'?token='+localStorage.getItem('token'));
   }
   addProduit(prod: Produit){
     return this.http.post(this.host+'/produit?libelle='+prod.libelle+'&'+'categorie_id='+prod.categorie_id+"&token="+localStorage.getItem('token'),Produit);
