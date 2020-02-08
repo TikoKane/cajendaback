@@ -1,0 +1,40 @@
+<nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+  <nb-card-body>
+    <div class="">
+      <nb-card>
+        <nb-card-header style="background-color: #2d8ac7">PRODUIT ACHETE</nb-card-header>
+        <nb-card-body>
+          <table class='table table-bordered'>
+            <thead style='background-color: #2d8ac7'>
+            <tr>
+              <th>#</th>
+              <th>Produit</th>
+              <th>Quantite</th>
+              <th>Prix</th>
+              <th>Montant</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let t of tableau[0];let i=index" >
+              <th scope='row'>{{i+1}}</th>
+              <td>{{t.libelle}}</td>
+              <td>{{t.quantite}}</td>
+              <td>{{t.prixUnitaire}}</td>
+              <td>{{t.montant}}</td>
+            </tr>
+            <tr>
+              <td colspan="4" ><b>TOTAL:</b></td>
+
+              <td *ngFor="let m of tableau[1]"><b>{{m.total}}</b></td>
+            </tr>
+
+            </tbody>
+          </table>
+
+        </nb-card-body>
+      </nb-card>
+
+    </div>
+  </nb-card-body>
+</nb-card>

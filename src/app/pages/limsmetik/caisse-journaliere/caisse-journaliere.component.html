@@ -11,39 +11,24 @@
         <th>Date</th>
         <th>Nom Client</th>
         <th>Nom Vendeur</th>
-     
+
         <th>Action</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>2000</td>
-        <td><a class='btn btn-success btn-xs' ><i class="fa fa-eye" aria-hidden="true"></i> Voir Facture </a></td>
-        
+      <tr *ngFor="let t of tableau ;let i=index" >
+        <th scope='row'>{{i+1}}</th>
+        <td>{{t.dateVente}}</td>
+        <td *ngIf="t.prenomClient && t.prenomClient=='anonyme'">{{t.nomClient}}</td>
+        <td *ngIf="t.nomClient">{{t.prenomClient }} {{t.nomClient}}</td>
+        <td *ngIf="t.raisonSocialClient"> {{t.raisonSocialClient}}</td>
+        <td>{{t.prenom }} {{t.nom}}</td>
+        <td><button nbButton status="success" (click)="gotoFacture(t.id)">Voir Facture</button>  </td>
+
       </tr>
       <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>2000</td>
-        <td><a class='btn btn-success btn-xs' ><i class="fa fa-eye" aria-hidden="true"></i> Voir Facture </a></td>
-      </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td>12</td>
-        <td>2000</td>
-        <td><a class='btn btn-success btn-xs' ><i class="fa fa-eye" aria-hidden="true"></i> Voir Facture </a></td>
-    
-      </tr>
-      </tbody>
     </table>
-    <h3 align="center">Total vendu    :  <b> 154282</b>F</h3>
+    <h3 align="center">Total vendu    :  <b> {{total}}</b>F</h3>
   </nb-card-body>
 </nb-card>
 

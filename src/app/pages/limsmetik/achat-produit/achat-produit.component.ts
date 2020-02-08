@@ -1,21 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {AchatProduitService} from "../service/achat-produit.service";
+import {Router} from "@angular/router";
+import {Contenue} from "../../../users.model";
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
   selector: 'ngx-achat-produit',
   templateUrl: './achat-produit.component.html',
   styleUrls: ['./achat-produit.component.scss'],
 })
-export class AchatProduitComponent implements OnInit {
 
-  firstForm: FormGroup;
+export class AchatProduitComponent implements OnInit {
+  categorie;
+  tableau;montant;firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private toastr: NbToastrService, public router: Router) {
+    this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.bad();});
   }
+  test:string='0';
+  contenue:Contenue ={
+    idcategorie:'',
+    idproduit:'',
+    quantite:'',
+    pu:''
+  };
 
+  produit;
   ngOnInit() {
+
+    console.log(this.test);
+    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; console.log(data);},error1=>{console.log(error1);});
+    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+
     this.firstForm = this.fb.group({
       firstCtrl: ['', Validators.required],
     });
@@ -29,15 +49,53 @@ export class AchatProduitComponent implements OnInit {
     });
   }
 
-  onFirstSubmit() {
-    this.firstForm.markAsDirty();
+
+  onLogin(f: NgForm) {
+    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp=>{console.log(resp); this.good("produit ajouter");this.reloadComponent();},error1 => {console.log(error1)});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.reloadComponent();
   }
 
-  onSecondSubmit() {
-    this.secondForm.markAsDirty();
+  recuperation($event: Event) {
+    this.test=this.contenue.idcategorie;
+    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;console.log(dataa);},error1 => {console.log(error1);this.bad()});
+
+  }
+  good(message) {
+    this.toastr.success(message,'success');
+
+  }
+  bad() {
+    this.toastr.danger("erreur",'error');
+
   }
 
-  onThirdSubmit() {
-    this.thirdForm.markAsDirty();
+  reloadComponent() {
+
+    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.contenue.idcategorie='';
+    this.contenue.pu='';
+    this.contenue.quantite='';
+    this.contenue.idproduit='';
+
+  }
+
+  suprimer(produit_id: any) {
+    this.serviceAchat.deleteAjoutProduit(produit_id).subscribe(resp=>{console.log(resp),this.reloadComponent()},error1 => {console.log(error1)});
+    this.reloadComponent();
+  }
+
+  validerAchat() {
+    this.serviceAchat.validerAchat().subscribe(resp=>{this.good("achat reuissi avec success");this.reloadComponent();},error1 => {this.bad()});
+
+  }
+
+  anullerAchat() {
+    this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.bad();});
+  }
+
+  actuliser() {
+
   }
 }

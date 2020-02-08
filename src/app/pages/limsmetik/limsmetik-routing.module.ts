@@ -19,6 +19,8 @@ import {ListeAchatComponent} from './liste-achat/liste-achat.component';
 import {CaisseJournaliereComponent} from './caisse-journaliere/caisse-journaliere.component';
 import {CaisseMensuelleComponent} from './caisse-mensuelle/caisse-mensuelle.component';
 import { RechercheFactureComponent } from './recherche-facture/recherche-facture.component';
+import {FactureComponent} from "./facture/facture.component";
+import {VoirProduitAcheterComponent} from "./voir-produit-acheter/voir-produit-acheter.component";
 
 const routes: Routes = [
   {
@@ -93,6 +95,14 @@ const routes: Routes = [
         path: 'rechercheFacture',
         component: RechercheFactureComponent,
       },
+      {
+        path: 'facture/:id',
+        component: FactureComponent,
+      },
+      {
+        path: 'voirproduitAcheter/:id',
+        component: VoirProduitAcheterComponent
+      },
 
     ],
   },
@@ -100,7 +110,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule,

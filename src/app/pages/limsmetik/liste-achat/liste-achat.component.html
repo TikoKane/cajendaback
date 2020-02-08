@@ -10,35 +10,18 @@
         <th>#</th>
         <th>Date Achat</th>
         <th>Produit(s) Acheté(s)</th>
-   
-      
+
+
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td><a class='btn btn-success btn-xs' ><i class="fa fa-eye" aria-hidden="true"></i> Voir Facture </a></td>
-    
-        
-      </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td><a class='btn btn-success btn-xs' ><i class="fa fa-eye" aria-hidden="true"></i> Voir Facture </a></td>
-      </tr>
-      <tbody>
-      <tr>
-        <th scope='row'>1</th>
-        <td>ordi</td>
-        <td><a class='btn btn-success btn-xs' ><i class="fa fa-eye" aria-hidden="true"></i> Voir Facture </a></td>
-   
-    
-      </tr>
-     
+      <tr *ngFor="let t of tableau ;let i=index">
+        <th scope='row'>{{i+1}}</th>
+        <td>{{t.dateAchat}}</td>
+        <td > <button nbButton status="success" (click)="getAllproduitAchete(t.id)">Voir Produits achetés</button>  </td>
 
-      </tbody>
+      </tr>
+      <tbody>
     </table>
   </nb-card-body>
 </nb-card>

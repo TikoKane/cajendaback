@@ -5,6 +5,7 @@ import {VenteProduitService} from "../service/vente-produit.service";
 import {ToastrService} from "ngx-toastr";
 import {Contenue} from "../../../users.model";
 import {Router} from "@angular/router";
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
   selector: 'ngx-vente-rapide',
@@ -16,7 +17,7 @@ export class VenteRapideComponent implements OnInit {
   secondForm: FormGroup;
   thirdForm: FormGroup;
   categorie;tableau;montant;
-  constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: ToastrService, public router: Router) {
+  constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) {
     this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
   }
   test:string='0';
@@ -30,7 +31,7 @@ export class VenteRapideComponent implements OnInit {
   ngOnInit() {
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; console.log(data);},error1=>{console.log(error1);});
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.firstForm = this.fb.group({
       firstCtrl: ['', Validators.required],
     });
@@ -46,8 +47,7 @@ export class VenteRapideComponent implements OnInit {
   }
 
   recuperation($event: Event) {
-    this.test=(<HTMLInputElement>$event.target).value;
-    console.log(this.test);
+    this.test=this.contenue.idcategorie;
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;console.log(dataa);},error1 => {console.log(error1);});
 
   }
@@ -56,25 +56,25 @@ export class VenteRapideComponent implements OnInit {
 
   }
   bad(message) {
-    this.toastr.error(message,'error');
+    this.toastr.danger(message,'error');
 
   }
   badd() {
-    this.toastr.error("erreur",'error');
+    this.toastr.danger("erreur",'error');
 
   }
 
 
   onLogin(f: NgForm) {
     this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);}this.reloadComponent()},error1 => {console.log(error1)});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.reloadComponent();
   }
 
   private reloadComponent() {
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data;console.log(data)},error1 => {console.log(error1);});
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.contenue.idcategorie='';
     this.contenue.pu='';
     this.contenue.quantite='';
@@ -95,8 +95,8 @@ export class VenteRapideComponent implements OnInit {
 
 
   validerVenteRapide() {
-    this.serviceVente.validerventeRapide().subscribe(resp=>{console.log(resp); this.good("vente reuissi avec success");this.reloadComponent();
-      this.router.navigate(['/home/facture',resp['idfacture']]);
+   this.serviceVente.validerventeRapide().subscribe(resp=>{console.log(resp); this.good("vente reuissi avec success");this.reloadComponent();
+   this.router.navigate(['/pages/limsmetik/facture',resp['idfacture']]);
     },error1 => {this.bad(error1)});
 
   }

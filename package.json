@@ -67,7 +67,12 @@
     "ng2-completer": "2.0.8",
     "ng2-smart-table": "1.3.5",
     "ngx-echarts": "^4.0.1",
+<<<<<<< HEAD
     "ngx-toastr": "^11.3.3",
+=======
+    "ngx-print": "^1.2.0-beta.3",
+    "ngx-toastr": "^11.3.2",
+>>>>>>> 932c353fcb6bd1eed51e45c8f47d3656fb108ca7
     "node-sass": "^4.12.0",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",

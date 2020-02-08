@@ -3,10 +3,12 @@
     <nb-card class="inline-form-card">
       <nb-card-header>Recherche Facture</nb-card-header>
       <nb-card-body>
-        <form class="form-inline">
-          <input type="text" nbInput fullWidth placeholder="Numéro Facture">
-         
-          <button type="submit" nbButton status="primary">Rechercher</button>
+        <form class="form-inline" #f="ngForm" (ngSubmit)="validervente(f.value)">
+
+          <input type="text" nbInput fullWidth placeholder="Numéro Facture" name="NumeroFacture" ngModel >
+          <div class="form-group">
+            <button type="submit" nbButton status="primary">Rechercher</button>
+          </div>
         </form>
       </nb-card-body>
     </nb-card>
