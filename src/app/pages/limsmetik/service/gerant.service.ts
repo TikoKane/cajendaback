@@ -24,13 +24,13 @@ export class GerantService {
 
 
   insertGerant(ger:Gerant,idMagasin){
-  return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);
+    return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);
   }
   updateGerant(ger:Gerant,id){
 
     return this.http.put(this.host+'/user/updateById/'+id+'?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+"&token="+localStorage.getItem('token'),Gerant);
 
-    }
+  }
   getAllTypeUser(){
     return this.http.get(this.host+"/typeuser/getAllTypeUser?token="+localStorage.getItem('token'));
    }

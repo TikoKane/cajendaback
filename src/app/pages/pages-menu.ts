@@ -1,14 +1,10 @@
 import { NbMenuItem } from '@nebular/theme';
 
-export const MENU_ITEMS: NbMenuItem[] = [
 
-  {
-    hidden: true,
-    title: 'E-commerce',
-    icon: 'shopping-cart-outline',
-    link: '/pages/dashboard',
-    home: true,
-  },
+var fa=JSON.parse(localStorage.getItem('typeUser'));
+
+export var MENU_ITEMS: NbMenuItem[] = [
+
   {
     title: 'Acceuil',
     icon: 'home-outline',
@@ -19,6 +15,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    hidden: fa,
     title: 'Gerant',
     icon: 'person-outline',
     children: [
@@ -33,10 +30,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+
     title: 'Categorie et Produit',
     icon: 'keypad-outline',
     children: [
       {
+        hidden: fa,
         title: 'Ajout categorie',
         link: '/pages/limsmetik/ajoutCategorie',
       },
@@ -45,6 +44,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/limsmetik/listeCategorie',
       },
       {
+        hidden: fa,
         title: 'Ajout produit',
         link: '/pages/limsmetik/ajoutProduit',
       },
@@ -59,6 +59,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'shopping-cart-outline',
     children: [
       {
+        hidden: fa,
         title: 'Achat Produit',
         link: '/pages/limsmetik/achatProduit',
       },
@@ -71,6 +72,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/limsmetik/stockProduit',
       },
       {
+        hidden:fa,
         title: 'Voir les Achats',
         link: '/pages/limsmetik/listeAchat',
       },
@@ -85,6 +87,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/limsmetik/caisseJournaliere',
       },
       {
+        hidden:fa,
         title: 'Caisse Mensuelle',
         link: '/pages/limsmetik/caisseMensuelle',
       },
