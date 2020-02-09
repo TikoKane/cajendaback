@@ -54,6 +54,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FilterStockPipe } from './stock-produit/filter-stock.pipe';
 import { FilterCaisseJournalierePipe } from './caisse-journaliere/filter-caisse-journaliere.pipe';
 import { FilterCaisseMensuellePipe } from './caisse-mensuelle/filter-caisse-mensuelle.pipe';
+import { FilterListeAchatPipe } from './liste-achat/filter-liste-achat.pipe';
 
 
 @NgModule({
@@ -122,6 +123,7 @@ import { FilterCaisseMensuellePipe } from './caisse-mensuelle/filter-caisse-mens
     FilterStockPipe,
     FilterCaisseJournalierePipe,
     FilterCaisseMensuellePipe,
+    FilterListeAchatPipe,
   
   ],
 })

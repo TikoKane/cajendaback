@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 
 export class ListeAchatComponent implements OnInit {
   tableau;
+  filterString = '';
   p:number=1;
   constructor(private serviceAchat:AchatProduitService,private rout:Router) { }
 
