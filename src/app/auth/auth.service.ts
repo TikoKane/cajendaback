@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Users} from '../users.model';
+import {isBoolean} from "util";
 @Injectable()
 export class AuthService {
 
@@ -27,6 +28,15 @@ export class AuthService {
     localStorage.setItem('nom', nom);
     localStorage.setItem('prenom', prenom);
     this.role = typeUser;
+    if(typeUser === 1)
+    {
+      localStorage.setItem('typeUser', 'false');
+    }
+    else
+    {
+      localStorage.setItem('typeUser', 'true');
+    }
+
     localStorage.setItem('idmagasin', String(idmagasin));
     localStorage.setItem('magasin', magasin);
     localStorage.setItem('iduser', String(iduser));
@@ -54,6 +64,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('nom');
     localStorage.removeItem('prenom');
+    localStorage.removeItem('typeUser');
     this.isLoggedIn = false;
     this.router.navigate(['login']);
   }
