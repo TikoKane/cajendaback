@@ -44,12 +44,18 @@ import {WindowComponent} from "../modal-overlays/window/window.component";
 import {PopoversComponent} from "../modal-overlays/popovers/popovers.component";
 import {TooltipComponent} from "../modal-overlays/tooltip/tooltip.component";
 import { FactureComponent } from './facture/facture.component';
-import {NgxPrintModule} from "ngx-print";
+
+
 import { VoirProduitAcheterComponent } from './voir-produit-acheter/voir-produit-acheter.component';
+import { FilterGerantPipe } from './liste-gerant/filter-gerant.pipe';
+import { FilterCategoriePipe } from './liste-categorie/filter-categorie.pipe';
+import { FilterProduitPipe } from './liste-produit/filter-produit.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 @NgModule({
   imports: [
-    NgxPrintModule,
+   
     ModalOverlaysRoutingModule,
     NbDialogModule.forChild(),
     NbWindowModule.forChild(),
@@ -78,6 +84,7 @@ import { VoirProduitAcheterComponent } from './voir-produit-acheter/voir-produit
     NbTreeGridModule,
     NbAccordionModule,
     CommonModule,
+    NgxPaginationModule
   ],
   declarations:[
   ModalOverlaysComponent,
@@ -106,6 +113,10 @@ import { VoirProduitAcheterComponent } from './voir-produit-acheter/voir-produit
     RechercheFactureComponent,
     FactureComponent,
     VoirProduitAcheterComponent,
+    FilterGerantPipe,
+    FilterCategoriePipe,
+    FilterProduitPipe,
+  
   ],
 })
 export class LimsmetikModule { }

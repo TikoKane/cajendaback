@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { GerantService } from '../service/gerant.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NbDialogService, NbToastrService, NbGlobalPosition, NbGlobalPhysicalPosition, NbComponentStatus } from '@nebular/theme';
+import { ToasterConfig } from 'angular2-toaster';
 
 @Component({
   selector: 'ngx-ajout-gerant',
@@ -11,16 +13,76 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AjoutGerantComponent implements OnInit {
   public magasin;
-  constructor(private routes:Router, private toastr: ToastrService,private service:GerantService) { }
+  config: ToasterConfig;
+  index = 1;
+  destroyByClick = true;
+  duration = 4000;
+  hasIcon = true;
+  position: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
+  preventDuplicates = false;
+  status: NbComponentStatus = 'success';
+
+  title = 'Ajout Gérant!';
+  content = `Gérant ajouté avec succès!`;
+
+
+
+  config2: ToasterConfig;
+
+  destroyByClick2 = true;
+  duration2 = 4000;
+  hasIcon2 = true;
+  position2: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
+  preventDuplicates2 = false;
+  status2: NbComponentStatus = 'danger';
+
+  title2 = 'Ajout Gérant!';
+  content2 = `Erreur lors de l'ajout du gérant!`;
+  constructor(private routes:Router, private toastr: ToastrService,private service:GerantService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
   listetpeUser;
   ngOnInit() {
-    this.resetForm()
+    this.resetForm();
     this.magasin=1;
     this.service.getAllTypeUser().subscribe(data=>{
       this.listetpeUser=data;
       console.log(this.listetpeUser)  
     },err=>{
       console.log(err)});
+  }
+  private showToast(type: NbComponentStatus, title: string, body: string) {
+    const config = {
+      status: type,
+      destroyByClick: this.destroyByClick,
+      duration: this.duration,
+      hasIcon: this.hasIcon,
+      position: this.position,
+      preventDuplicates: this.preventDuplicates,
+    };
+    const titleContent = title ? ` Gérant réussi` : '';
+
+    
+    this.toastrService.show(
+      body,
+      `Ajout ${titleContent}`,
+      config);
+  }
+
+  private showToastErreur(type: NbComponentStatus, title2: string, body: string) {
+    const config2= {
+      status: type,
+      destroyByClick: this.destroyByClick2,
+      duration: this.duration2,
+      hasIcon: this.hasIcon2,
+      position: this.position2,
+      preventDuplicates: this.preventDuplicates2,
+    };
+    const titleContent2 = title2 ? `!` : '';
+
+    
+    this.toastrService.show(
+      body,
+      `Erreur ${titleContent2}`,
+      config2);
   }
   resetForm(form? :NgForm){
 if(form!=null)
@@ -40,27 +102,23 @@ if(form!=null)
     AjouterGerant(form :NgForm){ 
     // console.log(form); 
       this.insertFormulaire(form);
-    // this.resetForm(form);
+   // this.resetForm(form);
     }
  
     insertFormulaire(form :NgForm){
 this.service.insertGerant(form.value,this.magasin).subscribe(res=>{
  
-  if(res['success']==false){this.bad(res['message']); this.resetForm(form);
+  if(res['success']==false){
+    this.showToastErreur(this.status2, this.title2, this.content2);
 }
- else{this.good(res['message']);  this.resetForm(form);
- this.routes.navigate(["home/listegerant"]);
+ else{
+  this.showToast(this.status, this.title, this.content);
+  this.resetForm(form);
+
 }
 
 },error1 => {console.log(error1)});
 
     }
-good(message) {
-  this.toastr.success(message,'gérant ajouté avec succes');
 
-}
-bad(message) {
-  this.toastr.error(message,'Erreur');
-
-}
 }

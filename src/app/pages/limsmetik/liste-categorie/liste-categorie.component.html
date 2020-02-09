@@ -1,5 +1,10 @@
 <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
   <nb-card-body>
+    <div class="inner-addon left-addon">
+      <i class="glyphicon glyphicon-search"></i>
+      <input type="text" class="form-control" placeholder="RECHERCHE PAR LIBELLE..." [(ngModel)]="filterString"/>
+  </div>
+<br>
     <div class="">
       <nb-card>
         <nb-card-header style="background-color: #2d8ac7">Catégories</nb-card-header>
@@ -13,22 +18,22 @@
       </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let g of categorie; let i =index" >
+        <tr *ngFor="let g of (categorie | filterCategorie: filterString) | paginate:{ itemsPerPage:10,currentPage:p} ;let i =index" class='even pointer'>
+
           <th scope='row'>{{i+1}}</th>
       <td class=''>{{g.libelle}}</td>
     
 
       <td>
-        <button button nbButton (click)="openWithoutEscClose(dialogSup,g.id)"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
-        <button class='btn btn-warning btn-xs' (click)="openWithoutEscClose2(dialog,g.id)"></button>><i class="fa fa-edit" aria-hidden="true"></i> Modifier </button></td>
-    
+        <a class='btn btn-danger btn-xs' (click)="openWithoutEscClose(dialogSup,g.id,g.libelle)"><i class="fa fa-trash" aria-hidden="true" ></i> Supprimer </a>
+          <a class='btn btn-warning btn-xs' (click)="openWithoutEscClose2(dialog,g.id)"><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
    
       </tr>
      
 
       </tbody>
     </table>
-  
+  <pagination-controls (pageChange)="p= $event"></pagination-controls>
   </nb-card-body>
 </nb-card>
 
@@ -38,10 +43,10 @@
 
 <ng-template #dialogSup let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header>Template Dialog</nb-card-header>
-    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-header style="background-color: #2d8ac7">Suppression Categorie {{supCategorie.libelle}}</nb-card-header>
+    <nb-card-body>{{data}}</nb-card-body>
     <nb-card-footer>
-      <button type="submit" class='btn btn-success btn-xs' (click)="deleteGerant(gerant.id)">Supprimer</button>
+      <button type="submit" class='btn btn-success btn-xs' (click)="deleteCategorie(supCategorie.id)">Supprimer</button>
       <button nbButton (click)="ref.close()">Close Dialog</button>
     </nb-card-footer>
   </nb-card>
@@ -49,18 +54,19 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header style="background-color: #2d8ac7">Modification Catégorie</nb-card-header>
+    <nb-card-header style="background-color: #2d8ac7">Modification de la Catégorie {{modifCategorie.libelle}}</nb-card-header>
     <nb-card-body>
       <form #form="ngForm" (ngSubmit)="ModifierCategorie(form)">
-        <div class="form-group row">
-          <label for="inputEmail1" class="label col-sm-3 col-form-label">libelle</label>
+         <div class="form-group row">
+          <label  class="label col-sm-3 col-form-label">Libelle Categorie</label>
           <div class="col-sm-9">
-            <input type="text" #libelle="ngModel" value="{{modifCategorie.libelle}}" name="libelle" [(ngModel)]="service.cat.libelle" nbInput fullWidth  placeholder="Libelle Catégorie" required="required">
+            <input type="text" #libelle="ngModel"   value="{{modifCategorie.libelle}}" id="first-name"  name="libelle" [(ngModel)]="service.cat.libelle" nbInput fullWidth  required="required" minlength="2" maxlength="50" size="50">
           </div>
         </div>
+
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">
-            <button type="submit" class='btn btn-success btn-xs'>Modifier</button>
+            <button type="submit" class='btn btn-success btn-xs' >Modifier</button>
             <button  type="submit" class='btn btn-primary btn-xs' (click)="ref.close()">Annuler</button>
           </div>
         </div>

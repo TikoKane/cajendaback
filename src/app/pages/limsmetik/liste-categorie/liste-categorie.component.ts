@@ -3,9 +3,11 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { SmartTableData } from '../../../@core/data/smart-table';
 import { CategorieService } from '../service/categorie.service';
 import { Router } from '@angular/router';
-import {NbDialogService } from '@nebular/theme';
+import {NbDialogService, NbToastrService, NbComponentStatus, NbGlobalPosition, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ToasterConfig } from 'angular2-toaster';
+import { tickFormat } from '@swimlane/ngx-charts';
 @Component({
   selector: 'ngx-liste-categorie',
   templateUrl: './liste-categorie.component.html',
@@ -13,15 +15,77 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListeCategorieComponent implements OnInit {
   public categorie;
+  public modifCategorie:any;
+  public supCategorie: any;
+  public id;
+  filterString = '';
+  p:number=1;
+
+    constructor(private service: CategorieService, private route: Router,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
+    config: ToasterConfig;
+    index = 1;
+    destroyByClick = true;
+    duration = 4000;
+    hasIcon = true;
+    position: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
+    preventDuplicates = false;
+    status: NbComponentStatus = 'success';
+    title = 'Modification!';
+    content = `Catégorie modifiée avec succés!`;
 
 
-    constructor(private service: CategorieService, private route: Router,private dialogService: NbDialogService) { }
-    ngOnInit() {
+
+    config2: ToasterConfig;
   
-    
-      this.service.getAllCategorieByMagasin(1).subscribe((data) => {this.categorie = data; console.log(this.categorie)}, (err) => {console.log(err); });
+    destroyByClick2 = true;
+    duration2 = 4000;
+    hasIcon2 = true;
+    position2: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
+    preventDuplicates2 = false;
+    status2: NbComponentStatus = 'danger';
+  
+    title2 = 'Modification!';
+    content2 = `Erreur lors de la modification!`;
+
+
+    ngOnInit() {
+      this.service.getAllCategorieByMagasin(1).subscribe((data) => {this.categorie = data; console.log(this.categorie)}, (err) => {console.log(err); }); 
+      this.resetForm();
+    }
+    private showToast(type: NbComponentStatus, title: string, body: string) {
+      const config = {
+        status: type,
+        destroyByClick: this.destroyByClick,
+        duration: this.duration,
+        hasIcon: this.hasIcon,
+        position: this.position,
+        preventDuplicates: this.preventDuplicates,
+      };
+      const titleContent = title ? ` Categorie` : '';
+  
       
+      this.toastrService.show(
+        body,
+        `Modification ${titleContent}`,
+        config);
+    }
+
+    private showToastErreur(type: NbComponentStatus, title2: string, body: string) {
+      const config2= {
+        status: type,
+        destroyByClick: this.destroyByClick2,
+        duration: this.duration2,
+        hasIcon: this.hasIcon2,
+        position: this.position2,
+        preventDuplicates: this.preventDuplicates2,
+      };
+      const titleContent2 = title2 ? ` Categorie` : '';
+  
       
+      this.toastrService.show(
+        body,
+        `Modification  ${titleContent2}`,
+        config2);
     }
     resetForm(form? :NgForm){
       if(form!=null)
@@ -34,66 +98,82 @@ export class ListeCategorieComponent implements OnInit {
           }
           }
      //Pop Suppression Categorie
-     openWithoutEscClose(dialogSup: TemplateRef<any>,idCat) {
+     openWithoutEscClose(dialogSup: TemplateRef<any>,idCat,libelle) {
    
       let CategorieId: any;
       CategorieId = idCat;
-      let supCategorie: any;
-      this.service.GetCategorieById(CategorieId).subscribe( data => {supCategorie = data; console.log(supCategorie)} , err => {console.log(err); } );
+   
+      this.service.GetCategorieById(CategorieId).subscribe( data => {this.supCategorie = data; console.log(this.supCategorie)} , err => {console.log(err); } );
       this.dialogService.open(
+       
         dialogSup,
         {
-          context: 'this is some additional data passed to dialog',
+          
+          context: 'Voulez vous vraiment supprimer la catégorie '+libelle+' ?',
           hasBackdrop: false,
+          closeOnEsc: false,
         });
+        
     }
 
     //Delete Categorie
-    ondelete(c){
-      console.log(c);
-    this.service.DeleteCategorie(c).subscribe(res=>{
-     console.log(res)}) ;
+    deleteCategorie(c){
   
+    this.service.DeleteCategorie(c).subscribe(res=>{
+      if(res['success']==true){
+         location.reload();
+        }
+      }) ;
+    
+    
      }
 
      //Pop Modifier Categorie
      openWithoutEscClose2(dialog: TemplateRef<any>,idCat) {
-      let idCategorie: number;
-      idCategorie = idCat;
-      let modifCategorie:any;
-      this.service.GetCategorieById(idCategorie).subscribe((data) => {modifCategorie = data; console.log(modifCategorie)}, (err) => {console.log(err); });
+      
+   
+      let CategorieId: any;
+      CategorieId = idCat;
+      this.id=idCat;
+      this.service.GetCategorieById(CategorieId).subscribe( data => {this.modifCategorie = data; console.log(this.modifCategorie)} , err => {console.log(err); } );
       this.dialogService.open(
+       
         dialog,
         {
-          context: 'this is some additional data passed to dialog',
+          
+         
+          hasBackdrop: false,
           closeOnEsc: false,
         });
+        
     }
 
-    //Supprimer Categorie
-    ModifierGerant(form :NgForm){ 
-      // console.log(form); 
+    //Modifier Categorie
+    ModifierCategorie(form :NgForm){ 
+ 
         this.modiformulaire(form);
-      this.resetForm(form);
+        
+
       }
+      
     modiformulaire(form :NgForm){
-      this.service.updateCategorie(form.value,1).subscribe(res=> {
-        if(res['success']==false){this.bad(res['message']); this.resetForm(form);
+     
+      this.service.updateCategorie(form.value,this.id).subscribe(res=> {console.log(res);
+        if(res['success']==true){
+         
+          this.showToast(this.status, this.title, this.content);
+         this.resetForm(form);
+         location.reload();
       }
-       else{this.good(res['message']);  this.resetForm(form); 
-      
+      else{
+        this.showToastErreur(this.status2, this.title2, this.content2);
       }
-      
-      },error1 => {console.log(error1)});
-      
-          }
-      good(message) {
-        this.toastr.success(message,'Categorie modifiée avec succes');
-      
-      }
-      bad(message) {
-        this.toastr.error(message,'Erreur');
-      
-      }
-      }
-      
+    },error1 => {console.log(error1['ok'])
+    if(error1['ok']==false){
+      this.showToastErreur(this.status2, this.title2, this.content2);
+    }
+  }
+    
+    );
+    }
+  }
