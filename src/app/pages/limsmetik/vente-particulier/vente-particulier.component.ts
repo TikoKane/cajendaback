@@ -62,7 +62,7 @@ export class VenteParticulierComponent implements OnInit {
 
   }
   bad(message) {
-    this.toastr.danger(message,'error');
+    this.toastr.danger(message,"Erreur lors de l'ajout du produit");
 
   }
   badd() {

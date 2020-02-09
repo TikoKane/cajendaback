@@ -51,7 +51,7 @@ export class AchatProduitComponent implements OnInit {
 
 
   onLogin(f: NgForm) {
-    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp=>{console.log(resp); this.good("produit ajouter");this.reloadComponent();},error1 => {console.log(error1)});
+    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp=>{console.log(resp); this.good("produit ajouté avec succès");this.reloadComponent();},error1 => {console.log(error1)});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.reloadComponent();
   }
@@ -62,7 +62,7 @@ export class AchatProduitComponent implements OnInit {
 
   }
   good(message) {
-    this.toastr.success(message,'success');
+    this.toastr.success(message,'Ajout Produit');
 
   }
   bad() {
@@ -87,7 +87,7 @@ export class AchatProduitComponent implements OnInit {
   }
 
   validerAchat() {
-    this.serviceAchat.validerAchat().subscribe(resp=>{this.good("achat reuissi avec success");this.reloadComponent();},error1 => {this.bad()});
+    this.serviceAchat.validerAchat().subscribe(resp=>{this.good("achat réussi avec succès");this.reloadComponent();},error1 => {this.bad()});
 
   }
 

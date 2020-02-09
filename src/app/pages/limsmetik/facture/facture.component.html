@@ -34,17 +34,17 @@
                 <b>LimsMetik developers team </b>
               </div>
               <div class="NumFacture">
-                <h3>Facture N°:       {{infoFacture['numFacture']}}</h3>
-                <b>Date de La Facture :</b>{{infoFacture['dateFacture'] | date:'dd/MM/yyyy'}}
+                <h3>Facture N° :       {{infoFacture['numFacture']}}</h3>
+                <b>Date de La Facture : </b>{{infoFacture['dateFacture'] | date:'dd/MM/yyyy'}}
               </div>
               <br>
               <br>
               <div  id="gauche" >
                 <table  id="red">
                   <tbody>
-                  <p class="element"><b>Clients</b></p>
+                  <p class="element"><b>Client</b></p>
                   <tr>
-                    <th>Nom :</th>
+                    <th>Nom : </th>
                     <td *ngIf="isParticulier()"><b>{{infoClient['client'].prenomClient}}  {{infoClient['client'].nomClient}}</b></td>
                     <td *ngIf="isSimple()"><b>{{infoClient['client'].nomClient}}</b></td>
                     <td *ngIf="isEntreprise()"><b>{{infoClient['client'].raisonSocialClient}}</b></td>
@@ -54,7 +54,7 @@
                     <td> {{infoClient['client'].adresseClient}}</td>
                   </tr>
                   <tr>
-                    <th>Telephone:  </th>
+                    <th>Telephone : </th>
                     <td>{{infoClient['client'].telClient}} </td>
                   </tr>
                   <tr>
@@ -71,19 +71,19 @@
                   <tbody>
                   <p class="element"><b> Paiement</b></p>
                   <tr>
-                    <th>Type Paiement   :</th>
+                    <th>Type Paiement : </th>
                     <td>Comptant</td>
                   </tr>
                   <tr>
                     <th>Net A payer  :</th>
-                    <td> <b class="Pading">{{MontantAPayer}}</b> F</td>
+                    <td> <b class="Pading">{{MontantAPayer}} FCFA</b> </td>
                   </tr>
                   <tr>
-                    <th>Effectue par:</th>
+                    <th>Effectue par :</th>
                     <td> <b class="Pading">{{infoUser.prenom}} {{infoUser.nom}} </b> </td>
                   </tr>
                   <tr>
-                    <th>Boutique:</th>
+                    <th>Boutique :</th>
                     <td> <b class="Pading">{{magasin}}</b> </td>
                   </tr>
                   </tbody>
@@ -131,12 +131,12 @@
                   </tbody>
                 </table>
                 <div class="notices">
-                  <div>IMPORTANT:</div>
-                  <div class="notice"><b>Tout produit vendu ou utilisé au-delà de 24h ne serait plus accepté </b></div>
+                  <b><div>IMPORTANT:</div></b>
+                  <div class="notice"><b>Tout produit vendu au-delà de 24h ne sera ni échangé, ni remboursé </b></div>
                 </div>
                 <footer>
                   <div class="footerr">
-                    Ges-Produit cree par  <b>@LIM'SMETIK</b><strong> Tel: 771922061 /771768180</strong>.
+                    Ges-Produit créée par  <b>@LIM'SMETIK</b><strong> Tel: 771922061 /771768180</strong>.
                   </div>
                 </footer>
               </div>
