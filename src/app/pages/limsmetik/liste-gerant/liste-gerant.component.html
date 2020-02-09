@@ -17,7 +17,7 @@
         <th>Prénom</th>
         <th>Téléphone</th>
         <th>Profil</th>
-        <th>Action</th>
+        <th>actions</th>
       </tr>
       </thead>
       <tbody>
@@ -28,8 +28,8 @@
         <td>{{g[0].tel}}</td>
         <td *ngIf="g[0].typeUser_id==1">Admin</td>
         <td *ngIf="g[0].typeUser_id==2">Vendeur</td>
-        <td><a class='btn btn-danger btn-xs' (click)="openWithoutEscClose(dialogSup,g[0].id)"><i class="fa fa-trash" aria-hidden="true" ></i> Supprimer </a>
-         <a class='btn btn-warning btn-xs' (click)="openWithoutEscClose2(dialog,g[0].id)"><i class="fa fa-edit" aria-hidden="true"></i> Modifier </a></td>
+        <td><button nbButton  status="danger" (click)="openWithoutEscClose(dialogSup,g[0].id)"><i class="fa fa-trash" aria-hidden="true" ></i> Supprimer </button>
+         <button nbButton status="warning" (click)="openWithoutEscClose2(dialog,g[0].id)"><i class="fa fa-edit" aria-hidden="true"></i> Modifier </button></td>
       </tr>
     
       </tbody>
@@ -44,11 +44,11 @@
 
 <ng-template #dialogSup let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header style="background-color: #2d8ac7">Suppression Gérant</nb-card-header>
+    <nb-card-header style="background-color: #2d8ac7">Suppression d'un gérant Gérant</nb-card-header>
     <nb-card-body>{{ data }} {{gerAsupprim.User.nom}} {{gerAsupprim.User.prenom}}</nb-card-body>
     <nb-card-footer>
       <button type="submit" class='btn btn-danger btn-xs' (click)="deleteGerant(gerAsupprim.User.id)">Supprimer</button>
-      <button nbButton (click)="ref.close()">Close Dialog</button>
+      <button nbButton (click)="ref.close()">Annuler</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
@@ -110,7 +110,7 @@
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">
             <button type="submit" class='btn btn-success btn-xs'>Modifier</button>
-            <button  type="submit" class='btn btn-primary btn-xs' (click)="ref.close()">Annuler</button>
+            <button nbButton (click)="ref.close()">Annuler</button>
           </div>
         </div>
       </form>

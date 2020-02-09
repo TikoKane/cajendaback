@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {CaisseService} from "../service/caisse.service";
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-recherche-facture',
@@ -9,17 +10,27 @@ import {CaisseService} from "../service/caisse.service";
 })
 export class RechercheFactureComponent implements OnInit {
 
-  constructor(private serviceCaisse:CaisseService,private route:Router) { }
+  constructor(private serviceCaisse:CaisseService,private toastr: NbToastrService,private route:Router) { }
 
   ngOnInit() {
   }
 
 
   validervente(value: any) {
-    console.log(value.NumeroFacture);
+  //  console.log(value.NumeroFacture);
     this.serviceCaisse.getFacturebyNum(value.NumeroFacture).subscribe(resp=>{console.log(resp);
-      console.log(resp['facture'].id);
-      this.route.navigate(['/pages/limsmetik/facture',resp['facture'].id]);
-    },error1 => {console.log(error1)})
+    //  console.log(resp['facture'].id);
+    if(resp['facture'].id!=null){
+      this.route.navigate(['/pages/limsmetik/facture',resp['facture'].id])
+    };
+    },error1 => {console.log(error1['ok']);
+    if(error1['ok']==false){
+      this.toastr.danger("Numéro de facture inexistant","Recherche invalide");
+    }
   }
-}
+    
+    );
+    }
+  }
+
+

@@ -160,7 +160,7 @@ listecategorie;
              else{
                this.showToastErreur(this.status2, this.title2, this.content2);
              }
-           },error1 => {console.log(error1['ok'])
+           },error1 => {console.log(error1['ok']);
            if(error1['ok']==false){
              this.showToastErreur(this.status2, this.title2, this.content2);
            }

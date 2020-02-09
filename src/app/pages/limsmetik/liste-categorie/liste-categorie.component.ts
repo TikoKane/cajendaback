@@ -100,10 +100,9 @@ export class ListeCategorieComponent implements OnInit {
      //Pop Suppression Categorie
      openWithoutEscClose(dialogSup: TemplateRef<any>,idCat,libelle) {
    
-      let CategorieId: any;
-      CategorieId = idCat;
-   
-      this.service.GetCategorieById(CategorieId).subscribe( data => {this.supCategorie = data; console.log(this.supCategorie)} , err => {console.log(err); } );
+ 
+      this.id=idCat;
+      this.service.GetCategorieById(this.id).subscribe( data => {this.supCategorie = data; console.log(this.supCategorie)} , err => {console.log(err); } );
       this.dialogService.open(
        
         dialogSup,
@@ -132,10 +131,9 @@ export class ListeCategorieComponent implements OnInit {
      openWithoutEscClose2(dialog: TemplateRef<any>,idCat) {
       
    
-      let CategorieId: any;
-      CategorieId = idCat;
+
       this.id=idCat;
-      this.service.GetCategorieById(CategorieId).subscribe( data => {this.modifCategorie = data; console.log(this.modifCategorie)} , err => {console.log(err); } );
+      this.service.GetCategorieById(this.id).subscribe( data => {this.modifCategorie = data; console.log(this.modifCategorie)} , err => {console.log(err); } );
       this.dialogService.open(
        
         dialog,
