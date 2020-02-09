@@ -1,5 +1,10 @@
 <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
   <nb-card-body>
+    <div class="inner-addon left-addon">
+      <i class="glyphicon glyphicon-search"></i>
+      <input type="text" class="form-control" placeholder="RECHERCHE PAR DATE..." [(ngModel)]="filterString"/>
+  </div>
+<br>
     <div class="">
       <nb-card>
         <nb-card-header style="background-color: #2d8ac7">Caisse Mensuelle</nb-card-header>
@@ -16,7 +21,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let t of tableau ;let i=index" >
+      <tr *ngFor="let t of (tableau | filterCaisseMensuelle: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index" >
         <th scope='row'>{{i+1}}</th>
         <td>{{t.dateVente}}</td>
         <td *ngIf="t.prenomClient && t.prenomClient=='anonyme'">{{t.nomClient}}</td>
@@ -27,7 +32,9 @@
 
       </tr>
       </tbody>
+    
     </table>
+    <pagination-controls (pageChange)="p= $event"></pagination-controls>
     <h3 align="center">Total vendu    :  <b> {{total}}</b>F</h3>
   </nb-card-body>
 </nb-card>

@@ -12,6 +12,8 @@ import {CaisseService} from "../service/caisse.service";
 
 export class CaisseJournaliereComponent implements OnInit {
   tableau;total;
+  p:number=1;
+filterString = '';
   constructor(private serviceCaiise :CaisseService,private route:Router  ) { }
 
   ngOnInit() {

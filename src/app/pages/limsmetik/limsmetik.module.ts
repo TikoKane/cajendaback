@@ -51,6 +51,9 @@ import { FilterGerantPipe } from './liste-gerant/filter-gerant.pipe';
 import { FilterCategoriePipe } from './liste-categorie/filter-categorie.pipe';
 import { FilterProduitPipe } from './liste-produit/filter-produit.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { FilterStockPipe } from './stock-produit/filter-stock.pipe';
+import { FilterCaisseJournalierePipe } from './caisse-journaliere/filter-caisse-journaliere.pipe';
+import { FilterCaisseMensuellePipe } from './caisse-mensuelle/filter-caisse-mensuelle.pipe';
 
 
 @NgModule({
@@ -116,6 +119,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FilterGerantPipe,
     FilterCategoriePipe,
     FilterProduitPipe,
+    FilterStockPipe,
+    FilterCaisseJournalierePipe,
+    FilterCaisseMensuellePipe,
   
   ],
 })
