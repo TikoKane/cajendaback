@@ -4,12 +4,11 @@ body{
 }
 #Web_1366___1 {
 
-  width: auto;
-  height: 650px;
-
-
-
-
+  width: 50%;
+  height: 60px;
+}
+#img{
+  margin-right: 80%;
 }
 .fontImage{
   width: 1350px;
@@ -21,6 +20,7 @@ body{
     position: absolute;
     //left: 20px;
     //top: -20px;
+    margin-left: 20%;
     overflow: visible;
     width: 489px;
     white-space: nowrap;
@@ -31,6 +31,7 @@ body{
     font-size: 50px;
     color: rgba(0,149,255,1);
     letter-spacing: 0.02px;
+    top: 70px;
 
   }
 #formulaire {
@@ -40,6 +41,7 @@ body{
   left: 161.448px;
   top: 210px;
   overflow: visible;
+
 }
 .Rectangle_2 {
   filter: drop-shadow(0px 0px 80px rgba(0, 0, 0, 0.102));
@@ -49,6 +51,7 @@ body{
 
   left: 0px;
   top: 0px;
+
 }
 #CONNEXION {
   position: absolute;
@@ -65,6 +68,7 @@ body{
   color: rgba(0,149,255,1);
   letter-spacing: 0.02px;
   font-weight: bold;
+
 }
 .login {
   position: absolute;
@@ -76,6 +80,7 @@ body{
   border-radius: 25px;
   border-color: rgba(0,149,255,1);
 
+
 }
 .login_q {
   position: absolute;
@@ -86,6 +91,7 @@ body{
   top: 211px;
   border-radius: 25px;
   border-color: rgba(0,149,255,1);
+
 }
 
 .Icon_awesome_user_tie {
@@ -96,6 +102,7 @@ body{
   left: 41.733px;
   top: 163.263px;
   transform: matrix(1,0,0,1,0,0);
+
 }
 .Icon_ionic_ios_lock {
   overflow: visible;
@@ -116,6 +123,7 @@ body{
   color:white;
   border-radius: 25px;
   border: 0px;
+  
 }
 
 #OF71Y30 {
@@ -124,6 +132,7 @@ body{
   height: 444px;
   left: 461.559px;
   overflow: visible;
+  
 }
 #Capture_d__cran__132_ {
   position: absolute;
@@ -132,12 +141,14 @@ body{
   left: 593px;
   top: 86px;
   overflow: visible;
+ 
 }
 #limsmetik {
-  position: absolute;
+ position: absolute;
   width: 225.69px;
   height: 153.768px;
   left: 960.393px;
   top: -210px;
   overflow: visible;
+  margin-left: -85%;
 }
