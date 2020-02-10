@@ -6,7 +6,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
@@ -25,13 +25,15 @@ import {
   NbToastrModule, NbTreeGridModule, NbUserModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent, JwtInterceptor } from './auth/login/login.component';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {AuthGuard} from './auth/auth.guard';
 import {AuthService} from './auth/auth.service';
+
+
 
 
 @NgModule({
@@ -87,7 +89,11 @@ import {AuthService} from './auth/auth.service';
     }),
     CoreModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {

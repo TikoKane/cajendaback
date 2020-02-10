@@ -1,10 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import {FormBuilder, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {Users} from '../../users.model';
 import {NbToastrService} from '@nebular/theme';
-
+import 'rxjs/add/operator/do';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+@Injectable()
+export class JwtInterceptor implements HttpInterceptor {
+  constructor(public auth: AuthService, public router: Router,public authService: AuthService) {}
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
+    return next.handle(request).do((event: HttpEvent<any>) => {
+      if (event instanceof HttpResponse) {
+        // do stuff with response if you want
+      }
+    }, (err: any) => {
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401) {
+          this.authService.logout();
+        }
+      }
+    });
+  }
+}
 @Component({
   selector: 'ngx-login',
   templateUrl: './login.component.html',
