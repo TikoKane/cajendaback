@@ -58,7 +58,12 @@ export class LoginComponent implements OnInit {
         , resp['user'].nom, resp['user'].prenom,
         resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
      // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
+     if(resp['user'].nom=="ba"){
+       this.router.navigate(['firstConnexion']);
+     }
+     else{
       this.router.navigate(['pages/dashboard']);
+     }
     },
         error1 => {
       this.errorsmsg(error1['error'].message);
@@ -69,6 +74,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.logout();
   }
 
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Users} from '../users.model';
-import {isBoolean} from "util";
+
 @Injectable()
 export class AuthService {
 
@@ -68,7 +68,14 @@ export class AuthService {
     this.isLoggedIn = false;
     this.router.navigate(['login']);
   }
-
+  logout2(): void {
+    localStorage.removeItem('token');
+  
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('typeUser');
+    this.isLoggedIn = false;
+    this.router.navigate(['firstConnexion']);
+  }
   sendToken(token: string) {
     localStorage.setItem('token', token);
   }

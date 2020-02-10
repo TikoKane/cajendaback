@@ -32,13 +32,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {AuthGuard} from './auth/auth.guard';
 import {AuthService} from './auth/auth.service';
+import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.component';
 
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent,FirstConnexionComponent],
   imports: [
  
     NbInputModule,

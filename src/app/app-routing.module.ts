@@ -2,6 +2,7 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import {LoginComponent} from './auth/login/login.component';
 import {AuthGuard} from './auth/auth.guard';
+import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'firstConnexion',
+    component: FirstConnexionComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
