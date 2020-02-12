@@ -55,12 +55,13 @@ import { FilterStockPipe } from './stock-produit/filter-stock.pipe';
 import { FilterCaisseJournalierePipe } from './caisse-journaliere/filter-caisse-journaliere.pipe';
 import { FilterCaisseMensuellePipe } from './caisse-mensuelle/filter-caisse-mensuelle.pipe';
 import { FilterListeAchatPipe } from './liste-achat/filter-liste-achat.pipe';
+import {NgxPrintModule} from "ngx-print";
+import {ModalOverlaysModule} from "../modal-overlays/modal-overlays.module";
 
 
 @NgModule({
   imports: [
-   
-    ModalOverlaysRoutingModule,
+
     NbDialogModule.forChild(),
     NbWindowModule.forChild(),
     NbPopoverModule,
@@ -88,15 +89,10 @@ import { FilterListeAchatPipe } from './liste-achat/filter-liste-achat.pipe';
     NbTreeGridModule,
     NbAccordionModule,
     CommonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxPrintModule,
   ],
   declarations:[
-  ModalOverlaysComponent,
-    DialogComponent,
-    WindowComponent,
-    PopoversComponent,
-    TooltipComponent,
-    ToastrComponent,
     LimsmetikComponent,
     FormInputsComponent,
     AjoutGerantComponent,
@@ -124,7 +120,7 @@ import { FilterListeAchatPipe } from './liste-achat/filter-liste-achat.pipe';
     FilterCaisseJournalierePipe,
     FilterCaisseMensuellePipe,
     FilterListeAchatPipe,
-  
+
   ],
 })
 export class LimsmetikModule { }

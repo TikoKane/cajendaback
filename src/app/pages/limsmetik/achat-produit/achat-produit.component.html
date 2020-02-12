@@ -27,7 +27,7 @@
               <input type="number" nbInput fullWidth status="info"  placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
             </div>
 
-            <button type='"submit" 'nbButton status='success'>Submit</button>
+            <button [disabled]="!f.valid" type='"submit" 'nbButton status='success'>Submit</button>
             <br>
             <br>
             <br>
@@ -66,7 +66,7 @@
           <br>
           <div class="button" style="text-align: center">
             <button nbButton status="danger" *ngIf="tableau" (click)="anullerAchat()">Annuler</button>
-            <button nbButton status="primary" *ngIf="tableau" (click)="validerAchat()"> Valider Achat</button>
+            <button nbButton status="primary" [disabled]="!valider" (click)="validerAchat()"> Valider Achat</button>
           </div>
 
         </nb-card-body>

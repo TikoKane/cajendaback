@@ -38,14 +38,14 @@ export class AjoutGerantComponent implements OnInit {
 
   title2 = 'Ajout Gérant!';
   content2 = `Erreur lors de l'ajout du gérant!`;
-  constructor(private routes:Router, private toastr: ToastrService,private service:GerantService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
+  constructor(private routes:Router, private toastr: ToastrService,public service:GerantService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
   listetpeUser;
   ngOnInit() {
     this.resetForm();
     this.magasin=1;
     this.service.getAllTypeUser().subscribe(data=>{
       this.listetpeUser=data;
-      console.log(this.listetpeUser)  
+      console.log(this.listetpeUser)
     },err=>{
       console.log(err)});
   }
@@ -60,7 +60,7 @@ export class AjoutGerantComponent implements OnInit {
     };
     const titleContent = title ? ` Gérant réussi` : '';
 
-    
+
     this.toastrService.show(
       body,
       `Ajout ${titleContent}`,
@@ -78,7 +78,7 @@ export class AjoutGerantComponent implements OnInit {
     };
     const titleContent2 = title2 ? `!` : '';
 
-    
+
     this.toastrService.show(
       body,
       `Erreur ${titleContent2}`,
@@ -89,7 +89,7 @@ if(form!=null)
     form.resetForm();
 
     this.service.ger={
-     
+
       nom:'',
       prenom:'',
       email:'',
@@ -99,15 +99,15 @@ if(form!=null)
       login:''
     }
     }
-    AjouterGerant(form :NgForm){ 
-    // console.log(form); 
+    AjouterGerant(form :NgForm){
+    // console.log(form);
       this.insertFormulaire(form);
    // this.resetForm(form);
     }
- 
+
     insertFormulaire(form :NgForm){
 this.service.insertGerant(form.value,this.magasin).subscribe(res=>{
- 
+
   if(res['success']==false){
     this.showToastErreur(this.status2, this.title2, this.content2);
 }

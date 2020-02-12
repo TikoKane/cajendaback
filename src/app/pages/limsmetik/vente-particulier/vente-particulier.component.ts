@@ -16,7 +16,7 @@ export class VenteParticulierComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  categorie;tableau;montant; string;valeur;donnees;
+  categorie;tableau;montant; string;valeur;donnees;valider:boolean=false;trouve:boolean=false;
   constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) {
     this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
   }
@@ -71,7 +71,7 @@ export class VenteParticulierComponent implements OnInit {
   }
 
   onLogin(f: NgForm) {
-    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);}this.reloadComponent()},error1 => {console.log(error1)});
+    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent();},error1 => {console.log(error1)});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.reloadComponent();
   }
@@ -92,11 +92,11 @@ export class VenteParticulierComponent implements OnInit {
   }
 
   anullerVente() {
-    this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();},error1 => {this.bad(error1);});
+    this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();this.valider=false;this.trouve=false;},error1 => {this.bad(error1);});
   }
 
-  validervente() {
-    this.serviceVente.validerventeParticulier(this.particulier).subscribe(resp=>{console.log(resp['idFacture']);console.log(resp);
+  validervente(f: NgForm) {
+    this.serviceVente.validerventeParticulier(this.particulier).subscribe(resp=>{console.log(resp['idFacture']);console.log(resp);this.valider=false;this.trouve=false;
       this.router.navigate(['/pages/limsmetik/facture',resp['idFacture']]);
       console.log(resp)},error1 => {console.log(error1)});
   }
@@ -114,10 +114,15 @@ export class VenteParticulierComponent implements OnInit {
     this.test=this.particulier.telephone;
     this.serviceVente.getClientBytel(this.test).subscribe(dataa=>{this.valeur=dataa; if(this.valeur['Client '])
     {
+      this.trouve=true;
       this.particulier.adresse=this.valeur['Client '].adresseClient;
       this.particulier.nom=this.valeur['Client '].nomClient;
       this.particulier.prenom=this.valeur['Client '].prenomClient;
       this.particulier.telephone=this.valeur['Client '].telClient;
-    }},error1 => {console.log(error1);});
+    }else{this.trouve=false;}},error1 => {console.log(error1);});
+  }
+
+  annulerVente() {
+
   }
 }

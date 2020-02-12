@@ -33,6 +33,7 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {AuthGuard} from './auth/auth.guard';
 import {AuthService} from './auth/auth.service';
 import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.component';
+import {NgxPrintModule} from "ngx-print";
 
 
 
@@ -41,7 +42,7 @@ import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.
 @NgModule({
   declarations: [AppComponent, LoginComponent,FirstConnexionComponent],
   imports: [
- 
+
     NbInputModule,
     NbCardModule,
     NbButtonModule,
@@ -62,6 +63,7 @@ import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.
     NbListModule,
     NbTreeGridModule,
     NbAccordionModule,
+
     //
     CommonModule,
     NbLayoutModule,

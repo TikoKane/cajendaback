@@ -13,7 +13,7 @@ import {NbToastrService} from "@nebular/theme";
 
 export class AchatProduitComponent implements OnInit {
   categorie;
-  tableau;montant;firstForm: FormGroup;
+  tableau;montant;firstForm: FormGroup;valider:boolean=false;
   secondForm: FormGroup;
   thirdForm: FormGroup;
 
@@ -51,7 +51,7 @@ export class AchatProduitComponent implements OnInit {
 
 
   onLogin(f: NgForm) {
-    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp=>{console.log(resp); this.good("produit ajouté avec succès");this.reloadComponent();},error1 => {console.log(error1)});
+    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp=>{console.log(resp); this.good("produit ajouté avec succès");this.reloadComponent();this.valider=true},error1 => {console.log(error1)});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.reloadComponent();
   }
@@ -87,12 +87,12 @@ export class AchatProduitComponent implements OnInit {
   }
 
   validerAchat() {
-    this.serviceAchat.validerAchat().subscribe(resp=>{this.good("achat réussi avec succès");this.reloadComponent();},error1 => {this.bad()});
+    this.serviceAchat.validerAchat().subscribe(resp=>{this.good("achat réussi avec succès");this.reloadComponent();this.valider=false;},error1 => {this.bad()});
 
   }
 
   anullerAchat() {
-    this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.bad();});
+    this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();this.valider=false;},error1 => {this.bad();});
   }
 
   actuliser() {

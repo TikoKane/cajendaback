@@ -32,7 +32,7 @@
                 </div>
                 <div class=" col-md-offset-7">
                   <button type='reset'nbButton status='danger'>Annuler</button>
-                  <button type='submit'nbButton status='success'>Submit</button>
+                  <button type='submit'nbButton status='success' [disabled]="!f.valid">Submit</button>
                 </div>
                 <br>
                 <br>
@@ -69,13 +69,13 @@
                 </tbody>
               </table>
 
-
+              <button nbButton status="danger" (click)="anullerVente()">Annuler</button>
             </nb-card-body>
           </nb-card>
 
         </div>
         <button nbButton disabled nbStepperNext>prev</button>
-        <button nbButton nbStepperNext>next</button>
+        <button nbButton nbStepperNext [disabled]="!valider">next</button>
       </nb-step>
       <nb-step [label]='labelTwo'>
         <ng-template #labelTwo>Second step</ng-template>
@@ -83,25 +83,25 @@
           <nb-card>
             <nb-card-header style="background-color: #2d8ac7">Formulaire Entreprise</nb-card-header>
             <nb-card-body>
-              <form #f="ngForm"  (ngSubmit)="onEntreprise(f)">
+              <form #ff="ngForm"  (ngSubmit)="onEntreprise(ff)">
                 <div class="form-group">
                   <label  class="label">Telephone</label>
-                  <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="entreprise.telephone" (ngModelChange)="getEntrepriseByTel($event)" placeholder="Enter le numero de telephone">
+                  <input type="number" nbInput fullWidth status="info"  name="telephone" [(ngModel)]="entreprise.telephone" (ngModelChange)="getEntrepriseByTel($event)" placeholder="Enter le numero de telephone">
                 </div>
                 <div class="form-group">
                   <label  class="label">Raison Social</label>
-                  <input type="text" nbInput fullWidth status="info" name="raisonSocialClient" required="required" [(ngModel)]="entreprise.raisonSocial" placeholder="Enter le nom de l'entreprise">
+                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="raisonSocialClient" required="required" [(ngModel)]="entreprise.raisonSocial" placeholder="Enter le nom de l'entreprise">
                 </div>
 
                 <div class="form-group">
                   <label  class="label">Adresse</label>
-                  <input type="text" nbInput fullWidth status="info" name="Adresse"  [(ngModel)]="entreprise.adresse"  placeholder="Enter l'adresse">
+                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required"  [(ngModel)]="entreprise.adresse"  placeholder="Enter l'adresse">
                 </div>
 
 
-                <<div class=" col-md-offset-7">
-                <button type='reset'nbButton status='danger' (click)="annulerVente()">Annuler</button>
-                <button type='submit'nbButton status='success'  name="venteEntreprise" (click)="validervente()">Submit</button>
+                <div class=" col-md-offset-7">
+
+                <button type='submit'nbButton status='success' [disabled]="!ff.valid" name="venteEntreprise" (click)="validervente()">Submit</button>
               </div>
                 <br>
                 <br>

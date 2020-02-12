@@ -32,7 +32,7 @@
                 </div>
                 <div class=" col-md-offset-7">
                 <button type='reset'nbButton status='danger'>Annuler</button>
-                <button type='submit'nbButton status='success'>Submit</button>
+                <button type='submit'  nbButton status='success' [disabled]="!f.valid">Submit</button>
                  </div>
                 <br>
                 <br>
@@ -69,13 +69,13 @@
                 </tbody>
               </table>
 
-
+              <button nbButton status="danger" (click)="anullerVente()">Annuler</button>
             </nb-card-body>
           </nb-card>
 
         </div>
-        <button nbButton disabled nbStepperNext>prev</button>
-        <button nbButton nbStepperNext>next</button>
+        <button nbButton disabled nbStepperNext >prev</button>
+        <button nbButton nbStepperNext [disabled]="!valider">next</button>
       </nb-step>
       <nb-step [label]='labelTwo'>
         <ng-template #labelTwo>Second step</ng-template>
@@ -83,29 +83,29 @@
           <nb-card>
             <nb-card-header style="background-color: #2d8ac7">Formulaire Particulier</nb-card-header>
             <nb-card-body>
-              <form #f="ngForm" (ngSubmit)="validervente()">
+              <form #ff="ngForm" (ngSubmit)="validervente(ff)">
                 <div class="form-group">
                   <label  class="label">Telephone</label>
                   <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="particulier.telephone" (ngModelChange)="getParticulierbyTel($event)" placeholder="Enter le numero de telephone">
                 </div>
                 <div class="form-group">
                   <label  class="label">Prenon</label>
-                  <input type="text" nbInput fullWidth status="info" name="Prenom" required="required"  [(ngModel)]="particulier.prenom" placeholder="Enter le prenom">
+                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Prenom" required="required"  [(ngModel)]="particulier.prenom" placeholder="Enter le prenom">
                 </div>
                 <div class="form-group">
                   <label  class="label">Nom</label>
-                  <input type="text" nbInput fullWidth status="info" name="Nom" required="required"  [(ngModel)]="particulier.nom"   placeholder="Enter le nom">
+                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Nom" required="required"  [(ngModel)]="particulier.nom"   placeholder="Enter le nom">
                 </div>
 
                 <div class="form-group">
                   <label  class="label">Adresse</label>
-                  <input type="text" nbInput fullWidth status="info" name="Adresse"  [(ngModel)]="particulier.adresse" placeholder="Enter l'adresse">
+                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="particulier.adresse" placeholder="Enter l'adresse">
                 </div>
 
 
                 <div class=" col-md-offset-7">
-                  <button type='reset'nbButton status='danger' (click)="annulerVente()">Annuler</button>
-                  <button type='submit'nbButton status='success'>Submit</button>
+
+                  <button type='submit' [disabled]="!ff.valid" nbButton status='success'>Submit</button>
                 </div>
                 <br>
                 <br>
@@ -119,8 +119,10 @@
           </nb-card>
 
         </div>
+        <div>
         <button nbButton nbStepperPrevious>prev</button>
-        <button nbButton nbStepperNext>next</button>
+        <button nbButton nbStepperNext >next</button>
+        </div >
       </nb-step>
     </nb-stepper>
   </nb-card-body>
