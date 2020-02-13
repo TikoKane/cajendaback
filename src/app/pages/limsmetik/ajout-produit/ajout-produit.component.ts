@@ -13,7 +13,7 @@ import { NbGlobalPosition, NbGlobalPhysicalPosition, NbComponentStatus, NbDialog
   styleUrls: ['./ajout-produit.component.scss']
 })
 export class AjoutProduitComponent implements OnInit {
-  public magasin:1;
+
   config: ToasterConfig;
   index = 1;
   destroyByClick = true;
@@ -46,7 +46,7 @@ export class AjoutProduitComponent implements OnInit {
   
     this.resetForm()
     
-    this.serviceCat.getAllCategorieByMagasin(1).subscribe(data=>{
+    this.serviceCat.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe(data=>{
       this.listecategorie=data;
       console.log(this.listecategorie)  
     },err=>{

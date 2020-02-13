@@ -7,6 +7,8 @@ import {NbToastrService} from '@nebular/theme';
 import 'rxjs/add/operator/do';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UpdateMotDePasseGerant } from '../../pages/limsmetik/service/general.model';
+import { GerantService } from '../../pages/limsmetik/service/gerant.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService, public router: Router,public authService: AuthService) {}
@@ -38,13 +40,16 @@ export class FirstConnexionComponent implements OnInit {
     login: '',
     password: '',
     magasin_id: 1,
+  
   };
   user = {
     login: '',
     password: '',
-    idmagasin: '1',
+    magasin_id: 1,
+    confirmPassword:'',
+    newPassword:''
   };
-  constructor(public authService: AuthService, public router: Router, private toastr: NbToastrService) {
+  constructor(private service: GerantService,public authService: AuthService, public router: Router, private toastr: NbToastrService) {
 
   }
   logout() {
@@ -52,24 +57,30 @@ export class FirstConnexionComponent implements OnInit {
   }
 
   onLogin(value) {
-    this.authService.login(this.u).subscribe(resp => {
+    if(this.user.newPassword===this.user.confirmPassword){
+      
+    this.authService.login2(this.user).subscribe(resp => {
       this.authService.saveToken(resp['token']
         , resp['user'].nom, resp['user'].prenom,
         resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
      // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
-     if(resp['user'].nom=="ba"){
-       
-       this.router.navigate(['firsConnexion']);
-     }
-     else{
-      this.router.navigate(['pages/dashboard']);
-     }
+   this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword);
+   this.router.navigate(['pages/dashboard']);
     },
         error1 => {
-      this.errorsmsg(error1['error'].message);
-      this.u.login = '';
-      this.u.password = '';
+          console.log(error1);
+        location.reload();
+      this.errorsmsg();
+      this.user.login = '';
+      this.user.password = '';
+      this.user.confirmPassword = '';
+      this.user.newPassword = '';
     });
+  }
+  else{
+    this.errorsmsgIdentiqueMotDePasse("Les deux Mots de passe ne sont pas identique");
+ 
+  }
     // console.log(value);
   }
 
@@ -78,7 +89,14 @@ export class FirstConnexionComponent implements OnInit {
   }
 
 
-  errorsmsg(messages: string) {
+  errorsmsg() {
+
+    this.toastr.danger("Login ou Mot de Passe invalide", 'Error');
+
+  }
+
+  
+  errorsmsgIdentiqueMotDePasse(messages: string) {
 
     this.toastr.danger(messages, 'Error');
 

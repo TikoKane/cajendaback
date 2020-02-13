@@ -8,6 +8,7 @@ export class GerantService {
   private host: string = 'http://lims.alwaysdata.net/api';
   constructor(private http:HttpClient) { }
   ger : Gerant;
+ 
   getAllGerant(){
    return this.http.get(this.host+"/user/getAllUser?token="+localStorage.getItem('token'));
   }
@@ -29,6 +30,12 @@ export class GerantService {
   updateGerant(ger:Gerant,id){
 
     return this.http.put(this.host+'/user/updateById/'+id+'?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+ger.password+'&'+'typeUser_id='+ger.typeUser_id+'&'+"&token="+localStorage.getItem('token'),Gerant);
+
+  }
+
+  updatePasswordGerant(id,nmdp){
+
+    return this.http.put(this.host+'/user/updatePasswordUser/'+id+'?password='+nmdp+"&token="+localStorage.getItem('token'),Gerant);
 
   }
   getAllTypeUser(){

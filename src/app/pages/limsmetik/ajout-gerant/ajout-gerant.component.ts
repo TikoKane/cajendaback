@@ -12,7 +12,7 @@ import { ToasterConfig } from 'angular2-toaster';
   styleUrls: ['./ajout-gerant.component.scss']
 })
 export class AjoutGerantComponent implements OnInit {
-  public magasin;
+ 
   config: ToasterConfig;
   index = 1;
   destroyByClick = true;
@@ -21,14 +21,12 @@ export class AjoutGerantComponent implements OnInit {
   position: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
   preventDuplicates = false;
   status: NbComponentStatus = 'success';
-
   title = 'Ajout Gérant!';
   content = `Gérant ajouté avec succès!`;
 
 
 
   config2: ToasterConfig;
-
   destroyByClick2 = true;
   duration2 = 4000;
   hasIcon2 = true;
@@ -41,8 +39,9 @@ export class AjoutGerantComponent implements OnInit {
   constructor(private routes:Router, private toastr: ToastrService,private service:GerantService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
   listetpeUser;
   ngOnInit() {
+    
     this.resetForm();
-    this.magasin=1;
+  //  this.magasin=1;
     this.service.getAllTypeUser().subscribe(data=>{
       this.listetpeUser=data;
       console.log(this.listetpeUser)  
@@ -106,7 +105,7 @@ if(form!=null)
     }
  
     insertFormulaire(form :NgForm){
-this.service.insertGerant(form.value,this.magasin).subscribe(res=>{
+this.service.insertGerant(form.value,localStorage.getItem('idmagasin')).subscribe(res=>{
  
   if(res['success']==false){
     this.showToastErreur(this.status2, this.title2, this.content2);
