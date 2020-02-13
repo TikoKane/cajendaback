@@ -52,7 +52,6 @@ export class PagesComponent implements OnInit{
         icon: 'keypad-outline',
         children: [
           {
-            hidden: this.fa,
             title: 'Ajout categorie',
             link: '/pages/limsmetik/ajoutCategorie',
           },
@@ -61,7 +60,6 @@ export class PagesComponent implements OnInit{
             link: '/pages/limsmetik/listeCategorie',
           },
           {
-            hidden: this.fa,
             title: 'Ajout produit',
             link: '/pages/limsmetik/ajoutProduit',
           },

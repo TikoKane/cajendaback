@@ -40,15 +40,15 @@ export class AjoutProduitComponent implements OnInit {
   title2 = 'Ajout Produit!';
   content2 = `Veuillez vérifier si le produit n'esiste pas déjà`;
 
-  constructor(private routes : Router,private toastr: ToastrService,private service:ProduitService,private serviceCat:CategorieService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
+  constructor(private routes : Router,private toastr: ToastrService,public service:ProduitService,private serviceCat:CategorieService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
   listecategorie;
   ngOnInit() {
-  
+
     this.resetForm()
     
     this.serviceCat.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe(data=>{
       this.listecategorie=data;
-      console.log(this.listecategorie)  
+      console.log(this.listecategorie)
     },err=>{
       console.log(err)});
   }
@@ -63,7 +63,7 @@ export class AjoutProduitComponent implements OnInit {
     };
     const titleContent = title ? ` produit réussi` : '';
 
-    
+
     this.toastrService.show(
       body,
       `Ajout ${titleContent}`,
@@ -81,53 +81,53 @@ export class AjoutProduitComponent implements OnInit {
     };
     const titleContent2 = title2 ? '!' : '';
 
-    
+
     this.toastrService.show(
       body,
       ` Erreur lors de l'ajout du produit ${titleContent2}`,
       config2);
   }
-    AjouterCategorie(form :NgForm){ 
-    // console.log(form); 
+    AjouterCategorie(form :NgForm){
+    // console.log(form);
       this.insertFormulaire(form);
     // this.resetForm(form);
     }
 
 
- 
+
   resetForm(form? :NgForm){
 if(form!=null)
     form.resetForm();
 
     this.service.prod={
-     
+
       libelle:'',
       categorie_id:0
     }
     }
-    AjouterProduit(form :NgForm){ 
-    // console.log(form); 
+    AjouterProduit(form :NgForm){
+    // console.log(form);
       this.insertFormulaire(form);
     // this.resetForm(form);
     }
- 
+
     insertFormulaire(form :NgForm){
 this.service.addProduit(form.value).subscribe(res=>{
 
   console.log(res);
-  if(res['success']==false){  
+  if(res['success']==false){
     this.showToastErreur(this.status2, this.title2, this.content2);
- 
+
  }else
  this.showToast(this.status, this.title, this.content);
  //this.resetForm(form);
- 
-  
+
+
  },error1 => {console.log(error1)});
- 
- 
- 
-     
- 
+
+
+
+
+
  }
  }

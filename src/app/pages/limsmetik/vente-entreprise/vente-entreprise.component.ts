@@ -17,7 +17,7 @@ export class VenteEntrepriseComponent implements OnInit {
   secondForm: FormGroup;
   thirdForm: FormGroup;
 
-  categorie;tableau;montant;string;valeur;
+  categorie;tableau;montant;string;valeur;valider:boolean=false;trouve:boolean=false;
   constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) {
 
     this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
@@ -72,7 +72,7 @@ export class VenteEntrepriseComponent implements OnInit {
   }
 
   onLogin(f: NgForm) {
-    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);}this.reloadComponent()},error1 => {console.log(error1)});
+    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent()},error1 => {console.log(error1)});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.reloadComponent();
   }
@@ -92,11 +92,11 @@ export class VenteEntrepriseComponent implements OnInit {
   }
 
   anullerVente() {
-    this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();},error1 => {this.bad(error1);});
+    this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();this.valider=false;this.trouve=false;},error1 => {this.bad(error1);});
   }
 
   validervente() {
-    this.serviceVente.validerventeEntreprise(this.entreprise).subscribe(resp=>{console.log(resp),
+    this.serviceVente.validerventeEntreprise(this.entreprise).subscribe(resp=>{console.log(resp);this.valider=false;this.trouve=false,
       this.router.navigate(['/pages/limsmetik/facture',resp['idFacture']]);
     },error1 => {console.log(error1)});
     this.reloadComponent();
@@ -111,10 +111,19 @@ export class VenteEntrepriseComponent implements OnInit {
     this.test=this.entreprise.telephone;
     this.serviceVente.getClientBytel(this.test).subscribe(dataa=>{this.valeur=dataa; if(this.valeur['Client '])
     {
+      this.trouve=true;
       this.entreprise.adresse=this.valeur['Client '].adresseClient;
       this.entreprise.raisonSocial=this.valeur['Client '].raisonSocialClient;
       this.entreprise.telephone=this.valeur['Client '].telClient;
-    }},error1 => {console.log(error1);});
+    }else{this.trouve=false;}},error1 => {console.log(error1);});
+
+  }
+
+  onEntreprise(ff: NgForm) {
+
+  }
+
+  annulerVente() {
 
   }
 }

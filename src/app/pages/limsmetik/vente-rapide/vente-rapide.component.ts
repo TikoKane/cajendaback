@@ -16,7 +16,7 @@ export class VenteRapideComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  categorie;tableau;montant;
+  categorie;tableau;montant;valider:boolean=false;
   constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) {
     this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
   }
@@ -66,7 +66,7 @@ export class VenteRapideComponent implements OnInit {
 
 
   onLogin(f: NgForm) {
-    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);}this.reloadComponent()},error1 => {console.log(error1)});
+    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);}this.reloadComponent();this.valider=true;},error1 => {console.log(error1)});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
     this.reloadComponent();
   }
@@ -83,7 +83,7 @@ export class VenteRapideComponent implements OnInit {
   }
 
   anullerVente() {
-    this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();},error1 => {this.bad(error1);});
+    this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();this.valider=false;},error1 => {this.bad(error1);});
   }
 
 
@@ -95,7 +95,7 @@ export class VenteRapideComponent implements OnInit {
 
 
   validerVenteRapide() {
-   this.serviceVente.validerventeRapide().subscribe(resp=>{console.log(resp); this.good("vente reuissi avec success");this.reloadComponent();
+   this.serviceVente.validerventeRapide().subscribe(resp=>{console.log(resp); this.good("vente reuissi avec success");this.reloadComponent();this.valider=false;
    this.router.navigate(['/pages/limsmetik/facture',resp['idfacture']]);
     },error1 => {this.bad(error1)});
 

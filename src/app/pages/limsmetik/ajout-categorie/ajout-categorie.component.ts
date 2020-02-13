@@ -38,7 +38,7 @@ export class AjoutCategorieComponent implements OnInit {
   title2 = 'Ajout Categorie!';
   content2 = `Veuillez vérifier si la catégorie n'esiste pas déjà!`;
 
-  constructor(private routes:Router,private toastr: ToastrService,private service:CategorieService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
+  constructor(private routes:Router,private toastr: ToastrService,public service:CategorieService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
   ngOnInit() {
     this.resetForm()
   }
@@ -53,7 +53,7 @@ export class AjoutCategorieComponent implements OnInit {
     };
     const titleContent = title ? ` Categorie réussi` : '';
 
-    
+
     this.toastrService.show(
       body,
       `Ajout ${titleContent}`,
@@ -71,44 +71,44 @@ export class AjoutCategorieComponent implements OnInit {
     };
     const titleContent2 = title2 ? `!` : '';
 
-    
+
     this.toastrService.show(
       body,
       `Erreur lors de l'ajout de la catégorie${titleContent2}`,
       config2);
   }
-    AjouterCategorie(form :NgForm){ 
-    // console.log(form); 
+    AjouterCategorie(form :NgForm){
+    // console.log(form);
       this.insertFormulaire(form);
     // this.resetForm(form);
     }
     resetForm(form? :NgForm){
       if(form!=null)
           form.resetForm();
-      
+
           this.service.cat={
-           
+
             libelle:'',
             magasin_id:0
           }
           }
- 
+
     insertFormulaire(form :NgForm){
 this.service.addCategorie(form.value,localStorage.getItem('idmagasin')).subscribe(res=>{
  console.log(res);
- if(res['success']==false){  
+ if(res['success']==false){
    this.showToastErreur(this.status2, this.title2, this.content2);
   this.resetForm(form);
 }else
 this.showToast(this.status, this.title, this.content);
 //this.resetForm(form);
 
- 
+
 },error1 => {console.log(error1)});
 
 
 
-    
+
 
 }
 }

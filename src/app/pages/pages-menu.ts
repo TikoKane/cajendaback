@@ -35,7 +35,6 @@ export var MENU_ITEMS: NbMenuItem[] = [
     icon: 'keypad-outline',
     children: [
       {
-        hidden: fa,
         title: 'Ajout categorie',
         link: '/pages/limsmetik/ajoutCategorie',
       },
@@ -44,7 +43,6 @@ export var MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/limsmetik/listeCategorie',
       },
       {
-        hidden: fa,
         title: 'Ajout produit',
         link: '/pages/limsmetik/ajoutProduit',
       },

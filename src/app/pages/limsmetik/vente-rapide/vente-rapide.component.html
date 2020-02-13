@@ -28,7 +28,7 @@
             </div>
             <div class="buttons-row" style="text-align: center">
             <button type='reset'nbButton status='danger' class="btn">Annuler</button>
-            <button type='submit'nbButton status='success' class="btn">Submit</button>
+            <button type='submit'nbButton status='success' [disabled]="!f.valid" class="btn">Submit</button>
             </div>
 
 
@@ -71,7 +71,7 @@
           <br>
           <div class="buttons-row" *ngIf="tableau">
             <button nbButton status="danger" (click)="anullerVente()">Annuler</button>
-            <button nbButton status="primary" name="venteEntreprise" (click)="validerVenteRapide()">VALIDER VENTE</button>
+            <button nbButton status="primary" name="venteEntreprise" [disabled]="!valider" (click)="validerVenteRapide()">VALIDER VENTE</button>
           </div>
         </nb-card-body>
       </nb-card>
