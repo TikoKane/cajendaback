@@ -48,8 +48,8 @@ listecategorie;
   content2 = `Erreur lors de la modification!`;
   ngOnInit() {
     this.magasin=localStorage.getItem('idmagasin');
-    this.service.getAllProduitByMagasin(this.magasin).subscribe((data) => {this.produit = data["Produits "]; console.log(this.produit)}, (err) => {console.log(err); });
-    this.serviceCat.getAllCategorieByMagasin(this.magasin).subscribe(data=>{ this.listecategorie=data; console.log(this.listecategorie)},err=>{console.log(err)});
+    this.service.getAllProduitByMagasin(this.magasin).subscribe((data) => {this.produit = data["Produits "]; }, (err) => {console.log(err); });
+    this.serviceCat.getAllCategorieByMagasin(this.magasin).subscribe(data=>{ this.listecategorie=data; },err=>{console.log(err)});
       this.resetForm(); 
   }
   resetForm(form? :NgForm){
@@ -104,7 +104,7 @@ listecategorie;
     
     this.id = idProd;
     
-    this.service.GetProduitById(this.id).subscribe( data => {this.supProduit = data; console.log(this.supProduit)} , err => {console.log(err); } );
+    this.service.GetProduitById(this.id).subscribe( data => {this.supProduit = data; } , err => {console.log(err); } );
     this.dialogService.open(
       dialogSup,
       {
@@ -132,7 +132,7 @@ listecategorie;
            
             this.id = idProd;
        
-            this.service.GetProduitById(this.id).subscribe( data => {this.modifProd = data; console.log(this.modifProd)} , err => {console.log(err); } );
+            this.service.GetProduitById(this.id).subscribe( data => {this.modifProd = data;} , err => {console.log(err); } );
             this.dialogService.open(
               dialog,
               {

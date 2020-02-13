@@ -50,8 +50,8 @@ public gerAsupprim;
 
     ngOnInit() {
       this.magasin=localStorage.getItem('idmagasin');
-      this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {this.gerant = data; console.log(this.gerant)}, (err) => {console.log(err); });
-      this.service.getAllTypeUser().subscribe(data=>{  this.listetpeUser=data; console.log(this.listetpeUser)   },err=>{ console.log(err)});
+      this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {this.gerant = data; }, (err) => {console.log(err); });
+      this.service.getAllTypeUser().subscribe(data=>{  this.listetpeUser=data;    },err=>{ console.log(err)});
       this.resetForm()
     }
 
@@ -97,7 +97,7 @@ public gerAsupprim;
     
       this.id = idGer;
   
-      this.service.GetGerantById(this.id).subscribe( data => {this.gerAsupprim = data; console.log(this.gerAsupprim)} , err => {console.log(err); } );
+      this.service.GetGerantById(this.id).subscribe( data => {this.gerAsupprim = data;} , err => {console.log(err); } );
       this.dialogService.open(
         dialogSup,
         {
@@ -108,7 +108,7 @@ public gerAsupprim;
 
     //Delete Gerant
     deleteGerant(c){
-      console.log(c);
+    
     this.service.deleteGer(c).subscribe(res=>{  
       if(res['success']==true){
       location.reload();
@@ -142,7 +142,7 @@ public gerAsupprim;
 
     this.id=idGer;
 
-    this.service.GetGerantById(this.id).subscribe((data) => {this.modifGerant = data; console.log(this.modifGerant)}, (err) => {console.log(err); });
+    this.service.GetGerantById(this.id).subscribe((data) => {this.modifGerant = data; }, (err) => {console.log(err); });
     this.dialogService.open(
       dialog,
       {
@@ -158,7 +158,7 @@ public gerAsupprim;
     }
   modiformulaire(form :NgForm){
     this.service.updateGerant(form.value,this.id).subscribe(res=>{
-      console.log(res);
+   
       if(res['success']==false){
           this.showToastErreur(this.status2, this.title2, this.content2);
        

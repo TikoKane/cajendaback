@@ -34,6 +34,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {AuthService} from './auth/auth.service';
 import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.component';
 import {NgxPrintModule} from "ngx-print";
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -88,6 +89,7 @@ import {NgxPrintModule} from "ngx-print";
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    ToastrModule.forRoot(),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),

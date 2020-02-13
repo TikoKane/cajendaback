@@ -48,7 +48,7 @@ export class AjoutProduitComponent implements OnInit {
     
     this.serviceCat.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe(data=>{
       this.listecategorie=data;
-      console.log(this.listecategorie)
+     
     },err=>{
       console.log(err)});
   }
@@ -114,7 +114,7 @@ if(form!=null)
     insertFormulaire(form :NgForm){
 this.service.addProduit(form.value).subscribe(res=>{
 
-  console.log(res);
+
   if(res['success']==false){
     this.showToastErreur(this.status2, this.title2, this.content2);
 

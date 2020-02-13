@@ -19,7 +19,7 @@
           <div class="form-group row">
             <label for="inputEmail1" class="label col-sm-3 col-form-label">Telephone</label>
             <div class="col-sm-9">
-              <input type="number" #tel="ngModel" id="first-name"  name="tel" [(ngModel)]="service.ger.tel" nbInput fullWidth  placeholder="Telephone" required="required">
+              <input type="number" #tel="ngModel" id="telephone"  name="tel" [(ngModel)]="service.ger.tel" nbInput fullWidth  placeholder="Telephone" required="required">
             </div>
           </div>
           <div class="form-group row">
@@ -31,7 +31,7 @@
           <div class="form-group row">
             <label for="inputEmail1" class="label col-sm-3 col-form-label">Login</label>
             <div class="col-sm-9">
-              <input type="text" #login="ngModel"  name="login" [(ngModel)]="service.ger.login" nbInput fullWidth id="inputEmail1" placeholder="Login" required="required">
+              <input type="text" #login="ngModel"  name="login" [(ngModel)]="service.ger.login" nbInput fullWidth id="inputEmail" placeholder="Login" required="required">
             </div>
           </div>
           <div class="form-group row">
@@ -43,7 +43,7 @@
           <div class="form-group row">
             <label class="col-sm-3 label">Type Gerant</label>
             <div class="col-sm-9">
-              <select name="typeUser_id" id="first-name" [(ngModel)]="service.ger.typeUser_id"  class="col-sm-12 form-control"  fullWidth >
+              <select name="typeUser_id" id="typeGerant" [(ngModel)]="service.ger.typeUser_id"  class="col-sm-12 form-control"  fullWidth >
                 <option *ngFor="let user of listetpeUser" [value]="user.id" >{{user.libelle}}</option>
               </select>
 

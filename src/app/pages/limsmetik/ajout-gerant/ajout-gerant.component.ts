@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GerantService } from '../service/gerant.service';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { NbDialogService, NbToastrService, NbGlobalPosition, NbGlobalPhysicalPosition, NbComponentStatus } from '@nebular/theme';
+import { NbToastrService, NbGlobalPosition, NbGlobalPhysicalPosition, NbComponentStatus } from '@nebular/theme';
 import { ToasterConfig } from 'angular2-toaster';
 
 @Component({
@@ -36,7 +35,7 @@ export class AjoutGerantComponent implements OnInit {
 
   title2 = 'Ajout Gérant!';
   content2 = `Erreur lors de l'ajout du gérant!`;
-  constructor(private routes:Router, private toastr: ToastrService,public service:GerantService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
+  constructor(public service:GerantService,private toastrService: NbToastrService) { }
   listetpeUser;
   ngOnInit() {
     
@@ -44,7 +43,7 @@ export class AjoutGerantComponent implements OnInit {
   //  this.magasin=1;
     this.service.getAllTypeUser().subscribe(data=>{
       this.listetpeUser=data;
-      console.log(this.listetpeUser)
+    
     },err=>{
       console.log(err)});
   }
