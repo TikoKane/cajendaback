@@ -26,7 +26,7 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { LoginComponent, JwtInterceptor } from './auth/login/login.component';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
@@ -34,6 +34,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {AuthService} from './auth/auth.service';
 import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.component';
 import {NgxPrintModule} from "ngx-print";
+import {NbDateFnsDateModule} from "@nebular/date-fns";
 
 
 
@@ -88,12 +89,13 @@ import {NgxPrintModule} from "ngx-print";
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    NbDateFnsDateModule.forRoot({ format: 'dd.MM.yyyy' }),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard, {
+  providers: [AuthService, AuthGuard,DatePipe,{
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
     multi: true

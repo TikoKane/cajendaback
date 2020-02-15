@@ -31,7 +31,7 @@
         <td><button nbButton  status="danger" (click)="openWithoutEscClose(dialogSup,g[0].id)"><i class="fa fa-trash" aria-hidden="true" ></i> Supprimer </button>
          <button nbButton status="warning" (click)="openWithoutEscClose2(dialog,g[0].id)"><i class="fa fa-edit" aria-hidden="true"></i> Modifier </button></td>
       </tr>
-    
+
       </tbody>
     </table>
     <pagination-controls (pageChange)="p= $event"></pagination-controls>
@@ -58,43 +58,43 @@
     <nb-card-header style="background-color: #2d8ac7">Modification du gérant {{modifGerant.User.prenom}} {{modifGerant.User.nom}}</nb-card-header>
     <nb-card-body>
       <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="ModifierGerant(form)">
-        
-       
+
+
         <div class="form-group row">
           <label  class="label col-sm-3 col-form-label">Prenom</label>
           <div class="col-sm-9">
-            <input type="text" value="{{modifGerant.User.prenom}}" #prenom="ngModel" name="prenom" [(ngModel)]="service.ger.prenom" nbInput fullWidth  maxlength="50" size="50"  placeholder="Prenom" class="form-control col-md-7 col-xs-12" required="required">
+            <input type="text" value="{{modifGerant.User.prenom}}" #prenom="ngModel" name="prenom" [(ngModel)]=modifGerant.User.prenom nbInput fullWidth  maxlength="50" size="50"  placeholder="Prenom" class="form-control col-md-7 col-xs-12" required="required">
           </div>
         </div>
         <div class="form-group row">
           <label  class="label col-sm-3 col-form-label">Nom</label>
           <div class="col-sm-9">
-            <input type="text" #nom="ngModel" value="{{modifGerant.User.nom}}" name="nom" [(ngModel)]="service.ger.nom" nbInput fullWidth  placeholder="Nom"  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" required="required">
+            <input type="text" #nom="ngModel" value="{{modifGerant.User.nom}}" name="nom" [(ngModel)]="modifGerant.User.nom" nbInput fullWidth  placeholder="Nom"  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" required="required">
           </div>
         </div>
         <div class="form-group row">
           <label  class="label col-sm-3 col-form-label">Telephone</label>
           <div class="col-sm-9">
-            <input type="number" #tel="ngModel" value="{{modifGerant.User.tel}}" id="first-name"  name="tel" [(ngModel)]="service.ger.telephone" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Telephone" required="required">
+            <input type="number" #tel="ngModel" value="{{modifGerant.User.tel}}" id="first-name"  name="tel" [(ngModel)]="modifGerant.User.tel" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Telephone" required="required">
           </div>
         </div>
         <div class="form-group row">
           <label  class="label col-sm-3 col-form-label">Email</label>
           <div class="col-sm-9">
-            <input type="text" #email="ngModel" value="{{modifGerant.User.email}}" name="email" [(ngModel)]="service.ger.email" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Email" required="required">
+            <input type="text" #email="ngModel" value="{{modifGerant.User.email}}" name="email" [(ngModel)]="modifGerant.User.email" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Email" required="required">
           </div>
         </div>
         <div class="form-group row">
           <label  class="label col-sm-3 col-form-label">Login</label>
           <div class="col-sm-9">
-            <input type="text" #login="ngModel" value="{{modifGerant.User.login}}" name="login" [(ngModel)]="service.ger.login" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Login" required="required">
+            <input type="text" #login="ngModel" value="{{modifGerant.User.login}}" name="login" [(ngModel)]="modifGerant.User.login" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Login" required="required">
           </div>
         </div>
-       
+
         <div class="form-group row">
           <label class="col-sm-3 label">Type Gerant</label>
           <div class="col-sm-9">
-            <select name="typeUser_id" id="first-name" [(ngModel)]="service.ger.typeUser_id"   class="form-control col-md-7 col-xs-12"  fullWidth >
+            <select name="typeUser_id" id="first-nameg" [(ngModel)]="modifGerant.User.typeUser_id"   class="form-control col-md-7 col-xs-12"  fullWidth >
               <option *ngFor="let user of listetpeUser" [value]="user.id" >{{user.libelle}}</option>
             </select>
 
@@ -104,7 +104,7 @@
         <div class="form-group row" >
           <label  class="col-sm-3 label">Password</label>
           <div class="col-sm-9">
-            <input type="password"  value="{{modifGerant.User.password}}" name="password" [(ngModel)]="service.ger.password" nbInput fullWidth  placeholder="Password" required="required">
+            <input type="password"  value="{{modifGerant.User.password}}" name="password" [(ngModel)]="modifGerant.User.password" nbInput fullWidth  placeholder="Password" required="required">
           </div>
         </div>
         <div class="form-group row">

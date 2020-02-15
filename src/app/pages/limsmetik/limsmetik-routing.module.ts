@@ -21,6 +21,7 @@ import {CaisseMensuelleComponent} from './caisse-mensuelle/caisse-mensuelle.comp
 import { RechercheFactureComponent } from './recherche-facture/recherche-facture.component';
 import {FactureComponent} from "./facture/facture.component";
 import {VoirProduitAcheterComponent} from "./voir-produit-acheter/voir-produit-acheter.component";
+import {RechercheCaisseComponent} from "./recherche-caisse/recherche-caisse.component";
 
 const routes: Routes = [
   {
@@ -94,6 +95,10 @@ const routes: Routes = [
       {
         path: 'rechercheFacture',
         component: RechercheFactureComponent,
+      },
+      {
+        path: 'rechercheCaisse',
+        component: RechercheCaisseComponent,
       },
       {
         path: 'facture/:id',
