@@ -44,7 +44,7 @@ export class AjoutProduitComponent implements OnInit {
   listecategorie;
   ngOnInit() {
 
-    this.resetForm()
+    this.resetForm();
     
     this.serviceCat.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe(data=>{
       this.listecategorie=data;
@@ -87,11 +87,7 @@ export class AjoutProduitComponent implements OnInit {
       ` Erreur lors de l'ajout du produit ${titleContent2}`,
       config2);
   }
-    AjouterCategorie(form :NgForm){
-    // console.log(form);
-      this.insertFormulaire(form);
-    // this.resetForm(form);
-    }
+  
 
 
 
@@ -108,7 +104,7 @@ if(form!=null)
     AjouterProduit(form :NgForm){
     // console.log(form);
       this.insertFormulaire(form);
-    // this.resetForm(form);
+   
     }
 
     insertFormulaire(form :NgForm){
@@ -116,11 +112,12 @@ this.service.addProduit(form.value).subscribe(res=>{
 
 
   if(res['success']==false){
+    //this.resetForm(form);
     this.showToastErreur(this.status2, this.title2, this.content2);
 
  }else
  this.showToast(this.status, this.title, this.content);
- //this.resetForm(form);
+ this.resetForm(form);
 
 
  },error1 => {console.log(error1)});

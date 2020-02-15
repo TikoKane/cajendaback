@@ -15,7 +15,7 @@ export class StockProduitComponent implements OnInit {
 
   ngOnInit() {
 
-    this.serviceVente.getStok(localStorage.getItem('idmagasin')).subscribe(resp=>{this.tableau=resp['variation stock '];console.log(resp)},error1 => {console.log(error1)})
+    this.serviceVente.getStok(localStorage.getItem('idmagasin')).subscribe(resp=>{this.tableau=resp['variation stock ']},error1 => {console.log(error1)})
 
 
 

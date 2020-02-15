@@ -16,12 +16,12 @@ export class ListeAchatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.serviceAchat.voirachat(localStorage.getItem('idmagasin')).subscribe(resp=>{this.tableau=resp['AchatProduit'];console.log(resp['AchatProduit'])},error1 => {console.log(error1)});
+    this.serviceAchat.voirachat(localStorage.getItem('idmagasin')).subscribe(resp=>{this.tableau=resp['AchatProduit']},error1 => {console.log(error1)});
 
   }
 
   getAllproduitAchete(id) {
-    console.log(id);
+
     return this.rout.navigate(["/pages/limsmetik/voirproduitAcheter",id]);
   }
 }

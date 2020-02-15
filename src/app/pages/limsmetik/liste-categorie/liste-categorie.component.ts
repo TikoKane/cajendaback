@@ -36,20 +36,20 @@ export class ListeCategorieComponent implements OnInit {
 
 
     config2: ToasterConfig;
-  
+
     destroyByClick2 = true;
     duration2 = 4000;
     hasIcon2 = true;
     position2: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
     preventDuplicates2 = false;
     status2: NbComponentStatus = 'danger';
-  
+
     title2 = 'Modification!';
     content2 = `Erreur lors de la modification!`;
 
 
     ngOnInit() {
-      this.service.getAllCategorieByMagasin(1).subscribe((data) => {this.categorie = data; }, (err) => {console.log(err); }); 
+      this.service.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.categorie = data; }, (err) => {console.log(err); }); 
       this.resetForm();
     }
     private showToast(type: NbComponentStatus, title: string, body: string) {
@@ -62,8 +62,8 @@ export class ListeCategorieComponent implements OnInit {
         preventDuplicates: this.preventDuplicates,
       };
       const titleContent = title ? ` Categorie` : '';
-  
-      
+
+
       this.toastrService.show(
         body,
         `Modification ${titleContent}`,
@@ -80,8 +80,8 @@ export class ListeCategorieComponent implements OnInit {
         preventDuplicates: this.preventDuplicates2,
       };
       const titleContent2 = title2 ? ` Categorie` : '';
-  
-      
+
+
       this.toastrService.show(
         body,
         `Modification  ${titleContent2}`,
@@ -90,79 +90,81 @@ export class ListeCategorieComponent implements OnInit {
     resetForm(form? :NgForm){
       if(form!=null)
           form.resetForm();
-      
+
           this.service.cat={
-           
+
             libelle:'',
             magasin_id:0
           }
           }
      //Pop Suppression Categorie
      openWithoutEscClose(dialogSup: TemplateRef<any>,idCat,libelle) {
-   
- 
+
+
       this.id=idCat;
       this.service.GetCategorieById(this.id).subscribe( data => {this.supCategorie = data;} , err => {console.log(err); } );
       this.dialogService.open(
-       
+
         dialogSup,
         {
-          
+
           context: 'Voulez vous vraiment supprimer la catégorie '+libelle+' ?',
           hasBackdrop: false,
           closeOnEsc: false,
         });
-        
+
     }
 
     //Delete Categorie
     deleteCategorie(c){
-  
+
     this.service.DeleteCategorie(c).subscribe(res=>{
       if(res['success']==true){
-         location.reload();
+        this.service.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.categorie = data; }, (err) => {console.log(err); });
         }
       }) ;
-    
-    
+
+
      }
 
      //Pop Modifier Categorie
      openWithoutEscClose2(dialog: TemplateRef<any>,idCat) {
-      
-   
+
+
 
       this.id=idCat;
       this.service.GetCategorieById(this.id).subscribe( data => {this.modifCategorie = data; } , err => {console.log(err); } );
       this.dialogService.open(
-       
+
         dialog,
         {
-          
-         
+
+
           hasBackdrop: false,
           closeOnEsc: false,
+         // closeOnEsc: true,
         });
-        
+
     }
 
     //Modifier Categorie
-    ModifierCategorie(form :NgForm){ 
- 
+    ModifierCategorie(form :NgForm){
+
         this.modiformulaire(form);
-        
+
+
 
       }
-      
+
     modiformulaire(form :NgForm){
-     
+
       this.service.updateCategorie(form.value,this.id).subscribe(res=> {
         if(res['success']==true){
-         
+
           this.showToast(this.status, this.title, this.content);
-         this.resetForm(form);
-         location.reload();
-      }
+          form.reset();
+          this.service.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.categorie = data; }, (err) => {console.log(err); });
+        }
       else{
         this.showToastErreur(this.status2, this.title2, this.content2);
       }
@@ -171,7 +173,7 @@ export class ListeCategorieComponent implements OnInit {
       this.showToastErreur(this.status2, this.title2, this.content2);
     }
   }
-    
+
     );
     }
   }

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class JwtInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService, public router: Router,public authService: AuthService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
+
     return next.handle(request).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
         // do stuff with response if you want
@@ -71,8 +71,8 @@ export class LoginComponent implements OnInit {
     },
         error1 => {
       this.errorsmsg(error1['error'].message);
-      this.u.login = '';
-      this.u.password = '';
+   //   this.u.login = '';
+     // this.u.password = '';
     });
     // console.log(value);
   }

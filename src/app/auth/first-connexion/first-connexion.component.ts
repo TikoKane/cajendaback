@@ -33,7 +33,7 @@ export class JwtInterceptor implements HttpInterceptor {
   styleUrls: ['./first-connexion.component.scss']
 })
 export class FirstConnexionComponent implements OnInit {
-
+tik;
 
   message: string;
   u: Users= {
@@ -64,7 +64,10 @@ export class FirstConnexionComponent implements OnInit {
         , resp['user'].nom, resp['user'].prenom,
         resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
      // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
-   this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword);
+   this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword).subscribe(
+    (data) => {this.tik = data;console.log(this.tik) }, (err) => {console.log(err); }
+   );
+ //  console.log(this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword));
    this.router.navigate(['pages/dashboard']);
     },
         error1 => {

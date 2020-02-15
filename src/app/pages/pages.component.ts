@@ -106,6 +106,11 @@ export class PagesComponent implements OnInit{
             title: 'Caisse Mensuelle',
             link: '/pages/limsmetik/caisseMensuelle',
           },
+          {
+            hidden:this.fa,
+            title: 'Caisse par Date',
+            link: '/pages/limsmetik/rechercheCaisse',
+          },
         ],
       },
       {

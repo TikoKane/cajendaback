@@ -5,9 +5,9 @@
       <nb-card-body>
         <form class="form-inline" #f="ngForm" (ngSubmit)="validervente(f.value)">
 
-          <input type="text" nbInput fullWidth placeholder="Numéro Facture" name="NumeroFacture" ngModel >
+          <input type="text" nbInput fullWidth placeholder="Numéro Facture" required="required" name="NumeroFacture" ngModel >
           <div class="form-group">
-            <button  type="submit" nbButton status="primary">Rechercher</button>
+            <button  type="submit" [disabled]="!f.valid" nbButton status="primary">Rechercher</button>
           </div>
         </form>
       </nb-card-body>

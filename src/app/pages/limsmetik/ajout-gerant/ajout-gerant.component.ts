@@ -106,16 +106,22 @@ if(form!=null)
     insertFormulaire(form :NgForm){
 this.service.insertGerant(form.value,localStorage.getItem('idmagasin')).subscribe(res=>{
  
-  if(res['success']==false){
-    this.showToastErreur(this.status2, this.title2, this.content2);
+  if(res['success']==true){
+    this.showToast(this.status, this.title, this.content);
+    this.resetForm(form);
+  
+ 
 }
- else{
-  this.showToast(this.status, this.title, this.content);
-  this.resetForm(form);
-
+else{
+  this.showToastErreur(this.status2, this.title2, this.content2);
 }
+},error1 => {console.log(error1['ok'])
+if(error1['ok']==false){
+this.showToastErreur(this.status2, this.title2, this.content2);
+}
+}
+);
 
-},error1 => {console.log(error1)});
 
     }
 

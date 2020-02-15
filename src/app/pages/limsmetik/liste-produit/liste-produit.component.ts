@@ -120,7 +120,9 @@ listecategorie;
    
   this.service.DeleteProduit(c).subscribe(res=>{  
     if(res['success']==true){
-    location.reload();
+      this.magasin=localStorage.getItem('idmagasin');
+    this.service.getAllProduitByMagasin(this.magasin).subscribe((data) => {this.produit = data["Produits "]; }, (err) => {console.log(err); });
+    this.serviceCat.getAllCategorieByMagasin(this.magasin).subscribe(data=>{ this.listecategorie=data; },err=>{console.log(err)});
    }
  }) ;
    }
@@ -155,7 +157,9 @@ listecategorie;
               if(res['success']==true){this.resetForm(form);
                 this.showToast(this.status, this.title, this.content);
                 this.resetForm(form);
-                location.reload();
+                this.magasin=localStorage.getItem('idmagasin');
+                this.service.getAllProduitByMagasin(this.magasin).subscribe((data) => {this.produit = data["Produits "]; }, (err) => {console.log(err); });
+                this.serviceCat.getAllCategorieByMagasin(this.magasin).subscribe(data=>{ this.listecategorie=data; },err=>{console.log(err)});
              }
              else{
                this.showToastErreur(this.status2, this.title2, this.content2);

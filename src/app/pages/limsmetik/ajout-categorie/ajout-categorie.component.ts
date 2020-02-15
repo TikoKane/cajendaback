@@ -98,11 +98,11 @@ this.service.addCategorie(form.value,localStorage.getItem('idmagasin')).subscrib
 
  if(res['success']==false){
    this.showToastErreur(this.status2, this.title2, this.content2);
-  this.resetForm(form);
+  
 }else
 this.showToast(this.status, this.title, this.content);
 //this.resetForm(form);
-
+this.resetForm(form);
 
 },error1 => {console.log(error1)});
 

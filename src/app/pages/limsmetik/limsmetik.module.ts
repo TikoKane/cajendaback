@@ -36,16 +36,7 @@ import { CaisseJournaliereComponent } from './caisse-journaliere/caisse-journali
 import { CaisseMensuelleComponent } from './caisse-mensuelle/caisse-mensuelle.component';
 import { RechercheFactureComponent } from './recherche-facture/recherche-facture.component';
 import {CommonModule} from "@angular/common";
-import {ToastrComponent} from "../modal-overlays/toastr/toastr.component";
-import {ModalOverlaysRoutingModule} from "../modal-overlays/modal-overlays-routing.module";
-import {ModalOverlaysComponent} from "../modal-overlays/modal-overlays.component";
-import {DialogComponent} from "../modal-overlays/dialog/dialog.component";
-import {WindowComponent} from "../modal-overlays/window/window.component";
-import {PopoversComponent} from "../modal-overlays/popovers/popovers.component";
-import {TooltipComponent} from "../modal-overlays/tooltip/tooltip.component";
 import { FactureComponent } from './facture/facture.component';
-
-
 import { VoirProduitAcheterComponent } from './voir-produit-acheter/voir-produit-acheter.component';
 import { FilterGerantPipe } from './liste-gerant/filter-gerant.pipe';
 import { FilterCategoriePipe } from './liste-categorie/filter-categorie.pipe';
@@ -56,7 +47,9 @@ import { FilterCaisseJournalierePipe } from './caisse-journaliere/filter-caisse-
 import { FilterCaisseMensuellePipe } from './caisse-mensuelle/filter-caisse-mensuelle.pipe';
 import { FilterListeAchatPipe } from './liste-achat/filter-liste-achat.pipe';
 import {NgxPrintModule} from "ngx-print";
-import {ModalOverlaysModule} from "../modal-overlays/modal-overlays.module";
+import { RechercheCaisseComponent } from './recherche-caisse/recherche-caisse.component';
+import {NbDateFnsDateModule} from "@nebular/date-fns";
+import {NbMomentDateModule} from "@nebular/moment";
 
 
 @NgModule({
@@ -64,6 +57,10 @@ import {ModalOverlaysModule} from "../modal-overlays/modal-overlays.module";
 
     NbDialogModule.forChild(),
     NbWindowModule.forChild(),
+    NbMomentDateModule,
+    //NbDateFnsDateModule.forChild({ format: 'dd/MM/yyyy' }),
+    NbDateFnsDateModule.forChild({ format: 'dd.MM.yyyy' }),
+    NbDatepickerModule,
     NbPopoverModule,
     NbTooltipModule,
     ThemeModule,
@@ -120,6 +117,7 @@ import {ModalOverlaysModule} from "../modal-overlays/modal-overlays.module";
     FilterCaisseJournalierePipe,
     FilterCaisseMensuellePipe,
     FilterListeAchatPipe,
+    RechercheCaisseComponent,
 
   ],
 })
