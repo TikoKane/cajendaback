@@ -5,7 +5,7 @@ import { Gerant } from './general.model';
   providedIn: 'root'
 })
 export class GerantService {
-  private host: string = 'http://lims.alwaysdata.net/api';
+  private host: string = 'https://lims.alwaysdata.net/api';
   constructor(private http:HttpClient) { }
   ger : Gerant;
   getAllGerant(){
