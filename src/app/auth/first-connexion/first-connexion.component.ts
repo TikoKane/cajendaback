@@ -65,10 +65,10 @@ tik;
         resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
      // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
    this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword).subscribe(
-    (data) => {this.tik = data;console.log(this.tik) }, (err) => {console.log(err); }
+    (data) => {this.tik = data}, (err) => {console.log(err); }
    );
  //  console.log(this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword));
-   this.router.navigate(['pages/dashboard']);
+   this.router.navigate(['pages/choixClient']);
     },
         error1 => {
           console.log(error1);
