@@ -68,7 +68,7 @@ tik;
     (data) => {this.tik = data}, (err) => {console.log(err); }
    );
  //  console.log(this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword));
-   this.router.navigate(['pages/choixClient']);
+ this.router.navigate(['pages/limsmetik/choixClient']);
     },
         error1 => {
           console.log(error1);

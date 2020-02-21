@@ -196,23 +196,12 @@ export class ListeGerantComponent implements OnInit {
   ModifierGerant(form: NgForm) {
     // console.log(form);
     this.modiformulaire(form);
-    this.magasin = localStorage.getItem('idmagasin');
-    this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {
-      this.gerant = data;
-  
-    }, (err) => {
-      console.log(err);
-    });
-    this.service.getAllTypeUser().subscribe(data => {
-      this.listetpeUser = data;
     
-    }, err => {
-      console.log(err)
-    });
   }
 
   modiformulaire(form: NgForm) {
 
+    
     this.service.updateGerant(form.value, this.id).subscribe(res => {
       
         if (res['success'] == false) {
@@ -223,6 +212,19 @@ export class ListeGerantComponent implements OnInit {
           if (res['user'] != "") {
             this.showToast(this.status, this.title, this.content);
             this.resetForm(form);
+            this.magasin = localStorage.getItem('idmagasin');
+            this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {
+              this.gerant = data;
+          
+            }, (err) => {
+              console.log(err);
+            });
+            this.service.getAllTypeUser().subscribe(data => {
+              this.listetpeUser = data;
+            
+            }, err => {
+              console.log(err)
+            });
             //location.reload();
           }
         }
@@ -233,5 +235,6 @@ export class ListeGerantComponent implements OnInit {
         }
       }
     );
+  
   }
 }

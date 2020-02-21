@@ -100,7 +100,7 @@
               <div class="table-responsive">
                 <table class="table table-striped jambo_table bulk_action" border="1">
                   <thead>
-                  <tr class="headings">
+                  <tr class="headings" style='background-color:white'>
 
                     <th >N° </th>
                     <th>Description</th>
@@ -109,7 +109,7 @@
                     <th >Montant </th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody style='background-color:white'>
                   <tr *ngFor="let t of infoproduit; let i=index">
                     <th scope='row'>{{i+1}}</th>
                     <td>{{t.libelle}}</td>
