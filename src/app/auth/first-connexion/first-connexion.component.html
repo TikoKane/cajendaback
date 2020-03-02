@@ -18,9 +18,10 @@
           <span>CONNEXION</span>
         </div>
         <form #f="ngForm" (ngSubmit)="onLogin(f)">
-          <input type="text" class="login" nbInput name="login"  [(ngModel)]="u.login" placeholder="Username" required="required">
-          <input type="password" class="login_q" nbInput name="login" placeholder="password" [(ngModel)]="u.password"  required="required">
-          <input type="password" class="login_q2" nbInput name="login" placeholder="password" [(ngModel)]="u.password"  required="required">
+      <input type="text" class="login" nbInput name="login"  [(ngModel)]="user.login" placeholder="Username" required="required">
+        <input type="password" class="login_q" nbInput name="password" placeholder="Password" [(ngModel)]="user.password"  required="required">
+          <input type="password" class="login_q2" nbInput name="newPassword" placeholder="New Password" [(ngModel)]="user.newPassword"  required="required">
+         <input type="password" class="login_q3" nbInput name="confirmNewPassword" placeholder="Confirm New Password" [(ngModel)]="user.confirmPassword"  required="required">
           <svg class="Icon_awesome_user_tie" viewBox="0 0 18.575 20.04">
             <path fill="rgba(0,149,255,1)" id="Icon_awesome_user_tie" d="M 9.287650108337402 10.01997661590576 C 12.21906089782715 10.01997661590576 14.59487056732178 7.777223110198975 14.59487056732178 5.009988307952881 C 14.59487056732178 2.242752552032471 12.21906089782715 -1.196180221540999e-07 9.287650108337402 -1.196180221540999e-07 C 6.356232643127441 -1.196180221540999e-07 3.980420589447021 2.24275279045105 3.980420589447021 5.009988307952881 C 3.980420589447021 7.777223110198975 6.356232643127441 10.01997661590576 9.287650108337402 10.01997661590576 Z M 13.25977516174316 11.29595756530762 L 11.27785778045654 18.78745269775391 L 9.951052665710449 13.4643440246582 L 11.27785778045654 11.2724723815918 L 7.297435283660889 11.2724723815918 L 8.624242782592773 13.4643440246582 L 7.297435283660889 18.78745269775391 L 5.315519332885742 11.29595756530762 C 2.359228372573853 11.42903518676758 0 13.71092796325684 0 16.53296089172363 L 0 18.16120910644531 C 0 19.19843101501465 0.891448438167572 20.03995323181152 1.990210294723511 20.03995323181152 L 16.58508491516113 20.03995323181152 C 17.68384552001953 20.03995323181152 18.5753002166748 19.19843101501465 18.5753002166748 18.16120910644531 L 18.5753002166748 16.53296089172363 C 18.5753002166748 13.71092891693115 16.21606826782227 11.42903518676758 13.25977516174316 11.29595851898193 Z">
             </path>

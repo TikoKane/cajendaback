@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GerantService } from '../service/gerant.service';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { NbDialogService, NbToastrService, NbGlobalPosition, NbGlobalPhysicalPosition, NbComponentStatus } from '@nebular/theme';
+import { NbToastrService, NbGlobalPosition, NbGlobalPhysicalPosition, NbComponentStatus } from '@nebular/theme';
 import { ToasterConfig } from 'angular2-toaster';
 
 @Component({
@@ -12,7 +11,7 @@ import { ToasterConfig } from 'angular2-toaster';
   styleUrls: ['./ajout-gerant.component.scss']
 })
 export class AjoutGerantComponent implements OnInit {
-  public magasin;
+ 
   config: ToasterConfig;
   index = 1;
   destroyByClick = true;
@@ -21,14 +20,12 @@ export class AjoutGerantComponent implements OnInit {
   position: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
   preventDuplicates = false;
   status: NbComponentStatus = 'success';
-
   title = 'Ajout Gérant!';
   content = `Gérant ajouté avec succès!`;
 
 
 
   config2: ToasterConfig;
-
   destroyByClick2 = true;
   duration2 = 4000;
   hasIcon2 = true;
@@ -38,14 +35,15 @@ export class AjoutGerantComponent implements OnInit {
 
   title2 = 'Ajout Gérant!';
   content2 = `Erreur lors de l'ajout du gérant!`;
-  constructor(private routes:Router, private toastr: ToastrService,public service:GerantService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
+  constructor(public service:GerantService,private toastrService: NbToastrService) { }
   listetpeUser;
   ngOnInit() {
+    
     this.resetForm();
-    this.magasin=1;
+  //  this.magasin=1;
     this.service.getAllTypeUser().subscribe(data=>{
       this.listetpeUser=data;
-      console.log(this.listetpeUser)
+    
     },err=>{
       console.log(err)});
   }
@@ -106,18 +104,24 @@ if(form!=null)
     }
 
     insertFormulaire(form :NgForm){
-this.service.insertGerant(form.value,this.magasin).subscribe(res=>{
-
-  if(res['success']==false){
-    this.showToastErreur(this.status2, this.title2, this.content2);
+this.service.insertGerant(form.value,localStorage.getItem('idmagasin')).subscribe(res=>{
+ 
+  if(res['success']==true){
+    this.showToast(this.status, this.title, this.content);
+    this.resetForm(form);
+  
+ 
 }
- else{
-  this.showToast(this.status, this.title, this.content);
-  this.resetForm(form);
-
+else{
+  this.showToastErreur(this.status2, this.title2, this.content2);
 }
+},error1 => {console.log(error1['ok'])
+if(error1['ok']==false){
+this.showToastErreur(this.status2, this.title2, this.content2);
+}
+}
+);
 
-},error1 => {console.log(error1)});
 
     }
 

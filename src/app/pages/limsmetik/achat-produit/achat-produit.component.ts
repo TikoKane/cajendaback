@@ -31,10 +31,10 @@ export class AchatProduitComponent implements OnInit {
   produit;
   ngOnInit() {
 
-    console.log(this.test);
-    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; console.log(data);},error1=>{console.log(error1);});
-    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    
+    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; },error1=>{console.log(error1);});
+    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];},error1 => {console.log(error1);});
 
     this.firstForm = this.fb.group({
       firstCtrl: ['', Validators.required],
@@ -51,14 +51,14 @@ export class AchatProduitComponent implements OnInit {
 
 
   onLogin(f: NgForm) {
-    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp=>{console.log(resp); this.good("produit ajouté avec succès");this.reloadComponent();this.valider=true},error1 => {console.log(error1)});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ this.good("produit ajouté avec succès");this.reloadComponent();this.valider=true},error1 => {console.log(error1)});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant']},error1 => {console.log(error1);});
     this.reloadComponent();
   }
 
   recuperation($event: Event) {
     this.test=this.contenue.idcategorie;
-    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;console.log(dataa);},error1 => {console.log(error1);this.bad()});
+    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;},error1 => {console.log(error1);this.bad()});
 
   }
   good(message) {
@@ -72,8 +72,8 @@ export class AchatProduitComponent implements OnInit {
 
   reloadComponent() {
 
-    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant']},error1 => {console.log(error1);});
     this.contenue.idcategorie='';
     this.contenue.pu='';
     this.contenue.quantite='';
@@ -82,7 +82,7 @@ export class AchatProduitComponent implements OnInit {
   }
 
   suprimer(produit_id: any) {
-    this.serviceAchat.deleteAjoutProduit(produit_id).subscribe(resp=>{console.log(resp),this.reloadComponent()},error1 => {console.log(error1)});
+    this.serviceAchat.deleteAjoutProduit(produit_id).subscribe(resp=>{this.reloadComponent()},error1 => {console.log(error1)});
     this.reloadComponent();
   }
 

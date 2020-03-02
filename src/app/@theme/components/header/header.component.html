@@ -5,6 +5,7 @@
     </a>
     <a class="logo" href="#" (click)="navigateHome()">Sama-<span>Stock</span></a>
   </div>
+ 
   <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select>
@@ -16,7 +17,7 @@
     <nb-action class="control-item">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action>
-    <nb-action class="control-item" icon="email-outline"></nb-action>
+  
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user
                [name]="prenom+' '+nom"

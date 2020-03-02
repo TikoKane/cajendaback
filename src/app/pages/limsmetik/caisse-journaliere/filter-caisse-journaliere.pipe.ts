@@ -8,7 +8,7 @@ export class FilterCaisseJournalierePipe implements PipeTransform {
     if (!values || !values.length) return [];
     if (!filterCaisseJournaliere) return values;
     // Filter items array, items which match will return true
-    return values.filter(v => v.dateVente.toLowerCase().indexOf(filterCaisseJournaliere.toLowerCase()) !== -1);
+    return values.filter(v => v.nomClient.toLowerCase().indexOf(filterCaisseJournaliere.toLowerCase()) !== -1);
   }
 
 }

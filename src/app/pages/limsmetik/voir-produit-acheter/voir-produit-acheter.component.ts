@@ -14,8 +14,8 @@ export class VoirProduitAcheterComponent implements OnInit {
   ngOnInit() {
     let id: number;
     id = this.route.snapshot.params.id;
-    console.log(id);
-    this.serviceAchat.voirachatAjouter(id).subscribe(resp=>{this.tableau=resp;console.log(resp)},error=>{console.log(error)});
+  
+    this.serviceAchat.voirachatAjouter(id).subscribe(resp=>{this.tableau=resp},error=>{console.log(error)});
 
 
   }

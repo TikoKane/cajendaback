@@ -24,13 +24,13 @@ export class FactureComponent implements OnInit {
     this.magasin=localStorage.getItem('magasin');
     let id: number;
     id = this.route.snapshot.params.id;
-    this.servieCaisse.getFacturebyId(id).subscribe(resp=>{console.log(resp);
+    this.servieCaisse.getFacturebyId(id).subscribe(resp=>{
       this.infoFacture=resp['facture'];
       this.infoClient=resp['vente'];
       this.infoUser=resp['user'];
       this.infoproduit=resp['produits'];
       this.MontantAPayer=resp['totalVente'];
-      console.log(this.infoClient);console.log(this.infoUser);console.log(this.infoFacture) },error1 => {console.log(error1)});
+     },error1 => {console.log(error1)});
   }
 
 

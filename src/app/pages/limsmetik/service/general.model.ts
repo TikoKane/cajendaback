@@ -14,6 +14,15 @@ export class Gerant {
         magasin_id:number; 
         }
         
+        export class UpdateMotDePasseGerant {
+            
+            password:string; 
+            newPassword:string;
+            confirmPassword:string;
+            login: string;
+            magasin_id: number;
+            }
+            
         export class Produit {
             libelle:string;
             categorie_id:number; 

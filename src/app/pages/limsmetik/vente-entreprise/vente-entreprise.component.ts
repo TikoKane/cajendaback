@@ -36,9 +36,9 @@ export class VenteEntrepriseComponent implements OnInit {
   };
   produit;
   ngOnInit() {
-    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; console.log(data);},error1=>{console.log(error1);});
-    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data;},error1=>{console.log(error1);});
+    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
 
     this.firstForm = this.fb.group({
       firstCtrl: ['', Validators.required],
@@ -55,7 +55,7 @@ export class VenteEntrepriseComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test=this.contenue.idcategorie;
-    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;console.log(dataa);},error1 => {console.log(error1);});
+    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;},error1 => {console.log(error1);});
 
   }
   good(message) {
@@ -73,14 +73,14 @@ export class VenteEntrepriseComponent implements OnInit {
 
   onLogin(f: NgForm) {
     this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent()},error1 => {console.log(error1)});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
     this.reloadComponent();
   }
 
   private reloadComponent() {
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data;console.log(data)},error1 => {console.log(error1);});
-    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];console.log(data['AjoutProduit '])},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total;console.log(data['totalMontant'])},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data},error1 => {console.log(error1);});
+    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
+    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
     this.contenue.idcategorie='';
     this.contenue.pu='';
     this.contenue.quantite='';
@@ -96,14 +96,14 @@ export class VenteEntrepriseComponent implements OnInit {
   }
 
   validervente() {
-    this.serviceVente.validerventeEntreprise(this.entreprise).subscribe(resp=>{console.log(resp);this.valider=false;this.trouve=false,
+    this.serviceVente.validerventeEntreprise(this.entreprise).subscribe(resp=>{this.valider=false;this.trouve=false,
       this.router.navigate(['/pages/limsmetik/facture',resp['idFacture']]);
     },error1 => {console.log(error1)});
     this.reloadComponent();
   }
 
   suprimer(produit_id: any) {
-    this.serviceVente.deleteVenteProduit(produit_id).subscribe(resp=>{console.log(resp),this.reloadComponent()},error1 => {console.log(error1)});
+    this.serviceVente.deleteVenteProduit(produit_id).subscribe(resp=>{this.reloadComponent()},error1 => {console.log(error1)});
     this.reloadComponent();
   }
 

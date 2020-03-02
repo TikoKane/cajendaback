@@ -24,11 +24,11 @@
                 </div>
                 <div class="form-group">
                   <label  class="label">Quantite</label>
-                  <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter la quantite" name="Quantite" [(ngModel)]="contenue.quantite">
+                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter la quantite" name="Quantite" [(ngModel)]="contenue.quantite">
                 </div>
                 <div class="form-group">
                   <label  class="label">Prix unitaire</label>
-                  <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
+                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
                 </div>
                 <div class=" col-md-offset-7">
                 <button type='reset'nbButton status='danger'>Annuler</button>
@@ -50,9 +50,9 @@
                   <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style='background-color:white'>
                 <tr *ngFor="let t of tableau;let i=index" >
-                  <th scope='row'>{{i}}</th>
+                  <th scope='row'>{{i+1}}</th>
                   <td>{{t.libelle}}</td>
                   <td>{{t.quantite}}</td>
                   <td>{{t.prixUnitaire}}</td>

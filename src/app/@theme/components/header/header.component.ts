@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private nom: string;
   private prenom: string;
   private test: string;
-
+  private etat: string;
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
@@ -58,12 +58,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.test=localStorage.getItem('typeUser');
     this.nom = localStorage.getItem('nom');
     this.prenom = localStorage.getItem('prenom');
+    this.etat = localStorage.getItem('etatPassword');
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
-
+      .subscribe((users: any,) => this.user = users.nick);
+  
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(

@@ -18,8 +18,8 @@ filterString = '';
 
   ngOnInit() {
 
-    this.serviceCaiise.caissejournaliere(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.tableau=resp['caisse journaliere ']; console.log(resp['caisse journaliere '])}, error=> {console.log(error)});
-    this.serviceCaiise.getTotalMontantJournalier(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.total=resp['total journaliere '][0].total; console.log(resp['total journaliere '][0].total)}, error=> {console.log(error)});
+    this.serviceCaiise.caissejournaliere(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.tableau=resp['caisse journaliere ']; }, error=> {console.log(error)});
+    this.serviceCaiise.getTotalMontantJournalier(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.total=resp['total journaliere '][0].total;}, error=> {console.log(error)});
   }
 
   gotoFacture(id) {

@@ -95,14 +95,14 @@ export class AjoutCategorieComponent implements OnInit {
 
     insertFormulaire(form :NgForm){
 this.service.addCategorie(form.value,localStorage.getItem('idmagasin')).subscribe(res=>{
- console.log(res);
+
  if(res['success']==false){
    this.showToastErreur(this.status2, this.title2, this.content2);
-  this.resetForm(form);
+  
 }else
 this.showToast(this.status, this.title, this.content);
 //this.resetForm(form);
-
+this.resetForm(form);
 
 },error1 => {console.log(error1)});
 

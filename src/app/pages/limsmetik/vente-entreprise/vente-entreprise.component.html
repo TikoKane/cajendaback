@@ -50,9 +50,9 @@
                   <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style='background-color:white'>
                 <tr *ngFor="let t of tableau;let i=index" >
-                  <th scope='row'>{{i}}</th>
+                  <th scope='row'>{{i+1}}</th>
                   <td>{{t.libelle}}</td>
                   <td>{{t.quantite}}</td>
                   <td>{{t.prixUnitaire}}</td>

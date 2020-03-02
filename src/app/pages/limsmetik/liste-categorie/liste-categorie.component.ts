@@ -49,7 +49,7 @@ export class ListeCategorieComponent implements OnInit {
 
 
     ngOnInit() {
-      this.service.getAllCategorieByMagasin(1).subscribe((data) => {this.categorie = data; console.log(this.categorie)}, (err) => {console.log(err); });
+      this.service.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.categorie = data; }, (err) => {console.log(err); }); 
       this.resetForm();
     }
     private showToast(type: NbComponentStatus, title: string, body: string) {
@@ -102,7 +102,7 @@ export class ListeCategorieComponent implements OnInit {
 
 
       this.id=idCat;
-      this.service.GetCategorieById(this.id).subscribe( data => {this.supCategorie = data; console.log(this.supCategorie)} , err => {console.log(err); } );
+      this.service.GetCategorieById(this.id).subscribe( data => {this.supCategorie = data;} , err => {console.log(err); } );
       this.dialogService.open(
 
         dialogSup,
@@ -120,7 +120,7 @@ export class ListeCategorieComponent implements OnInit {
 
     this.service.DeleteCategorie(c).subscribe(res=>{
       if(res['success']==true){
-         location.reload();
+        this.service.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.categorie = data; }, (err) => {console.log(err); });
         }
       }) ;
 
@@ -133,7 +133,7 @@ export class ListeCategorieComponent implements OnInit {
 
 
       this.id=idCat;
-      this.service.GetCategorieById(this.id).subscribe( data => {this.modifCategorie = data; console.log(this.modifCategorie)} , err => {console.log(err); } );
+      this.service.GetCategorieById(this.id).subscribe( data => {this.modifCategorie = data; } , err => {console.log(err); } );
       this.dialogService.open(
 
         dialog,
@@ -141,7 +141,7 @@ export class ListeCategorieComponent implements OnInit {
 
 
           hasBackdrop: false,
-
+          closeOnEsc: false,
          // closeOnEsc: true,
         });
 
@@ -158,12 +158,12 @@ export class ListeCategorieComponent implements OnInit {
 
     modiformulaire(form :NgForm){
 
-      this.service.updateCategorie(form.value,this.id).subscribe(res=> {console.log(res);
+      this.service.updateCategorie(form.value,this.id).subscribe(res=> {
         if(res['success']==true){
 
           this.showToast(this.status, this.title, this.content);
           form.reset();
-          this.service.getAllCategorieByMagasin(1).subscribe((data) => {this.categorie = data; console.log(this.categorie)}, (err) => {console.log(err); });
+          this.service.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.categorie = data; }, (err) => {console.log(err); });
         }
       else{
         this.showToastErreur(this.status2, this.title2, this.content2);

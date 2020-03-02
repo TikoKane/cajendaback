@@ -18,7 +18,7 @@ export class RechercheFactureComponent implements OnInit {
 
   validervente(value: any) {
   //  console.log(value.NumeroFacture);
-    this.serviceCaisse.getFacturebyNum(value.NumeroFacture).subscribe(resp=>{console.log(resp);
+    this.serviceCaisse.getFacturebyNum(value.NumeroFacture).subscribe(resp=>{
     //  console.log(resp['facture'].id);
     if(resp['facture'].id!=null){
       this.route.navigate(['/pages/limsmetik/facture',resp['facture'].id])

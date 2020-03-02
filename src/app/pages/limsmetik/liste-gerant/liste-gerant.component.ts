@@ -41,6 +41,8 @@ export class ListeGerantComponent implements OnInit {
   title = 'Modification!';
   content = `Gérant modifié avec succès!`;
 
+  title3 = 'Suppression!';
+  content3 = `Gérant supprimé avec succès!`;
 
   config2: ToasterConfig;
 
@@ -59,13 +61,13 @@ export class ListeGerantComponent implements OnInit {
     this.magasin = localStorage.getItem('idmagasin');
     this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {
       this.gerant = data;
-      console.log(this.gerant)
+  
     }, (err) => {
       console.log(err);
     });
     this.service.getAllTypeUser().subscribe(data => {
       this.listetpeUser = data;
-      console.log(this.listetpeUser)
+    
     }, err => {
       console.log(err)
     });
@@ -116,7 +118,7 @@ export class ListeGerantComponent implements OnInit {
 
     this.service.GetGerantById(this.id).subscribe(data => {
       this.gerAsupprim = data;
-      console.log(this.gerAsupprim)
+     
     }, err => {
       console.log(err);
     });
@@ -125,15 +127,29 @@ export class ListeGerantComponent implements OnInit {
       {
         context: 'Voulez vous vraiment supprimer le gérant ',
         hasBackdrop: false,
+        closeOnEsc: false,
       });
   }
 
   //Delete Gerant
   deleteGerant(c) {
-    console.log(c);
+  
     this.service.deleteGer(c).subscribe(res => {
       if (res['success'] == true) {
-        location.reload();
+        this.showToast(this.status, this.title3, this.content3);
+        this.magasin = localStorage.getItem('idmagasin');
+        this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {
+          this.gerant = data;
+      
+        }, (err) => {
+          console.log(err);
+        });
+        this.service.getAllTypeUser().subscribe(data => {
+          this.listetpeUser = data;
+        
+        }, err => {
+          console.log(err)
+        });
       }
     });
   }
@@ -164,8 +180,7 @@ export class ListeGerantComponent implements OnInit {
 
     this.service.GetGerantById(this.id).subscribe((data) => {
       this.modifGerant = data;
-      console.log("affichage");
-      console.log(this.modifGerant)
+     
     }, (err) => {
       console.log(err);
     });
@@ -174,19 +189,21 @@ export class ListeGerantComponent implements OnInit {
       {
 
         hasBackdrop: false,
+        closeOnEsc: false,
       });
   }
 
   ModifierGerant(form: NgForm) {
     // console.log(form);
     this.modiformulaire(form);
-    // this.resetForm(form);
+    
   }
 
   modiformulaire(form: NgForm) {
 
+    
     this.service.updateGerant(form.value, this.id).subscribe(res => {
-        console.log(res);
+      
         if (res['success'] == false) {
           this.showToastErreur(this.status2, this.title2, this.content2);
 
@@ -195,7 +212,20 @@ export class ListeGerantComponent implements OnInit {
           if (res['user'] != "") {
             this.showToast(this.status, this.title, this.content);
             this.resetForm(form);
-            location.reload();
+            this.magasin = localStorage.getItem('idmagasin');
+            this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {
+              this.gerant = data;
+          
+            }, (err) => {
+              console.log(err);
+            });
+            this.service.getAllTypeUser().subscribe(data => {
+              this.listetpeUser = data;
+            
+            }, err => {
+              console.log(err)
+            });
+            //location.reload();
           }
         }
       }, error1 => {
@@ -205,5 +235,6 @@ export class ListeGerantComponent implements OnInit {
         }
       }
     );
+  
   }
 }

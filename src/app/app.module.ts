@@ -34,6 +34,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {AuthService} from './auth/auth.service';
 import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.component';
 import {NgxPrintModule} from "ngx-print";
+import { ToastrModule } from 'ngx-toastr';
 import {NbDateFnsDateModule} from "@nebular/date-fns";
 
 
@@ -89,6 +90,7 @@ import {NbDateFnsDateModule} from "@nebular/date-fns";
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    ToastrModule.forRoot(),
     NbDateFnsDateModule.forRoot({ format: 'dd.MM.yyyy' }),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',

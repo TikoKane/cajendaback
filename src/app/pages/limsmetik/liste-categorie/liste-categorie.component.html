@@ -17,7 +17,7 @@
         <th>Actions</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody style='background-color:white' >
         <tr *ngFor="let g of (categorie | filterCategorie: filterString) | paginate:{ itemsPerPage:10,currentPage:p} ;let i =index" class='even pointer'>
 
           <th scope='row'>{{i+1}}</th>
@@ -46,7 +46,7 @@
     <nb-card-header style="background-color: #2d8ac7">Suppression Categorie {{supCategorie.libelle}}</nb-card-header>
     <nb-card-body>{{data}}</nb-card-body>
     <nb-card-footer>
-      <button type="submit" class='btn btn-success btn-xs' (click)="deleteCategorie(supCategorie.id)">Supprimer</button>
+      <button type="submit" class='btn btn-success btn-xs' (click)="deleteCategorie(supCategorie.id);ref.close()">Supprimer</button>
       <button nbButton (click)="ref.close()">Annuler</button>
     </nb-card-footer>
   </nb-card>

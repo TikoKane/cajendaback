@@ -20,7 +20,7 @@
         <th>actions</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody style='background-color:white'>
       <tr *ngFor="let g of  (gerant | filter: filterString) | paginate:{ itemsPerPage:20,currentPage:p};let i =index">
         <th scope='row'>{{i+1}}</th>
         <td>{{g[0].nom}}</td>
@@ -47,7 +47,7 @@
     <nb-card-header style="background-color: #2d8ac7">Suppression d'un gérant Gérant</nb-card-header>
     <nb-card-body>{{ data }} {{gerAsupprim.User.nom}} {{gerAsupprim.User.prenom}}</nb-card-body>
     <nb-card-footer>
-      <button type="submit" class='btn btn-danger btn-xs' (click)="deleteGerant(gerAsupprim.User.id)">Supprimer</button>
+      <button type="submit" class='btn btn-danger btn-xs' (click)="deleteGerant(gerAsupprim.User.id);ref.close()">Supprimer</button>
       <button nbButton (click)="ref.close()">Annuler</button>
     </nb-card-footer>
   </nb-card>
@@ -57,7 +57,7 @@
   <nb-card>
     <nb-card-header style="background-color: #2d8ac7">Modification du gérant {{modifGerant.User.prenom}} {{modifGerant.User.nom}}</nb-card-header>
     <nb-card-body>
-      <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="ModifierGerant(form)">
+      <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="ModifierGerant(form) ;ref.close()">
 
 
         <div class="form-group row">
@@ -98,13 +98,6 @@
               <option *ngFor="let user of listetpeUser" [value]="user.id" >{{user.libelle}}</option>
             </select>
 
-          </div>
-        </div>
-
-        <div class="form-group row" >
-          <label  class="col-sm-3 label">Password</label>
-          <div class="col-sm-9">
-            <input type="password"  value="{{modifGerant.User.password}}" name="password" [(ngModel)]="modifGerant.User.password" nbInput fullWidth  placeholder="Password" required="required">
           </div>
         </div>
         <div class="form-group row">

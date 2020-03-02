@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Users} from '../users.model';
 
+
 @Injectable()
 export class AuthService {
 
@@ -22,11 +23,25 @@ export class AuthService {
       + '&' + 'password=' + value.password + '&' + 'magasin_id=' + value.magasin_id,
       { observe : 'response'});
   }
+
+  //Miliko béréne fonction mm choz a la place de /login? => /firstConnexion 
+   login2(value: Users) {
+    return this.http.post(
+      this.host
+      + '/login?login='
+      + value.login
+      + '&' + 'password=' + value.password + '&' + 'magasin_id=' + value.magasin_id,
+      { observe : 'response'});
+  }
+
+
+ 
   saveToken(jwt: string,
-            nom: string, prenom: string, typeUser: number, idmagasin: number, magasin: string, iduser: number ) {
+            nom: string, prenom: string, typeUser: number, idmagasin: number, magasin: string, iduser: number) {
     localStorage.setItem('token', jwt);
     localStorage.setItem('nom', nom);
     localStorage.setItem('prenom', prenom);
+
     this.role = typeUser;
     if(typeUser === 1)
     {
@@ -65,6 +80,7 @@ export class AuthService {
     localStorage.removeItem('nom');
     localStorage.removeItem('prenom');
     localStorage.removeItem('typeUser');
+    localStorage.removeItem('etat');
     this.isLoggedIn = false;
     this.router.navigate(['login']);
   }

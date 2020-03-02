@@ -22,14 +22,14 @@ export class RechercheCaisseComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(localStorage.getItem('token'))
+  
   }
 
   rechercheCaisse(value: any) {
 
-    this.serviceCaiise.caisseByDate(localStorage.getItem('idmagasin'),this.datePipe.transform(value.NumeroFactur, 'yyyy-MM-dd')).subscribe(resp=>{ this.tableau=resp['caisse journaliere ']; console.log(resp['caisse journaliere ']),this.trouve=true}, error=> {console.log(error),this.trouve=false});
-    this.serviceCaiise.getTotalMontantBydate(localStorage.getItem('idmagasin'),this.datePipe.transform(value.NumeroFactur, 'yyyy-MM-dd')).subscribe(resp=>{ this.total=resp['total journaliere '][0].total; console.log(resp['total journaliere '][0].total)}, error=> {console.log(error)});
-    console.log(this.datePipe.transform(value.NumeroFactur, 'yyyy-MM-dd'));
+    this.serviceCaiise.caisseByDate(localStorage.getItem('idmagasin'),this.datePipe.transform(value.NumeroFactur, 'yyyy-MM-dd')).subscribe(resp=>{ this.tableau=resp['caisse journaliere '],this.trouve=true}, error=> {console.log(error),this.trouve=false});
+    this.serviceCaiise.getTotalMontantBydate(localStorage.getItem('idmagasin'),this.datePipe.transform(value.NumeroFactur, 'yyyy-MM-dd')).subscribe(resp=>{ this.total=resp['total journaliere '][0].total}, error=> {console.log(error)});
+
   }
 
   gotoFacture(id) {

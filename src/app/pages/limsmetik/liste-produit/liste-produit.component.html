@@ -19,7 +19,7 @@
         <th>actions</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody style='background-color:white'>
       <tr>
         <tr *ngFor="let g of (produit | filterProduit: filterString) | paginate:{ itemsPerPage:20,currentPage:p};let i =index" class='even pointer'>
           <th scope='row'>{{i+1}}</th>
@@ -47,7 +47,7 @@
   <nb-card-header style="background-color: #2d8ac7">Suppression du Produit {{supProduit.libelle}}</nb-card-header>
   <nb-card-body>{{data}} {{supProduit.libelle}} ?</nb-card-body>
   <nb-card-footer>
-    <button type="submit" class='btn btn-danger btn-xs' (click)="deleteProd(supProduit.id)">Supprimer</button>
+    <button type="submit" class='btn btn-danger btn-xs' (click)="deleteProd(supProduit.id);ref.close()">Supprimer</button>
     <button nbButton (click)="ref.close()">Annuler</button>
   </nb-card-footer>
 </nb-card>
@@ -57,12 +57,12 @@
 <nb-card>
   <nb-card-header style="background-color: #2d8ac7">Modification du Produit {{modifProd.libelle}}</nb-card-header>
   <nb-card-body>
-    <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="ModifierProduit(form)">
+    <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="ModifierProduit(form);ref.close()">
    
     <div class="form-group row">
       <label  class="label col-sm-3 col-form-label">Libelle Categorie</label>
       <div class="col-sm-9">
-          <input #libelle="ngModel" id="first-name" value="{{modifProd.libelle}}"  name="libelle" [(ngModel)]="service.prod.libelle" type="text" placeholder="{{produit.libelle}}"  class="form-control col-md-7 col-xs-12" required="required" minlength="2" maxlength="50" size="50">                    
+          <input #libelle="ngModel" id="first-name" value="{{modifProd.libelle}}"  name="libelle" [(ngModel)]="modifProd.libelle" type="text" placeholder="{{produit.libelle}}"  class="form-control col-md-7 col-xs-12" required="required" minlength="2" maxlength="50" size="50">                    
         
        </div>
      </div>
@@ -71,7 +71,7 @@
      <div class="form-group row">
       <label  class="label col-sm-3 col-form-label">Veuillez Choisir la Categorie</label>
       <div class="col-sm-9">
-          <select name="categorie_id" id="first-name" [(ngModel)]="service.prod.categorie_id"  class="form-control col-md-7 col-xs-12" required="required" >
+          <select name="categorie_id" id="first-name" [(ngModel)]="modifProd.categorie_id"  class="form-control col-md-7 col-xs-12" required="required" >
               <option *ngFor="let cat of listecategorie" [value]="cat.id" >{{cat.libelle}}</option>
             </select>
        </div>
