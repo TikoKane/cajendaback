@@ -61,7 +61,9 @@ export class LoginComponent implements OnInit {
         this.authService.saveToken(resp['token']
         , resp['user'].nom, resp['user'].prenom,
         resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
-       this.router.navigate(['pages/limsmetik/choixClient']);
+        
+     this.router.navigate(['pages/limsmetik/choixClient']);
+    //   console.log((resp['user']));
       }
       
      // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
