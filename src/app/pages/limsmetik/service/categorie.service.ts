@@ -6,7 +6,7 @@ import { Categorie } from './general.model';
   providedIn: 'root'
 })
 export class CategorieService {
-  private host:string ="https://adama.alwaysdata.net/api";
+  private host:string ="https://kbc.alwaysdata.net/api";
   constructor(private http:HttpClient) { }
   cat : Categorie;
   getAllCategorieByMagasin(id){
