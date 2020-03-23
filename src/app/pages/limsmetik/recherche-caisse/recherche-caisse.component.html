@@ -7,7 +7,7 @@
           <input  nbInput fullWidth placeholder="choix date"  [nbDatepicker]="picker" required="required" name="NumeroFactur" ngModel >
           <nb-datepicker #picker [min]="min" [max]="max" format="dd/MM/yyyy"  ></nb-datepicker>
           <div class="form-group">
-            <button  type="submit" nbButton status="primary">Rechercher</button>
+            <button [disabled]="!f.valid"  type="submit" nbButton status="primary">Rechercher</button>
           </div>
         </form>
       </nb-card-body>
@@ -18,7 +18,7 @@
   <nb-card-body>
     <div class="inner-addon left-addon">
       <i class="glyphicon glyphicon-search"></i>
-      <input type="text" class="form-control" placeholder="RECHERCHE PAR DATE..." [(ngModel)]="filterString"/>
+      <input type="text" class="form-control" placeholder="RECHERCHE PAR NOM VENDEUR..." [(ngModel)]="filterString"/>
     </div>
     <br>
     <div class="">
@@ -37,7 +37,7 @@
             </tr>
             </thead>
             <tbody style='background-color:white'>
-            <tr *ngFor="let t of (tableau | filterCaisseJournaliere: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index" >
+            <tr *ngFor="let t of (tableau | filterRechercheCaisse: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index" >
               <th scope='row'>{{i+1}}</th>
               <td>{{t.dateVente}}</td>
               <td *ngIf="t.prenomClient && t.prenomClient=='anonyme'">{{t.nomClient}}</td>

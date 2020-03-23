@@ -14,11 +14,13 @@ export class CaisseMensuelleComponent implements OnInit {
   tableau;total;
   p:number=1;
 filterString = '';
+order = "id";
+ascending = false;
   constructor(private serviceCaiise :CaisseService ,private route:Router ) { }
 
   ngOnInit() {
 
-    this.serviceCaiise.caissemensuelle(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.tableau=resp['caisse mensuelle']; }, error=> {console.log(error)});
+    this.serviceCaiise.caissemensuelle(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.tableau=resp['caisse mensuelle']; console.log(this.tableau)}, error=> {console.log(error)});
     this.serviceCaiise.getTotalMontantMensuelle(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.total=resp['totale mensuelle'];}, error=> {console.log(error)});
   }
 

@@ -1,14 +1,20 @@
 <nb-layout windowMode>
+  
   <nb-layout-column>
+    <div [ngStyle]="{background: 'url(../../../assets/dossier/vague.png)'}" class="fontImage">
 
-    <div id="Web_1366___1">
-      <header id="header" >
+<div class="row">
+  <div class="col-sm-1"></div>
+    <div class="col-sm-4">
         <p><span class="header" >SAMA-STOCK</span></p>
-      </header>
-      <img src="../../../assets/dossier/vague.png" class="fontImage">
-
-
-     <div id="formulaire">
+    </div>
+    <div class="col-sm-7">
+         <img id="limsmetik" src="../../../assets/dossier/limsmetik.png" srcset="../../../assets/dossier/limsmetik.png 1x, ../../../assets/dossier/limsmetik@2x.png 2x">
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-4">
         <svg class="Rectangle_2">
           <rect fill="rgba(255,255,255,1)" id="Rectangle_2" rx="50" ry="50" x="0" y="0" width="373.035" height="383">
           </rect>
@@ -30,22 +36,20 @@
           <button class="button_login" [disabled]="!f.valid" type="submit" nbButton shape="round" status="primary">
             <span id="LOGIN_u">LOGIN</span>
           </button>
-
-
         </form>
+     </div>
+
+    <div class="col-sm-7">
       <div id="img">
         <img id="OF71Y30" src="../../../assets/dossier/OF71Y30.png" srcset="../../../assets/dossier/OF71Y30.png 1x, ../../../assets/dossier/OF71Y30@2x.png 2x">
         <img id="Capture_d__cran__132_" src="../../../assets/dossier/Capture_d__cran__132_.png" srcset="../../../assets/dossier/Capture_d__cran__132_.png 1x, ../../../assets/dossier/Capture_d__cran__132_@2x.png 2x">
         <img id="personne" src="../../../assets/dossier/personne.png" srcset="../../../assets/dossier/personne.png 1x, ../../../assets/dossier/personne@2x.png 2x">
-
       </div>
-        <img id="limsmetik" src="../../../assets/dossier/limsmetik.png" srcset="../../../assets/dossier/limsmetik.png 1x, ../../../assets/dossier/limsmetik@2x.png 2x">
-
-      </div>
-    </div>
+     </div>
+</div>
+</div>
 
   </nb-layout-column>
-
   <!--<nb-layout-footer fixed >-->
     <!--<ngx-footer ></ngx-footer>-->
   <!--</nb-layout-footer>-->

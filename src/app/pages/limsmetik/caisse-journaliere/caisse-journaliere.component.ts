@@ -14,12 +14,15 @@ export class CaisseJournaliereComponent implements OnInit {
   tableau;total;
   p:number=1;
 filterString = '';
+order = "id";
+ascending = false;
   constructor(private serviceCaiise :CaisseService,private route:Router  ) { }
 
   ngOnInit() {
 
     this.serviceCaiise.caissejournaliere(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.tableau=resp['caisse journaliere ']; }, error=> {console.log(error)});
     this.serviceCaiise.getTotalMontantJournalier(localStorage.getItem('idmagasin')).subscribe(resp=>{ this.total=resp['total journaliere '][0].total;}, error=> {console.log(error)});
+  
   }
 
   gotoFacture(id) {
