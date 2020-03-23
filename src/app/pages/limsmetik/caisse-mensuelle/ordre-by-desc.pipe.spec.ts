@@ -1,8 +1,8 @@
-import { OrdreByDescPipe } from './ordre-by-desc.pipe';
+import { OrdreByDescPipeMensuelle } from './ordre-by-desc.pipe';
 
-describe('OrdreByDescPipe', () => {
+describe('OrdreByDescPipeMensuelle', () => {
   it('create an instance', () => {
-    const pipe = new OrdreByDescPipe();
+    const pipe = new OrdreByDescPipeMensuelle();
     expect(pipe).toBeTruthy();
   });
 });

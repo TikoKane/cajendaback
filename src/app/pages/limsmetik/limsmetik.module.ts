@@ -50,8 +50,9 @@ import {NgxPrintModule} from "ngx-print";
 import { RechercheCaisseComponent } from './recherche-caisse/recherche-caisse.component';
 import {NbDateFnsDateModule} from "@nebular/date-fns";
 import {NbMomentDateModule} from "@nebular/moment";
-import { OrdreByDescPipe } from './caisse-mensuelle/ordre-by-desc.pipe';
+import { OrdreByDescPipeMensuelle } from './caisse-mensuelle/ordre-by-desc.pipe';
 import { FilterRechercheCaissePipe } from './recherche-caisse/filter-recherche-caisse.pipe';
+import { OrdreByDescPipe } from './caisse-journaliere/ordre-by-desc.pipe';
 
 
 
@@ -122,6 +123,7 @@ import { FilterRechercheCaissePipe } from './recherche-caisse/filter-recherche-c
     FilterListeAchatPipe,
     RechercheCaisseComponent,
     OrdreByDescPipe,
+    OrdreByDescPipeMensuelle,
     FilterRechercheCaissePipe,
     
 

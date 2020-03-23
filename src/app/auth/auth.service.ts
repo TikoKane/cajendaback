@@ -8,7 +8,7 @@ import {Users} from '../users.model';
 export class AuthService {
 
   value: Users;
-  private host: string = 'https://lims.alwaysdata.net/api';
+  private host: string = 'https://kbc.alwaysdata.net/api';
   isLoggedIn = false;
   role: number;
 

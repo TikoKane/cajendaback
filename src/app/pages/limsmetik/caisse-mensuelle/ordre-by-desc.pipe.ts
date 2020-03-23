@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'orderBy'
 })
-export class OrdreByDescPipe implements PipeTransform {
+export class OrdreByDescPipeMensuelle implements PipeTransform {
 
 
   transform(array, orderBy, asc = true){

@@ -6,7 +6,7 @@ import {Contenue} from "../../../users.model";
   providedIn: 'root'
 })
 export class AchatProduitService {
-  private host:string ="https://lims.alwaysdata.net/api";
+  private host:string ="https://kbc.alwaysdata.net/api";
   constructor(private http:HttpClient) { }
   voirachatAjouter(id){
     return this.http.get(this.host+"/achat/getAllProduitAcheter/"+id+"?token="+localStorage.getItem('token'));
