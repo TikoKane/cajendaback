@@ -18,8 +18,6 @@
           <span>CONNEXION</span>
         </div>
         <form #f="ngForm" (ngSubmit)="onLogin(f)">
-      <input type="text" class="login" nbInput name="login"  [(ngModel)]="user.login" placeholder="Username" required="required">
-        <input type="password" class="login_q" nbInput name="password" placeholder="Password" [(ngModel)]="user.password"  required="required">
           <input type="password" class="login_q2" nbInput name="newPassword" placeholder="New Password" [(ngModel)]="user.newPassword"  required="required">
          <input type="password" class="login_q3" nbInput name="confirmNewPassword" placeholder="Confirm New Password" [(ngModel)]="user.confirmPassword"  required="required">
           <svg class="Icon_awesome_user_tie" viewBox="0 0 18.575 20.04">

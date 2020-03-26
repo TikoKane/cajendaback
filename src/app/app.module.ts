@@ -36,13 +36,14 @@ import { FirstConnexionComponent } from './auth/first-connexion/first-connexion.
 import {NgxPrintModule} from "ngx-print";
 import { ToastrModule } from 'ngx-toastr';
 import {NbDateFnsDateModule} from "@nebular/date-fns";
+import { RecupLoginPipe } from './auth/login/recup-login.pipe';
 
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent,FirstConnexionComponent],
+  declarations: [AppComponent, LoginComponent,FirstConnexionComponent, RecupLoginPipe],
   imports: [
 
     NbInputModule,

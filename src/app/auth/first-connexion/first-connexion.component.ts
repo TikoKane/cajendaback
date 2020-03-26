@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import {FormBuilder, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
@@ -9,6 +9,9 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, Htt
 import { Observable } from 'rxjs';
 import { UpdateMotDePasseGerant } from '../../pages/limsmetik/service/general.model';
 import { GerantService } from '../../pages/limsmetik/service/gerant.service';
+import { RecupLoginPipe } from '../login/recup-login.pipe';
+
+
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService, public router: Router,public authService: AuthService) {}
@@ -27,12 +30,14 @@ export class JwtInterceptor implements HttpInterceptor {
     });
   }
 }
+
 @Component({
   selector: 'ngx-first-connexion',
   templateUrl: './first-connexion.component.html',
   styleUrls: ['./first-connexion.component.scss']
 })
 export class FirstConnexionComponent implements OnInit {
+  @Input() recupLogin: RecupLoginPipe;
 tik;
 
   message: string;
@@ -43,8 +48,6 @@ tik;
   
   };
   user = {
-    login: '',
-    password: '',
     magasin_id: 1,
     confirmPassword:'',
     newPassword:''
@@ -59,12 +62,10 @@ tik;
   onLogin(value) {
     if(this.user.newPassword===this.user.confirmPassword){
       
-    this.authService.login2(this.user).subscribe(resp => {
-      this.authService.saveToken(resp['token']
-        , resp['user'].nom, resp['user'].prenom,
-        resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
+    this.authService.login2(this.u).subscribe(resp => {
+   
      // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
-   this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword).subscribe(
+   this.service.updatePasswordGerant(localStorage.getItem('id') ,this.user.newPassword).subscribe(
     (data) => {this.tik = data}, (err) => {console.log(err); }
    );
  //  console.log(this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword));
@@ -74,8 +75,7 @@ tik;
           console.log(error1);
         location.reload();
       this.errorsmsg();
-      this.user.login = '';
-      this.user.password = '';
+     
       this.user.confirmPassword = '';
       this.user.newPassword = '';
     });
@@ -84,7 +84,7 @@ tik;
     this.errorsmsgIdentiqueMotDePasse("Les deux Mots de passe ne sont pas identique");
  
   }
-    // console.log(value);
+    
   }
 
   ngOnInit(): void {

@@ -32,7 +32,7 @@ export class JwtInterceptor implements HttpInterceptor {
 })
 export class LoginComponent implements OnInit {
 
-
+  recupLogin:'';
   message: string;
   u: Users= {
     login: '',
@@ -55,7 +55,10 @@ export class LoginComponent implements OnInit {
   onLogin(value) {
     this.authService.login(this.u).subscribe(resp => {
       if(resp['user'].password_changed==0){
-        this.router.navigate(['firstConnexion']);
+        this.authService.saveToken(resp['token']
+        , resp['user'].nom, resp['user'].prenom,
+        resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
+       this.router.navigate(['firstConnexion']);
       }
       else{
         this.authService.saveToken(resp['token']
