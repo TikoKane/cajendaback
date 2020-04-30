@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-12">
     <nb-card class="inline-form-card">
-      <nb-card-header>Ajout Categorie</nb-card-header>
+      <nb-card-header>Ajout catégorie</nb-card-header>
       <nb-card-body>
         <form #form="ngForm" (ngSubmit)="AjouterCategorie(form)">
           <div class="form-group row">
-            <label  class="label col-sm-3 col-form-label">Libelle Categorie</label>
+            <label  class="label col-sm-3 col-form-label">Libellé catégorie</label>
             <div class="col-sm-9">
               <input type="text" #libelle="ngModel" id="first-name"  placeholder="Libelle de la Catégorie" name="libelle" [(ngModel)]="service.cat.libelle" nbInput fullWidth  required="required" minlength="2" maxlength="50" size="50">
             </div>

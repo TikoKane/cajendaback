@@ -35,7 +35,7 @@
               </div>
               <div class="NumFacture">
                 <h3>Facture N° :       {{infoFacture['numFacture']}}</h3>
-                <b>Date de La Facture : </b>{{infoFacture['dateFacture'] | date:'dd/MM/yyyy'}}
+                <b>Date de La facture : </b>{{infoFacture['dateFacture'] | date:'dd/MM/yyyy'}}
               </div>
               <br>
               <br>
@@ -54,11 +54,11 @@
                     <td> {{infoClient['client'].adresseClient}}</td>
                   </tr>
                   <tr>
-                    <th>Telephone : </th>
+                    <th>Téléphone : </th>
                     <td>{{infoClient['client'].telClient}} </td>
                   </tr>
                   <tr>
-                    <th>Type Client :</th>
+                    <th>Type client :</th>
                     <td *ngIf="isParticulier()">Particulier</td>
                     <td *ngIf="isEntreprise()">Entreprise</td>
                     <td *ngIf="isSimple()">Simple</td>
@@ -71,11 +71,11 @@
                   <tbody>
                   <p class="element"><b> Paiement</b></p>
                   <tr>
-                    <th>Type Paiement : </th>
+                    <th>Type paiement : </th>
                     <td>Comptant</td>
                   </tr>
                   <tr>
-                    <th>Net A payer  :</th>
+                    <th>Net à payer  :</th>
                     <td> <b class="Pading">{{MontantAPayer}} FCFA</b> </td>
                   </tr>
                   <tr>
@@ -104,9 +104,9 @@
 
                     <th >N° </th>
                     <th>Description</th>
-                    <th > Quantite</th>
-                    <th >Prix unitaire </th>
-                    <th >Montant </th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire </th>
+                    <th>Montant </th>
                   </tr>
                   </thead>
                   <tbody style='background-color:white'>

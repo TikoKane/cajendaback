@@ -23,15 +23,15 @@
     <br>
     <div class="">
       <nb-card>
-        <nb-card-header style="background-color: #2d8ac7">Caisse Journalière</nb-card-header>
+        <nb-card-header style="background-color: #2d8ac7">Caisse journalière</nb-card-header>
         <nb-card-body>
           <table class='table table-bordered'>
             <thead style='background-color: #2d8ac7'>
             <tr>
               <th>#</th>
               <th>Date</th>
-              <th>Nom Client</th>
-              <th>Nom Vendeur</th>
+              <th>Nom client</th>
+              <th>Nom vendeur</th>
 
               <th>Action</th>
             </tr>
@@ -44,7 +44,7 @@
               <td *ngIf="t.nomClient">{{t.prenomClient }} {{t.nomClient}}</td>
               <td *ngIf="t.raisonSocialClient"> {{t.raisonSocialClient}}</td>
               <td>{{t.prenom }} {{t.nom}}</td>
-              <td><button nbButton status="success" (click)="gotoFacture(t.id)">Voir Facture</button>  </td>
+              <td><button nbButton status="success" (click)="gotoFacture(t.id)">Voir facture</button>  </td>
 
             </tr>
             </tbody>

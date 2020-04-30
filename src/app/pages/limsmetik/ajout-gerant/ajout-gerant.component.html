@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-12">
     <nb-card class="inline-form-card">
-      <nb-card-header>Ajout Gerant</nb-card-header>
+      <nb-card-header>Ajout gérant</nb-card-header>
       <nb-card-body>
         <form #form="ngForm" (ngSubmit)="AjouterGerant(form)">
           <div class="form-group row">
-            <label for="inputEmail1" class="label col-sm-3 col-form-label">Prenom</label>
+            <label for="inputEmail1" class="label col-sm-3 col-form-label">Prénom</label>
             <div class="col-sm-9">
               <input type="text" #nom="ngModel" name="prenom" [(ngModel)]="service.ger.prenom" nbInput fullWidth  placeholder="Prenom" required="required">
             </div>
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail1" class="label col-sm-3 col-form-label">Telephone</label>
+            <label for="inputEmail1" class="label col-sm-3 col-form-label">Téléphone</label>
             <div class="col-sm-9">
               <input type="number" #tel="ngModel" id="telephone"  name="tel" [(ngModel)]="service.ger.tel" nbInput fullWidth  placeholder="Telephone" required="required">
             </div>
@@ -36,7 +36,7 @@
           </div>
          
           <div class="form-group row">
-            <label class="col-sm-3 label">Type Gerant</label>
+            <label class="col-sm-3 label">Type gérant</label>
             <div class="col-sm-9">
               <select name="typeUser_id" id="typeGerant" [(ngModel)]="service.ger.typeUser_id"  class="col-sm-12 form-control"  fullWidth >
                 <option *ngFor="let user of listetpeUser" [value]="user.id" >{{user.libelle}}</option>

@@ -6,11 +6,11 @@
 
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Vente Entreprise</nb-card-header>
+            <nb-card-header style="background-color: #2d8ac7">Vente entreprise</nb-card-header>
             <nb-card-body>
               <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
                 <div class="form-group">
-                  <label  class="label">Categorie</label>
+                  <label  class="label">Catégorie</label>
                   <select  fullWidth class="form-control" name="idcategorie"  [(ngModel)]="contenue.idcategorie" (ngModelChange)="recuperation($event)">
                     <option *ngFor="let c of categorie" [value]="c.id" >{{c.libelle}}</option>
                   </select>
@@ -18,12 +18,12 @@
                 <div class="form-group" *ngIf="produit">
                   <label  class="label">Produit</label>
                   <select  fullWidth class="form-control" name="idProduit" [(ngModel)]="contenue.idproduit">
-                    <option >veuiller choisir un produit</option>
+                    <option >Veuiller choisir un produit</option>
                     <option *ngFor="let p of produit" [value]="p.id" >{{p.libelle}}</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label  class="label">Quantite</label>
+                  <label  class="label">Quantité</label>
                   <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter la quantite" name="Quantite" [(ngModel)]="contenue.quantite">
                 </div>
                 <div class="form-group">
@@ -44,7 +44,7 @@
                 <tr>
                   <th>#</th>
                   <th>Produit</th>
-                  <th>Quantite</th>
+                  <th>Quantité</th>
                   <th>Prix</th>
                   <th>Montant</th>
                   <th>Action</th>
@@ -81,15 +81,15 @@
         <ng-template #labelTwo>Second step</ng-template>
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Formulaire Entreprise</nb-card-header>
+            <nb-card-header style="background-color: #2d8ac7">Formulaire entreprise</nb-card-header>
             <nb-card-body>
               <form #ff="ngForm"  (ngSubmit)="onEntreprise(ff)">
                 <div class="form-group">
-                  <label  class="label">Telephone</label>
+                  <label  class="label">Téléphone</label>
                   <input type="number" nbInput fullWidth status="info"  name="telephone" [(ngModel)]="entreprise.telephone" (ngModelChange)="getEntrepriseByTel($event)" placeholder="Enter le numero de telephone">
                 </div>
                 <div class="form-group">
-                  <label  class="label">Raison Social</label>
+                  <label  class="label">Raison social</label>
                   <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="raisonSocialClient" required="required" [(ngModel)]="entreprise.raisonSocial" placeholder="Enter le nom de l'entreprise">
                 </div>
 

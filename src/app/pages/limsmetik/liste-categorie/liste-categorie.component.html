@@ -13,7 +13,7 @@
       <thead style='background-color: #2d8ac7'>
       <tr>
         <th>#</th>
-        <th>Libelle Catégorie</th>
+        <th>Libellé catégorie</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -43,7 +43,7 @@
 
 <ng-template #dialogSup let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header style="background-color: #2d8ac7">Suppression Categorie {{supCategorie.libelle}}</nb-card-header>
+    <nb-card-header style="background-color: #2d8ac7">Suppression catégorie {{supCategorie.libelle}}</nb-card-header>
     <nb-card-body>{{data}}</nb-card-body>
     <nb-card-footer>
       <button type="submit" class='btn btn-success btn-xs' (click)="deleteCategorie(supCategorie.id);ref.close()">Supprimer</button>
@@ -54,11 +54,11 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header style="background-color: #2d8ac7">Modification de la Catégorie {{modifCategorie.libelle}}</nb-card-header>
+    <nb-card-header style="background-color: #2d8ac7">Modification de la catégorie {{modifCategorie.libelle}}</nb-card-header>
     <nb-card-body>
       <form #form="ngForm" (ngSubmit)="ModifierCategorie(form);ref.close()">
          <div class="form-group row">
-          <label  class="label col-sm-3 col-form-label">Libelle Categorie</label>
+          <label  class="label col-sm-3 col-form-label">Libellé catégorie</label>
           <div class="col-sm-9">
             <input type="text" #libelle="ngModel"   value="{{modifCategorie.libelle}}" id="first-name"  name="libelle" [(ngModel)]="modifCategorie.libelle" nbInput fullWidth  required="required" minlength="2" maxlength="50" size="50">
           </div>

@@ -21,12 +21,6 @@ export class PagesComponent implements OnInit{
   ngOnInit(): void {
     this.fa=JSON.parse(localStorage.getItem('typeUser'));
     this.MENU_ITEMS=[
-
-      {
-        title: 'Acceuil',
-        icon: 'home-outline',
-        link: '/pages/iot-dashboard',
-      },
       {
         title: 'MENU',
         group: true,
@@ -108,7 +102,7 @@ export class PagesComponent implements OnInit{
           },
           {
             hidden:this.fa,
-            title: 'Caisse par Date',
+            title: 'Caisse par date',
             link: '/pages/limsmetik/rechercheCaisse',
           },
         ],
