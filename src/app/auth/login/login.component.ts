@@ -54,16 +54,18 @@ export class LoginComponent implements OnInit {
 
   onLogin(value) {
     this.authService.login(this.u).subscribe(resp => {
+      console.log(resp);
       if(resp['user'].password_changed==0){
         this.authService.saveToken(resp['token']
         , resp['user'].nom, resp['user'].prenom,
-        resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
-       this.router.navigate(['firstConnexion']);
+        resp['user'].typeUser_id, resp['user'].id, resp['magasin'].id, resp['magasin'].libelle);
+      this.router.navigate(['firstConnexion']);
       }
       else{
+
         this.authService.saveToken(resp['token']
         , resp['user'].nom, resp['user'].prenom,
-        resp['user'].typeUser_id, resp['magasin'].id, resp['magasin'].libelle, resp['user'].id);
+        resp['user'].typeUser_id, resp['user'].id, resp['magasin'].id, resp['magasin'].libelle);
         
      this.router.navigate(['pages/limsmetik/choixClient']);
     //   console.log((resp['user']));

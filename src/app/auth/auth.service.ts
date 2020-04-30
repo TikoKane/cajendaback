@@ -37,10 +37,12 @@ export class AuthService {
 
  
   saveToken(jwt: string,
-            nom: string, prenom: string, typeUser: number, idmagasin: number, magasin: string, iduser: number) {
+            nom: string, prenom: string, typeUser: number, iduser: number, idmagasin: number, magasin: string) {
     localStorage.setItem('token', jwt);
     localStorage.setItem('nom', nom);
     localStorage.setItem('prenom', prenom);
+    
+    localStorage.setItem('id', String(iduser));
 
     this.role = typeUser;
     if(typeUser === 1)
@@ -54,7 +56,7 @@ export class AuthService {
 
     localStorage.setItem('idmagasin', String(idmagasin));
     localStorage.setItem('magasin', magasin);
-    localStorage.setItem('iduser', String(iduser));
+
     this.isLoggedIn = true;
   }
   isAdmin() {

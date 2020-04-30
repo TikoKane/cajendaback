@@ -11,7 +11,6 @@ import { UpdateMotDePasseGerant } from '../../pages/limsmetik/service/general.mo
 import { GerantService } from '../../pages/limsmetik/service/gerant.service';
 import { RecupLoginPipe } from '../login/recup-login.pipe';
 
-
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService, public router: Router,public authService: AuthService) {}
@@ -41,8 +40,9 @@ export class FirstConnexionComponent implements OnInit {
 tik;
 
   message: string;
+  users;
   u: Users= {
-    login: '',
+    login:'',
     password: '',
     magasin_id: 1,
   
@@ -59,21 +59,22 @@ tik;
     this.authService.logout2();
   }
 
-  onLogin(value) {
+  onLogin(f) {
     if(this.user.newPassword===this.user.confirmPassword){
-      
-    this.authService.login2(this.u).subscribe(resp => {
+
+   this.u.login=this.users.User.login;
+  this.u.password=this.user.confirmPassword;
+
+ this.authService.login2(this.u).subscribe(resp => {
    
      // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
-   this.service.updatePasswordGerant(localStorage.getItem('id') ,this.user.newPassword).subscribe(
-    (data) => {this.tik = data}, (err) => {console.log(err); }
-   );
- //  console.log(this.service.updatePasswordGerant(resp['user'].id,this.user.newPassword));
+  
+  this.service.updatePasswordGerant(localStorage.getItem('id') ,this.user.newPassword);
  this.router.navigate(['pages/limsmetik/choixClient']);
     },
         error1 => {
           console.log(error1);
-        location.reload();
+   //     location.reload();
       this.errorsmsg();
      
       this.user.confirmPassword = '';
@@ -88,7 +89,13 @@ tik;
   }
 
   ngOnInit(): void {
-    this.logout();
+  //  this.logout();
+  this.service.GetGerantById(localStorage.getItem('id')).subscribe((data) => {
+    this.users = data;
+ 
+  }, (err) => {
+    console.log(err);
+  });
   }
 
 

@@ -16,30 +16,30 @@ export var MENU_ITEMS: NbMenuItem[] = [
   },
   {
     hidden: fa,
-    title: 'Gerant',
+    title: 'Gérants',
     icon: 'person-outline',
     children: [
       {
-        title: 'Ajout Gerant',
+        title: 'Ajout  gérant',
         link: '/pages/limsmetik/ajoutGerant',
       },
       {
-        title: 'List Gerant',
+        title: 'Liste gérant',
         link: '/pages/limsmetik/listeGerant',
       },
     ],
   },
   {
 
-    title: 'Categorie et Produit',
+    title: 'Catégorie et produit',
     icon: 'keypad-outline',
     children: [
       {
-        title: 'Ajout categorie',
+        title: 'Ajout catégorie',
         link: '/pages/limsmetik/ajoutCategorie',
       },
       {
-        title: 'Liste categorie',
+        title: 'Liste catégorie',
         link: '/pages/limsmetik/listeCategorie',
       },
       {
@@ -53,25 +53,25 @@ export var MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Gestion Produit',
+    title: 'Gestion produit',
     icon: 'shopping-cart-outline',
     children: [
       {
         hidden: fa,
-        title: 'Achat Produit',
+        title: 'Achat',
         link: '/pages/limsmetik/achatProduit',
       },
       {
-        title: 'Vente produit',
+        title: 'Vente',
         link: '/pages/limsmetik/choixClient',
       },
       {
-        title: 'Produit En Stock',
+        title: 'Stock',
         link: '/pages/limsmetik/stockProduit',
       },
       {
         hidden:fa,
-        title: 'Voir les Achats',
+        title: 'Voir les achats',
         link: '/pages/limsmetik/listeAchat',
       },
     ],
@@ -81,12 +81,12 @@ export var MENU_ITEMS: NbMenuItem[] = [
     icon: 'browser-outline',
     children: [
       {
-        title: 'Caisse Journaliere',
+        title: 'Journalière',
         link: '/pages/limsmetik/caisseJournaliere',
       },
       {
         hidden:fa,
-        title: 'Caisse Mensuelle',
+        title: 'Mensuelle',
         link: '/pages/limsmetik/caisseMensuelle',
       },
     ],
@@ -96,7 +96,7 @@ export var MENU_ITEMS: NbMenuItem[] = [
     icon: 'map-outline',
     children: [
       {
-        title: 'Recherche Facture',
+        title: 'Recherche facture',
         link: '/pages/limsmetik/rechercheFacture',
       },
     ],

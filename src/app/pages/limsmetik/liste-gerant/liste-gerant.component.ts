@@ -136,14 +136,11 @@ export class ListeGerantComponent implements OnInit {
   
     this.service.deleteGer(c).subscribe(res => {
       if (res['success'] == true) {
-        this.showToast(this.status, this.title3, this.content3);
+        this.showToast(this.status2, this.title3, this.content3);
         this.magasin = localStorage.getItem('idmagasin');
-        this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {
-          this.gerant = data;
-      
-        }, (err) => {
-          console.log(err);
-        });
+       
+        this.service.getAllGerantByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.gerant = data; }, (err) => {console.log(err); });
+   
         this.service.getAllTypeUser().subscribe(data => {
           this.listetpeUser = data;
         
@@ -167,7 +164,7 @@ export class ListeGerantComponent implements OnInit {
       email: '',
       password: '',
       tel: '',
-      typeUser_id: 0,
+      typeUser_id: null,
       login: ''
     }
   }
@@ -205,11 +202,13 @@ export class ListeGerantComponent implements OnInit {
     this.service.updateGerant(form.value, this.id).subscribe(res => {
       
         if (res['success'] == false) {
+          console.log(this.modifGerant)
           this.showToastErreur(this.status2, this.title2, this.content2);
 
         } else {
 
           if (res['user'] != "") {
+            console.log(this.modifGerant)
             this.showToast(this.status, this.title, this.content);
             this.resetForm(form);
             this.magasin = localStorage.getItem('idmagasin');
@@ -234,7 +233,9 @@ export class ListeGerantComponent implements OnInit {
           this.showToastErreur(this.status2, this.title2, this.content2);
         }
       }
-    );
+    ),error=>{
+      console.log(error);
+    };
   
   }
 }

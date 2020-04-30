@@ -94,7 +94,7 @@
         <div class="form-group row">
           <label class="col-sm-3 label">Type Gerant</label>
           <div class="col-sm-9">
-            <select name="typeUser_id" id="first-nameg" [(ngModel)]="modifGerant.User.typeUser_id"   class="form-control col-md-7 col-xs-12"  fullWidth >
+            <select name="typeUser_id" #typeUser_id="ngModel" id="first-nameg" [(ngModel)]="modifGerant.User.typeUser_id"   class="form-control col-md-7 col-xs-12"  fullWidth >
               <option *ngFor="let user of listetpeUser" [value]="user.id" >{{user.libelle}}</option>
             </select>
 
