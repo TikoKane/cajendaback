@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import { MENU_ITEMS } from './pages-menu';
 import {NbMenuItem} from "@nebular/theme";
-
+var fa=JSON.parse(localStorage.getItem('typeUser'));
 @Component({
   selector: 'ngx-pages',
   styleUrls: ['pages.component.scss'],
@@ -26,31 +26,31 @@ export class PagesComponent implements OnInit{
         group: true,
       },
       {
-        hidden: this.fa,
-        title: 'Gerant',
+        hidden: fa,
+        title: 'Gérant',
         icon: 'person-outline',
         children: [
           {
-            title: 'Ajout Gerant',
+            title: 'Ajout  gérant',
             link: '/pages/limsmetik/ajoutGerant',
           },
           {
-            title: 'List Gerant',
+            title: 'Liste gérant',
             link: '/pages/limsmetik/listeGerant',
           },
         ],
       },
       {
-
-        title: 'Categorie et Produit',
+    
+        title: 'Catégorie et produit',
         icon: 'keypad-outline',
         children: [
           {
-            title: 'Ajout categorie',
+            title: 'Ajout catégorie',
             link: '/pages/limsmetik/ajoutCategorie',
           },
           {
-            title: 'Liste categorie',
+            title: 'Liste catégorie',
             link: '/pages/limsmetik/listeCategorie',
           },
           {
@@ -64,25 +64,25 @@ export class PagesComponent implements OnInit{
         ],
       },
       {
-        title: 'Gestion Produit',
+        title: 'Gestion produit',
         icon: 'shopping-cart-outline',
         children: [
           {
-            hidden: this.fa,
-            title: 'Achat Produit',
+            hidden: fa,
+            title: 'Achat',
             link: '/pages/limsmetik/achatProduit',
           },
           {
-            title: 'Vente produit',
+            title: 'Vente',
             link: '/pages/limsmetik/choixClient',
           },
           {
-            title: 'Produit En Stock',
+            title: 'Stock',
             link: '/pages/limsmetik/stockProduit',
           },
           {
-            hidden:this.fa,
-            title: 'Voir les Achats',
+            hidden:fa,
+            title: 'Voir les achats',
             link: '/pages/limsmetik/listeAchat',
           },
         ],
@@ -92,12 +92,12 @@ export class PagesComponent implements OnInit{
         icon: 'browser-outline',
         children: [
           {
-            title: 'Caisse Journaliere',
+            title: 'Journalière',
             link: '/pages/limsmetik/caisseJournaliere',
           },
           {
-            hidden:this.fa,
-            title: 'Caisse Mensuelle',
+            hidden:fa,
+            title: 'Mensuelle',
             link: '/pages/limsmetik/caisseMensuelle',
           },
           {
@@ -112,7 +112,7 @@ export class PagesComponent implements OnInit{
         icon: 'map-outline',
         children: [
           {
-            title: 'Recherche Facture',
+            title: 'Recherche facture',
             link: '/pages/limsmetik/rechercheFacture',
           },
         ],

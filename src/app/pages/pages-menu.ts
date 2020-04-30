@@ -6,17 +6,12 @@ var fa=JSON.parse(localStorage.getItem('typeUser'));
 export var MENU_ITEMS: NbMenuItem[] = [
 
   {
-    title: 'Acceuil',
-    icon: 'home-outline',
-    link: '/pages/iot-dashboard',
-  },
-  {
     title: 'MENU',
     group: true,
   },
   {
     hidden: fa,
-    title: 'Gérants',
+    title: 'Gérant',
     icon: 'person-outline',
     children: [
       {
@@ -88,6 +83,11 @@ export var MENU_ITEMS: NbMenuItem[] = [
         hidden:fa,
         title: 'Mensuelle',
         link: '/pages/limsmetik/caisseMensuelle',
+      },
+      {
+        hidden:this.fa,
+        title: 'Caisse par date',
+        link: '/pages/limsmetik/rechercheCaisse',
       },
     ],
   },
