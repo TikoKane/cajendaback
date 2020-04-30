@@ -8,7 +8,7 @@ import {Users} from '../users.model';
 export class AuthService {
 
   value: Users;
-  private host: string = 'https://kbc.alwaysdata.net/api';
+  private host: string = 'https://lims.alwaysdata.net/api';
   isLoggedIn = false;
   role: number;
 
@@ -88,9 +88,10 @@ export class AuthService {
   }
   logout2(): void {
     localStorage.removeItem('token');
-  
+    localStorage.removeItem('nom');
     localStorage.removeItem('prenom');
     localStorage.removeItem('typeUser');
+    localStorage.removeItem('etat');
     this.isLoggedIn = false;
     this.router.navigate(['firstConnexion']);
   }

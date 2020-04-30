@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(value) {
     this.authService.login(this.u).subscribe(resp => {
-      console.log(resp);
+     
       if(resp['user'].password_changed==0){
         this.authService.saveToken(resp['token']
         , resp['user'].nom, resp['user'].prenom,

@@ -65,31 +65,35 @@ tik;
    this.u.login=this.users.User.login;
   this.u.password=this.user.confirmPassword;
 
- this.authService.login2(this.u).subscribe(resp => {
-   
-     // let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
-  
-  this.service.updatePasswordGerant(localStorage.getItem('id') ,this.user.newPassword);
+
+  this.service.updatePasswordGerant(localStorage.getItem('id') ,this.user.newPassword).subscribe(resp=>{
+    console.log(resp);
+  },
+  error=>{
+    console.log(error);
+  });
+ this.authService.login(this.u).subscribe(resp => {
  this.router.navigate(['pages/limsmetik/choixClient']);
     },
         error1 => {
-          console.log(error1);
-   //     location.reload();
-      this.errorsmsg();
-     
+          console.log(error1);     
       this.user.confirmPassword = '';
       this.user.newPassword = '';
     });
   }
   else{
     this.errorsmsgIdentiqueMotDePasse("Les deux Mots de passe ne sont pas identique");
+  ///  this.errorsmsg();
+     
+    this.user.confirmPassword = '',
+    this.user.newPassword = ''
  
   }
     
   }
 
   ngOnInit(): void {
-  //  this.logout();
+ //  this.logout();
   this.service.GetGerantById(localStorage.getItem('id')).subscribe((data) => {
     this.users = data;
  
@@ -99,11 +103,7 @@ tik;
   }
 
 
-  errorsmsg() {
-
-    this.toastr.danger("Login ou Mot de Passe invalide", 'Error');
-
-  }
+ 
 
   
   errorsmsgIdentiqueMotDePasse(messages: string) {

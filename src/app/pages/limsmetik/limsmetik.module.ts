@@ -53,6 +53,7 @@ import {NbMomentDateModule} from "@nebular/moment";
 import { OrdreByDescPipeMensuelle } from './caisse-mensuelle/ordre-by-desc.pipe';
 import { FilterRechercheCaissePipe } from './recherche-caisse/filter-recherche-caisse.pipe';
 import { OrdreByDescPipe } from './caisse-journaliere/ordre-by-desc.pipe';
+import { OrderByDescListeAchatPipe } from './liste-achat/order-by-desc-liste-achat.pipe';
 
 
 
@@ -125,6 +126,7 @@ import { OrdreByDescPipe } from './caisse-journaliere/ordre-by-desc.pipe';
     OrdreByDescPipe,
     OrdreByDescPipeMensuelle,
     FilterRechercheCaissePipe,
+    OrderByDescListeAchatPipe,
     
 
   ],

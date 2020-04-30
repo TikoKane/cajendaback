@@ -20,8 +20,8 @@
       </tr>
       </thead>
       <tbody style='background-color:white' >
-      <tr *ngFor="let t of (tableau | filterListeAchat: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index">
-        <th scope='row'>{{i+1}}</th>
+      <tr *ngFor="let t of (tableau | orderBy:order:ascending | filterListeAchat: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index">
+           <th scope='row'>{{i+1}}</th>
         <td>{{t.dateAchat}}</td>
         <td > <button nbButton status="success" (click)="getAllproduitAchete(t.id)">Voir produit(s) acheté(s)</button>  </td>
 
