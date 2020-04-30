@@ -6,7 +6,7 @@ import {Contenue, Entreprise, Particulier} from "../../../users.model";
   providedIn: 'root'
 })
 export class VenteProduitService {
-  private host:string ="https://lims.alwaysdata.net/api";
+  private host:string ="https://kbc.alwaysdata.net/api";
   constructor(private http:HttpClient) { }
   getStok(idmagasin){
     return this.http.get(this.host+"/stockproduit/bymagasin/"+idmagasin+"?token="+localStorage.getItem('token'));
