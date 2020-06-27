@@ -1,5 +1,5 @@
 <nb-card>
-  <nb-card-header>Default Buttons</nb-card-header>
+  <nb-card-header>Vente sana TVA</nb-card-header>
   <nb-card-body>
 
     <div class="row show-grid">
@@ -8,6 +8,25 @@
           Vente Rapide
         </button></div>
       </div>
+      <div class="col-md-4">
+        <div><button nbButton status="success" (click)="gotoVenteParticulier()">
+          Vente Particulier
+        </button></div>
+      </div>
+      <div class="col-md-4">
+        <div>  <button nbButton status="warning" (click)="gotoVenteEntreprise()">
+          Vente Entreprise
+        </button></div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>Vente Avec TVA</nb-card-header>
+  <nb-card-body>
+
+    <div class="row show-grid">
+
       <div class="col-md-4">
         <div><button nbButton status="success" (click)="gotoVenteParticulier()">
           Vente Particulier
