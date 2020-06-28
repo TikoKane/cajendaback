@@ -22,6 +22,10 @@ import { RechercheFactureComponent } from './recherche-facture/recherche-facture
 import {FactureComponent} from "./facture/facture.component";
 import {VoirProduitAcheterComponent} from "./voir-produit-acheter/voir-produit-acheter.component";
 import {RechercheCaisseComponent} from "./recherche-caisse/recherche-caisse.component";
+import {ProformatParticulierComponent} from "./proformat-particulier/proformat-particulier.component";
+import {ProformatEntrepriseComponent} from "./proformat-entreprise/proformat-entreprise.component";
+import {ChoixProformatComponent} from "./choix-proformat/choix-proformat.component";
+import {PromoComponent} from "./promo/promo.component";
 
 const routes: Routes = [
   {
@@ -61,6 +65,14 @@ const routes: Routes = [
         component: AchatProduitComponent,
       },
       {
+        path: 'factureProformat',
+        component: ChoixProformatComponent,
+      },
+      {
+        path: 'promo',
+        component: PromoComponent,
+      },
+      {
         path: 'choixClient',
         component: ChoixClientComponent,
       },
@@ -75,6 +87,14 @@ const routes: Routes = [
       {
         path: 'venteRapide',
         component: VenteRapideComponent,
+      },
+      {
+        path: 'proformatParticulier',
+        component: ProformatParticulierComponent,
+      },
+      {
+        path: 'proformatEntreprise',
+        component: ProformatEntrepriseComponent,
       },
       {
         path: 'stockProduit',

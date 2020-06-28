@@ -50,6 +50,10 @@ import {NgxPrintModule} from "ngx-print";
 import { RechercheCaisseComponent } from './recherche-caisse/recherche-caisse.component';
 import {NbDateFnsDateModule} from "@nebular/date-fns";
 import {NbMomentDateModule} from "@nebular/moment";
+import { ChoixProformatComponent } from './choix-proformat/choix-proformat.component';
+import { ProformatEntrepriseComponent } from './proformat-entreprise/proformat-entreprise.component';
+import { ProformatParticulierComponent } from './proformat-particulier/proformat-particulier.component';
+import { PromoComponent } from './promo/promo.component';
 
 
 @NgModule({
@@ -118,6 +122,10 @@ import {NbMomentDateModule} from "@nebular/moment";
     FilterCaisseMensuellePipe,
     FilterListeAchatPipe,
     RechercheCaisseComponent,
+    ChoixProformatComponent,
+    ProformatEntrepriseComponent,
+    ProformatParticulierComponent,
+    PromoComponent,
 
   ],
 })

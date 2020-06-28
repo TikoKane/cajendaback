@@ -83,6 +83,10 @@ export class PagesComponent implements OnInit{
             link: '/pages/limsmetik/choixClient',
           },
           {
+            title: 'Promo*',
+            link: '/pages/limsmetik/promo',
+          },
+          {
             title: 'Produit En Stock',
             link: '/pages/limsmetik/stockProduit',
           },
@@ -120,6 +124,10 @@ export class PagesComponent implements OnInit{
           {
             title: 'Recherche Facture',
             link: '/pages/limsmetik/rechercheFacture',
+          },
+          {
+            title: 'Facture Pro-format',
+            link: '/pages/limsmetik/factureProformat',
           },
         ],
       },
