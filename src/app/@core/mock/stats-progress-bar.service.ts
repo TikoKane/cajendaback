@@ -6,22 +6,22 @@ import { ProgressInfo, StatsProgressBarData } from '../data/stats-progress-bar';
 export class StatsProgressBarService extends StatsProgressBarData {
   private progressInfoData: ProgressInfo[] = [
     {
-      title: 'Today’s Profit',
+      title: 'Café',
       value: 572900,
-      activeProgress: 70,
-      description: 'Better than last week (70%)',
+      activeProgress: 100,
+      description: 'Produit le mieux vendu',
     },
     {
-      title: 'New Orders',
+      title: 'Lait',
       value: 6378,
-      activeProgress: 30,
-      description: 'Better than last week (30%)',
+      activeProgress: 70,
+      description: 'Deuxiéme produit le mieux vendu',
     },
     {
-      title: 'New Comments',
+      title: 'Sucre',
       value: 200,
       activeProgress: 55,
-      description: 'Better than last week (55%)',
+      description: 'Troisième produit le mieux vendu',
     },
   ];
 

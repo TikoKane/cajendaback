@@ -84,7 +84,7 @@
             <input type="text" #email="ngModel" value="{{modifGerant.User.email}}" name="email" [(ngModel)]="modifGerant.User.email" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Email" required="required">
           </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" hidden="true">
           <label  class="label col-sm-3 col-form-label">Login</label>
           <div class="col-sm-9">
             <input type="text" #login="ngModel" value="{{modifGerant.User.login}}" name="login" [(ngModel)]="modifGerant.User.login" nbInput fullWidth  maxlength="50" size="50" class="form-control col-md-7 col-xs-12" placeholder="Login" required="required">

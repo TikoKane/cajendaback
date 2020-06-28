@@ -22,6 +22,8 @@ export class ChoixClientComponent implements OnInit {
   }
 
   gotoVenteEntreprise() {
+    console.log(this.route.navigate(['/pages/limsmetik/venteEntreprise']));
+
     return this.route.navigate(['/pages/limsmetik/venteEntreprise']);
   }
 }

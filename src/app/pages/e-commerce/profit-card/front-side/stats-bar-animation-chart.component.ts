@@ -57,7 +57,7 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
         bottom: 0,
       },
       legend: {
-        data: ['transactions', 'orders'],
+        data: ['Ventes', 'Achats'],
         borderWidth: 0,
         borderRadius: 0,
         itemWidth: 15,
@@ -79,7 +79,7 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
         backgroundColor: chartVariables.tooltipBg,
         borderColor: chartVariables.tooltipBorderColor,
         borderWidth: chartVariables.tooltipBorderWidth,
-        formatter: params => `$ ${Math.round(parseInt(params.value, 10))}`,
+        formatter: params => `FCFA ${Math.round(parseInt(params.value, 10))}`,
         extraCssText: chartVariables.tooltipExtraCss,
       },
       xAxis: [
@@ -120,13 +120,13 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
       ],
       series: [
         {
-          name: 'transactions',
+          name: 'Ventes',
           type: 'bar',
           data: this.linesData.firstLine,
           animationDelay: idx => idx * 10,
         },
         {
-          name: 'orders',
+          name: 'Achats',
           type: 'bar',
           data: this.linesData.secondLine,
           animationDelay: idx => idx * 10 + 100,
