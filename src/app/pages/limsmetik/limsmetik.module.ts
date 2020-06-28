@@ -55,6 +55,10 @@ import { FilterRechercheCaissePipe } from './recherche-caisse/filter-recherche-c
 import { OrdreByDescPipe } from './caisse-journaliere/ordre-by-desc.pipe';
 import { OrderByDescListeAchatPipe } from './liste-achat/order-by-desc-liste-achat.pipe';
 
+import { ChoixProformatComponent } from './choix-proformat/choix-proformat.component';
+import { ProformatEntrepriseComponent } from './proformat-entreprise/proformat-entreprise.component';
+import { ProformatParticulierComponent } from './proformat-particulier/proformat-particulier.component';
+import { PromoComponent } from './promo/promo.component';
 
 
 @NgModule({
@@ -128,6 +132,10 @@ import { OrderByDescListeAchatPipe } from './liste-achat/order-by-desc-liste-ach
     FilterRechercheCaissePipe,
     OrderByDescListeAchatPipe,
     
+    ChoixProformatComponent,
+    ProformatEntrepriseComponent,
+    ProformatParticulierComponent,
+    PromoComponent,
 
   ],
 })

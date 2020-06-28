@@ -88,7 +88,6 @@ export class AuthService {
   }
   logout2(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('nom');
     localStorage.removeItem('prenom');
     localStorage.removeItem('typeUser');
     localStorage.removeItem('etat');
