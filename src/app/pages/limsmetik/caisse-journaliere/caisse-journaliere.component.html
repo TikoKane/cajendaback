@@ -29,6 +29,7 @@
         <td *ngIf="t.raisonSocialClient"> {{t.raisonSocialClient}}</td>
         <td>{{t.prenom }} {{t.nom}}</td>
         <td><button nbButton status="success" (click)="gotoFacture(t.id)">Voir Facture</button>  </td>
+        <td><button nbButton status="danger" (click)="deleteFacture(t.id)">Supprimer Facture</button>  </td>
 
       </tr>
     </tbody>

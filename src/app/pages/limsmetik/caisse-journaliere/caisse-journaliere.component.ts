@@ -25,4 +25,8 @@ filterString = '';
   gotoFacture(id) {
     this.route.navigate(['/pages/limsmetik/facture',id]);
   }
+
+  deleteFacture(id: any) {
+    
+  }
 }

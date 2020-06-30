@@ -15,6 +15,7 @@
         <th>#</th>
         <th>Date Achat</th>
         <th>Produit(s) Acheté(s)</th>
+        <th>Supprimé Produit(s)</th>
 
 
       </tr>
@@ -24,6 +25,7 @@
         <th scope='row'>{{i+1}}</th>
         <td>{{t.dateAchat}}</td>
         <td > <button nbButton status="success" (click)="getAllproduitAchete(t.id)">Voir Produits achetés</button>  </td>
+        <td > <button nbButton status="danger" (click)="deleteproduitAchete(t.id)">Supprimé Produits achetés</button>  </td>
 
       </tr>
       <tbody>

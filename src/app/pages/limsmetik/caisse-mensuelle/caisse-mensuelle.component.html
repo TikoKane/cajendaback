@@ -28,7 +28,8 @@
         <td *ngIf="t.nomClient">{{t.prenomClient }} {{t.nomClient}}</td>
         <td *ngIf="t.raisonSocialClient"> {{t.raisonSocialClient}}</td>
         <td>{{t.prenom }} {{t.nom}}</td>
-        <td> <button nbButton status="success" (click)="gotoFacture(t.id)">Voir Facture</button></td>
+        <td> <button nbButton status="success" (click)="gotoFacture(t.id)">Supprimé Facture</button></td>
+        <td> <button nbButton status="danger" (click)="gotoFacture(t.id)">Supprimé Facture</button></td>
 
       </tr>
       </tbody>
