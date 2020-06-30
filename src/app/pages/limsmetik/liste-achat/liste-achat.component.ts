@@ -26,4 +26,8 @@ export class ListeAchatComponent implements OnInit {
 
     return this.rout.navigate(["/pages/limsmetik/voirproduitAcheter",id]);
   }
+
+  deleteproduitAchete(id: any) {
+    
+  }
 }

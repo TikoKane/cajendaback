@@ -13,8 +13,9 @@
       <thead style='background-color: #2d8ac7'>
       <tr>
         <th>#</th>
-        <th>Date achat</th>
-        <th>Produit(s) acheté(s)</th>
+        <th>Date Achat</th>
+        <th>Produit(s) Acheté(s)</th>
+        <th>Supprimé Produit(s)</th>
 
 
       </tr>
@@ -23,7 +24,12 @@
       <tr *ngFor="let t of (tableau | orderBy:order:ascending | filterListeAchat: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index">
            <th scope='row'>{{i+1}}</th>
         <td>{{t.dateAchat}}</td>
+<<<<<<< HEAD
         <td > <button nbButton status="success" (click)="getAllproduitAchete(t.id)">Voir produit(s) acheté(s)</button>  </td>
+=======
+        <td > <button nbButton status="success" (click)="getAllproduitAchete(t.id)">Voir Produits achetés</button>  </td>
+        <td > <button nbButton status="danger" (click)="deleteproduitAchete(t.id)">Supprimé Produits achetés</button>  </td>
+>>>>>>> 23860b4d29f841d0d22bbd010b4317cecbbea3cf
 
       </tr>
       <tbody>
