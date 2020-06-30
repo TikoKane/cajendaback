@@ -24,12 +24,8 @@
       <tr *ngFor="let t of (tableau | orderBy:order:ascending | filterListeAchat: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index">
            <th scope='row'>{{i+1}}</th>
         <td>{{t.dateAchat}}</td>
-<<<<<<< HEAD
-        <td > <button nbButton status="success" (click)="getAllproduitAchete(t.id)">Voir produit(s) acheté(s)</button>  </td>
-=======
         <td > <button nbButton status="success" (click)="getAllproduitAchete(t.id)">Voir Produits achetés</button>  </td>
         <td > <button nbButton status="danger" (click)="deleteproduitAchete(t.id)">Supprimé Produits achetés</button>  </td>
->>>>>>> 23860b4d29f841d0d22bbd010b4317cecbbea3cf
 
       </tr>
       <tbody>
