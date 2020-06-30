@@ -12,6 +12,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DataTablesModule } from 'angular-datatables';
+import {  MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 import {
   NbAccordionModule,
   NbActionsModule,
@@ -66,6 +67,9 @@ import { RecupLoginPipe } from './auth/login/recup-login.pipe';
     NbListModule,
     NbTreeGridModule,
     NbAccordionModule,
+   
+
+
 
     //
     CommonModule,

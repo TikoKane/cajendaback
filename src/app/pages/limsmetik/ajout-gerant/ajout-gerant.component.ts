@@ -5,13 +5,14 @@ import { NgForm } from '@angular/forms';
 import { NbToastrService, NbGlobalPosition, NbGlobalPhysicalPosition, NbComponentStatus } from '@nebular/theme';
 import { ToasterConfig } from 'angular2-toaster';
 
+
 @Component({
   selector: 'ngx-ajout-gerant',
   templateUrl: './ajout-gerant.component.html',
   styleUrls: ['./ajout-gerant.component.scss']
 })
 export class AjoutGerantComponent implements OnInit {
- 
+
   config: ToasterConfig;
   index = 1;
   destroyByClick = true;
@@ -38,6 +39,8 @@ export class AjoutGerantComponent implements OnInit {
   constructor(public service:GerantService,private toastrService: NbToastrService) { }
   listetpeUser;
   ngOnInit() {
+
+   
     
     this.resetForm();
   //  this.magasin=1;
@@ -125,4 +128,5 @@ this.showToastErreur(this.status2, this.title2, this.content2);
 
     }
 
+ 
 }

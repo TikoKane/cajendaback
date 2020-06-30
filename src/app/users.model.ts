@@ -9,6 +9,14 @@ export class Contenue {
   quantite: string;
   pu: string;
 }
+
+export class ContenuePromo {
+  idcategorie: string;
+  idproduit: string;
+  quantite: string;
+  pu: number;
+
+}
 export class Particulier {
   telephone: string;
   nom: string;

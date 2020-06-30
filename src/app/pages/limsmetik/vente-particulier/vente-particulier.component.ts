@@ -58,7 +58,8 @@ export class VenteParticulierComponent implements OnInit {
 
   }
   good(message) {
-    this.toastr.success(message,'success');
+    this.toastr.success(message,'produit ajouté avec succès');
+
 
   }
   bad(message) {
@@ -69,9 +70,20 @@ export class VenteParticulierComponent implements OnInit {
     this.toastr.danger("erreur",'error');
 
   }
+  baddd() {
+    this.toastr.danger('quantité indisponible',"Erreur lors de l'ajout du produit");
+
+  }
 
   onLogin(f: NgForm) {
-    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent();},error1 => {console.log(error1)});
+    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ 
+      if(resp['succes']==false){
+        this.bad(resp['message']);
+      }else{
+        this.good(resp['message']);this.valider=true;
+      }
+      this.reloadComponent();
+    },error1 => {this.baddd()});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
     this.reloadComponent();
   }

@@ -29,10 +29,9 @@
                 <div class="form-group">
                   <label  class="label">Prix unitaire</label>
                   <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
-                </div>
-                <div class=" col-md-offset-7">
+                </div>                <div class=" col-md-offset-7">
                   <button type='reset'nbButton status='danger'>Annuler</button>
-                  <button type='submit'nbButton status='success' [disabled]="!f.valid">Submit</button>
+                  <button type='submit'nbButton status='success' [disabled]="!f.valid">Valider</button>
                 </div>
                 <br>
                 <br>
@@ -69,13 +68,16 @@
                 </tbody>
               </table>
 
-              <button nbButton status="danger" (click)="anullerVente()">Annuler</button>
+              <button nbButton status="danger" (click)="anullerVente()">Annuler la vente</button>
+              <br>
+              <br>
+              <button nbButton  nbStepperNext [disabled]="!valider" style="float: right;">suivant</button>
+              <button nbButton disabled nbStepperNext style="float: right;" >précédent</button>
             </nb-card-body>
           </nb-card>
 
         </div>
-        <button nbButton disabled nbStepperNext>prev</button>
-        <button nbButton nbStepperNext [disabled]="!valider">next</button>
+     
       </nb-step>
       <nb-step [label]='labelTwo'>
         <ng-template #labelTwo>Second step</ng-template>
@@ -101,11 +103,11 @@
 
                 <div class=" col-md-offset-7">
 
-                <button type='submit'nbButton status='success' [disabled]="!ff.valid" name="venteEntreprise" (click)="validervente()">Submit</button>
+                <button type='submit'nbButton status='success' [disabled]="!ff.valid" name="venteEntreprise" (click)="validervente()">Valider la vente</button>
               </div>
-                <br>
-                <br>
-                <br>
+              <br>
+              <button nbButton nbStepperNext [disabled]="true" style="float: right;">suivant</button>
+              <button nbButton nbStepperPrevious style="float: right;">précédent</button>
 
               </form>
 
@@ -115,8 +117,7 @@
           </nb-card>
 
         </div>
-        <button nbButton nbStepperPrevious>prev</button>
-        <button nbButton nbStepperNext>next</button>
+
       </nb-step>
     </nb-stepper>
   </nb-card-body>

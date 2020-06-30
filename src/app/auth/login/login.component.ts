@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         , resp['user'].nom, resp['user'].prenom,
         resp['user'].typeUser_id, resp['user'].id, resp['magasin'].id, resp['magasin'].libelle);
         
-     this.router.navigate(['pages/limsmetik/choixClient']);
+     this.router.navigate(['pages/dashboard']);
     //   console.log((resp['user']));
       }
       

@@ -91,7 +91,7 @@
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row" hidden="true">
           <label class="col-sm-3 label">Type Gerant</label>
           <div class="col-sm-9">
             <select name="typeUser_id" #typeUser_id="ngModel" id="first-nameg" [(ngModel)]="modifGerant.User.typeUser_id"   class="form-control col-md-7 col-xs-12"  fullWidth >
@@ -102,8 +102,8 @@
         </div>
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">
-            <button type="submit" class='btn btn-success btn-xs'>Modifier</button>
             <button nbButton (click)="ref.close()">Annuler</button>
+            <button type="submit" class='btn btn-success btn-xs'>Modifier</button>
           </div>
         </div>
       </form>

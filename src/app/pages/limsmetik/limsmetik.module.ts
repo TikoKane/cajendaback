@@ -59,6 +59,10 @@ import { ChoixProformatComponent } from './choix-proformat/choix-proformat.compo
 import { ProformatEntrepriseComponent } from './proformat-entreprise/proformat-entreprise.component';
 import { ProformatParticulierComponent } from './proformat-particulier/proformat-particulier.component';
 import { PromoComponent } from './promo/promo.component';
+import { VenterapidepromoComponent } from './venterapidepromo/venterapidepromo.component';
+import { VenteparticulierpromoComponent } from './venteparticulierpromo/venteparticulierpromo.component';
+import { VenteentreprisepromoComponent } from './venteentreprisepromo/venteentreprisepromo.component';
+import { MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 
 
 @NgModule({
@@ -97,6 +101,9 @@ import { PromoComponent } from './promo/promo.component';
     CommonModule,
     NgxPaginationModule,
     NgxPrintModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
   declarations:[
     LimsmetikComponent,
@@ -136,6 +143,9 @@ import { PromoComponent } from './promo/promo.component';
     ProformatEntrepriseComponent,
     ProformatParticulierComponent,
     PromoComponent,
+    VenterapidepromoComponent,
+    VenteparticulierpromoComponent,
+    VenteentreprisepromoComponent,
 
   ],
 })

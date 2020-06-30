@@ -41,9 +41,7 @@ export class AuthService {
     localStorage.setItem('token', jwt);
     localStorage.setItem('nom', nom);
     localStorage.setItem('prenom', prenom);
-    
     localStorage.setItem('id', String(iduser));
-
     this.role = typeUser;
     if(typeUser === 1)
     {

@@ -26,6 +26,9 @@ import {ProformatParticulierComponent} from "./proformat-particulier/proformat-p
 import {ProformatEntrepriseComponent} from "./proformat-entreprise/proformat-entreprise.component";
 import {ChoixProformatComponent} from "./choix-proformat/choix-proformat.component";
 import {PromoComponent} from "./promo/promo.component";
+import { VenteentreprisepromoComponent } from './venteentreprisepromo/venteentreprisepromo.component';
+import { VenteparticulierpromoComponent } from './venteparticulierpromo/venteparticulierpromo.component';
+import { VenterapidepromoComponent } from './venterapidepromo/venterapidepromo.component';
 
 const routes: Routes = [
   {
@@ -87,6 +90,18 @@ const routes: Routes = [
       {
         path: 'venteRapide',
         component: VenteRapideComponent,
+      },
+      {
+        path: 'venteRapidePromo',
+        component: VenterapidepromoComponent,
+      },
+      {
+        path: 'venteEntreprisePromo',
+        component: VenteentreprisepromoComponent,
+      },
+      {
+        path: 'venteParticulierPromo',
+        component: VenteparticulierpromoComponent,
       },
       {
         path: 'proformatParticulier',

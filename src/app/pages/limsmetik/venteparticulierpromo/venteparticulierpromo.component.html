@@ -30,7 +30,11 @@
                   <label  class="label">Prix unitaire</label>
                   <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
                 </div>
-             
+                <div class="form-group" style="text-align: center">
+                  <label  class="label">Pourcentage promo </label>
+                  <i class="fa fa-percent"></i>
+                  <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le pourcentage (Ex: 10 = 10%)" name="PrixUnitairePromo" [(ngModel)]="puPromo" min="1">
+                </div>
                 <div class=" col-md-offset-7">
                 <button type='reset'nbButton status='danger'>Annuler</button>
                 <button type='submit'  nbButton status='success' [disabled]="!f.valid">Valider</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-promo',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private  route: Router) { }
 
   ngOnInit() {
   }
 
+  gotoVenteRapide() {
+    return this.route.navigate(['/pages/limsmetik/venteRapidePromo']);
+  }
+
+  gotoVenteParticulier() {
+    return this.route.navigate(['/pages/limsmetik/venteParticulierPromo']);
+  }
+
+  gotoVenteEntreprise() {
+
+    return this.route.navigate(['/pages/limsmetik/venteEntreprisePromo']);
+  }
 }

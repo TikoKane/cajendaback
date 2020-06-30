@@ -4,15 +4,15 @@ import {AchatProduitService} from "../service/achat-produit.service";
 import {VenteProduitService} from "../service/vente-produit.service";
 import {Router} from "@angular/router";
 import {NbToastrService} from "@nebular/theme";
-import {Contenue, Entreprise} from "../../../users.model";
+import {Contenue, Entreprise, ContenuePromo} from "../../../users.model";
 
 @Component({
-  selector: 'ngx-vente-entreprise',
-  templateUrl: './vente-entreprise.component.html',
-  styleUrls: ['./vente-entreprise.component.scss'],
+  selector: 'ngx-venteentreprisepromo',
+  templateUrl: './venteentreprisepromo.component.html',
+  styleUrls: ['./venteentreprisepromo.component.scss']
 })
 
-export class VenteEntrepriseComponent implements OnInit {
+export class VenteentreprisepromoComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
@@ -23,11 +23,12 @@ export class VenteEntrepriseComponent implements OnInit {
     this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
   }
   test:string='0';
-  contenue:Contenue ={
+  puPromo=null;
+  contenue:ContenuePromo ={
     idcategorie:'',
     idproduit:'',
     quantite:'',
-    pu:''
+    pu:null,
   };
   entreprise:Entreprise ={
     telephone:'',
@@ -71,14 +72,13 @@ export class VenteEntrepriseComponent implements OnInit {
     this.toastr.danger("erreur",'error');
 
   }
-
   baddd() {
     this.toastr.danger('quantité indisponible',"Erreur lors de l'ajout du produit");
 
   }
-
   onLogin(f: NgForm) {
-    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent()},error1 => {this.baddd()});
+    this.contenue.pu=this.contenue.pu-this.contenue.pu*this.puPromo/100;
+    this.serviceVente.insertintoAjoutProduitPromo(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent()},error1 => {this.baddd()});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
     this.reloadComponent();
   }
@@ -88,12 +88,13 @@ export class VenteEntrepriseComponent implements OnInit {
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
     this.contenue.idcategorie='';
-    this.contenue.pu='';
+    this.contenue.pu=null;
     this.contenue.quantite='';
     this.contenue.idproduit='';
     this.entreprise.raisonSocial='';
     this.entreprise.adresse='';
     this.entreprise.telephone='';
+    this.puPromo=null;
 
   }
 

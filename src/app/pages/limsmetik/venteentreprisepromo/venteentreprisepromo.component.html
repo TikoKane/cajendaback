@@ -6,7 +6,7 @@
 
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Vente particulier promo</nb-card-header>
+            <nb-card-header style="background-color: #2d8ac7">Vente entreprise</nb-card-header>
             <nb-card-body>
               <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
                 <div class="form-group">
@@ -24,17 +24,22 @@
                 </div>
                 <div class="form-group">
                   <label  class="label">Quantité</label>
-                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter la quantité" name="Quantite" [(ngModel)]="contenue.quantite">
+                  <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter la quantité" name="Quantite" [(ngModel)]="contenue.quantite">
                 </div>
                 <div class="form-group">
                   <label  class="label">Prix unitaire</label>
-                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
+                  <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
                 </div>
-             
+
+                <div class="form-group" style="text-align: center">
+                  <label  class="label">Pourcentage promo </label>
+                  <i class="fa fa-percent"></i>
+                  <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le pourcentage (Ex: 10 = 10%)" name="PrixUnitairePromo" [(ngModel)]="puPromo" min="1">
+                </div>
                 <div class=" col-md-offset-7">
-                <button type='reset'nbButton status='danger'>Annuler</button>
-                <button type='submit'  nbButton status='success' [disabled]="!f.valid">Valider</button>
-                 </div>
+                  <button type='reset'nbButton status='danger'>Annuler</button>
+                  <button type='submit'nbButton status='success' [disabled]="!f.valid">Valider</button>
+                </div>
                 <br>
                 <br>
                 <br>
@@ -48,7 +53,7 @@
                   <th>Quantité</th>
                   <th>Prix</th>
                   <th>Montant</th>
-                  <th>Actions</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody style='background-color:white'>
@@ -79,42 +84,38 @@
           </nb-card>
 
         </div>
-    
-
+     
       </nb-step>
       <nb-step [label]='labelTwo'>
         <ng-template #labelTwo>Second step</ng-template>
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Formulaire particulier</nb-card-header>
+            <nb-card-header style="background-color: #2d8ac7">Formulaire entreprise</nb-card-header>
             <nb-card-body>
-              <form #ff="ngForm" (ngSubmit)="validervente(ff)">
+              <form #ff="ngForm"  (ngSubmit)="onEntreprise(ff)">
                 <div class="form-group">
                   <label  class="label">Téléphone</label>
-                  <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="particulier.telephone" (ngModelChange)="getParticulierbyTel($event)" placeholder="Enter le numero de telephone">
+                  <input type="number" nbInput fullWidth status="info"  name="telephone" [(ngModel)]="entreprise.telephone" (ngModelChange)="getEntrepriseByTel($event)" placeholder="Enter le numero de telephone">
                 </div>
                 <div class="form-group">
-                  <label  class="label">Prénon</label>
-                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Prenom" required="required"  [(ngModel)]="particulier.prenom" placeholder="Enter le prenom">
-                </div>
-                <div class="form-group">
-                  <label  class="label">Nom</label>
-                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Nom" required="required"  [(ngModel)]="particulier.nom"   placeholder="Enter le nom">
+                  <label  class="label">Raison social</label>
+                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="raisonSocialClient" required="required" [(ngModel)]="entreprise.raisonSocial" placeholder="Enter le nom de l'entreprise">
                 </div>
 
                 <div class="form-group">
                   <label  class="label">Adresse</label>
-                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="particulier.adresse" placeholder="Enter l'adresse">
+                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required"  [(ngModel)]="entreprise.adresse"  placeholder="Enter l'adresse">
                 </div>
 
 
                 <div class=" col-md-offset-7">
 
-                  <button type='submit' [disabled]="!ff.valid" nbButton status='success'>Valider la vente</button>
-                </div>
-                <br>
-                <button nbButton nbStepperNext [disabled]="true" style="float: right;">suivant</button>
-                <button nbButton nbStepperPrevious style="float: right;">précédent</button>
+                <button type='submit'nbButton status='success' [disabled]="!ff.valid" name="venteEntreprise" (click)="validervente()">Valider la vente</button>
+              </div>
+              <br>
+              <button nbButton nbStepperNext [disabled]="true" style="float: right;">suivant</button>
+              <button nbButton nbStepperPrevious style="float: right;">précédent</button>
+
               </form>
 
 
@@ -123,9 +124,7 @@
           </nb-card>
 
         </div>
-        <div>
-      
-        </div >
+
       </nb-step>
     </nb-stepper>
   </nb-card-body>

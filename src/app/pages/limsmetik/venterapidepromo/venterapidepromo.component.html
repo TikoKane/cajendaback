@@ -2,23 +2,8 @@
   <nb-card-body>
     <div class="">
       <nb-card >
-        <nb-card-header style="background-color: #2d8ac7; text-align: center;">Vente rapide</nb-card-header>
+        <nb-card-header style="background-color: #2d8ac7; text-align: center;">Vente rapide promo</nb-card-header>
         <nb-card-body>
-            <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <input type="text"
-                     placeholder="Pick one"
-                     aria-label="Number"
-                     matInput
-                     [formControl]="myControl"
-                     [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                  {{option}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          </form>
           <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
             <div class="form-group" style="text-align: center">
               <label  class="label">Catégorie</label>
@@ -40,6 +25,11 @@
             <div class="form-group" style="text-align: center">
               <label  class="label">Prix unitaire</label>
               <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu" min="1">
+            </div>
+            <div class="form-group" style="text-align: center">
+              <label  class="label">Pourcentage promo </label>
+              <i class="fa fa-percent"></i>
+              <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le pourcentage (Ex: 10 = 10%)" name="PrixUnitairePromo" [(ngModel)]="puPromo" min="1">
             </div>
             <div class="buttons-row" style="text-align: center">
             <button type='reset'nbButton status='danger' class="btn">Annuler</button>
@@ -86,7 +76,7 @@
           <br>
           <div class="buttons-row" *ngIf="tableau">
             <button nbButton status="danger" (click)="anullerVente()">Annuler</button>
-            <button nbButton status="primary" name="venteEntreprise" [disabled]="!valider" (click)="validerVenteRapide()">VALIDER VENTE</button>
+            <button nbButton status="success" name="venteEntreprise" [disabled]="!valider" (click)="validerVenteRapide()">VALIDER La VENTE</button>
           </div>
         </nb-card-body>
       </nb-card>

@@ -73,7 +73,8 @@ tik;
     console.log(error);
   });
  this.authService.login(this.u).subscribe(resp => {
- this.router.navigate(['pages/limsmetik/choixClient']);
+ this.router.navigate(['pages/dashboard']);
+
     },
         error1 => {
           console.log(error1);     

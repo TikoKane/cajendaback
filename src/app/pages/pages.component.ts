@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
 import { MENU_ITEMS } from './pages-menu';
 import {NbMenuItem} from "@nebular/theme";
-var fa=JSON.parse(localStorage.getItem('typeUser'));
 @Component({
   selector: 'ngx-pages',
   styleUrls: ['pages.component.scss'],
@@ -37,7 +35,7 @@ export class PagesComponent implements OnInit{
         link: '/pages/iot-dashboard',
       },
       {
-        hidden: fa,
+        hidden: this.fa,
         title: 'Gérant',
         icon: 'person-outline',
         children: [
@@ -79,7 +77,6 @@ export class PagesComponent implements OnInit{
         icon: 'shopping-cart-outline',
         children: [
           {
-            hidden: fa,
             title: 'Achat',
             link: '/pages/limsmetik/achatProduit',
           },
@@ -96,7 +93,7 @@ export class PagesComponent implements OnInit{
             link: '/pages/limsmetik/stockProduit',
           },
           {
-            hidden:fa,
+            hidden:this.fa,
             title: 'Voir les achats',
             link: '/pages/limsmetik/listeAchat',
           },
@@ -111,7 +108,7 @@ export class PagesComponent implements OnInit{
             link: '/pages/limsmetik/caisseJournaliere',
           },
           {
-            hidden:fa,
+            hidden:this.fa,
             title: 'Mensuelle',
             link: '/pages/limsmetik/caisseMensuelle',
           },

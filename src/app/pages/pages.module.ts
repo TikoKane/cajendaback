@@ -8,6 +8,7 @@ import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import {NgxPrintModule} from "ngx-print";
+import { MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 
 
 @NgModule({
@@ -17,8 +18,8 @@ import {NgxPrintModule} from "ngx-print";
     NbMenuModule,
     DashboardModule,
     ECommerceModule,
-    MiscellaneousModule,
-
+    MiscellaneousModule
+ 
 
 
   ],

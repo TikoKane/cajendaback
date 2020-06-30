@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Contenue, Entreprise, Particulier} from "../../../users.model";
+import {Contenue, Entreprise, Particulier, ContenuePromo} from "../../../users.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,9 @@ export class VenteProduitService {
   }
 
   insertintoAjoutProduit(value:Contenue){
+    return this.http.post(this.host+'/vente/insertToAjoutproduit?produit_id='+value.idproduit+'&'+'quantite='+value.quantite+'&'+'prixUnitaire='+value.pu+'&'+'magasin_id='+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token'),{observe : 'response'});
+  }
+  insertintoAjoutProduitPromo(value:ContenuePromo){
     return this.http.post(this.host+'/vente/insertToAjoutproduit?produit_id='+value.idproduit+'&'+'quantite='+value.quantite+'&'+'prixUnitaire='+value.pu+'&'+'magasin_id='+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token'),{observe : 'response'});
   }
   getAllproduitAjouter(){
