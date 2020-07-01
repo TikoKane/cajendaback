@@ -72,6 +72,10 @@ export class VenteentreprisepromoComponent implements OnInit {
     this.toastr.danger("erreur",'error');
 
   }
+  goood(message) {
+    this.toastr.success(message,'Vente enregistrée');
+
+  }
   baddd() {
     this.toastr.danger('quantité indisponible',"Erreur lors de l'ajout du produit");
 

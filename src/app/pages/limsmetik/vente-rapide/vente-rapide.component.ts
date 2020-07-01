@@ -21,7 +21,7 @@ export class VenteRapideComponent implements OnInit {
   categorie;tableau;montant;valider:boolean=false;
 
   myControl = new FormControl();
-  options: any = ['One', 'Two', 'Three']
+  options: any = ['One', 'Two', 'Three'];
   
   filteredOptions: Observable<string[]>;
  
@@ -30,7 +30,7 @@ export class VenteRapideComponent implements OnInit {
       this.reloadComponent();
     },error1 => {
       this.badd();});
-  this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; },error1=>{console.log(error1);});
+  this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data;console.log(this.categorie) },error1=>{console.log(error1);});
 
   }
   test:string='0';
@@ -71,6 +71,11 @@ export class VenteRapideComponent implements OnInit {
   }
   good(message) {
     this.toastr.success(message,'produit ajouté avec succès');
+
+  }
+
+  goood(message) {
+    this.toastr.success(message,'Vente enregistrée');
 
   }
   bad(message) {
@@ -129,7 +134,7 @@ this.valider=true;
 
 
   validerVenteRapide() {
-   this.serviceVente.validerventeRapide().subscribe(resp=>{ this.good("vente reuissi avec success");this.reloadComponent();this.valider=false;
+   this.serviceVente.validerventeRapide().subscribe(resp=>{ this.goood("vente réuissie avec success");this.reloadComponent();this.valider=false;
    this.router.navigate(['/pages/limsmetik/facture',resp['idfacture']]);
     },error1 => {this.bad(error1)});
 
@@ -139,5 +144,7 @@ this.valider=true;
 
     return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  
 
 }
