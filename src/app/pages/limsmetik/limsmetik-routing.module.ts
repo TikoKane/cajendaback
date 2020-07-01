@@ -26,6 +26,8 @@ import {ProformatParticulierComponent} from "./proformat-particulier/proformat-p
 import {ProformatEntrepriseComponent} from "./proformat-entreprise/proformat-entreprise.component";
 import {ChoixProformatComponent} from "./choix-proformat/choix-proformat.component";
 import {PromoComponent} from "./promo/promo.component";
+import {ChoixAchatComponent} from "./choix-achat/choix-achat.component";
+import {AchatFournisseurComponent} from "./achat-fournisseur/achat-fournisseur.component";
 
 const routes: Routes = [
   {
@@ -65,6 +67,10 @@ const routes: Routes = [
         component: AchatProduitComponent,
       },
       {
+        path: 'achatFournisseur',
+        component: AchatFournisseurComponent,
+      },
+      {
         path: 'factureProformat',
         component: ChoixProformatComponent,
       },
@@ -75,6 +81,10 @@ const routes: Routes = [
       {
         path: 'choixClient',
         component: ChoixClientComponent,
+      },
+      {
+        path: 'choixAchat',
+        component: ChoixAchatComponent,
       },
       {
         path: 'venteParticulier',

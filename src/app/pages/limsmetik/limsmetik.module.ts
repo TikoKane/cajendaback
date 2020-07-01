@@ -54,6 +54,8 @@ import { ChoixProformatComponent } from './choix-proformat/choix-proformat.compo
 import { ProformatEntrepriseComponent } from './proformat-entreprise/proformat-entreprise.component';
 import { ProformatParticulierComponent } from './proformat-particulier/proformat-particulier.component';
 import { PromoComponent } from './promo/promo.component';
+import { ChoixAchatComponent } from './choix-achat/choix-achat.component';
+import { AchatFournisseurComponent } from './achat-fournisseur/achat-fournisseur.component';
 
 
 @NgModule({
@@ -126,6 +128,8 @@ import { PromoComponent } from './promo/promo.component';
     ProformatEntrepriseComponent,
     ProformatParticulierComponent,
     PromoComponent,
+    ChoixAchatComponent,
+    AchatFournisseurComponent,
 
   ],
 })

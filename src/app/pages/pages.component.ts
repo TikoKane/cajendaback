@@ -76,7 +76,7 @@ export class PagesComponent implements OnInit{
           {
             hidden: this.fa,
             title: 'Achat Produit',
-            link: '/pages/limsmetik/achatProduit',
+            link: '/pages/limsmetik/choixAchat',
           },
           {
             title: 'Vente produit',
