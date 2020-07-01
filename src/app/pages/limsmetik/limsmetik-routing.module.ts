@@ -29,6 +29,8 @@ import {PromoComponent} from "./promo/promo.component";
 import { VenteentreprisepromoComponent } from './venteentreprisepromo/venteentreprisepromo.component';
 import { VenteparticulierpromoComponent } from './venteparticulierpromo/venteparticulierpromo.component';
 import { VenterapidepromoComponent } from './venterapidepromo/venterapidepromo.component';
+import {ChoixAchatComponent} from "./choix-achat/choix-achat.component";
+import {AchatFournisseurComponent} from "./achat-fournisseur/achat-fournisseur.component";
 
 const routes: Routes = [
   {
@@ -68,6 +70,10 @@ const routes: Routes = [
         component: AchatProduitComponent,
       },
       {
+        path: 'achatFournisseur',
+        component: AchatFournisseurComponent,
+      },
+      {
         path: 'factureProformat',
         component: ChoixProformatComponent,
       },
@@ -78,6 +84,10 @@ const routes: Routes = [
       {
         path: 'choixClient',
         component: ChoixClientComponent,
+      },
+      {
+        path: 'choixAchat',
+        component: ChoixAchatComponent,
       },
       {
         path: 'venteParticulier',

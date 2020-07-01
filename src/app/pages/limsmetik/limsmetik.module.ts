@@ -63,6 +63,8 @@ import { VenterapidepromoComponent } from './venterapidepromo/venterapidepromo.c
 import { VenteparticulierpromoComponent } from './venteparticulierpromo/venteparticulierpromo.component';
 import { VenteentreprisepromoComponent } from './venteentreprisepromo/venteentreprisepromo.component';
 import { MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
+import { ChoixAchatComponent } from './choix-achat/choix-achat.component';
+import { AchatFournisseurComponent } from './achat-fournisseur/achat-fournisseur.component';
 
 
 @NgModule({
@@ -146,6 +148,8 @@ import { MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angu
     VenterapidepromoComponent,
     VenteparticulierpromoComponent,
     VenteentreprisepromoComponent,
+    ChoixAchatComponent,
+    AchatFournisseurComponent,
 
   ],
 })
