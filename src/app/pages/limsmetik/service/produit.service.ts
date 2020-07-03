@@ -7,7 +7,7 @@ import {Produit} from "./general.model";
 })
 export class ProduitService {
 
-  private host:string ="https://kbc.alwaysdata.net/api";
+  private host:string ="https://lims.alwaysdata.net/api";
   constructor(private http:HttpClient) { }
   prod : Produit;
   getAllProduitByMagasin(id){

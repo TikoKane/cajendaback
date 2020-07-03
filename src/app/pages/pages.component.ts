@@ -30,11 +30,6 @@ export class PagesComponent implements OnInit{
         home: true,
       },
       {
-        title: 'IoT Dashboard',
-        icon: 'home-outline',
-        link: '/pages/iot-dashboard',
-      },
-      {
         hidden: this.fa,
         title: 'Gérant',
         icon: 'person-outline',
