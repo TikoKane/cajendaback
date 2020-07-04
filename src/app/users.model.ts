@@ -28,3 +28,8 @@ export class Entreprise {
   raisonSocial: string;
   adresse: string;
 }
+
+export class Cat {
+  id: string;
+  libelle: string;
+}

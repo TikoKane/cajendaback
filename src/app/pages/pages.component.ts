@@ -78,7 +78,7 @@ export class PagesComponent implements OnInit{
         children: [
           {
             title: 'Achat',
-            link: '/pages/limsmetik/achatProduit',
+            link: '/pages/limsmetik/choixAchat',
           },
           {
             title: 'Vente',

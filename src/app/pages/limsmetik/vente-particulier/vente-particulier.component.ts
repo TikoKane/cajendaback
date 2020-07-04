@@ -21,6 +21,8 @@ export class VenteParticulierComponent implements OnInit {
     this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
   }
   test:string='0';
+
+
   particulier:Particulier ={
     telephone:'',
     nom:'',

@@ -2,12 +2,20 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {AchatProduitService} from "../service/achat-produit.service";
 import {VenteProduitService} from "../service/vente-produit.service";
-import {Contenue} from "../../../users.model";
+import {Cat, Contenue} from "../../../users.model";
 import {Router} from "@angular/router";
 import {NbToastrService} from "@nebular/theme";
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {startWith, map} from 'rxjs/operators';
+
+
+export interface User {
+  libelle: string;
+  id:string;
+}
+
+
 
 @Component({
   selector: 'ngx-vente-rapide',
@@ -15,24 +23,35 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./vente-rapide.component.scss'],
 })
 export class VenteRapideComponent implements OnInit {
-  firstForm: FormGroup;
-  secondForm: FormGroup;
-  thirdForm: FormGroup;
-  categorie;tableau;montant;valider:boolean=false;
 
   myControl = new FormControl();
-  options: any = ['One', 'Two', 'Three'];
-  
-  filteredOptions: Observable<string[]>;
+  myControl1 = new FormControl();
+
+  options: User[]=[];
+  produit:User[]=[];
+  filteredOptions: Observable<User[]>;
+  filteredproduit: Observable<User[]>;
+
+
+
+  firstForm: FormGroup;
+  secondForm: FormGroup;
+  thirdForm: FormGroup;getproduit;
+  categorie;tableau;montant;valider:boolean=false;
+
+
+
+
  
   constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) {
     this.serviceAchat.annulerAchat().subscribe(resp=>{
       this.reloadComponent();
     },error1 => {
       this.badd();});
-  this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data;console.log(this.categorie) },error1=>{console.log(error1);});
+  this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{ this.categorie=data; console.log(this.categorie); if(this.categorie){for (let i = 0; i < this.categorie.length; i++) {console.log(this.categorie[i].id +" "+this.categorie[i].libelle);this.options.push({ id:this.categorie[i].id,libelle: this.categorie[i].libelle}) }  } },error1=>{console.log(error1);});
 
   }
+
   test:string='0';
   contenue:Contenue ={
     idcategorie:'',
@@ -40,14 +59,23 @@ export class VenteRapideComponent implements OnInit {
     quantite:'',
     pu:''
   };
-  produit;
+
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    if(this.categorie){for (let i = 0; i < this.categorie.length; i++) {console.log(this.categorie[i].id +" "+this.categorie[i].libelle);this.options.push({ id:this.categorie[i].id,libelle: this.categorie[i].libelle}) }}
+      this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.options.slice())
+      );
 
+    this.filteredproduit = this.myControl1.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filterProduit(name) : this.produit.slice())
+      );
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
     this.firstForm = this.fb.group({
@@ -63,10 +91,27 @@ export class VenteRapideComponent implements OnInit {
     });
 
   }
+  displayFn(user: User): string {
+    return  user.libelle;
+  }
+
+  private _filter(name: string): User[] {
+    const filterValue = name.toLowerCase();
+
+    return this.options.filter(option => option.libelle.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterProduit(name: string): User[] {
+    const filterValue = name.toLowerCase();
+
+    return this.produit.filter(option => option.libelle.toLowerCase().indexOf(filterValue) === 0);
+  }
 
   recuperation($event: Event) {
-    this.test=this.contenue.idcategorie;
-    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;},error1 => {console.log(error1);});
+    // @ts-ignore
+    this.test=$event.id;
+    this.contenue.idcategorie=this.test;
+   this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.getproduit=dataa;this.produit=[]; if(this.getproduit){for (let i = 0; i < this.getproduit.length; i++) {console.log(this.getproduit[i].id +" "+this.getproduit[i].libelle);this.produit.push({ id:this.getproduit[i].id,libelle: this.getproduit[i].libelle}) }}},error1 => {console.log(error1);});
 
   }
   good(message) {
@@ -97,8 +142,10 @@ export class VenteRapideComponent implements OnInit {
     this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ 
       if(resp['succes']==false){
         this.bad(resp['message']);
+
   }
   else{
+
     this.good(resp['message']);
 }
 this.reloadComponent();
@@ -139,12 +186,8 @@ this.valider=true;
     },error1 => {this.bad(error1)});
 
   }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-  }
 
-  
+
 
 }

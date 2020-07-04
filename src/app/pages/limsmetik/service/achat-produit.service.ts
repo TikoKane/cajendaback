@@ -6,13 +6,16 @@ import {Contenue} from "../../../users.model";
   providedIn: 'root'
 })
 export class AchatProduitService {
-  private host:string ="https://kbc.alwaysdata.net/api";
+  private host:string ="https://lims.alwaysdata.net/api";
   constructor(private http:HttpClient) { }
   voirachatAjouter(id){
     return this.http.get(this.host+"/achat/getAllProduitAcheter/"+id+"?token="+localStorage.getItem('token'));
   }
   voirachat(idmagasin){
     return this.http.get(this.host+"/achat/getAllAchat/"+idmagasin+"?token="+localStorage.getItem('token'));
+  }
+  public GetProduitById(id){
+    return this.http.get(this.host+'/produit/'+id+'?token='+localStorage.getItem('token'));
   }
 
   getAllcategorie(idmagasin){
