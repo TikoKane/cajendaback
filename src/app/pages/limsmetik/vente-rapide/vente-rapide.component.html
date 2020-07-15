@@ -20,7 +20,7 @@
 
             <mat-form-field class="example-full-width"  >
               <mat-label>Produit</mat-label>
-              <input type="text"  matInput [formControl]="myControl1" name="idproduit" [matAutocomplete]="auto1"  (ngModelChange)="recuper($event)" >
+              <input type="text"  matInput [formControl]="myControl1" name="idproduit" [matAutocomplete]="auto1" [(ngModel)]="variable"  (ngModelChange)="recuper($event)" >
               <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFn">
                 <mat-option *ngFor="let opt of filteredproduit | async" [value]="opt"  >
                   {{opt.libelle}}
