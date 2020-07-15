@@ -65,6 +65,9 @@ import { VenteentreprisepromoComponent } from './venteentreprisepromo/venteentre
 import { MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 import { ChoixAchatComponent } from './choix-achat/choix-achat.component';
 import { AchatFournisseurComponent } from './achat-fournisseur/achat-fournisseur.component';
+import { InfoscompteComponent } from './infoscompte/infoscompte.component';
+import { ModifierdonneesgerantComponent } from './modifierdonneesgerant/modifierdonneesgerant.component';
+
 
 
 @NgModule({
@@ -150,6 +153,8 @@ import { AchatFournisseurComponent } from './achat-fournisseur/achat-fournisseur
     VenteentreprisepromoComponent,
     ChoixAchatComponent,
     AchatFournisseurComponent,
+    InfoscompteComponent,
+    ModifierdonneesgerantComponent,
 
   ],
 })

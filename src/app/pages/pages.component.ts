@@ -96,7 +96,7 @@ export class PagesComponent implements OnInit{
       },
       {
         title: 'Caisse',
-        icon: 'browser-outline',
+        icon: 'credit-card-outline',
         children: [
           {
             title: 'Journalière',
@@ -116,7 +116,7 @@ export class PagesComponent implements OnInit{
       },
       {
         title: 'Facture',
-        icon: 'map-outline',
+        icon: 'file-text-outline',
         children: [
           {
             title: 'Recherche facture',
@@ -125,6 +125,20 @@ export class PagesComponent implements OnInit{
           {
             title: 'Facture Pro-format',
             link: '/pages/limsmetik/factureProformat',
+          },
+        ],
+      },
+      {
+        title: 'Paramétre',
+        icon: 'settings-2-outline',
+        children: [
+          {
+            title: 'Infos du compte',
+            link: '/pages/limsmetik/infosCompte',
+          },
+          {
+            title: 'Changer mot de passe',
+            link: '/pages/limsmetik/changerMotDePasse',
           },
         ],
       },

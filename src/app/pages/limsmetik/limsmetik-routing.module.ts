@@ -31,6 +31,8 @@ import { VenteparticulierpromoComponent } from './venteparticulierpromo/ventepar
 import { VenterapidepromoComponent } from './venterapidepromo/venterapidepromo.component';
 import {ChoixAchatComponent} from "./choix-achat/choix-achat.component";
 import {AchatFournisseurComponent} from "./achat-fournisseur/achat-fournisseur.component";
+import { InfoscompteComponent } from './infoscompte/infoscompte.component';
+import { ModifierdonneesgerantComponent } from './modifierdonneesgerant/modifierdonneesgerant.component';
 
 const routes: Routes = [
   {
@@ -153,7 +155,18 @@ const routes: Routes = [
         path: 'voirproduitAcheter/:id',
         component: VoirProduitAcheterComponent
       },
-
+      {
+        path: 'infosCompte',
+        component: InfoscompteComponent,
+      },
+      {
+        path: 'changerMotDePasse',
+        component: ModifierdonneesgerantComponent,
+      },
+      {
+        path: 'modifierGerant',
+        component: ModifierdonneesgerantComponent,
+      },
     ],
   },
 ];

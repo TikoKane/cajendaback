@@ -8,7 +8,7 @@ import {Users} from '../users.model';
 export class AuthService {
 
   value: Users;
-  private host: string = 'https://lims.alwaysdata.net/api';
+  private host: string = 'https://lamine.alwaysdata.net/api';
   isLoggedIn = false;
   role: number;
 
@@ -84,6 +84,8 @@ export class AuthService {
     this.isLoggedIn = false;
     this.router.navigate(['login']);
   }
+
+  
   logout2(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('prenom');

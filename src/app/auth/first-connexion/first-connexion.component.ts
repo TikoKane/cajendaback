@@ -62,7 +62,7 @@ tik;
   onLogin(f) {
     if(this.user.newPassword===this.user.confirmPassword){
 
-   this.u.login=this.users.User.login;
+   this.u.login=this.users.login;
   this.u.password=this.user.confirmPassword;
 
 
@@ -97,7 +97,7 @@ tik;
  //  this.logout();
   this.service.GetGerantById(localStorage.getItem('id')).subscribe((data) => {
     this.users = data;
- 
+ console.log(this.users);
   }, (err) => {
     console.log(err);
   });

@@ -3,6 +3,13 @@ export class Users {
   login: string;
   magasin_id: number;
 }
+
+
+export class u {
+  password: string;
+  login: string;
+  magasin_id: number;
+}
 export class Contenue {
   idcategorie: string;
   idproduit: string;
