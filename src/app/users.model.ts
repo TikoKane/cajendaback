@@ -24,6 +24,13 @@ export class ContenuePromo {
   pu: number;
 
 }
+export class Personne {
+  telephone: string;
+  nom: string;
+  prenom: string;
+  adresse: string;
+  raisonSocial: string;
+}
 export class Particulier {
   telephone: string;
   nom: string;
@@ -34,4 +41,9 @@ export class Entreprise {
   telephone: string;
   raisonSocial: string;
   adresse: string;
+}
+
+export class Cat {
+  id: string;
+  libelle: string;
 }

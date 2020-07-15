@@ -8,32 +8,30 @@
           <nb-card>
             <nb-card-header style="background-color: #2d8ac7">Achat avec Fournisseur</nb-card-header>
             <nb-card-body>
-              <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
-                <div class="form-group">
-                  <label  class="label">Categorie</label>
+              <form #f="ngForm"  (ngSubmit)="onLogin(f)">
+                <div class="form-group" style="text-align: center">
+                  <label  class="label">Catégorie</label>
                   <select  fullWidth class="form-control" name="idcategorie"  [(ngModel)]="contenue.idcategorie" (ngModelChange)="recuperation($event)">
                     <option *ngFor="let c of categorie" [value]="c.id" >{{c.libelle}}</option>
                   </select>
                 </div>
-                <div class="form-group" *ngIf="produit">
+                <div class="form-group" *ngIf="produit" style="text-align: center">
                   <label  class="label">Produit</label>
-                  <select  fullWidth class="form-control" name="idProduit" [(ngModel)]="contenue.idproduit">
-                    <option >veuiller choisir un produit</option>
+                  <select fullWidth class="form-control" name="idProduit" [(ngModel)]="contenue.idproduit">
+                    <option >Veuillez choisir un produit</option>
                     <option *ngFor="let p of produit" [value]="p.id" >{{p.libelle}}</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label  class="label">Quantite</label>
-                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter la quantite" name="Quantite" [(ngModel)]="contenue.quantite">
-                </div>
-                <div class="form-group">
+                <div class="form-group" style="text-align: center">
+                  <label  class="label">Quantité</label>
+                  <input type="number" nbInput fullWidth status="info"  placeholder="Enter la quantité" name="Quantite" [(ngModel)]="contenue.quantite" min="1">
+                </div >
+                <div class="form-group" style="text-align: center">
                   <label  class="label">Prix unitaire</label>
-                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
+                  <input type="number" nbInput fullWidth status="info"  placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu" min="1">
                 </div>
-                <div class=" col-md-offset-7">
-                  <button type='reset'nbButton status='danger'>Annuler</button>
-                  <button type='submit'  nbButton status='success' [disabled]="!f.valid">Submit</button>
-                </div>
+
+                <button [disabled]="!f.valid" type='"submit" 'nbButton status='success'>Submit</button>
                 <br>
                 <br>
                 <br>
@@ -51,25 +49,24 @@
                 </tr>
                 </thead>
                 <tbody style='background-color:white'>
-                <tr *ngFor="let t of tableau;let i=index" >
+                <tr *ngFor="let t of tableau;let i =index" (change)="actuliser()">
                   <th scope='row'>{{i+1}}</th>
                   <td>{{t.libelle}}</td>
                   <td>{{t.quantite}}</td>
                   <td>{{t.prixUnitaire}}</td>
                   <td>{{t.montant}}</td>
-                  <td><a class='btn btn-danger btn-xs' (click)="suprimer(t.produit_id)" ><i class='fa fa-trash-o'></i> Supprimer </a></td>
+                  <td><a class='btn btn-danger btn-xs' (click)="suprimer(t.produit_id)"><i class='fa fa-trash-o'></i> Supprimer </a></td>
                 </tr>
-
                 <tr>
-                  <td colspan='4' ><b>TOTAL:</b></td>
+                  <td colspan="4" ><b>TOTAL:</b></td>
 
-                  <td><b>{{montant}}</b></td>
+                  <td><b>{{montant[0].total}}</b></td>
                 </tr>
 
                 </tbody>
               </table>
 
-              <button nbButton status="danger" (click)="anullerVente()">Annuler</button>
+              <button nbButton status="danger" *ngIf="tableau" (click)="anullerAchat()">Annuler</button>
             </nb-card-body>
           </nb-card>
 
@@ -79,50 +76,82 @@
       </nb-step>
       <nb-step [label]='labelTwo'>
         <ng-template #labelTwo>Second step</ng-template>
-        <div class=".col-md-4 .offset-md-4">
-          <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Formulaire Fournisseur</nb-card-header>
-            <nb-card-body>
-              <form #ff="ngForm" (ngSubmit)="validervente(ff)">
-                <div class="form-group">
-                  <label  class="label">Telephone</label>
-                  <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="particulier.telephone" (ngModelChange)="getParticulierbyTel($event)" placeholder="Enter le numero de telephone">
-                </div>
-                <div class="form-group">
-                  <label  class="label">Prenon</label>
-                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Prenom" required="required"  [(ngModel)]="particulier.prenom" placeholder="Enter le prenom">
-                </div>
-                <div class="form-group">
-                  <label  class="label">Nom</label>
-                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Nom" required="required"  [(ngModel)]="particulier.nom"   placeholder="Enter le nom">
-                </div>
 
-                <div class="form-group">
-                  <label  class="label">Adresse</label>
-                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="particulier.adresse" placeholder="Enter l'adresse">
-                </div>
-                <div class="form-group">
-                  <label  class="label">Raison Social</label>
-                  <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="particulier.adresse" placeholder="Enter l'adresse">
-                </div>
-
-                <div class=" col-md-offset-7">
-
-                  <button type='submit' [disabled]="!ff.valid" nbButton status='success'>Submit</button>
-                </div>
-                <br>
-                <br>
-                <br>
-
-              </form>
-
-
-
-            </nb-card-body>
-          </nb-card>
-
-        </div>
         <div>
+          <div class="row">
+            <div class="col-lg-6">
+              <nb-card>
+                <nb-card-header style="background-color: #2d8ac7">Achat Particulier</nb-card-header>
+                <nb-card-body>
+
+                  <form #fff="ngForm" (ngSubmit)="validerAchatFourniseurParticulier(fff)">
+                    <div class="form-group">
+                      <label  class="label">Telephone</label>
+                      <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="personne.telephone" (ngModelChange)="getParticulierbyTel($event)" placeholder="Enter le numero de telephone">
+                    </div>
+                    <div class="form-group">
+                      <label  class="label">Prenon</label>
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Prenom" required="required"  [(ngModel)]="personne.prenom" placeholder="Enter le prenom">
+                    </div>
+                    <div class="form-group">
+                      <label  class="label">Nom</label>
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Nom" required="required"  [(ngModel)]="personne.nom"   placeholder="Enter le nom">
+                    </div>
+
+                    <div class="form-group">
+                      <label  class="label">Adresse</label>
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="personne.adresse" placeholder="Enter l'adresse">
+                    </div>
+
+                    <div class=" col-md-offset-7">
+
+                      <button type='submit' [disabled]="!fff.valid" nbButton status='success'>Submit</button>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+
+                  </form>
+                </nb-card-body>
+              </nb-card>
+            </div>
+
+            <div class="col-lg-6">
+
+              <nb-card>
+                <nb-card-header style="background-color: #b057c7">Achat Entreprise</nb-card-header>
+                <nb-card-body>
+
+                  <form #ff="ngForm" (ngSubmit)="validerAchatFourniseurEntrepreise(ff)">
+                    <div class="form-group">
+                      <label  class="label">Telephone</label>
+                      <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="Entreprise.telephone" (ngModelChange)="getParticulierbyTelEntre($event)" placeholder="Enter le numero de telephone">
+                    </div>
+
+                    <div class="form-group">
+                      <label  class="label">Adresse</label>
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="Entreprise.adresse" placeholder="Enter l'adresse">
+                    </div>
+                    <div class="form-group">
+                      <label  class="label">Raison Social</label>
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="Entreprise.raisonSocial" placeholder="Enter l'adresse">
+                    </div>
+
+                    <div class=" col-md-offset-7">
+
+                      <button type='submit' [disabled]="!ff.valid"  nbButton status='success'>Submit</button>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+
+                  </form>
+                </nb-card-body>
+              </nb-card>
+
+
+            </div>
+          </div>
           <button nbButton nbStepperPrevious>prev</button>
           <button nbButton nbStepperNext >next</button>
         </div >

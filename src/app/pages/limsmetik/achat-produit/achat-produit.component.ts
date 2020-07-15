@@ -87,7 +87,7 @@ export class AchatProduitComponent implements OnInit {
   }
 
   validerAchat() {
-    this.serviceAchat.validerAchat().subscribe(resp=>{this.good("achat réussi avec succès");this.reloadComponent();this.valider=false;},error1 => {this.bad()});
+    this.serviceAchat.validerAchat().subscribe(resp=>{ this.good("achat réussi avec succès");this.reloadComponent();this.valider=false;},error1 => {this.bad()});
 
   }
 

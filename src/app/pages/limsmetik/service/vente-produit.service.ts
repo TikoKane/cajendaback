@@ -36,17 +36,30 @@ export class VenteProduitService {
     //a faire api
     return this.http.delete(this.host+"/achat/deleteProduitAjouterById/"+id+"?token="+localStorage.getItem('token'));
   }
+
   validerventeRapide(){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?magasin_id="+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token')+"&typeClient_id=3&user_id="+localStorage.getItem('iduser'),{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?magasin_id="+localStorage.getItem('idmagasin')+"&typeClient_id=3&user_id="+localStorage.getItem('id')+"&promo=0&tva=1&token="+localStorage.getItem('token'),{observe : 'response'});
+  }
+  validerventeRapidePromo(){
+    //a faire api
+    return this.http.post(this.host+"/vente/venteProduit?magasin_id="+localStorage.getItem('idmagasin')+"&typeClient_id=3&user_id="+localStorage.getItem('id')+"&promo=1&tva=1&token="+localStorage.getItem('token'),{observe : 'response'});
   }
   validerventeParticulier(value:Particulier){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('iduser'),{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
+  }
+  validerventeParticulierPromo(value:Particulier){
+    //a faire api
+    return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
   }
   validerventeEntreprise(value:Entreprise){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('iduser'),{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
+  }
+  validerventeEntreprisePromo(value:Entreprise){
+    //a faire api
+    return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
   }
   annulerVente(){
     //a faire api

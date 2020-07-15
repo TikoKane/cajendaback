@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {AchatProduitService} from "../service/achat-produit.service";
 import {VenteProduitService} from "../service/vente-produit.service";
 import {NbToastrService} from "@nebular/theme";
 import {Router} from "@angular/router";
-import {Contenue, Particulier} from "../../../users.model";
+import {Contenue, Particulier, Personne} from "../../../users.model";
 
 @Component({
   selector: 'ngx-achat-fournisseur',
@@ -12,31 +12,66 @@ import {Contenue, Particulier} from "../../../users.model";
   styleUrls: ['./achat-fournisseur.component.scss']
 })
 export class AchatFournisseurComponent implements OnInit {
+  categorie;
+  valeur;
+  tableau;
+  montant;
   firstForm: FormGroup;
+  valider: boolean = false;
+  trouve: boolean = false;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  categorie;tableau;montant; string;valeur;donnees;valider:boolean=false;trouve:boolean=false;
-  constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) {
-    this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
+
+  constructor(private fb: FormBuilder, private serviceAchat: AchatProduitService, private serviceVente: VenteProduitService, private toastr: NbToastrService, public router: Router) {
+    this.serviceAchat.annulerAchat().subscribe(resp => {
+      this.reloadComponent();
+    }, error1 => {
+      this.bad();
+    });
   }
-  test:string='0';
-  particulier:Particulier ={
-    telephone:'',
-    nom:'',
-    prenom:'',
-    adresse:''
+
+  test: string = '0';
+  personne: Personne = {
+    telephone: '',
+    nom: '',
+    prenom: '',
+    raisonSocial: '',
+    adresse: ''
   };
-  contenue:Contenue ={
-    idcategorie:'',
-    idproduit:'',
-    quantite:'',
-    pu:''
+  Entreprise: Personne = {
+    telephone: '',
+    nom: '',
+    prenom: '',
+    raisonSocial: '',
+    adresse: ''
   };
+  contenue: Contenue = {
+    idcategorie: '',
+    idproduit: '',
+    quantite: '',
+    pu: ''
+  };
+
   produit;
+
   ngOnInit() {
-    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data},error1=>{console.log(error1);});
-    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
+
+
+    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
+      this.categorie = data;
+    }, error1 => {
+      console.log(error1);
+    });
+    this.serviceAchat.getAllproduitAjouter().subscribe(data => {
+      this.tableau = data['AjoutProduit '];
+    }, error1 => {
+      console.log(error1);
+    });
+    this.serviceAchat.getTotalMontantAchete().subscribe(data => {
+      this.montant = data['totalMontant'];
+    }, error1 => {
+      console.log(error1);
+    });
 
     this.firstForm = this.fb.group({
       firstCtrl: ['', Validators.required],
@@ -51,77 +86,177 @@ export class AchatFournisseurComponent implements OnInit {
     });
   }
 
-  recuperation($event: Event) {
-    this.test=this.contenue.idcategorie;
-    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa},error1 => {console.log(error1);});
-
-  }
-  good(message) {
-    this.toastr.success(message,'success');
-
-  }
-  bad(message) {
-    this.toastr.danger(message,"Erreur lors de l'ajout du produit");
-
-  }
-  badd() {
-    this.toastr.danger("erreur",'error');
-
-  }
 
   onLogin(f: NgForm) {
-    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent();},error1 => {console.log(error1)});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
+    this.serviceAchat.insertintoAjoutProduit(this.contenue).subscribe(resp => {
+      this.good("produit ajouté avec succès");
+      this.reloadComponent();
+      this.valider = true
+    }, error1 => {
+      console.log(error1)
+    });
+    this.serviceAchat.getTotalMontantAchete().subscribe(data => {
+      this.montant = data['totalMontant']
+    }, error1 => {
+      console.log(error1);
+    });
     this.reloadComponent();
+    this.reloadComponentEntreprise();
   }
 
-  private reloadComponent() {
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data},error1 => {console.log(error1);});
-    this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
-    this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
-    this.contenue.idcategorie='';
-    this.contenue.pu='';
-    this.contenue.quantite='';
-    this.contenue.idproduit='';
-    this.particulier.telephone='';
-    this.particulier.adresse='';
-    this.particulier.prenom='';
-    this.particulier.nom='';
+  recuperation($event: Event) {
+    this.test = this.contenue.idcategorie;
+    this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
+      this.produit = dataa;
+    }, error1 => {
+      console.log(error1);
+      this.bad()
+    });
 
   }
 
-  anullerVente() {
-    this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();this.valider=false;this.trouve=false;},error1 => {this.bad(error1);});
+  good(message) {
+    this.toastr.success(message, 'Ajout Produit');
+
   }
 
-  validervente(f: NgForm) {
-    this.serviceVente.validerventeParticulier(this.particulier).subscribe(resp=>{this.valider=false;this.trouve=false;
-      this.router.navigate(['/pages/limsmetik/facture',resp['idFacture']])
-    },error1 => {console.log(error1)});
+  bad() {
+    this.toastr.danger("erreur", 'error');
+
   }
 
-  suprimer(produit_id: any) {
-    this.serviceVente.deleteVenteProduit(produit_id).subscribe(resp=>{this.reloadComponent()},error1 => {console.log(error1)});
-    this.reloadComponent();
+  reloadComponent() {
+
+    this.serviceAchat.getAllproduitAjouter().subscribe(data => {
+      this.tableau = data['AjoutProduit ']
+    }, error1 => {
+      console.log(error1);
+    });
+    this.serviceAchat.getTotalMontantAchete().subscribe(data => {
+      this.montant = data['totalMontant']
+    }, error1 => {
+      console.log(error1);
+    });
+    this.contenue.idcategorie = '';
+    this.contenue.pu = '';
+    this.contenue.quantite = '';
+    this.contenue.idproduit = '';
+    this.personne.telephone = '';
+    this.personne.adresse = '';
+    this.personne.prenom = '';
+    this.personne.nom = '';
+
   }
 
-  gotoAddParticulier() {
-    return this.router.navigate(['/home/particulier']);
+  reloadComponentEntreprise() {
+    this.serviceAchat.getAllproduitAjouter().subscribe(data => {
+      this.tableau = data['AjoutProduit ']
+    }, error1 => {
+      console.log(error1);
+    });
+    this.serviceAchat.getTotalMontantAchete().subscribe(data => {
+      this.montant = data['totalMontant']
+    }, error1 => {
+      console.log(error1);
+    });
+    this.contenue.idcategorie = '';
+    this.contenue.pu = '';
+    this.contenue.quantite = '';
+    this.contenue.idproduit = '';
+    this.Entreprise.telephone = '';
+    this.Entreprise.adresse = '';
+    this.Entreprise.prenom = '';
+    this.Entreprise.nom = '';
+
   }
 
   getParticulierbyTel($event: {}) {
-    this.test=this.particulier.telephone;
-    this.serviceVente.getClientBytel(this.test).subscribe(dataa=>{this.valeur=dataa; if(this.valeur['Client '])
-    {
-      this.trouve=true;
-      this.particulier.adresse=this.valeur['Client '].adresseClient;
-      this.particulier.nom=this.valeur['Client '].nomClient;
-      this.particulier.prenom=this.valeur['Client '].prenomClient;
-      this.particulier.telephone=this.valeur['Client '].telClient;
-    }else{this.trouve=false;}},error1 => {console.log(error1);});
+    this.test = this.personne.telephone;
+    this.serviceVente.getClientBytel(this.test).subscribe(dataa => {
+      this.valeur = dataa;
+      if (this.valeur['Client ']) {
+        this.trouve = true;
+        this.personne.adresse = this.valeur['Client '].adresseClient;
+        this.personne.nom = this.valeur['Client '].nomClient;
+        this.personne.prenom = this.valeur['Client '].prenomClient;
+        this.personne.telephone = this.valeur['Client '].telClient;
+      } else {
+        this.trouve = false;
+      }
+    }, error1 => {
+      console.log(error1);
+    });
   }
 
-  annulerVente() {
+  getParticulierbyTelEntre($event: {}) {
+    this.test = this.Entreprise.telephone;
+    console.log(this.test);
+    this.serviceVente.getClientBytel(this.test).subscribe(dataa => {
+      console.log(dataa);
+      this.valeur = dataa;
+      if (this.valeur['Client ']) {
+        this.trouve = true;
+        this.Entreprise.adresse = this.valeur['Client '].adresseClient;
+        this.Entreprise.nom = this.valeur['Client '].nomClient;
+        this.Entreprise.prenom = this.valeur['Client '].prenomClient;
+        this.Entreprise.telephone = this.valeur['Client '].telClient;
+      } else {
+        this.trouve = false;
+      }
+    }, error1 => {
+      console.log(error1);
+    });
+  }
+
+  suprimer(produit_id: any) {
+    this.serviceAchat.deleteAjoutProduit(produit_id).subscribe(resp => {
+      this.reloadComponent()
+    }, error1 => {
+      console.log(error1)
+    });
+    this.reloadComponent();
+  }
+
+
+  anullerAchat() {
+    this.serviceAchat.annulerAchat().subscribe(resp => {
+      this.reloadComponent();
+      this.valider = false;
+    }, error1 => {
+      this.bad();
+    });
+  }
+
+  actuliser() {
+
+  }
+
+
+  validerAchatFourniseurParticulier(fff: NgForm) {
+
+    this.serviceAchat.validerAchatFournisseurParticulier(this.personne).subscribe(resp => {
+      console.log(resp);
+          this.good("achat réussi avec succès");
+          this.reloadComponent();
+          this.valider = false;
+
+    }, error1 => {
+      this.bad()
+    });
+
+  }
+
+  validerAchatFourniseurEntrepreise(ff: NgForm) {
+    this.serviceAchat.validerAchatFournisseurEntreprise(this.Entreprise).subscribe(resp => {
+      console.log(resp['success']);
+
+        this.good("achat réussi avec succès");
+        this.reloadComponentEntreprise();
+        this.valider = false;
+
+    }, error1 => {
+      this.bad()
+    });
 
   }
 }
