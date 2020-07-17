@@ -17,6 +17,26 @@ export class VenteProduitService {
 
   }
 
+  getTotalJournaliere(id){
+    return this.http.get(this.host+"/caisse/totaljournalierAchat/"+id+"?token="+localStorage.getItem('token'));
+
+  }
+
+  getTotalMensuel(id){
+    return this.http.get(this.host+"/caisse/totalmensuelAchat/"+id+"?token="+localStorage.getItem('token'));
+
+  }
+
+  caisseJournaliere(id){
+    return this.http.get(this.host+"/caisse/caissejournaliereAchat/"+id+"?token="+localStorage.getItem('token'));
+
+  }
+
+  caisseMensuelle(id){
+    return this.http.get(this.host+"/caisse/caissemensuelleAchat/"+id+"?token="+localStorage.getItem('token'));
+
+  }
+
   insertintoAjoutProduit(value:Contenue){
     return this.http.post(this.host+'/vente/insertToAjoutproduit?produit_id='+value.idproduit+'&'+'quantite='+value.quantite+'&'+'prixUnitaire='+value.pu+'&'+'magasin_id='+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token'),{observe : 'response'});
   }

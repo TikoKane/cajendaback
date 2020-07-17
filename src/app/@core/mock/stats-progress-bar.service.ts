@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { of as observableOf, Observable } from 'rxjs';
 import { ProgressInfo, StatsProgressBarData } from '../data/stats-progress-bar';
+import { VenteProduitService } from 'src/app/pages/limsmetik/service/vente-produit.service';
 
 @Injectable()
+
 export class StatsProgressBarService extends StatsProgressBarData {
   private progressInfoData: ProgressInfo[] = [
     {
@@ -27,5 +29,8 @@ export class StatsProgressBarService extends StatsProgressBarData {
 
   getProgressInfoData(): Observable<ProgressInfo[]> {
     return observableOf(this.progressInfoData);
+  }
+  ngOnit(){
+
   }
 }
