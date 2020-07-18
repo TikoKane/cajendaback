@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmartTableData } from '../../../@core/data/smart-table';
 import {Router} from "@angular/router";
 import {CaisseService} from "../service/caisse.service";
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'ngx-caisse-journaliere',
   templateUrl: './caisse-journaliere.component.html',
