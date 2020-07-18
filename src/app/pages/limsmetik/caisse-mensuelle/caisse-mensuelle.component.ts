@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { SmartTableData } from '../../../@core/data/smart-table';
 import {Router} from "@angular/router";
 import {CaisseService} from "../service/caisse.service";
 import { registerLocaleData } from '@angular/common';

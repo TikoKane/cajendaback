@@ -61,10 +61,6 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
 import { StatusCardComponent } from '../dashboard/status-card/status-card.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
-
-
-
-
 @NgModule({
   imports: [
     ThemeModule,
