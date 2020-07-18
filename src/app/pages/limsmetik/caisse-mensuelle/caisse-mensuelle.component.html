@@ -37,7 +37,7 @@
 
     </table>
     <pagination-controls (pageChange)="p= $event"></pagination-controls>
-    <h3 align="center">Total vendu    :  <b> {{total}}</b>CFA</h3>
+    <h3 align="center">Total vendu    :  <b> {{total |currency:"XAF":"symbol":'3.0':'fr' }}</b></h3>
   </nb-card-body>
 </nb-card>
 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CaisseService} from "../service/caisse.service";
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'ngx-facture',
@@ -14,9 +17,11 @@ export class FactureComponent implements OnInit {
   infoproduit: any;
   infoUser: any;
   MontantAPayer;
+  MontantTva;
   infoFacture: any;
   infoClient: any;
   magasin: any;
+  MontantHT:number;
 
   constructor(private servieCaisse:CaisseService,private  route:ActivatedRoute) { }
 
@@ -24,13 +29,20 @@ export class FactureComponent implements OnInit {
     this.magasin=localStorage.getItem('magasin');
     let id: number;
     id = this.route.snapshot.params.id;
-    this.servieCaisse.getFacturebyId(id).subscribe(resp=>{
+    this.servieCaisse.getFacturebyId(id).subscribe(resp=>{ console.log(resp);
       this.infoFacture=resp['facture'];
       this.infoClient=resp['vente'];
       this.infoUser=resp['user'];
       this.infoproduit=resp['produits'];
       this.MontantAPayer=resp['totalVente'];
+      this.MontantTva=resp['vente'].montantTVA;
+
+      this.MontantHT = (Number(this.MontantAPayer)) - (Number(this.MontantTva));
+
      },error1 => {console.log(error1)});
+
+
+
   }
 
 

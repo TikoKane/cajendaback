@@ -82,7 +82,7 @@
                   </tr>
                   <tr>
                     <th>Net à payer  :</th>
-                    <td> <b class="Pading">{{MontantAPayer}} FCFA</b> </td>
+                    <td> <b class="Pading">{{MontantAPayer | currency:"XAF":"symbol":'3.0':'fr'}} </b> </td>
                   </tr>
                   <tr>
                     <th>Effectue par :</th>
@@ -121,18 +121,25 @@
                     <td>{{t.libelle}}</td>
                     <td>{{t.quantite}}</td>
                     <td>{{t.prixUnitaire}}</td>
-                    <td>{{t.montant}}</td>
+                    <td>{{t.montant | currency:"XAF":"symbol":'3.0':'fr'}}</td>
                   </tr>
 
                   <tr >
-                    <th scope='row' rowspan="3" colspan="3"></th>
+                    <th scope='row' rowspan="4" colspan="3"></th>
                     <td ><b class="total"></b></td>
                     <td></td>
                   </tr>
-
+                  <tr>
+                    <td  ><b class="total"> Prix HT:</b></td>
+                    <td><b> {{MontantHT | currency:"XAF":"symbol":'3.0':'fr'}}</b> </td>
+                  </tr>
+                  <tr>
+                    <td  ><b class="total"> TVA:</b></td>
+                    <td><b> {{MontantTva | currency:"XAF":"symbol":'3.0':'fr'}}</b></td>
+                  </tr>
                   <tr>
                     <td  ><b class="total"> Prix Total TTC:</b></td>
-                    <td><b> {{MontantAPayer}}</b>F</td>
+                    <td><b> {{MontantAPayer | currency:"XAF":"symbol":'3.0':'fr'}}</b></td>
                   </tr>
                   </tbody>
                 </table>
