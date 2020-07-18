@@ -17,15 +17,21 @@ export class VenteProduitService {
 
   }
 
-  getTotalJournaliere(id){
-    return this.http.get(this.host+"/caisse/totaljournalierAchat/"+id+"?token="+localStorage.getItem('token'));
+  getBestProduit(id){
+    return this.http.get(this.host+"/stockproduitBestVente/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 
   }
 
-  getTotalMensuel(id){
-    return this.http.get(this.host+"/caisse/totalmensuelAchat/"+id+"?token="+localStorage.getItem('token'));
+  getTotalProduitEnStock(id){
+    return this.http.get(this.host+"/totalProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 
   }
+
+  getProduitEnRupture(id){
+    return this.http.get(this.host+"/ruptureProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
+
+  }
+
 
   caisseJournaliere(id){
     return this.http.get(this.host+"/caisse/caissejournaliereAchat/"+id+"?token="+localStorage.getItem('token'));

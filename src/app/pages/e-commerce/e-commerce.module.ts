@@ -8,6 +8,9 @@ import {
   NbIconModule,
   NbSelectModule,
   NbListModule,
+  NbSearchModule,
+  NbInputModule,
+  NbTreeGridModule,
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -56,6 +59,7 @@ import { EarningPieChartComponent } from './earning-card/back-side/earning-pie-c
 import { EarningCardFrontComponent } from './earning-card/front-side/earning-card-front.component';
 import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earning-live-update-chart.component';
 import { StatusCardComponent } from '../dashboard/status-card/status-card.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 
@@ -72,10 +76,15 @@ import { StatusCardComponent } from '../dashboard/status-card/status-card.compon
     NbSelectModule,
     NbListModule,
     ChartModule,
+    NbInputModule,
     NbProgressBarModule,
     NgxEchartsModule,
     NgxChartsModule,
+    NbCardModule,
+    NbTreeGridModule,
+    Ng2SmartTableModule,
     LeafletModule,
+    NbSearchModule,
   ],
   declarations: [
     ECommerceComponent,
@@ -110,7 +119,8 @@ import { StatusCardComponent } from '../dashboard/status-card/status-card.compon
     EarningCardFrontComponent,
     EarningCardBackComponent,
     EarningPieChartComponent,
-    EarningLiveUpdateChartComponent,
+    EarningLiveUpdateChartComponent
+
   ],
   providers: [
     CountryOrdersMapService,
