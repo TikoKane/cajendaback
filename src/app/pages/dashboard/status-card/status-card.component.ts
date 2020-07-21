@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'ngx-status-card',
@@ -13,10 +16,10 @@ import { Component, Input } from '@angular/core';
 
       <div class="details">
         <div class="title h5">{{ title }}</div>
-        <div class="status paragraph-2">{{ montant }}</div>
+        <div class="status paragraph-2">{{ montant}}</div>
       </div>
     </nb-card>
-  `,
+  `
 })
 export class StatusCardComponent {
 

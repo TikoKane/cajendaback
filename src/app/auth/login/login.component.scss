@@ -1,24 +1,44 @@
 
+body{
+  background-color:#F5F5F5;
+}
+#Web_1366___1 {
+
+  width: auto;
+  height: 650px;
 
 
+
+
+}
+.fontImage{
+  width: 1350px;
+  margin-top: -68px;
+  margin-left: -30px;
+
+}
 .header{
   position: absolute;
-  margin-top: 10%;
+  //left: 20px;
+  //top: -20px;
   overflow: visible;
+  width: 489px;
   white-space: nowrap;
+  text-align: left;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
-  font-size: 47px;
+  font-size: 50px;
   color: rgba(0,149,255,1);
-  letter-spacing: 0.007px;
+  letter-spacing: 0.02px;
 
 }
 #formulaire {
   position: absolute;
-  width: 489px;
+  width: 373.035px;
   height: 383px;
- 
+  left: 161.448px;
+  top: 210px;
   overflow: visible;
 }
 .Rectangle_2 {
@@ -99,44 +119,32 @@
 }
 
 #OF71Y30 {
-
+  position: absolute;
   width: 580.834px;
   height: 444px;
-
-
-  margin-left:5%;
-
+  left: 461.559px;
+  overflow: visible;
 }
 #Capture_d__cran__132_ {
- 
+  position: absolute;
   width: 297px;
   height: 158.374px;
-margin-top: -10%;
-  margin-left:-45%;
-
- 
-
-
+  left: 593px;
+  top: 86px;
+  overflow: visible;
 }
 #personne {
+  position: absolute;
 
 
-
-  margin-top: -50%;
-margin-left:55%;
-
-
+  left: 940.559px;
+  overflow: visible;
 }
-
-
 #limsmetik {
-  
-margin-left: 5%;
-}
-
-.fontImage{
-  width: 100%;
-  height: 100%;
-
-
+  position: absolute;
+  width: 225.69px;
+  height: 153.768px;
+  left: 960.393px;
+  top: -210px;
+  overflow: visible;
 }

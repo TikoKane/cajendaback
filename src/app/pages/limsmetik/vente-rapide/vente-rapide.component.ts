@@ -256,7 +256,7 @@ export class VenteRapideComponent implements OnInit {
         this.goood("vente réuissie avec success");
         this.reloadComponent();
         this.valider = false;
-        this.router.navigate(['/pages/limsmetik/facture', resp['idFacture']]);
+        this.router.navigate(['/pages/limsmetik/facture', resp['idfacture']]);
       }
       else{
         this.bad("erreur");

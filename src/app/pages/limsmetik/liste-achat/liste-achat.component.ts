@@ -11,6 +11,9 @@ import {Router} from "@angular/router";
 export class ListeAchatComponent implements OnInit {
   tableau;
   filterString = '';
+
+
+
   p:number=1;
   order = "id";
   ascending = false;
@@ -18,7 +21,7 @@ export class ListeAchatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.serviceAchat.voirachat(localStorage.getItem('idmagasin')).subscribe(resp=>{this.tableau=resp['AchatProduit']},error1 => {console.log(error1)});
+    this.serviceAchat.voirachat(localStorage.getItem('idmagasin')).subscribe(resp=>{this.tableau=resp['AchatProduit'],console.log(this.tableau)},error1 => {console.log(error1)});
 
   }
 

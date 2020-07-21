@@ -21,13 +21,13 @@ interface CardSettings {
 export class ECommerceComponent implements OnDestroy{
   private alive = true;
   private bestProd;
- 
+
   val:number;
    
   solarValue: number;
   lightCard: CardSettings = {
     title: 'Vente journalière ',
-    iconClass: 'nb-bar-chart',
+    iconClass: 'nb-e-commerce',
     type: 'warning',
     montant:' FCFA',
   };
@@ -39,15 +39,15 @@ export class ECommerceComponent implements OnDestroy{
   };
   wirelessAudioCard: CardSettings = {
     title: 'Produits en stock',
-    iconClass: 'nb-bar-chart',
+    iconClass: 'nb-compose',
     type: 'success',
     montant:'',
   };
   coffeeMakerCard: CardSettings = {
-    title: 'Vente en fcfa',
-    iconClass: 'nb-bar-chart',
+    title: 'Produits hors stock',
+    iconClass: 'nb-alert',
     type: 'danger',
-    montant:' FCFA',
+    montant:'',
   };
 
   statusCards: string;
@@ -134,8 +134,13 @@ export class ECommerceComponent implements OnDestroy{
 
         this.serviceVente.getBestProduit(localStorage.getItem('idmagasin')).subscribe(resp=>{ 
           this.bestProd=resp['variation stock '];
-      
-      },error=>{console.log(error)}); 
+
+      },error=>{console.log(error)});
+
+        this.serviceVente.getBadProduit(localStorage.getItem('idmagasin')).subscribe(resp=>{
+          console.log(resp)
+        },error1 => {console.log(error1)}
+        );
 
       this.serviceVente.getTotalProduitEnStock(localStorage.getItem('idmagasin')).subscribe(resp=>{ 
         console.log(resp[0]['totalProduit']);
@@ -148,6 +153,18 @@ export class ECommerceComponent implements OnDestroy{
         }; 
      
       },error=>{console.log(error)});
+
+    this.serviceVente.getTotalproduitHorsStock(localStorage.getItem('idmagasin')).subscribe(resp=>{
+      console.log(resp[0]['totalProduit']);
+      if(resp[0]['totalProduit']==null){
+        this.coffeeMakerCard.montant=0+this.coffeeMakerCard.montant;
+      }
+      else{
+        this.coffeeMakerCard.montant=resp[0]['totalProduit']+this.coffeeMakerCard.montant;
+
+      };
+
+    },error=>{console.log(error)});
 
 
       

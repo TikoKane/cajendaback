@@ -24,8 +24,8 @@ export class PagesComponent implements OnInit{
         group: true,
       },
       {
-        title: 'E-commerce',
-        icon: 'shopping-cart-outline',
+        title: 'Acceuil',
+        icon: 'layers-outline',
         link: '/pages/dashboard',
         home: true,
       },

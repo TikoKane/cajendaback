@@ -21,12 +21,18 @@ export class VenteProduitService {
     return this.http.get(this.host+"/stockproduitBestVente/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 
   }
+  getBadProduit(id){
+    return this.http.get(this.host+"/ruptureProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
+
+  }
 
   getTotalProduitEnStock(id){
     return this.http.get(this.host+"/totalProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 
   }
-
+getTotalproduitHorsStock(id){
+  return this.http.get(this.host+"/totalProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
+}
   getProduitEnRupture(id){
     return this.http.get(this.host+"/ruptureProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 
