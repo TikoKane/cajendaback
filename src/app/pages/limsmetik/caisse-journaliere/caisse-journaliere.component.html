@@ -30,7 +30,7 @@
         <td *ngIf="t.raisonSocialClient"> {{t.raisonSocialClient}}</td>
         <td>{{t.prenom }} {{t.nom}}</td>
         <td><button nbButton status="success" (click)="gotoFacture(t.id)">Voir Facture</button>  </td>
-        <td><button nbButton status="danger" (click)="deleteFacture(t.id)">Supprimer Facture</button>  </td>
+        <td><button nbButton status="danger" (click)="openWithoutEscClose(dialogSup,t.id)">Supprimer Facture</button>  </td>
 
       </tr>
     </tbody>
@@ -46,3 +46,13 @@
 </nb-card>
 
 
+<ng-template #dialogSup let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header style="background-color: #2d8ac7">Suppression de la facture</nb-card-header>
+    <nb-card-body>{{data}}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()">Annuler</button>
+      <button type="submit" nbButton status="danger" style="margin-left: 5%;" (click)="deleteFacture();ref.close()">Supprimer</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
