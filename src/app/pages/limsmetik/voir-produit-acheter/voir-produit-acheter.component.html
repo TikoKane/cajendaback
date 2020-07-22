@@ -12,20 +12,23 @@
                 <p class="element"><b>Fournisseur</b></p>
                 <tr>
                   <th>Nom : </th>
-                  <td >Diop</td>
+                  <td *ngIf="isParticulier()"><b>{{prenomFournisseur}}  {{nomFournisseur}}</b></td>
+                  <td *ngIf="isSimple()"><b>{{nomFournisseur}}</b></td>
+                  <td *ngIf="isEntreprise()"><b>{{raisonSocial_fournisseur}}</b></td>
                 </tr>
                 <tr>
                   <th>Adresse  : </th>
-                  <td> Babacar</td>
+                  <td> {{adresseFournisseur}}</td>
                 </tr>
                 <tr>
                   <th>Téléphone : </th>
-                  <td>770374739</td>
+                  <td>{{telephoneFourniseur}}</td>
                 </tr>
                 <tr>
                   <th>Type client :</th>
-                  <td>Particulier</td>
-
+                  <td *ngIf="isParticulier()">Particulier</td>
+                  <td *ngIf="isEntreprise()">Entreprise</td>
+                  <td *ngIf="isSimple()">Simple</td>
                 </tr>
                 </tbody>
               </table>
@@ -40,15 +43,15 @@
                 </tr>
                 <tr>
                   <th>Net à payer  :</th>
-                  <td> <b class="Pading">455888 </b> </td>
+                  <td> <b class="Pading">{{montant}} </b> </td>
                 </tr>
                 <tr>
                   <th>Effectue par :</th>
-                  <td> <b class="Pading">limamou diop </b> </td>
+                  <td> <b class="Pading">{{prenomUser }} {{nomUser}}</b> </td>
                 </tr>
                 <tr>
                   <th>Date :</th>
-                  <td> <b class="Pading">12/07/2020</b> </td>
+                  <td> <b class="Pading">{{DateAchat}}</b> </td>
                 </tr>
                 </tbody>
               </table>
