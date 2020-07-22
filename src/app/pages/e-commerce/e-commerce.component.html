@@ -18,7 +18,7 @@
             <th>#</th>
             <th>catégorie</th>
             <th>Produit</th>
-            <th>nbre</th>
+            <th>Nombre de fois vendu</th>
           </tr>
           </thead>
           <tbody style='background-color:white' >
@@ -36,7 +36,7 @@
   </div>
   <div class="col-md-6">
     <nb-card>
-      <nb-card-header style="background-color: #2d8ac7">Produitd les moins vendus</nb-card-header>
+      <nb-card-header style="background-color: #2d8ac7">Produits les moins vendus</nb-card-header>
       <nb-card-body>
         <table class='table table-bordered'>
           <thead style='background-color: #2d8ac7'>
@@ -44,11 +44,17 @@
             <th>#</th>
             <th>catégorie</th>
             <th>Produit</th>
-            <th>nbre</th>
+            <th>Nombre de fois vendu</th>
           </tr>
           </thead>
           <tbody style='background-color:white' >
+          <tr class='even pointer'  *ngFor=" let tab of badProd;let i =index">
+            <th scope='row'>{{i+1}}</th>
+            <th >{{tab.categorie}}</th>
+            <th >{{tab.produit}}</th>
+            <th >{{tab.nombreFoisVendu}}</th>
 
+          </tr>
           </tbody>
         </table>
       </nb-card-body>
