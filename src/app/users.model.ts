@@ -10,6 +10,7 @@ export class u {
   login: string;
   magasin_id: number;
 }
+
 export class Contenue {
   idcategorie: string;
   idproduit: string;

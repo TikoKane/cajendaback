@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Gerant } from './general.model';
+import { Gerant, ChangeMotDePasse } from './general.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +8,7 @@ export class GerantService {
   private host: string = 'https://lamine.alwaysdata.net/api';
   constructor(private http:HttpClient) { }
   ger : Gerant;
+  up : ChangeMotDePasse;
  
   getAllGerant(){
    return this.http.get(this.host+"/user/getAllUser?token="+localStorage.getItem('token'));

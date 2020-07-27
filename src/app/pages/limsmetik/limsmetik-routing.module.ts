@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { LimsmetikComponent } from './limsmetik.component';
 import { FormInputsComponent } from './form-inputs/form-inputs.component';
 import {AjoutGerantComponent} from './ajout-gerant/ajout-gerant.component';
@@ -33,6 +32,7 @@ import {ChoixAchatComponent} from "./choix-achat/choix-achat.component";
 import {AchatFournisseurComponent} from "./achat-fournisseur/achat-fournisseur.component";
 import { InfoscompteComponent } from './infoscompte/infoscompte.component';
 import { ModifierdonneesgerantComponent } from './modifierdonneesgerant/modifierdonneesgerant.component';
+import { ChangerMotDePasseComponent } from './changer-mot-de-passe/changer-mot-de-passe.component';
 
 const routes: Routes = [
   {
@@ -161,7 +161,7 @@ const routes: Routes = [
       },
       {
         path: 'changerMotDePasse',
-        component: ModifierdonneesgerantComponent,
+        component: ChangerMotDePasseComponent,
       },
       {
         path: 'modifierGerant',

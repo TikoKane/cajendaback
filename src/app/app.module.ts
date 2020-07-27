@@ -38,13 +38,9 @@ import {NgxPrintModule} from "ngx-print";
 import { ToastrModule } from 'ngx-toastr';
 import {NbDateFnsDateModule} from "@nebular/date-fns";
 import { RecupLoginPipe } from './auth/login/recup-login.pipe';
-
-
-
-
-
+import { ChangerMotDePasseFirstConnexionComponent } from './auth/changer-mot-de-passe-first-connexion/changer-mot-de-passe-first-connexion.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent,FirstConnexionComponent, RecupLoginPipe],
+  declarations: [AppComponent, LoginComponent,FirstConnexionComponent, RecupLoginPipe, ChangerMotDePasseFirstConnexionComponent],
   imports: [
 
     NbInputModule,

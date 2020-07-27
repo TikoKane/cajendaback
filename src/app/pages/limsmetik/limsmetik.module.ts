@@ -67,6 +67,7 @@ import { ChoixAchatComponent } from './choix-achat/choix-achat.component';
 import { AchatFournisseurComponent } from './achat-fournisseur/achat-fournisseur.component';
 import { InfoscompteComponent } from './infoscompte/infoscompte.component';
 import { ModifierdonneesgerantComponent } from './modifierdonneesgerant/modifierdonneesgerant.component';
+import { ChangerMotDePasseComponent } from './changer-mot-de-passe/changer-mot-de-passe.component';
 
 
 
@@ -155,6 +156,7 @@ import { ModifierdonneesgerantComponent } from './modifierdonneesgerant/modifier
     AchatFournisseurComponent,
     InfoscompteComponent,
     ModifierdonneesgerantComponent,
+    ChangerMotDePasseComponent,
 
   ],
 })
