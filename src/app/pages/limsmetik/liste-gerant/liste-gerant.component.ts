@@ -117,6 +117,7 @@ export class ListeGerantComponent implements OnInit {
     this.id = idGer;
 
     this.service.GetGerantById(this.id).subscribe(data => {
+      console.log(data)
       this.gerAsupprim = data;
      
     }, err => {
@@ -136,7 +137,7 @@ export class ListeGerantComponent implements OnInit {
   
     this.service.deleteGer(c).subscribe(res => {
       if (res['success'] == true) {
-        this.showToast(this.status2, this.title3, this.content3);
+        this.showToast(this.status, this.title3, this.content3);
         this.magasin = localStorage.getItem('idmagasin');
        
         this.service.getAllGerantByMagasin(localStorage.getItem('idmagasin')).subscribe((data) => {this.gerant = data; }, (err) => {console.log(err); });
@@ -190,16 +191,15 @@ export class ListeGerantComponent implements OnInit {
       });
   }
 
-  ModifierGer(form: NgForm) {
+  ModifierGerant(form: NgForm) {
     // console.log(form);
     this.modiformulaire(form);
     
   }
 
   modiformulaire(form: NgForm) {
-    console.log(form.value);
 
-    this.service.updateGerant(form.value, this.id).subscribe(res => {
+    this.service.updateGerant(form.value, this.id,localStorage.getItem('idmagasin')).subscribe(res => {
         if (res['success'] == false) {
           console.log(this.modifGerant)
           this.showToastErreur(this.status2, this.title2, this.content2);

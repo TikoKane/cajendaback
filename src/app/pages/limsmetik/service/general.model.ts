@@ -22,6 +22,11 @@ export class Gerant {
             login: string;
             magasin_id: number;
             }
+
+            export class ChangeMotDePasse {
+                newPassword:string;
+                confirmPassword:string;
+                }
             
         export class Produit {
             libelle:string;

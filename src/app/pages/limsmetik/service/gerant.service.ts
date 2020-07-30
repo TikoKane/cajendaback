@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Gerant } from './general.model';
+import { Gerant, ChangeMotDePasse } from './general.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +8,7 @@ export class GerantService {
   private host: string = 'https://lamine.alwaysdata.net/api';
   constructor(private http:HttpClient) { }
   ger : Gerant;
+  up : ChangeMotDePasse;
  
   getAllGerant(){
    return this.http.get(this.host+"/user/getAllUser?token="+localStorage.getItem('token'));
@@ -27,9 +28,9 @@ export class GerantService {
   insertGerant(ger:Gerant,idMagasin){
     return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+"passer"+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);
   }
-  updateGerant(ger:Gerant,id){
+  updateGerant(ger:Gerant,id,idMagasin){
 
-    return this.http.put(this.host+'/user/updateById/'+id+'?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'typeUser_id='+ger.typeUser_id+"&token="+localStorage.getItem('token'),Gerant);
+    return this.http.put(this.host+'/user/updateById/'+id+'?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);
 
   }
 

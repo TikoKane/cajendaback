@@ -42,16 +42,26 @@ tik;
   message: string;
   users;
   u: Users= {
-    login:'',
+    login: '',
     password: '',
     magasin_id: 1,
-  
   };
+
   user = {
-    magasin_id: 1,
+    magasin_id: JSON.parse(localStorage.getItem('idMagasin')),
     confirmPassword:'',
     newPassword:''
   };
+
+  ngOnInit(): void {
+    //  this.logout();
+     this.service.GetGerantById(localStorage.getItem('id')).subscribe((data) => {
+       this.users = data;
+     }, (err) => {
+       console.log(err);
+     });
+     }
+   
   constructor(private service: GerantService,public authService: AuthService, public router: Router, private toastr: NbToastrService) {
 
   }
@@ -61,26 +71,23 @@ tik;
 
   onLogin(f) {
     if(this.user.newPassword===this.user.confirmPassword){
-
-   this.u.login=this.users.login;
-  this.u.password=this.user.confirmPassword;
-
-
+      this.u.login = this.users.login;
+      this.u.password= this.user.newPassword;
   this.service.updatePasswordGerant(localStorage.getItem('id') ,this.user.newPassword).subscribe(resp=>{
+   this.authService.login(this.u).subscribe(resp => {
+    this.router.navigate(['pages/dashboard']);
     console.log(resp);
+       },
+           error1 => {
+             this.router.navigate(['pages/dashboard']); 
+         this.user.confirmPassword = '';
+         this.user.newPassword = '';
+       });
+  
   },
   error=>{
     console.log(error);
   });
- this.authService.login(this.u).subscribe(resp => {
- this.router.navigate(['pages/dashboard']);
-
-    },
-        error1 => {
-          console.log(error1);     
-      this.user.confirmPassword = '';
-      this.user.newPassword = '';
-    });
   }
   else{
     this.errorsmsgIdentiqueMotDePasse("Les deux Mots de passe ne sont pas identique");
@@ -93,16 +100,7 @@ tik;
     
   }
 
-  ngOnInit(): void {
- //  this.logout();
-  this.service.GetGerantById(localStorage.getItem('id')).subscribe((data) => {
-    this.users = data;
- console.log(this.users);
-  }, (err) => {
-    console.log(err);
-  });
-  }
-
+  
 
  
 

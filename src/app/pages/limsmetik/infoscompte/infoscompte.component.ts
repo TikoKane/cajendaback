@@ -15,12 +15,12 @@ export class InfoscompteComponent implements OnInit {
    type= localStorage.getItem('typeUser');
 
   ngOnInit() {
+  
     if(this.type=='false'){
       this.type='Admin';
     } else{
       this.type='Vendeur';
     }
-
 
     this.serviceGerant.GetGerantById(this.ger).subscribe((data) => {
       this.gerant = data;
