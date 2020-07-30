@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import {Router} from "@angular/router";
 import {CaisseService} from "../service/caisse.service";
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { NbDialogService } from '@nebular/theme';
 registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'ngx-caisse-mensuelle',
@@ -16,7 +17,8 @@ export class CaisseMensuelleComponent implements OnInit {
 filterString = '';
 order = "id";
 ascending = false;
-  constructor(private serviceCaiise :CaisseService ,private route:Router ) { }
+idFacture ;
+  constructor(private serviceCaiise :CaisseService ,private route:Router,private dialogService: NbDialogService) { }
 
   ngOnInit() {
 
@@ -36,5 +38,18 @@ ascending = false;
 
   isparticulier(prenomClient: any) {
     return prenomClient!="anomyme"
+  }
+
+  openWithoutEscClose(dialogSup: TemplateRef<any>,idCat) {
+    this.idFacture=idCat;
+    this.dialogService.open(
+
+      dialogSup,
+      {
+
+        context: 'Voulez vous vraiment supprimer la facture ',
+        hasBackdrop: false,
+        closeOnEsc: false,
+      });
   }
 }

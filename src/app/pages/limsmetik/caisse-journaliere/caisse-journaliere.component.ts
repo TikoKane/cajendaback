@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { SmartTableData } from '../../../@core/data/smart-table';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import {Router} from "@angular/router";
 import {CaisseService} from "../service/caisse.service";
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { NbDialogService } from '@nebular/theme';
 registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'ngx-caisse-journaliere',
@@ -19,7 +17,8 @@ export class CaisseJournaliereComponent implements OnInit {
 filterString = '';
 order = "id";
 ascending = false;
-  constructor(private serviceCaiise :CaisseService,private route:Router  ) { }
+idFacture ;
+  constructor(private serviceCaiise :CaisseService,private route:Router,private dialogService: NbDialogService) { }
 
   ngOnInit() {
 
@@ -32,7 +31,17 @@ ascending = false;
     this.route.navigate(['/pages/limsmetik/facture',id]);
   }
 
-  deleteFacture(id: any) {
-    
+  openWithoutEscClose(dialogSup: TemplateRef<any>,idCat) {
+    this.idFacture=idCat;
+    this.dialogService.open(
+
+      dialogSup,
+      {
+
+        context: 'Voulez vous vraiment supprimer la facture ',
+        hasBackdrop: false,
+        closeOnEsc: false,
+      });
   }
+
 }

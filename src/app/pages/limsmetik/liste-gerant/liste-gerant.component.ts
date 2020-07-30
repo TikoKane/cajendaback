@@ -190,17 +190,16 @@ export class ListeGerantComponent implements OnInit {
       });
   }
 
-  ModifierGerant(form: NgForm) {
+  ModifierGer(form: NgForm) {
     // console.log(form);
     this.modiformulaire(form);
     
   }
 
   modiformulaire(form: NgForm) {
+    console.log(form.value);
 
-    
     this.service.updateGerant(form.value, this.id).subscribe(res => {
-      
         if (res['success'] == false) {
           console.log(this.modifGerant)
           this.showToastErreur(this.status2, this.title2, this.content2);

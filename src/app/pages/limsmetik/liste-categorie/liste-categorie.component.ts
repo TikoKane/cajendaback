@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-
-import { SmartTableData } from '../../../@core/data/smart-table';
 import { CategorieService } from '../service/categorie.service';
 import { Router } from '@angular/router';
 import {NbDialogService, NbToastrService, NbComponentStatus, NbGlobalPosition, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { ToasterConfig } from 'angular2-toaster';
-import { tickFormat } from '@swimlane/ngx-charts';
+import { Categorie } from '../service/general.model';
+
 @Component({
   selector: 'ngx-liste-categorie',
   templateUrl: './liste-categorie.component.html',
@@ -20,8 +18,9 @@ export class ListeCategorieComponent implements OnInit {
   public id;
   filterString = '';
   p:number=1;
+ 
 
-    constructor(private service: CategorieService, private route: Router,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
+    constructor(private service: CategorieService, private route: Router,public serviceCat:CategorieService,private dialogService: NbDialogService,private toastrService: NbToastrService) { }
     config: ToasterConfig;
     index = 1;
     destroyByClick = true;
@@ -157,7 +156,6 @@ export class ListeCategorieComponent implements OnInit {
       }
 
     modiformulaire(form :NgForm){
-
       this.service.updateCategorie(form.value,this.id).subscribe(res=> {
         if(res['success']==true){
 

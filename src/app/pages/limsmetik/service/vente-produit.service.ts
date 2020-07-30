@@ -22,7 +22,7 @@ export class VenteProduitService {
 
   }
   getBadProduit(id){
-    return this.http.get(this.host+"/ruptureProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
+    return this.http.get(this.host+"/stockproduitWorstVente/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 
   }
 
@@ -31,7 +31,7 @@ export class VenteProduitService {
 
   }
 getTotalproduitHorsStock(id){
-  return this.http.get(this.host+"/totalProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
+  return this.http.get(this.host+"/nombreRuptureProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 }
   getProduitEnRupture(id){
     return this.http.get(this.host+"/ruptureProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
@@ -79,19 +79,19 @@ getTotalproduitHorsStock(id){
   }
   validerventeParticulier(value:Particulier){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&promo=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id'),{observe : 'response'});
   }
   validerventeParticulierPromo(value:Particulier){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&promo=1&tva=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id'),{observe : 'response'});
   }
   validerventeEntreprise(value:Entreprise){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&promo=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id'),{observe : 'response'});
   }
   validerventeEntreprisePromo(value:Entreprise){
     //a faire api
-    return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&prono=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id')+"&promo=0&tva=1",{observe : 'response'});
+    return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&promo=1&tva=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id'),{observe : 'response'});
   }
   annulerVente(){
     //a faire api

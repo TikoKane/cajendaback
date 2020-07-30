@@ -20,7 +20,7 @@ interface CardSettings {
 })
 export class ECommerceComponent implements OnDestroy{
   private alive = true;
-  private bestProd;
+   bestProd;badProd;
 
   val:number;
    
@@ -138,12 +138,11 @@ export class ECommerceComponent implements OnDestroy{
       },error=>{console.log(error)});
 
         this.serviceVente.getBadProduit(localStorage.getItem('idmagasin')).subscribe(resp=>{
-          console.log(resp)
+          this.badProd = resp['variation stock '];
         },error1 => {console.log(error1)}
         );
 
       this.serviceVente.getTotalProduitEnStock(localStorage.getItem('idmagasin')).subscribe(resp=>{ 
-        console.log(resp[0]['totalProduit']);
         if(resp[0]['totalProduit']==null){
           this.wirelessAudioCard.montant=0+this.wirelessAudioCard.montant;
         }
@@ -155,12 +154,12 @@ export class ECommerceComponent implements OnDestroy{
       },error=>{console.log(error)});
 
     this.serviceVente.getTotalproduitHorsStock(localStorage.getItem('idmagasin')).subscribe(resp=>{
-      console.log(resp[0]['totalProduit']);
-      if(resp[0]['totalProduit']==null){
+  
+      if(resp[0]['nombreProduit']==null){
         this.coffeeMakerCard.montant=0+this.coffeeMakerCard.montant;
       }
       else{
-        this.coffeeMakerCard.montant=resp[0]['totalProduit']+this.coffeeMakerCard.montant;
+        this.coffeeMakerCard.montant=resp[0]['nombreProduit']+this.coffeeMakerCard.montant;
 
       };
 
