@@ -45,9 +45,9 @@
 <ng-template #dialogSup let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header style="background-color: #2d8ac7">Suppression d'un gérant Gérant</nb-card-header>
-    <nb-card-body>{{ data }} {{gerAsupprim.User.nom}} {{gerAsupprim.User.prenom}}</nb-card-body>
+    <nb-card-body>{{ data }} {{gerAsupprim.nom}} {{gerAsupprim.prenom}}</nb-card-body>
     <nb-card-footer>
-      <button type="submit" class='btn btn-danger btn-xs' (click)="deleteGerant(gerAsupprim.User.id);ref.close()">Supprimer</button>
+      <button type="submit" class='btn btn-danger btn-xs' (click)="deleteGerant(gerAsupprim.id);ref.close()">Supprimer</button>
       <button nbButton (click)="ref.close()">Annuler</button>
     </nb-card-footer>
   </nb-card>

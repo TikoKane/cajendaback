@@ -26,11 +26,11 @@
                             styleSheetFile="../../../../assets/bootstrap.css,../../../../assets/bootstrap.min.css"
                             printSectionId="print-section"
                             ngxPrint  ><i class="fa fa-print">IMPRIMER </i></button> &nbsp;
-              <button nbButton status="info"
+           <!-- <button nbButton status="info"
                             [useExistingCss]="true"
                             styleSheetFile="../../../../assets/bootstrap.css,../../../../assets/bootstrap.min.css"
                             printSectionId="print-section"
-                            ngxPrint  ><i class="fa fa-print">Mail </i></button>
+                            ngxPrint  ><i class="fa fa-print">Mail </i></button>-->
               <hr>
             </div>
             <div class="x_content"  id="print-section" >
@@ -40,8 +40,8 @@
                 <br>
                 <b>LimsMetik developers team </b>
               </div>
-              <div  *ngIf="infoFacture['promo']>0" class="col-md-4" style="margin-left: 8%;">
-                <img src="../../../../assets/promo.jpg" width="120px" >
+              <div   class="col-md-4" style="margin-left: 8%;">
+                <img *ngIf="infoFacture['promo']>0" src="../../../../assets/promo.jpg" width="120px" >
               </div>
               <div class="col-md-3">
                 <h3>Facture N° :       {{infoFacture['numFacture']}}</h3>
