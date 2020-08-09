@@ -8,25 +8,12 @@
           <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
 
 
-            <mat-form-field class="example-full-width"  >
-              <mat-label>Catégorie</mat-label>
-              <input type="text"  matInput [formControl]="myControl" name="idcategorie" [matAutocomplete]="auto"  (ngModelChange)="recuperation($event)" >
-              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  >
-                  {{option.libelle}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width"  >
-              <mat-label>Produit</mat-label>
-              <input type="text"  matInput [formControl]="myControl1" name="idproduit" [matAutocomplete]="auto1" [(ngModel)]="variable"  (ngModelChange)="recuper($event)" >
-              <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let opt of filteredproduit | async" [value]="opt"  >
-                  {{opt.libelle}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
+            <div class="form-group">
+              <label  class="label">Catégorie</label>
+              <select  fullWidth class="form-control" name="idcategorie"  [(ngModel)]="contenue.idcategorie" (ngModelChange)="recuperation($event)">
+                <option *ngFor="let c of categorie" [value]="c.id" >{{c.libelle}}</option>
+              </select>
+            </div>
 
             <div class="form-group" style="text-align: center" *ngIf="produit">
               <label  class="label">Produit</label>
@@ -37,11 +24,11 @@
             </div>
             <div class="form-group" style="text-align: center">
               <label  class="label">Quantité</label>
-              <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter la quantité" name="Quantite" [(ngModel)]="contenue.quantite" min="1">
+              <input type="number" nbInput fullWidth status="info" required="required" placeholder="Entrer la quantité" name="Quantite" [(ngModel)]="contenue.quantite" min="1">
             </div >
             <div class="form-group" style="text-align: center">
               <label  class="label">Prix unitaire</label>
-              <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu" min="1">
+              <input type="number" nbInput fullWidth status="info" required="required" placeholder="Entrer le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu" min="1">
             </div>
             <div class="buttons-row" style="text-align: center">
             <button type='reset'nbButton status='danger' class="btn">Annuler</button>

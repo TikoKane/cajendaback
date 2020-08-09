@@ -26,17 +26,13 @@ export class VenteRapideComponent implements OnInit {
   myControl = new FormControl();
   myControl1 = new FormControl();
 
-  options: User[] = [{id: "0", libelle: "veuillez saisir la categorie"}];
-  produit: User[] = [{id: "0", libelle: "veuillez saisir le produit"}];
-  filteredOptions: Observable<User[]>;
-  filteredproduit: Observable<User[]>;
+
 
 
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
   getproduit;
-  gv
   categorie;
   tableau;
   montant;
@@ -49,18 +45,7 @@ export class VenteRapideComponent implements OnInit {
     }, error1 => {
       this.badd();
     });
-    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
-      this.categorie = data;
-      console.log(this.categorie);
-      if (this.categorie) {
-        for (let i = 0; i < this.categorie.length; i++) {
-          console.log(this.categorie[i].id + " " + this.categorie[i].libelle);
-          this.options.push({id: this.categorie[i].id, libelle: this.categorie[i].libelle})
-        }
-      }
-    }, error1 => {
-      console.log(error1);
-    });
+
 
   }
 
@@ -71,30 +56,17 @@ export class VenteRapideComponent implements OnInit {
     quantite: '',
     pu: ''
   };
-  variable: any;
+  produit;
 
 
   ngOnInit() {
-    if (this.categorie) {
-      for (let i = 0; i < this.categorie.length; i++) {
-        console.log(this.categorie[i].id + " " + this.categorie[i].libelle);
-        this.options.push({id: this.categorie[i].id, libelle: this.categorie[i].libelle})
-      }
-    }
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-        // map(value => typeof value === 'string' ? value : value.name),
-        // map(name => name ? this._filter(name) : this.options.slice())
-      );
 
-    this.filteredproduit = this.myControl1.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filterProduit(name) : this.produit.slice())
-      );
+    this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
+      this.categorie = data
+    }, error1 => {
+      console.log(error1);
+    });
+
     this.serviceAchat.getAllproduitAjouter().subscribe(data => {
       this.tableau = data['AjoutProduit ']
     }, error1 => {
@@ -119,39 +91,12 @@ export class VenteRapideComponent implements OnInit {
 
   }
 
-  displayFn(user: User): string {
-    return user.libelle;
-  }
 
-  private _filter(name: string): User[] {
-    const filterValue = name.toLowerCase();
-
-    return this.options.filter(option => option.libelle.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  private _filterProduit(name: string): User[] {
-    const filterValue = name.toLowerCase();
-
-    return this.produit.filter(option => option.libelle.toLowerCase().indexOf(filterValue) === 0);
-  }
 
   recuperation($event: Event) {
-    // @ts-ignore
-    this.test = $event.id;
-    this.contenue.idcategorie = this.test;
-    this.variable = '';
-
+    this.test = this.contenue.idcategorie;
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
-      this.getproduit = dataa;
-      ;
-      if (this.getproduit) {
-        this.produit = [];
-        for (let i = 0; i < this.getproduit.length; i++) {
-          console.log(this.getproduit[i].id + " " + this.getproduit[i].libelle);
-          this.produit.push({id: this.getproduit[i].id, libelle: this.getproduit[i].libelle})
-        }
-        console.log(this.produit);
-      }
+      this.produit = dataa
     }, error1 => {
       console.log(error1);
     });

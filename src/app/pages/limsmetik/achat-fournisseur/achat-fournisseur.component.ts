@@ -22,7 +22,7 @@ export class AchatFournisseurComponent implements OnInit {
   secondForm: FormGroup;
   thirdForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private serviceAchat: AchatProduitService, private serviceVente: VenteProduitService, private toastr: NbToastrService, public router: Router) {
+  constructor(private  route: Router,private fb: FormBuilder, private serviceAchat: AchatProduitService, private serviceVente: VenteProduitService, private toastr: NbToastrService, public router: Router) {
     this.serviceAchat.annulerAchat().subscribe(resp => {
       this.reloadComponent();
     }, error1 => {
@@ -239,6 +239,7 @@ export class AchatFournisseurComponent implements OnInit {
           this.good("achat réussi avec succès");
           this.reloadComponent();
           this.valider = false;
+       this.route.navigate(['/pages/limsmetik/choixAchat']);
 
     }, error1 => {
       this.bad()
@@ -253,6 +254,7 @@ export class AchatFournisseurComponent implements OnInit {
         this.good("achat réussi avec succès");
         this.reloadComponentEntreprise();
         this.valider = false;
+      this.route.navigate(['/pages/limsmetik/choixAchat']);
 
     }, error1 => {
       this.bad()

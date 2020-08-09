@@ -24,7 +24,7 @@ export class PagesComponent implements OnInit{
         group: true,
       },
       {
-        title: 'Acceuil',
+        title: 'Accueil',
         icon: 'layers-outline',
         link: '/pages/dashboard',
         home: true,

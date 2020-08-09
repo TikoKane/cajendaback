@@ -6,7 +6,7 @@
 
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Vente particulier promo</nb-card-header>
+            <nb-card-header style="background-color: #2d8ac7">Vente particulier</nb-card-header>
             <nb-card-body>
               <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
                 <div class="form-group">
@@ -24,11 +24,11 @@
                 </div>
                 <div class="form-group">
                   <label  class="label">Quantité</label>
-                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter la quantité" name="Quantite" [(ngModel)]="contenue.quantite">
+                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Entrer la quantité" name="Quantite" [(ngModel)]="contenue.quantite">
                 </div>
                 <div class="form-group">
                   <label  class="label">Prix unitaire</label>
-                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
+                  <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Entrer le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
                 </div>
              
                 <div class=" col-md-offset-7">
