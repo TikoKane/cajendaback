@@ -68,12 +68,14 @@ import { AchatFournisseurComponent } from './achat-fournisseur/achat-fournisseur
 import { InfoscompteComponent } from './infoscompte/infoscompte.component';
 import { ModifierdonneesgerantComponent } from './modifierdonneesgerant/modifierdonneesgerant.component';
 import { ChangerMotDePasseComponent } from './changer-mot-de-passe/changer-mot-de-passe.component';
-
+import { ListeProformatComponent } from './liste-proformat/liste-proformat.component';
+import { FactureProformatComponent } from './facture-proformat/facture-proformat.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
   imports: [
-
+    NgSelectModule,
     NbDialogModule.forChild(),
     NbWindowModule.forChild(),
     NbMomentDateModule,
@@ -157,6 +159,8 @@ import { ChangerMotDePasseComponent } from './changer-mot-de-passe/changer-mot-d
     InfoscompteComponent,
     ModifierdonneesgerantComponent,
     ChangerMotDePasseComponent,
+    ListeProformatComponent,
+    FactureProformatComponent,
 
   ],
 })

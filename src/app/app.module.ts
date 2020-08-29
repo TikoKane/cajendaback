@@ -39,10 +39,13 @@ import { ToastrModule } from 'ngx-toastr';
 import {NbDateFnsDateModule} from "@nebular/date-fns";
 import { RecupLoginPipe } from './auth/login/recup-login.pipe';
 import { ChangerMotDePasseFirstConnexionComponent } from './auth/changer-mot-de-passe-first-connexion/changer-mot-de-passe-first-connexion.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import { NgSelectConfig } from '@ng-select/ng-select';
+import { ɵs } from '@ng-select/ng-select';
 @NgModule({
   declarations: [AppComponent, LoginComponent,FirstConnexionComponent, RecupLoginPipe, ChangerMotDePasseFirstConnexionComponent],
   imports: [
-
+    NgSelectModule,
     NbInputModule,
     NbCardModule,
     NbButtonModule,
@@ -98,7 +101,7 @@ import { ChangerMotDePasseFirstConnexionComponent } from './auth/changer-mot-de-
     }),
     CoreModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard,DatePipe,{
+  providers: [AuthService,NgSelectConfig, AuthGuard,DatePipe,{
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
     multi: true

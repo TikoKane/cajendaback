@@ -2,9 +2,7 @@
   <nb-card style="margin-left: 20%;">
     <nb-card-header style="background-color: #2d8ac7">Modification du gérant {{modifGerant.prenom}} {{modifGerant.nom}}</nb-card-header>
     <nb-card-body>
-      <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="ModifierGerant(form) ;ref.close()">
-
-
+      <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="ModifierGerant(form)">
         <div class="form-group row">
           <label  class="label col-sm-3 col-form-label">Prenom</label>
           <div class="col-sm-9">
@@ -40,7 +38,7 @@
           <label class="col-sm-3 label">Type Gerant</label>
           <div class="col-sm-9">
             <select name="typeUser_id" #typeUser_id="ngModel" id="first-nameg" [(ngModel)]="modifGerant.typeUser_id"   class="form-control col-md-7 col-xs-12"  fullWidth >
-              <option *ngFor="let user of listetpeUser" [value]="user.id" >{{user.libelle}}</option>
+              <option  ></option>
             </select>
 
           </div>

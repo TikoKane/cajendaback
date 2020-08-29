@@ -3,7 +3,7 @@
     <nb-card class="list-card" style="margin-left: 40%;">
       <nb-card-header>Changement de mot de passe</nb-card-header>
       <nb-card-body >
-<form #form="ngForm" (ngSubmit)="resetPass()" aria-labelledby="title">
+<form #form="ngForm" (ngSubmit)="resetPass(form)" aria-labelledby="title">
 
   <div class="form-group">
     <label class="label" for="input-re-password">Nouveau mot de passe :</label>

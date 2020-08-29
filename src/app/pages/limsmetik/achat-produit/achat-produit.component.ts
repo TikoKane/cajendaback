@@ -27,11 +27,12 @@ export class AchatProduitComponent implements OnInit {
     quantite:'',
     pu:''
   };
-
+  CategorieAuto;
+  ProduitAuto;
   produit;
   ngOnInit() {
 
-    
+    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; },error1=>{console.log(error1);});
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];},error1 => {console.log(error1);});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];},error1 => {console.log(error1);});
@@ -57,7 +58,9 @@ export class AchatProduitComponent implements OnInit {
   }
 
   recuperation($event: Event) {
+
     this.test=this.contenue.idcategorie;
+    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;},error1 => {console.log(error1);this.bad()});
 
   }

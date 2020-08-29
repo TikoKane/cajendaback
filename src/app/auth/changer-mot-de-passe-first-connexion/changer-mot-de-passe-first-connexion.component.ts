@@ -23,4 +23,11 @@ export class ChangerMotDePasseFirstConnexionComponent implements OnInit {
     
   }
 
+  resetPass() {
+    
+  }
+
+  getConfigValue(required: string) {
+    
+  }
 }

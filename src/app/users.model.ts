@@ -3,7 +3,10 @@ export class Users {
   login: string;
   magasin_id: number;
 }
-
+export interface Data {
+  id: string;
+  libelle: string;
+}
 
 export class u {
   password: string;

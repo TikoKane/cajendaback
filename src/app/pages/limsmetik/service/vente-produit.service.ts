@@ -37,7 +37,10 @@ getTotalproduitHorsStock(id){
     return this.http.get(this.host+"/ruptureProduit/bymagasin/"+id+"?token="+localStorage.getItem('token'));
 
   }
+    validerFactureProfornat(Numfacture){
+    return this.http.post(this.host+"/vente/venteByFactureProformat/"+Numfacture+"?token="+localStorage.getItem('token')+"&magasin_id="+localStorage.getItem('idmagasin')+"&user_id="+localStorage.getItem('id'),{observe : 'response'})
 
+    }
 
   caisseJournaliere(id){
     return this.http.get(this.host+"/caisse/caissejournaliereAchat/"+id+"?token="+localStorage.getItem('token'));
@@ -51,6 +54,9 @@ getTotalproduitHorsStock(id){
 
   insertintoAjoutProduit(value:Contenue){
     return this.http.post(this.host+'/vente/insertToAjoutproduit?produit_id='+value.idproduit+'&'+'quantite='+value.quantite+'&'+'prixUnitaire='+value.pu+'&'+'magasin_id='+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token'),{observe : 'response'});
+  }
+  insertintoAjoutProduitProformat(value:Contenue){
+    return this.http.post(this.host+'/vente/insertToAjoutproduitProformat?produit_id='+value.idproduit+'&'+'quantite='+value.quantite+'&'+'prixUnitaire='+value.pu+'&'+'magasin_id='+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token'),{observe : 'response'});
   }
   insertintoAjoutProduitPromo(value:ContenuePromo){
     return this.http.post(this.host+'/vente/insertToAjoutproduit?produit_id='+value.idproduit+'&'+'quantite='+value.quantite+'&'+'prixUnitaire='+value.pu+'&'+'magasin_id='+localStorage.getItem('idmagasin')+"&token="+localStorage.getItem('token'),{observe : 'response'});
@@ -81,6 +87,10 @@ getTotalproduitHorsStock(id){
     //a faire api
     return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&promo=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id'),{observe : 'response'});
   }
+  validerventeParticulierProformat(value:Particulier){
+    //a faire api
+    return this.http.post(this.host+"/vente/venteProformat?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&promo=0&proformat=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id'),{observe : 'response'});
+  }
   validerventeParticulierPromo(value:Particulier){
     //a faire api
     return this.http.post(this.host+"/vente/venteProduit?nomClient="+value.nom+"&prenomClient="+value.prenom+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&promo=1&tva=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=1&user_id="+localStorage.getItem('id'),{observe : 'response'});
@@ -88,6 +98,10 @@ getTotalproduitHorsStock(id){
   validerventeEntreprise(value:Entreprise){
     //a faire api
     return this.http.post(this.host+"/vente/venteProduit?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&promo=0"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id'),{observe : 'response'});
+  }
+  validerventeEntrepriseProformat(value:Entreprise){
+    //a faire api
+    return this.http.post(this.host+"/vente/venteProformat?raisonSocialClient="+value.raisonSocial+"&telClient="+value.telephone+"&adresseClient="+value.adresse+"&magasin_id="+localStorage.getItem('idmagasin')+"&tva=1&promo=0&proformat=1"+"&token="+localStorage.getItem('token')+"&typeClient_id=2&user_id="+localStorage.getItem('id'),{observe : 'response'});
   }
   validerventeEntreprisePromo(value:Entreprise){
     //a faire api

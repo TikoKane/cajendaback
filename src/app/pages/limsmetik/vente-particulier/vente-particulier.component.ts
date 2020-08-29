@@ -49,8 +49,12 @@ export class VenteParticulierComponent implements OnInit {
     pu: ''
   };
   produit;
+  CategorieAuto;
+  ProduitAuto;
 
   ngOnInit() {
+
+    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data
     }, error1 => {
@@ -82,6 +86,7 @@ export class VenteParticulierComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
+    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa
     }, error1 => {
@@ -106,7 +111,7 @@ export class VenteParticulierComponent implements OnInit {
 
   }
 
-  baddd() {
+  baddd(){
     this.toastr.danger('quantité indisponible', "Erreur lors de l'ajout du produit");
 
   }

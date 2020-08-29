@@ -47,8 +47,11 @@ export class VenteparticulierpromoComponent implements OnInit {
     pu: null,
   };
   produit;
+  CategorieAuto;
+  ProduitAuto;
 
   ngOnInit() {
+    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data
     }, error1 => {
@@ -80,6 +83,7 @@ export class VenteparticulierpromoComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
+    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa
     }, error1 => {

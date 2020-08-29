@@ -25,6 +25,9 @@ export class VenteEntrepriseComponent implements OnInit {
   valider: boolean = false;
   trouve: boolean = false;
 
+  CategorieAuto;
+  ProduitAuto;
+
   constructor(private fb: FormBuilder, private serviceAchat: AchatProduitService, private serviceVente: VenteProduitService, private toastr: NbToastrService, public router: Router) {
 
     this.serviceAchat.annulerAchat().subscribe(resp => {
@@ -49,6 +52,7 @@ export class VenteEntrepriseComponent implements OnInit {
   produit;
 
   ngOnInit() {
+    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data;
     }, error1 => {
@@ -80,6 +84,7 @@ export class VenteEntrepriseComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
+    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa;
     }, error1 => {

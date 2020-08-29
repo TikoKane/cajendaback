@@ -29,6 +29,7 @@
               }
             ],
             "styles": [
+              "./node_modules/@ng-select/ng-select/themes/default.theme.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/typeface-exo/index.css",
@@ -182,5 +183,8 @@
     "@schematics/angular:directive": {
       "prefix": "ngx"
     }
+  },
+  "cli": {
+    "analytics": "06263276-9b35-4855-a2f5-5beb5702522e"
   }
 }

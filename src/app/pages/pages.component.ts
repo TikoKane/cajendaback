@@ -45,7 +45,6 @@ export class PagesComponent implements OnInit{
         ],
       },
       {
-    
         title: 'Catégorie et produit',
         icon: 'keypad-outline',
         children: [
@@ -123,8 +122,12 @@ export class PagesComponent implements OnInit{
             link: '/pages/limsmetik/rechercheFacture',
           },
           {
-            title: 'Facture Pro-format',
+            title: 'Facture Proforma',
             link: '/pages/limsmetik/factureProformat',
+          },
+          {
+            title: 'Liste Facture Proforma',
+            link: '/pages/limsmetik/listeProfomat',
           },
         ],
       },

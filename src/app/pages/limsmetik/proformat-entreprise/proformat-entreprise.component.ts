@@ -35,7 +35,10 @@ export class ProformatEntrepriseComponent implements OnInit {
     adresse:''
   };
   produit;
+  CategorieAuto;
+  ProduitAuto;
   ngOnInit() {
+    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data;},error1=>{console.log(error1);});
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
@@ -55,6 +58,7 @@ export class ProformatEntrepriseComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test=this.contenue.idcategorie;
+    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;},error1 => {console.log(error1);});
 
   }
@@ -72,7 +76,7 @@ export class ProformatEntrepriseComponent implements OnInit {
   }
 
   onLogin(f: NgForm) {
-    this.serviceVente.insertintoAjoutProduit(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent()},error1 => {console.log(error1)});
+    this.serviceVente.insertintoAjoutProduitProformat(this.contenue).subscribe(resp=>{ if(resp['succes']==false){this.bad(resp['message']);}else{this.good(resp['message']);this.valider=true;}this.reloadComponent()},error1 => {console.log(error1)});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
     this.reloadComponent();
   }
@@ -96,8 +100,8 @@ export class ProformatEntrepriseComponent implements OnInit {
   }
 
   validervente() {
-    this.serviceVente.validerventeEntreprise(this.entreprise).subscribe(resp=>{this.valider=false;this.trouve=false,
-      this.router.navigate(['/pages/limsmetik/facture',resp['idFacture']]);
+    this.serviceVente.validerventeEntrepriseProformat(this.entreprise).subscribe(resp=>{this.valider=false;this.trouve=false,
+      this.router.navigate(['/pages/limsmetik/factureProformat',resp['idFacture']]);
     },error1 => {console.log(error1)});
     this.reloadComponent();
   }

@@ -12,6 +12,9 @@ export class CaisseService {
   caissejournaliere(idM){
     return this.http.get(this.host+"/caisse/caissejournaliere/"+idM+"?token="+localStorage.getItem('token'));
   }
+  caisseMensuelleProformat(idM){
+    return this.http.get(this.host+"/caisse/caissemensuelleProformat/"+idM+"?token="+localStorage.getItem('token'));
+  }
   caisseByDate(idM,date){
     return this.http.get(this.host+"/caisse/caissejournaliereByDate/"+idM+'?date='+date+"&token="+localStorage.getItem('token'));
   }

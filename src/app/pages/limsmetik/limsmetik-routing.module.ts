@@ -33,6 +33,8 @@ import {AchatFournisseurComponent} from "./achat-fournisseur/achat-fournisseur.c
 import { InfoscompteComponent } from './infoscompte/infoscompte.component';
 import { ModifierdonneesgerantComponent } from './modifierdonneesgerant/modifierdonneesgerant.component';
 import { ChangerMotDePasseComponent } from './changer-mot-de-passe/changer-mot-de-passe.component';
+import {ListeProformatComponent} from "./liste-proformat/liste-proformat.component";
+import {FactureProformatComponent} from "./facture-proformat/facture-proformat.component";
 
 const routes: Routes = [
   {
@@ -140,6 +142,10 @@ const routes: Routes = [
         component: CaisseMensuelleComponent,
       },
       {
+        path: 'listeProfomat',
+        component: ListeProformatComponent,
+      },
+      {
         path: 'rechercheFacture',
         component: RechercheFactureComponent,
       },
@@ -150,6 +156,10 @@ const routes: Routes = [
       {
         path: 'facture/:id',
         component: FactureComponent,
+      },
+      {
+        path: 'factureProformat/:id',
+        component: FactureProformatComponent,
       },
       {
         path: 'voirproduitAcheter/:id',

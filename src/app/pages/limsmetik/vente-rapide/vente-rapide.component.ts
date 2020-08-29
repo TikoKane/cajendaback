@@ -27,8 +27,6 @@ export class VenteRapideComponent implements OnInit {
   myControl1 = new FormControl();
 
 
-
-
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
@@ -57,12 +55,15 @@ export class VenteRapideComponent implements OnInit {
     pu: ''
   };
   produit;
-
+  CategorieAuto;
+  ProduitAuto;
 
   ngOnInit() {
 
+    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data
+      // console.log(data)
     }, error1 => {
       console.log(error1);
     });
@@ -92,9 +93,9 @@ export class VenteRapideComponent implements OnInit {
   }
 
 
-
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
+    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa
     }, error1 => {
@@ -197,13 +198,12 @@ export class VenteRapideComponent implements OnInit {
 
   validerVenteRapide() {
     this.serviceVente.validerventeRapide().subscribe(resp => {
-      if(resp['success']==true) {
+      if (resp['success'] == true) {
         this.goood("vente réuissie avec success");
         this.reloadComponent();
         this.valider = false;
         this.router.navigate(['/pages/limsmetik/facture', resp['idfacture']]);
-      }
-      else{
+      } else {
         this.bad("erreur");
       }
     }, error1 => {
