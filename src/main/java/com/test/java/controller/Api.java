@@ -450,7 +450,7 @@ public class Api {
     // Affichage de toutes les questions
     @GetMapping("/questionByReponse/{id}")
     public ResponseEntity<?> responseByIdQuestion (@PathVariable("id") int id)  {
-        if(iQuestion.getQuestionById(Integer.valueOf(id).longValue()).getReponses()!=null)
+        if(iQuestion.getOne(Integer.valueOf(id).longValue()).getReponses()!=null)
         return ResponseEntity.ok(iQuestion.getQuestionById(Integer.valueOf(id).longValue()).getReponses());
         else{
             return ResponseEntity.notFound().build();
