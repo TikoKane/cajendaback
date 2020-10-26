@@ -49,6 +49,10 @@ public class Api {
         return ResponseEntity.ok(iTypePaiement.save(typepaiement));
     }
 
+    @PostMapping("/createRole")
+    public ResponseEntity<?> createRole (Role role)  {
+        return ResponseEntity.ok(iRole.save(role));
+    }
 
     // Mis à jour des types de paiements
 
