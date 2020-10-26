@@ -926,6 +926,17 @@ public class Api {
             return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/getUtilisateurByUsername/{username}")
+    public ResponseEntity<?> getUserByUsername (@PathVariable("email") String username)  {
+        Utilisateur b = new Utilisateur();
+        b = iUser.findByUsername(username);
+        if(b != null) {
+            return ResponseEntity.ok(iUser.findByUsername(username));
+        }
+        else
+            return ResponseEntity.notFound().build();
+    }
+
 
 
 
