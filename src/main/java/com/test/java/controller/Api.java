@@ -927,7 +927,7 @@ public class Api {
     }
 
     @GetMapping("/getUtilisateurByUsername/{username}")
-    public ResponseEntity<?> getUserByUsername (@PathVariable("email") String username)  {
+    public ResponseEntity<?> getUserByUsername (@PathVariable("username") String username)  {
         Utilisateur b = new Utilisateur();
         b = iUser.findByUsername(username);
         if(b != null) {
