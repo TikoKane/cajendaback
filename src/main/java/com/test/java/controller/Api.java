@@ -264,9 +264,9 @@ public class Api {
     @PostMapping("/createBonReduction/{pourcentage}/{admin}")
     public ResponseEntity<?> createbonreduction (@PathVariable("pourcentage") float pourcentage,@PathVariable("admin") long admin,Bon_Reduction bon_reduction)  {
       Admin a = iAdmin.getAdminById(admin);
-
+      Long maxId = iBon_reduction.maxBon();
       bon_reduction.setAdmin(a);
-       bon_reduction.setCode("Tiko");
+       bon_reduction.setCode("Caj"+maxId);
        bon_reduction.setEtat(false);
        bon_reduction.setPourcentage(pourcentage);
        iBon_reduction.save(bon_reduction);

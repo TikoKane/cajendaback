@@ -9,6 +9,9 @@ public interface IBon_Reduction  extends JpaRepository<Bon_Reduction, Long> {
     @Query("SELECT r FROM Bon_Reduction r where r.id = :x")
     public Bon_Reduction getBon_ReductionById(@Param(value = "x") Long id);
 
+    @Query("SELECT max(r.id) FROM Bon_Reduction r")
+    public Long maxBon();
+
     public Bon_Reduction findByCode(String code);
 
 }
