@@ -18,7 +18,7 @@ public class Astuce {
     private long id;
     private String libelle;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="admin_id")
     private Admin admin;
 

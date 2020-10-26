@@ -31,7 +31,7 @@ public class Reponse {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn (name ="question_id")
     private Question questions;
 

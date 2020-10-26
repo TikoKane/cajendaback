@@ -53,13 +53,13 @@ public class Utilisateur {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name ="abonnement_id")
     private Abonnement abonnements;
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 

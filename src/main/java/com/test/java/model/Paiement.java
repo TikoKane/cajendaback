@@ -29,14 +29,14 @@ public class Paiement {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name ="idAbonne")
     private Abonnement abonnements;
 
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name ="id_type_paiement")
     private Typepaiement typepaiement;
 

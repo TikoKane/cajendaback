@@ -26,7 +26,7 @@ public class Bon_Reduction {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="admin_id")
     private Admin admin;
 
