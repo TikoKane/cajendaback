@@ -667,7 +667,7 @@ public class Api {
 
 
     // Mis à jour des types d'abonnement
-    @PostMapping("/updateTypeAbonnement/{id}")
+    @PutMapping("/updateTypeAbonnement/{id}")
     public ResponseEntity<?> updatetypeabonnement(@PathVariable("id") long idupdate, Typeabonnement typeabonnement)  {
         Typeabonnement TA = new Typeabonnement();
         TA = iType_abonnement.getType_abonnementById(idupdate);
