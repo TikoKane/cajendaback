@@ -334,7 +334,7 @@ public class Api {
     }
 
     @PostMapping("/createIngredient/{ingredient}/{reponse}")
-    public ResponseEntity<?> createingredient2(@PathVariable("ingredient") String ingredient, long reponse)  {
+    public ResponseEntity<?> createingredient2(@PathVariable("ingredient") String ingredient, @PathVariable("reponse") long reponse)  {
         Reponse q = iReponse.getReponseById(reponse);
         if(q!=null){
             Ingredient sr =new Ingredient();
@@ -643,7 +643,7 @@ public class Api {
     }
 
     @PostMapping("/createSousReponse/{sousreponse}/{reponse}")
-    public ResponseEntity<?> createsousreponse2(@PathVariable("sousreponse") String sousreponse, long reponse)  {
+    public ResponseEntity<?> createsousreponse2(@PathVariable("sousreponse") String sousreponse, @PathVariable("reponse") long reponse)  {
      Reponse q = iReponse.getReponseById(reponse);
      if(q!=null){
          SousReponse sr =new SousReponse();
