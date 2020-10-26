@@ -24,10 +24,11 @@ public class Question {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="admin_id")
     private Admin admin;
 
+    @JsonBackReference(value="questionforreponse")
     @OneToMany(mappedBy = "questions")
     private List<Reponse> reponses;
 
@@ -62,4 +63,6 @@ public class Question {
     public void setReponses(List<Reponse> reponses) {
         this.reponses = reponses;
     }
+
+
 }

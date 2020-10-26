@@ -30,6 +30,8 @@ public class Reponse {
     private String image1;
     private String image2;
 
+    @JsonIgnore
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn (name ="question_id")
     private Question questions;
@@ -121,5 +123,21 @@ public class Reponse {
 
     public void setSousreponses(List<SousReponse> sousreponses) {
         this.sousreponses = sousreponses;
+    }
+
+    public String getDuree1() {
+        return duree1;
+    }
+
+    public void setDuree1(String duree1) {
+        this.duree1 = duree1;
+    }
+
+    public String getDuree2() {
+        return duree2;
+    }
+
+    public void setDuree2(String duree2) {
+        this.duree2 = duree2;
     }
 }
