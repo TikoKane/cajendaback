@@ -546,6 +546,25 @@ public class Api {
         return ResponseEntity.ok(iReponse.save(reponse));
     }
 
+    @PostMapping("/createReponse/{duree1}/{duree2}/{titre}/{titre2}/{image1}/{image2}/{questions}")
+    public ResponseEntity<?> createreponse2(@PathVariable("duree1") String duree1, @PathVariable("duree2") String duree2,@PathVariable("titre") String titre,@PathVariable("titre2") String titre2,@PathVariable("image2") String image2,@PathVariable("image1") String image1,@PathVariable("questions") Long questions)  {
+     Question q = iQuestion.getQuestionById(questions);
+     if(q!=null){
+         Reponse r = new Reponse();
+         r.setDuree1(duree1);
+         r.setDuree2(duree2);
+         r.setImage1(image1);
+         r.setImage2(image2);
+         r.setQuestions(q);
+         r.setTitre(titre);
+         r.setTitre2(titre2);
+         return ResponseEntity.ok(iReponse.save(r));
+     }
+     else{
+         return  ResponseEntity.notFound().build();
+     }
+    }
+
 
     // Mis à jour des Réponses
     @PostMapping("/updateReponse/{id}")
