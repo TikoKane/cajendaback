@@ -24,7 +24,7 @@ public class Question {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="admin_id")
     private Admin admin;
 

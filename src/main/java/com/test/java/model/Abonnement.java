@@ -31,7 +31,7 @@ public class Abonnement {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name ="typeabonnement_id",nullable = false)
     private Typeabonnement typeabonnement;
 
