@@ -28,7 +28,6 @@ public class Question {
     @JoinColumn(name="admin_id")
     private Admin admin;
 
-    @JsonBackReference(value="questionforreponse")
     @OneToMany(mappedBy = "questions")
     private List<Reponse> reponses;
 

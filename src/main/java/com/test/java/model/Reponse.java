@@ -30,7 +30,6 @@ public class Reponse {
     private String image1;
     private String image2;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn (name ="question_id")
     private Question questions;
