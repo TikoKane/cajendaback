@@ -37,7 +37,6 @@ public class Admin {
     @NotNull(message = "Le nom ne doit pas être null")
     private String nom;
 
-    @Email
     private String email;
 
     @NotNull(message = "Le username ne doit pas être nul")
