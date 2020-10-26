@@ -113,7 +113,7 @@ public class Abonnement {
     }
 
     public void setEtat(boolean etat) {
-        Etat = etat;
+        this.Etat = etat;
     }
 
     public String getPays() {

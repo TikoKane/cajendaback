@@ -812,8 +812,11 @@ public class Api {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtTokenUtil.generateToken(details);
+            Utilisateur ut = iUser.findByUsername(details.getUsername());
+
             if (details != null)
-                return ResponseEntity.ok(new ResponseJwt(jwt, details.getUsername(), details.getAuthorities()));
+
+                return ResponseEntity.ok(new ResponseJwt(jwt,details.getUsername(), details.getAuthorities(),ut.getAbonnements().isEtat()));
             return ResponseEntity.ok(new ErrorResponse("INVALID_CREDENTIALS"));
         } catch (DisabledException e) {
             return ResponseEntity.ok(new ErrorResponse("USER_DISABLED"));
