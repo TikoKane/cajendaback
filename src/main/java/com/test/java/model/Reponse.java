@@ -37,11 +37,11 @@ public class Reponse {
 
 
     @JsonBackReference(value="responseforingredients")
-    @OneToMany(mappedBy = "reponse")
+    @OneToMany(mappedBy = "reponse",fetch = FetchType.EAGER)
     private List<Ingredient> ingredients;
 
     @JsonBackReference(value="responseforsousreponse")
-    @OneToMany(mappedBy = "reponse")
+    @OneToMany(mappedBy = "reponse",fetch = FetchType.EAGER)
     private List<SousReponse> sousreponses;
 
     public long getId() {

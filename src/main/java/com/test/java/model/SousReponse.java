@@ -26,7 +26,7 @@ public class SousReponse {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn (name = "responde_id")
     private Reponse reponse;
 
