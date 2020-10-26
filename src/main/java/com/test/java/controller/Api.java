@@ -451,7 +451,7 @@ public class Api {
     @GetMapping("/questionByReponse/{id}")
     public ResponseEntity<?> responseByIdQuestion (@PathVariable("id") int id)  {
         if(iQuestion.getOne(Integer.valueOf(id).longValue()).getReponses()!=null){
-            System.out.println(iQuestion.getOne(Integer.valueOf(id).longValue()).getReponses());
+            System.out.println(iQuestion.getOne(Integer.valueOf(id).longValue()).getQuestion());
         return ResponseEntity.ok(iQuestion.getOne(Integer.valueOf(id).longValue()).getReponses());
         }
         else{
