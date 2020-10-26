@@ -333,6 +333,23 @@ public class Api {
         return ResponseEntity.ok(iIngredient.save(ingredient));
     }
 
+    @PostMapping("/createIngredient/{ingredient}/{reponse}")
+    public ResponseEntity<?> createingredient2(@PathVariable("ingredient") String ingredient, Long reponse)  {
+        Reponse q = iReponse.getReponseById(reponse);
+        if(q!=null){
+            Ingredient sr =new Ingredient();
+            sr.setReponse(q);
+            sr.setIngredient(ingredient);
+            return ResponseEntity.ok(iIngredient.save(sr));
+
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+
 
     // Mis à jour des Ingredients
     @PostMapping("/updateIngredient/{id}")
@@ -623,6 +640,22 @@ public class Api {
     @PostMapping("/createSousReponse")
     public ResponseEntity<?> createsousreponse (SousReponse sousreponse)  {
         return ResponseEntity.ok(iSous_Reponse.save(sousreponse));
+    }
+
+    @PostMapping("/createSousReponse/{sousreponse}/{reponse}")
+    public ResponseEntity<?> createsousreponse2(@PathVariable("sousreponse") String sousreponse, Long reponse)  {
+     Reponse q = iReponse.getReponseById(reponse);
+     if(q!=null){
+         SousReponse sr =new SousReponse();
+         sr.setReponse(q);
+         sr.setSousreponse(sousreponse);
+         return ResponseEntity.ok(iSous_Reponse.save(sr));
+
+     }
+     else{
+         return ResponseEntity.notFound().build();
+     }
+
     }
 
 
