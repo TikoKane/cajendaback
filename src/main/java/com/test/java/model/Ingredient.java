@@ -24,7 +24,7 @@ public class Ingredient {
 
     @JsonIgnore
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn (name = "responde_id")
     private Reponse reponse;
 
