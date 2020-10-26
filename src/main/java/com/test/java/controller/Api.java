@@ -803,7 +803,7 @@ public class Api {
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody JwtRequest authenticationRequest) {
+    public ResponseEntity<?> authenticateUser(JwtRequest authenticationRequest) {
 
         final UserDetails details = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
