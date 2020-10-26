@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,6 +32,7 @@ public class Question {
 
     @JsonBackReference(value="questionforreponse")
     @OneToMany(mappedBy = "questions")
+    @Fetch(value= FetchMode.SELECT)
     private List<Reponse> reponses;
 
     public long getId() {
