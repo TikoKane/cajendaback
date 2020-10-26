@@ -7,10 +7,10 @@ import java.util.Collection;
 
 public class ResponseJwt implements Serializable {
     private String token;
-    private String email;
     private boolean etat;
     private String type = "Bearer";
     private String username;
+    private String email;
     private Collection<? extends GrantedAuthority> authorities;
 
     public ResponseJwt(String accessToken, String username, Collection<? extends GrantedAuthority> authorities,Boolean etat,String email) {
@@ -51,6 +51,14 @@ public class ResponseJwt implements Serializable {
 
     public void setEtat(Boolean etat) {
         this.etat = etat;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
