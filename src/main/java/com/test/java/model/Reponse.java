@@ -26,7 +26,6 @@ public class Reponse {
     private String duree2;
     private String titre2;
 
-    @Lob
     private String image1;
     private String image2;
 
