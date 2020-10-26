@@ -266,7 +266,7 @@ public class Api {
       Admin a = iAdmin.getAdminById(admin);
       Long maxId = iBon_reduction.maxBon();
       bon_reduction.setAdmin(a);
-       bon_reduction.setCode("Boncaj000"+maxId+1);
+       bon_reduction.setCode("Boncaj000"+maxId);
        bon_reduction.setEtat(false);
        bon_reduction.setPourcentage(pourcentage);
        iBon_reduction.save(bon_reduction);
