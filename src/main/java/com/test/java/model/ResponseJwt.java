@@ -7,16 +7,18 @@ import java.util.Collection;
 
 public class ResponseJwt implements Serializable {
     private String token;
+    private String email;
     private boolean etat;
     private String type = "Bearer";
     private String username;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public ResponseJwt(String accessToken, String username, Collection<? extends GrantedAuthority> authorities,Boolean etat) {
+    public ResponseJwt(String accessToken, String username, Collection<? extends GrantedAuthority> authorities,Boolean etat,String email) {
         this.token = accessToken;
         this.etat = etat;
         this.username = username;
         this.authorities = authorities;
+        this.email=email;
     }
 
     public String getAccessToken() {

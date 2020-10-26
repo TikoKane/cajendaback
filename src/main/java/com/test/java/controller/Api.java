@@ -816,7 +816,7 @@ public class Api {
 
             if (details != null)
 
-                return ResponseEntity.ok(new ResponseJwt(jwt,details.getUsername(), details.getAuthorities(),ut.getAbonnements().isEtat()));
+                return ResponseEntity.ok(new ResponseJwt(jwt,details.getUsername(), details.getAuthorities(),ut.getAbonnements().isEtat(),ut.getEmail()));
             return ResponseEntity.ok(new ErrorResponse("INVALID_CREDENTIALS"));
         } catch (DisabledException e) {
             return ResponseEntity.ok(new ErrorResponse("USER_DISABLED"));
@@ -936,8 +936,6 @@ public class Api {
         else
             return ResponseEntity.notFound().build();
     }
-
-
 
 
     @ResponseStatus(HttpStatus.CREATED)
