@@ -200,19 +200,34 @@ public class Api {
     }
 
 
-    //Création d'un admin
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/createAdmin")
-    public ResponseEntity<?> createadmin (Admin admin)  {
-        return ResponseEntity.ok(iAdmin.save(admin));
-    }
+    public ResponseEntity<?> addClient2(Admin admin) {
+        Admin a = new Admin();
+        Role r = iRole.getOne(Integer.valueOf(1).longValue());
+        a = admin;
+        a.setRole(r);
+        if(a != null)
+        {
+            a.setPassword(encoder.encode(a.getPassword()));
+            return ResponseEntity.ok(iAdmin.save(a));
+        }
+        else{
+            return ResponseEntity.badRequest().body("Impossible d'ajouter  un utilisateur avec des champs vides");
+        }
 
+    }
 
     // Mis à jour des admins
     @PostMapping("/updateAdmin/{id}")
-    public ResponseEntity<?> updateadmin (@PathVariable("id") long id)  {
-        Admin ad = iAdmin.getOne(id);
+    public ResponseEntity<?> updateadmin (@PathVariable("id") long idupdate, Admin admin )  {
+        Admin ad = new Admin();
+        ad = iAdmin.getAdminById(idupdate);
         if(ad != null) {
-            ad.setPassword(encoder.encode(ad.getPassword()));
+            ad.setEmail(admin.getEmail());
+            ad.setNom(admin.getNom());
+        //    ad.setPassword(admin.getPassword());
+            ad.setPrenom(admin.getPrenom());
             return ResponseEntity.ok(iAdmin.save(ad));
         }
         else
@@ -789,7 +804,7 @@ public class Api {
             U.setPassword(user.getPrenom());
             U.setCivil(user.getCivil());
             U.setEmail(user.getEmail());
-            U.setPassword(user.getPassword());
+    //        U.setPassword(user.getPassword());
             return ResponseEntity.ok(iUser.save(U));
         }
         else
