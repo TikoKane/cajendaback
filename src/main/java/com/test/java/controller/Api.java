@@ -229,7 +229,9 @@ public class Api {
             ad.setNom(admin.getNom());
         //    ad.setPassword(admin.getPassword());
             ad.setPrenom(admin.getPrenom());*/
-            ad.setUsername("cajanda");
+            ad.setPrenom("cajanda prénom");
+            ad.setNom("cajande nom");
+            ad.setUsername("cajenda");
             return ResponseEntity.ok(iAdmin.save(ad));
         }
         else
