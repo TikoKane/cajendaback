@@ -12,6 +12,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -98,7 +99,7 @@ public class Abonnement {
         this.paiements = paiements;
     }
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getDate_debut() {
         return date_debut;
     }
@@ -107,7 +108,7 @@ public class Abonnement {
         this.date_debut = date_debut;
     }
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getDate_fin() {
         return date_fin;
     }
@@ -120,7 +121,7 @@ public class Abonnement {
         return Etat;
     }
 
-
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getDatedeb() {
         return datedeb;
     }
@@ -129,6 +130,7 @@ public class Abonnement {
         this.datedeb = datedeb;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getDatefin() {
         return datefin;
     }
