@@ -41,13 +41,13 @@ public class Abonnement {
     @OneToMany(mappedBy = "abonnements")
     private List<Paiement> paiements;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="dd.MM.yyyy")
     private Date date_debut;
 
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date date_fin;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd.MM.yyyy")
     private LocalDate datedeb;
 
     @JsonFormat(pattern = "dd.MM.yyyy")
