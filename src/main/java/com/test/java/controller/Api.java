@@ -222,14 +222,14 @@ public class Api {
 
     // Mis à jour des admins
     @PostMapping("/updateAdmin/{id}")
-    public ResponseEntity<?> updateadmin (@PathVariable("id") long idupdate, Admin admin )  {
-        Admin ad = new Admin();
-        ad = iAdmin.getAdminById(idupdate);
+    public ResponseEntity<?> updateadmin (@PathVariable("id") long idupdate )  {
+        Admin ad = iAdmin.getOne(idupdate);
         if(ad != null) {
-            ad.setEmail(admin.getEmail());
+          /*  ad.setEmail(admin.getEmail());
             ad.setNom(admin.getNom());
         //    ad.setPassword(admin.getPassword());
-            ad.setPrenom(admin.getPrenom());
+            ad.setPrenom(admin.getPrenom());*/
+            ad.setUsername("cajanda");
             return ResponseEntity.ok(iAdmin.save(ad));
         }
         else
