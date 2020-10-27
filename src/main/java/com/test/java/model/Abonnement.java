@@ -12,7 +12,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -48,10 +47,10 @@ public class Abonnement {
     private Date date_fin;
 
     @JsonFormat(pattern="dd.MM.yyyy")
-    private LocalDate datedeb;
+    private Date datedeb;
 
     @JsonFormat(pattern = "dd.MM.yyyy")
-    private LocalDate datefin;
+    private Date datefin;
 
     private boolean  Etat;
 
