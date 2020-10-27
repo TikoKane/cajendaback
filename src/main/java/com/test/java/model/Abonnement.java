@@ -119,19 +119,20 @@ public class Abonnement {
         return Etat;
     }
 
-    public LocalDate getDatedeb() {
+
+    public Date getDatedeb() {
         return datedeb;
     }
 
-    public void setDatedeb(LocalDate datedeb) {
+    public void setDatedeb(Date datedeb) {
         this.datedeb = datedeb;
     }
 
-    public LocalDate getDatefin() {
+    public Date getDatefin() {
         return datefin;
     }
 
-    public void setDatefin(LocalDate datefin) {
+    public void setDatefin(Date datefin) {
         this.datefin = datefin;
     }
 
