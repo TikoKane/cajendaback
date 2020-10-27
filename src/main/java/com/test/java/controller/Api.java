@@ -209,14 +209,10 @@ public class Api {
 
     // Mis à jour des admins
     @PostMapping("/updateAdmin/{id}")
-    public ResponseEntity<?> updateadmin (@PathVariable("id") long idupdate, Admin admin )  {
-        Admin ad = new Admin();
-        ad = iAdmin.getAdminById(idupdate);
+    public ResponseEntity<?> updateadmin (@PathVariable("id") long id)  {
+        Admin ad = iAdmin.getOne(id);
         if(ad != null) {
-            ad.setEmail(admin.getEmail());
-            ad.setNom(admin.getNom());
-            ad.setPassword(encoder.encode(admin.getPassword()));
-            ad.setPrenom(admin.getPrenom());
+            ad.setPassword(encoder.encode(ad.getPassword()));
             return ResponseEntity.ok(iAdmin.save(ad));
         }
         else
