@@ -21,6 +21,13 @@ public class ResponseJwt implements Serializable {
         this.email=email;
     }
 
+    public ResponseJwt(String accessToken, String username, Collection<? extends GrantedAuthority> authorities,String email) {
+        this.token = accessToken;
+        this.username = username;
+        this.authorities = authorities;
+        this.email=email;
+    }
+
     public String getAccessToken() {
         return token;
     }
