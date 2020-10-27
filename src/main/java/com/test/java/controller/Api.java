@@ -215,7 +215,7 @@ public class Api {
         if(ad != null) {
             ad.setEmail(admin.getEmail());
             ad.setNom(admin.getNom());
-            ad.setPassword(admin.getPassword());
+            ad.setPassword(encoder.encode(admin.getPassword()));
             ad.setPrenom(admin.getPrenom());
             return ResponseEntity.ok(iAdmin.save(ad));
         }
