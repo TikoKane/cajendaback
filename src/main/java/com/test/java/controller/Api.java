@@ -114,7 +114,6 @@ public class Api {
     @PostMapping("/createAbonnement")
     public ResponseEntity<?> createabonnement (Abonnement abonnement)  {
 
-        abonnement.setDatedeb(new Date("10.10.2020"));
         return ResponseEntity.ok(iAbonnement.save(abonnement));
     }
 
