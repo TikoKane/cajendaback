@@ -47,12 +47,6 @@ public class Abonnement {
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date date_fin;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date datedeb;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date datefin;
-
     private boolean  Etat;
 
     private String pays;
@@ -99,7 +93,7 @@ public class Abonnement {
         this.paiements = paiements;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd-MM-yyyy")
     public Date getDate_debut() {
         return date_debut;
     }
@@ -108,7 +102,7 @@ public class Abonnement {
         this.date_debut = date_debut;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd-MM-yyyy")
     public Date getDate_fin() {
         return date_fin;
     }
@@ -121,23 +115,6 @@ public class Abonnement {
         return Etat;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    public Date getDatedeb() {
-        return datedeb;
-    }
-
-    public void setDatedeb(Date datedeb) {
-        this.datedeb = datedeb;
-    }
-
-    @JsonFormat(pattern="yyyy-MM-dd")
-    public Date getDatefin() {
-        return datefin;
-    }
-
-    public void setDatefin(Date datefin) {
-        this.datefin = datefin;
-    }
 
     public void setEtat(boolean etat) {
         this.Etat = etat;
