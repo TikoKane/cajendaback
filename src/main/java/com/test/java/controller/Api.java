@@ -536,7 +536,7 @@ public class Api {
     //Suppression d'une Question  avec affichage des autres questions restants
     @DeleteMapping("/DeleteQuestionById/{id}")
     public ResponseEntity<?> deletequestionbyid (@PathVariable("id") long id)  {
-        Question q = iQuestion.getQuestionById(id);
+        Question q = iQuestion.getOne(id);
         if(q != null) {
             iQuestion.delete(q);
             return ResponseEntity.ok(iQuestion.findAll());
