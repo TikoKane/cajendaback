@@ -46,10 +46,10 @@ public class Abonnement {
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date date_fin;
 
-    @JsonFormat(pattern="dd.MM.yyyy")
+    @Temporal(TemporalType.DATE)
     private Date datedeb;
 
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @Temporal(TemporalType.DATE)
     private Date datefin;
 
     private boolean  Etat;

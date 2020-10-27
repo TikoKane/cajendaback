@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -112,6 +113,8 @@ public class Api {
     //Création d'un abonnement
     @PostMapping("/createAbonnement")
     public ResponseEntity<?> createabonnement (Abonnement abonnement)  {
+
+        abonnement.setDatedeb(new Date("10.10.2020"));
         return ResponseEntity.ok(iAbonnement.save(abonnement));
     }
 
