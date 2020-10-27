@@ -40,14 +40,16 @@ public class Abonnement {
     @OneToMany(mappedBy = "abonnements")
     private List<Paiement> paiements;
 
-
+    @DateTimeFormat(pattern="dd.MM.yyyy")
     private Date date_debut;
 
-
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date date_fin;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date datedeb;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date datefin;
 
     private boolean  Etat;
@@ -96,7 +98,7 @@ public class Abonnement {
         this.paiements = paiements;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     public Date getDate_debut() {
         return date_debut;
     }
@@ -105,7 +107,7 @@ public class Abonnement {
         this.date_debut = date_debut;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     public Date getDate_fin() {
         return date_fin;
     }
@@ -119,11 +121,10 @@ public class Abonnement {
     }
 
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public Date getDatedeb() {
         return datedeb;
     }
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+
     public void setDatedeb(Date datedeb) {
         this.datedeb = datedeb;
     }
