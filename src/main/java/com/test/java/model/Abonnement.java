@@ -2,6 +2,7 @@ package com.test.java.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -39,11 +41,17 @@ public class Abonnement {
     @OneToMany(mappedBy = "abonnements")
     private List<Paiement> paiements;
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date date_debut;
 
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date date_fin;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate datedeb;
+
+    @JsonFormat(pattern = "dd.MM.yyyy")
+    private LocalDate datefin;
 
     private boolean  Etat;
 
@@ -110,6 +118,22 @@ public class Abonnement {
 
     public boolean isEtat() {
         return Etat;
+    }
+
+    public LocalDate getDatedeb() {
+        return datedeb;
+    }
+
+    public void setDatedeb(LocalDate datedeb) {
+        this.datedeb = datedeb;
+    }
+
+    public LocalDate getDatefin() {
+        return datefin;
+    }
+
+    public void setDatefin(LocalDate datefin) {
+        this.datefin = datefin;
     }
 
     public void setEtat(boolean etat) {
