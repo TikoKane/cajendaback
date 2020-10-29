@@ -47,8 +47,16 @@ public class Api {
     //Création des type de paiements
 
     @PostMapping("/createTypePaiement")
-    public ResponseEntity<?> createtypepaiement (Typepaiement typepaiement)  {
-        return ResponseEntity.ok(iTypePaiement.save(typepaiement));
+    public ResponseEntity<?> createtypepaiement ()  {
+        Typepaiement tp = new Typepaiement();
+        tp.setType("visa");
+
+        Typepaiement tp2 = new Typepaiement();
+        tp2.setType("visa");
+
+        iTypePaiement.save(tp2);
+       // iTypePaiement.save(tp);
+        return ResponseEntity.ok(iTypePaiement.save(tp));
     }
 
     @PostMapping("/createRole")
