@@ -746,7 +746,7 @@ public class Api {
 
             Typeabonnement TA2 =iType_abonnement.getOne((long)2);
             TA2.setLibelle("Gold");
-            TA2.setPrix((float)15.30);
+            TA2.setPrix((float)15.90);
             TA2.setType("Mensuel");
 
             Typeabonnement TA3 =iType_abonnement.getOne((long)3);
