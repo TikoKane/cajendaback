@@ -737,13 +737,26 @@ public class Api {
 
     // Mis à jour des types d'abonnement
     @PutMapping("/updateTypeAbonnement/{id}")
-    public ResponseEntity<?> updatetypeabonnement(@PathVariable("id") long idupdate, Typeabonnement typeabonnement)  {
-        Typeabonnement TA = new Typeabonnement();
-        TA = iType_abonnement.getType_abonnementById(idupdate);
+    public ResponseEntity<?> updatetypeabonnement(@PathVariable("id") long idupdate)  {
+        Typeabonnement TA =iType_abonnement.getOne(idupdate);
         if(TA != null) {
-            TA.setLibelle(typeabonnement.getLibelle());
-            TA.setPrix(typeabonnement.getPrix());
-            TA.setType(typeabonnement.getType());
+            TA.setLibelle("Simple");
+            TA.setPrix((float)11.90);
+            TA.setType("Mensuel");
+
+            Typeabonnement TA2 =iType_abonnement.getOne((long)2);
+            TA2.setLibelle("Gold");
+            TA2.setPrix((float)15.30);
+            TA2.setType("Mensuel");
+
+            Typeabonnement TA3 =iType_abonnement.getOne((long)3);
+            TA3.setLibelle("Simple");
+            TA3.setPrix((float)250.00);
+            TA3.setType("Annuel");
+
+
+            iType_abonnement.save(TA3);
+            iType_abonnement.save(TA2);
             return ResponseEntity.ok(iType_abonnement.save(TA));
         }
         else
