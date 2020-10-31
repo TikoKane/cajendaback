@@ -9,4 +9,6 @@ public interface IAbonnement extends JpaRepository<Abonnement, Long> {
     @Query("SELECT r FROM Abonnement r where r.id = :x")
     public Abonnement getAbonnementById(@Param(value = "x") Long id);
 
+
+
 }

@@ -127,6 +127,7 @@ public class Api {
         if(ab.getIdBonReduction()!=0){
             Bon_Reduction b = iBon_reduction.getOne((long)ab.getIdBonReduction());
             b.setNombre(b.getNombre()-1);
+            b.setNombreutilise(b.getNombre()+1);
             iBon_reduction.save(b);
             return ResponseEntity.ok(iAbonnement.findById(ab.getId()));
 

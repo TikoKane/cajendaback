@@ -24,12 +24,20 @@ public class Bon_Reduction {
     private float  pourcentage;
     private boolean etat;
     private Integer nombre;
-
+    private Integer nombreutilise;
     @JsonIgnore
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="admin_id")
     private Admin admin;
+
+    public Integer getNombreutilise() {
+        return nombreutilise;
+    }
+
+    public void setNombreutilise(Integer nombreutilise) {
+        this.nombreutilise = nombreutilise;
+    }
 
     public long getId() {
         return id;
