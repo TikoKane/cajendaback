@@ -39,7 +39,7 @@ public class Question {
     }
 
     public void setEtat(boolean etat) {
-        this.etat = etat;
+        this.etat = false;
     }
 
     public long getId() {
