@@ -122,7 +122,18 @@ public class Api {
     @PostMapping("/createAbonnement")
     public ResponseEntity<?> createabonnement (Abonnement abonnement)  {
 
-        return ResponseEntity.ok(iAbonnement.save(abonnement));
+        Abonnement ab = iAbonnement.save(abonnement);
+
+        if(ab.getIdBonReduction()!=0){
+            Bon_Reduction b = iBon_reduction.getOne((long)ab.getIdBonReduction());
+            b.setNombre(b.getNombre()-1);
+            iBon_reduction.save(b);
+            return ResponseEntity.ok(iAbonnement.findById(ab.getId()));
+
+        }
+        else{
+            return ResponseEntity.ok(iAbonnement.findById(ab.getId()));
+        }
     }
 
 
@@ -300,11 +311,12 @@ public class Api {
     // Mis à jour des bons de réductions
     @PostMapping("/updateBonReduction/{id}")
     public ResponseEntity<?> updatebonreduction (@PathVariable("id") long idupdate, Bon_Reduction bon_reduction )  {
-        Bon_Reduction br = new Bon_Reduction();
+        Bon_Reduction br = iBon_reduction.getOne(idupdate);
         br = iBon_reduction.getBon_ReductionById(idupdate);
         if(br != null) {
             br.setCode(bon_reduction.getCode());
             br.setEtat(bon_reduction.isEtat());
+            br.setNombre(50);
             br.setPourcentage(bon_reduction.getPourcentage());
             return ResponseEntity.ok(iBon_reduction.save(br));
         }
@@ -315,26 +327,19 @@ public class Api {
 
     @PutMapping("/activerDesactiverQuestion/{id}")
     public ResponseEntity<?> activerDesactiverQuestion (@PathVariable("id") long idupdate)  {
-        Question q= iQuestion.getOne((long)19);
-        q.setEtat(0);
-        return ResponseEntity.ok(iQuestion.save(q));
-
-
-      /*  if(q != null) {
-            if(q.getEtat()==0){
-              q.setEtat(1);
+        Question q= iQuestion.getOne(idupdate);
+        if(q != null) {
+            if(q.isEtat()==false){
+              q.setEtat(true);
             }
-            else if(q.getEtat()==1){
-                q.setEtat(0);
-            }
-            else    if(q.getEtat()==null){
-                q.setEtat(0);
+            else {
+                q.setEtat(false);
             }
             return ResponseEntity.ok(iQuestion.save(q));
 
         }
         else
-            return ResponseEntity.notFound().build();*/
+            return ResponseEntity.notFound().build();
 
     }
 
@@ -510,7 +515,7 @@ public class Api {
     // Affichage de toutes les questions
     @GetMapping("/allQuestions")
     public ResponseEntity<?> allquestions ()  {
-        return ResponseEntity.ok(iQuestion.findAll(Sort.by(Sort.Direction.DESC, "id")));
+        return ResponseEntity.ok(iQuestion.getAllQuestionActive());
     }
 
     // Affichage de toutes les questions
@@ -553,6 +558,7 @@ public class Api {
         Admin a = iAdmin.getAdminById(admin);
 
         question.setQuestion(Question);
+        question.setEtat(true);
         question.setAdmin(a);
         return ResponseEntity.ok(iQuestion.save(question));
     }

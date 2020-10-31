@@ -23,6 +23,7 @@ public class Bon_Reduction {
     private String code;
     private float  pourcentage;
     private boolean etat;
+    private Integer nombre;
 
     @JsonIgnore
     @JsonManagedReference
@@ -68,6 +69,14 @@ public class Bon_Reduction {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public Integer getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(Integer nombre) {
+      this.nombre = nombre;
     }
 }
 
