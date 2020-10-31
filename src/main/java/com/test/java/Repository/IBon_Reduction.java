@@ -14,4 +14,5 @@ public interface IBon_Reduction  extends JpaRepository<Bon_Reduction, Long> {
 
     public Bon_Reduction findByCode(String code);
 
+
 }
