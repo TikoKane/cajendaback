@@ -22,13 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cae8a54a-a3fe-4312-9cd6-3d3f0fc33686" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/java/Repository/IQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/java/Repository/IQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/java/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/java/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/java/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/java/model/Question.java" afterDir="false" />
-    </list>
+    <list default="true" id="cae8a54a-a3fe-4312-9cd6-3d3f0fc33686" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +123,7 @@
       <workItem from="1603627125026" duration="2062000" />
       <workItem from="1603665442635" duration="44949000" />
       <workItem from="1603933122066" duration="4275000" />
-      <workItem from="1604102159690" duration="781000" />
+      <workItem from="1604102159690" duration="1142000" />
     </task>
     <servers />
   </component>

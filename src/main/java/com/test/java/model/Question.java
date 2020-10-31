@@ -21,7 +21,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String question;
-    private boolean etat;
+    private boolean etat = false;;
 
     @JsonIgnore
     @JsonManagedReference
