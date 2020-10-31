@@ -315,8 +315,12 @@ public class Api {
 
     @PutMapping("/activerDesactiverQuestion/{id}")
     public ResponseEntity<?> activerDesactiverQuestion (@PathVariable("id") long idupdate)  {
-        Question q= iQuestion.getOne(idupdate);
-        if(q != null) {
+        Question q= iQuestion.getOne((long)19);
+        q.setEtat(0);
+        return ResponseEntity.ok(iQuestion.save(q));
+
+
+      /*  if(q != null) {
             if(q.getEtat()==0){
               q.setEtat(1);
             }
@@ -330,7 +334,7 @@ public class Api {
 
         }
         else
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();*/
 
     }
 
