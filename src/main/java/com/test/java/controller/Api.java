@@ -522,7 +522,7 @@ public class Api {
 
     @GetMapping("/allQuestionsBackEnd")
     public ResponseEntity<?> allquestionsBackEnd ()  {
-        return ResponseEntity.ok(iQuestion.getClass());
+        return ResponseEntity.ok(iQuestion.findAll());
     }
 
     // Affichage de toutes les questions
