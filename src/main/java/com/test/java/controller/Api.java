@@ -313,7 +313,7 @@ public class Api {
     }
 
 
-    @PutMapping("/activerDesactiverQuestion/{id}")
+ /*   @PutMapping("/activerDesactiverQuestion/{id}")
     public ResponseEntity<?> activerDesactiverQuestion (@PathVariable("id") long idupdate)  {
         Question q= iQuestion.getOne(idupdate);
         if(q != null) {
@@ -329,7 +329,7 @@ public class Api {
         else
             return ResponseEntity.notFound().build();
 
-    }
+    }*/
 
     //Affichage d'un bon de réduction
     @GetMapping("/GetBonReductionById/{id}")
