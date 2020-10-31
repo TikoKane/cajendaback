@@ -22,8 +22,7 @@ public class Question {
     private long id;
     private String question;
 
-    @Column(nullable = true)
-    private int etat =0;
+    private boolean etat =false;
 
     @JsonIgnore
     @JsonManagedReference
@@ -35,21 +34,13 @@ public class Question {
     @OneToMany(mappedBy = "questions")
     private List<Reponse> reponses;
 
-    public int getEtat() {
-        return etat;
-    }
-
-    public void setEtat(int etat) {
-        this.etat = etat;
-    }
-
-    /*  public boolean isEtat() {
+    public boolean isEtat() {
         return etat;
     }
 
     public void setEtat(boolean etat) {
         this.etat = etat;
-    }*/
+    }
 
     public long getId() {
         return id;
