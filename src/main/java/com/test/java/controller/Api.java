@@ -313,15 +313,15 @@ public class Api {
     }
 
 
- /*   @PutMapping("/activerDesactiverQuestion/{id}")
+    @PutMapping("/activerDesactiverQuestion/{id}")
     public ResponseEntity<?> activerDesactiverQuestion (@PathVariable("id") long idupdate)  {
         Question q= iQuestion.getOne(idupdate);
         if(q != null) {
-            if(q.isEtat()==false){
-              q.setEtat(true);
+            if(q.getEtat()==0){
+              q.setEtat(1);
             }
-            else {
-                q.setEtat(false);
+            else if(q.getEtat()==1){
+                q.setEtat(0);
             }
             return ResponseEntity.ok(iQuestion.save(q));
 
@@ -329,7 +329,7 @@ public class Api {
         else
             return ResponseEntity.notFound().build();
 
-    }*/
+    }
 
     //Affichage d'un bon de réduction
     @GetMapping("/GetBonReductionById/{id}")
