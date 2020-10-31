@@ -21,7 +21,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String question;
-    private boolean etat = false;;
+    private  int etat;
 
     @JsonIgnore
     @JsonManagedReference
@@ -33,11 +33,11 @@ public class Question {
     @OneToMany(mappedBy = "questions")
     private List<Reponse> reponses;
 
-    public boolean isEtat() {
+    public int getEtat() {
         return etat;
     }
 
-    public void setEtat(boolean etat) {
+    public void setEtat(int etat) {
         this.etat = etat;
     }
 
