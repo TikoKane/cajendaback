@@ -323,6 +323,9 @@ public class Api {
             else if(q.getEtat()==1){
                 q.setEtat(0);
             }
+            else    if(q.getEtat()==null){
+                q.setEtat(0);
+            }
             return ResponseEntity.ok(iQuestion.save(q));
 
         }
