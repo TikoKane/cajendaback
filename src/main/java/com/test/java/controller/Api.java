@@ -312,6 +312,24 @@ public class Api {
             return ResponseEntity.notFound().build();
     }
 
+
+    @PutMapping("/activerDesactiverQuestion/{id}")
+    public ResponseEntity<?> activerDesactiverQuestion (@PathVariable("id") long idupdate)  {
+        Question q= iQuestion.getOne(idupdate);
+        if(q != null) {
+            if(q.isEtat()==false){
+              q.setEtat(true);
+            }
+            else {
+                q.setEtat(false);
+            }
+            return ResponseEntity.ok(iQuestion.save(q));
+
+        }
+        else
+            return ResponseEntity.notFound().build();
+    }
+
     //Affichage d'un bon de réduction
     @GetMapping("/GetBonReductionById/{id}")
     public ResponseEntity<?> getbonreductionbyid (@PathVariable("id") long id)  {
