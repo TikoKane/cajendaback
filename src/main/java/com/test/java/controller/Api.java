@@ -315,10 +315,11 @@ public class Api {
         Bon_Reduction br = iBon_reduction.getOne(idupdate);
         br = iBon_reduction.getBon_ReductionById(idupdate);
         if(br != null) {
-            br.setCode(bon_reduction.getCode());
-            br.setEtat(bon_reduction.isEtat());
-            br.setNombre(50);
-            br.setPourcentage(bon_reduction.getPourcentage());
+            br.setNombreutilise(0);
+            br.setCode("CAJ100");
+            br.setPourcentage((float)100);
+            br.setNombre(500);
+
             return ResponseEntity.ok(iBon_reduction.save(br));
         }
         else
@@ -517,6 +518,11 @@ public class Api {
     @GetMapping("/allQuestions")
     public ResponseEntity<?> allquestions ()  {
         return ResponseEntity.ok(iQuestion.getAllQuestionActive());
+    }
+
+    @GetMapping("/allQuestionsBackEnd")
+    public ResponseEntity<?> allquestionsBackEnd ()  {
+        return ResponseEntity.ok(iQuestion.getClass());
     }
 
     // Affichage de toutes les questions
