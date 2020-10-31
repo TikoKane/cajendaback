@@ -317,17 +317,18 @@ public class Api {
     public ResponseEntity<?> activerDesactiverQuestion (@PathVariable("id") long idupdate)  {
         Question q= iQuestion.getOne(idupdate);
         if(q != null) {
-            if(q.getEtat()==0){
-              q.setEtat(1);
+            if(q.isEtat()==false){
+              q.setEtat(true);
             }
-            else if(q.getEtat()==1) {
-                q.setEtat(0);
+            else {
+                q.setEtat(false);
             }
             return ResponseEntity.ok(iQuestion.save(q));
 
         }
         else
             return ResponseEntity.notFound().build();
+
     }
 
     //Affichage d'un bon de réduction
