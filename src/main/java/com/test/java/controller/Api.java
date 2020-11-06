@@ -127,7 +127,7 @@ public class Api {
         if(ab.getIdBonReduction()!=0){
             Bon_Reduction b = iBon_reduction.getOne((long)ab.getIdBonReduction());
             b.setNombre(b.getNombre()-1);
-            b.setNombreutilise(b.getNombre()+1);
+            b.setNombreutilise(b.getNombreutilise()+1);
             iBon_reduction.save(b);
             return ResponseEntity.ok(iAbonnement.findById(ab.getId()));
 
@@ -316,9 +316,9 @@ public class Api {
         br = iBon_reduction.getBon_ReductionById(idupdate);
         if(br != null) {
             br.setNombreutilise(0);
-            br.setCode("CAJ100");
-            br.setPourcentage((float)100);
-            br.setNombre(500);
+            br.setCode("SEPHO100");
+            br.setPourcentage((float)99);
+            br.setNombre(50);
 
             return ResponseEntity.ok(iBon_reduction.save(br));
         }
