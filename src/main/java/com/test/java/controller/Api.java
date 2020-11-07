@@ -1010,6 +1010,20 @@ public class Api {
     }
 
 
+    @PutMapping("/reabonnement/{username}/{idAbonnement}")
+    public ResponseEntity<?> reAbonnement (@PathVariable("username") String username,@PathVariable("idAbonnement") long idAbonnement)  {
+        Utilisateur u = iUser.findByUsername(username);
+        if(u!=null){
+            Abonnement a = iAbonnement.getAbonnementById(idAbonnement);
+            u.setAbonnements(a);
+            return ResponseEntity.ok(iUser.save(u));
+
+        }
+        else
+            return ResponseEntity.notFound().build();
+    }
+
+
     //All astuces
     @GetMapping("/allAstuce")
     public ResponseEntity<?> allAstuce ()  {
