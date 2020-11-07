@@ -945,9 +945,11 @@ public class Api {
             Utilisateur ut = iUser.findByUsername(details.getUsername());
             Admin a = iAdmin.findByUsername(details.getUsername());
 
+
             if (details != null)
                   if(ut!=null){
-                      return ResponseEntity.ok(new ResponseJwt(jwt,details.getUsername(), details.getAuthorities(),ut.getAbonnements().isEtat(),ut.getEmail()));
+                      Abonnement ab = ut.getAbonnements();
+                      return ResponseEntity.ok(new ResponseJwt(jwt,details.getUsername(), details.getAuthorities(),ut.getAbonnements().isEtat(),ut.getEmail(),ab.getDate_fin()));
                   }
             else {
                       return ResponseEntity.ok(new ResponseJwt(jwt,details.getUsername(), details.getAuthorities(),a.getEmail()));
