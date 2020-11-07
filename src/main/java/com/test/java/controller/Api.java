@@ -867,6 +867,8 @@ public class Api {
             U.setPassword(user.getPrenom());
             U.setCivil(user.getCivil());
             U.setEmail(user.getEmail());
+            user.setTelephone(user.getTelephone());
+            user.setUsername(user.getUsername());
     //        U.setPassword(user.getPassword());
             return ResponseEntity.ok(iUser.save(U));
         }

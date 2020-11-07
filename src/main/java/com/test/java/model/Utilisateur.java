@@ -3,6 +3,7 @@ package com.test.java.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 
@@ -26,9 +28,6 @@ import javax.validation.constraints.Size;
         @UniqueConstraint(columnNames = {
                 "email"
         }),
-        @UniqueConstraint(columnNames = {
-                "telephone"
-        })
 })
 
 public class Utilisateur {
@@ -50,7 +49,7 @@ public class Utilisateur {
     @NotNull(message = "Le username ne doit pas être nul")
     private String username;
 
-    @NotNull(message = "Le telephone ne doit pas être nul")
+    @Nullable
     private String telephone;
 
     @NotNull(message = "Name may not be null")
