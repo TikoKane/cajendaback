@@ -25,6 +25,9 @@ import javax.validation.constraints.Size;
         }),
         @UniqueConstraint(columnNames = {
                 "email"
+        }),
+        @UniqueConstraint(columnNames = {
+                "telephone"
         })
 })
 
@@ -46,6 +49,9 @@ public class Utilisateur {
 
     @NotNull(message = "Le username ne doit pas être nul")
     private String username;
+
+    @NotNull(message = "Le telephone ne doit pas être nul")
+    private String telephone;
 
     @NotNull(message = "Name may not be null")
     private String password;
@@ -81,6 +87,14 @@ public class Utilisateur {
 
     public String getCivil() {
         return civil;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public void setCivil(String civil) {

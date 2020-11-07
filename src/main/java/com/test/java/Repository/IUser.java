@@ -10,6 +10,9 @@ public interface IUser extends JpaRepository<Utilisateur, Long> {
     public Utilisateur getUserById(@Param(value = "x") Long id);
     public Utilisateur findByUsername(String username);
     public Utilisateur findByEmail(String email);
+    public Utilisateur findBy(String email);
+
+
 
     Utilisateur findByPasswordAndPassword(String username, String password);
 

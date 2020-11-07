@@ -1060,6 +1060,8 @@ public class Api {
             return ResponseEntity.notFound().build();
     }
 
+
+
     @GetMapping("/getUtilisateurByUsername/{username}")
     public ResponseEntity<?> getUserByUsername (@PathVariable("username") String username)  {
         Utilisateur b = new Utilisateur();
