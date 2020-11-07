@@ -1060,6 +1060,17 @@ public class Api {
             return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/getUtilisateurByTelephone/{telephone}")
+    public ResponseEntity<?> getUserByTelephone (@PathVariable("telephone") String telephone)  {
+        Utilisateur b = new Utilisateur();
+        b = iUser.findByTelephone(telephone);
+        if(b != null) {
+            return ResponseEntity.ok(iUser.findByTelephone(telephone));
+        }
+        else
+            return ResponseEntity.notFound().build();
+    }
+
 
 
     @GetMapping("/getUtilisateurByUsername/{username}")
