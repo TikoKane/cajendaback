@@ -703,19 +703,12 @@ public class Api {
     }
 
     @PostMapping("/createSousReponse/{sousreponse}/{reponse}")
-    public ResponseEntity<?> createsousreponse2(@PathVariable("sousreponse") String sousreponse, @PathVariable("reponse") long reponse)  {
+    public ResponseEntity<?> createsousreponse2(@PathVariable("sousreponse") String sousreponse, @PathVariable("reponse") long reponse ,SousReponse sr)  {
      Reponse q = iReponse.getReponseById(reponse);
-     if(q!=null){
-         SousReponse sr =new SousReponse();
          sr.setReponse(q);
          sr.setSousreponse(sousreponse);
-         return ResponseEntity.ok(iSous_Reponse.save(sr));
-
-     }
-     else{
-         return ResponseEntity.notFound().build();
-     }
-
+         iSous_Reponse.save(sr);
+         return ResponseEntity.ok(sr.getId());
     }
 
 
