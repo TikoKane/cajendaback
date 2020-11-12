@@ -384,8 +384,8 @@ public class Api {
 
     //Création d'un Ingrédient
     @PostMapping("/createIngredient")
-    public ResponseEntity<?> createingredient (Ingredient ingredient)  {
-        return ResponseEntity.ok(iIngredient.save(ingredient));
+    public ResponseEntity<?> createingredient (Ingredient ingre)  {
+        return ResponseEntity.ok(iIngredient.save(ingre));
     }
 
     @PostMapping("/createIngredient/{ingredient}/{reponse}")
@@ -396,7 +396,6 @@ public class Api {
             sr.setReponse(q);
             sr.setIngredient(ingredient);
             return ResponseEntity.ok(iIngredient.save(sr));
-
         }
         else{
             return ResponseEntity.notFound().build();
@@ -948,11 +947,11 @@ public class Api {
                       return ResponseEntity.ok(new ResponseJwt(jwt,details.getUsername(), details.getAuthorities(),a.getEmail()));
 
                   }
-                      return ResponseEntity.ok(new ErrorResponse("INVALID_CREDENTIALS"));
+                      return ResponseEntity.notFound().build();
         } catch (DisabledException e) {
-            return ResponseEntity.ok(new ErrorResponse("USER_DISABLED"));
+            return ResponseEntity.notFound().build();
         } catch (BadCredentialsException e) {
-            return ResponseEntity.ok(new ErrorResponse("INVALID_CREDENTIALS"));
+            return ResponseEntity.notFound().build();
         }
     }
 
