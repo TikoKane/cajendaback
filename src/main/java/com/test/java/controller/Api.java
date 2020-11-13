@@ -317,7 +317,7 @@ public class Api {
             br.setNombreutilise(0);
             br.setCode("SEPHO100");
             br.setPourcentage((float)99);
-            br.setNombre(50);
+            br.setNombre(0);
 
             return ResponseEntity.ok(iBon_reduction.save(br));
         }
@@ -1053,6 +1053,9 @@ public class Api {
         Bon_Reduction b = new Bon_Reduction();
         b = iBon_reduction.findByCode(code);
         if(b != null) {
+            if(b.getNombre()==b.getNombreutilise()){
+                b.setEtat(true);
+            }
             return ResponseEntity.ok(iBon_reduction.findByCode(code));
         }
         else
