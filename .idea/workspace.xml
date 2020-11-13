@@ -23,8 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cae8a54a-a3fe-4312-9cd6-3d3f0fc33686" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/test/java/controller/Api.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/test/java/controller/Api.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +134,7 @@
       <workItem from="1605176928020" duration="5278000" />
       <workItem from="1605185139615" duration="1340000" />
       <workItem from="1605197623264" duration="10551000" />
-      <workItem from="1605232082210" duration="1005000" />
+      <workItem from="1605232082210" duration="1339000" />
     </task>
     <servers />
   </component>

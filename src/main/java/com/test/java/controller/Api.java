@@ -315,9 +315,9 @@ public class Api {
         br = iBon_reduction.getBon_ReductionById(idupdate);
         if(br != null) {
             br.setNombreutilise(0);
-            br.setCode("SEPHO100");
+            br.setCode("CAJ100");
             br.setPourcentage((float)99);
-            br.setNombre(0);
+            br.setNombre(500);
 
             return ResponseEntity.ok(iBon_reduction.save(br));
         }
