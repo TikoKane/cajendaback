@@ -339,9 +339,10 @@ public class Api {
             return ResponseEntity.ok(iQuestion.save(q));
 
         }
-        else
+        else{
+            q.setEtat(true);
             return ResponseEntity.notFound().build();
-
+        }
     }
 
     //Affichage d'un bon de réduction
@@ -575,11 +576,15 @@ public class Api {
         question.setAdmin(a);
         question.setQuestion(Question);
         question.setId(idupdate);
+        question.setEtat(true);
         iQuestion.save(question);
             return ResponseEntity.ok(iQuestion.getQuestionById(idupdate));
 
-
     }
+
+
+
+
 
     //Affichage d'une question
     @GetMapping("/GetQuestionById/{id}")
