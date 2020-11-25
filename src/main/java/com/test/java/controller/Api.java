@@ -341,7 +341,7 @@ public class Api {
         }
         else{
             q.setEtat(true);
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(iQuestion.save(q));
         }
     }
 
