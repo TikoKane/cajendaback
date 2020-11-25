@@ -333,15 +333,18 @@ public class Api {
             if(q.isEtat()==false){
               q.setEtat(true);
             }
-            else {
+            else if(q.isEtat()==null){
+                q.setEtat(true);
+            }
+            else{
                 q.setEtat(false);
             }
             return ResponseEntity.ok(iQuestion.save(q));
 
         }
         else{
-            q.setEtat(true);
-            return ResponseEntity.ok(iQuestion.save(q));
+
+            return ResponseEntity.notFound().build();
         }
     }
 
