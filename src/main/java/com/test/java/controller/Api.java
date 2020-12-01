@@ -581,7 +581,27 @@ public class Api {
             return ResponseEntity.ok(iQuestion.getQuestionById(idupdate));
 
     }
+    @PutMapping("/passwordForget/{login}/{nouveaumotdepasse}")
+    public ResponseEntity<?> passwordForget (@PathVariable("login") String login, @PathVariable("nouveaumotdepasse") String nouveaumotdepasse)  {
+        Utilisateur ut = iUser.findByUsername(login);
+       ut.setPassword(encoder.encode(nouveaumotdepasse));
+        return ResponseEntity.ok(iUser.save(ut));
 
+    }
+
+    @PutMapping("/updatePassword/{login}/{nouveaumotdepasse}/{ancienmotdepasse}")
+    public ResponseEntity<?> updatePassword (@PathVariable("login") String login, @PathVariable("nouveaumotdepasse") String nouveaumotdepasse,@PathVariable("ancienmotdepasse") String ancienmotdepasse)  {
+        Utilisateur ut = iUser.findByUsername(login);
+
+        if(encoder.encode(ancienmotdepasse).equals(ut.getPassword())){
+        ut.setPassword(encoder.encode(nouveaumotdepasse));
+        return ResponseEntity.ok(iUser.save(ut));
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+
+    }
 
 
 
