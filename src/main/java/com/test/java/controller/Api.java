@@ -1091,10 +1091,15 @@ public class Api {
 
     @GetMapping("/getUtilisateurByEmail/{email}")
     public ResponseEntity<?> getUserByEmail (@PathVariable("email") String email)  {
-        Utilisateur b = iUser.findByEmail(email);
-
-            return ResponseEntity.ok(iUser.findByUsername(b.getUsername()));
+        Utilisateur b = new Utilisateur();
+        b = iUser.findByTelephone(email);
+        if(b != null) {
+            return ResponseEntity.ok(iUser.findByEmail(email));
+        }
+        else
+            return ResponseEntity.notFound().build();
     }
+
 
     @GetMapping("/getUtilisateurByTelephone/{telephone}")
     public ResponseEntity<?> getUserByTelephone (@PathVariable("telephone") String telephone)  {
