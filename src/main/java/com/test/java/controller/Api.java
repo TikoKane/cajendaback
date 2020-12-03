@@ -1089,13 +1089,13 @@ public class Api {
             return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/getUtilisateurByEmail/{email}/{emailtwo}/")
-    public ResponseEntity<?> getUserByEmail (@PathVariable("email") String email,@PathVariable("emailtwo") String emailtwo)  {
-        Utilisateur b= iUser.findByEmail(email+emailtwo);
+    @GetMapping("/getUtilisateurByEmail/{email}")
+    public ResponseEntity<?> getUserByEmail (@RequestParam("email") String email)  {
+        Utilisateur b= iUser.findByEmail(email);
         System.out.println(email);
         System.out.println(b);
         if(b != null) {
-            return ResponseEntity.ok(iUser.findByEmail(email+emailtwo));
+            return ResponseEntity.ok(iUser.findByEmail(email));
         }
         else
             System.out.println(email);
@@ -1103,7 +1103,7 @@ public class Api {
     }
 
 
-    @GetMapping("/getUtilisateurByEmai/{email}")
+    @GetMapping("/getUtilisateurByEmail/{email}")
     public ResponseEntity<?> getUserByEmai (@PathVariable("email") String email)  {
         System.out.println(email);
         List<Utilisateur> user= iUser.findAll();
