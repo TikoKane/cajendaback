@@ -1095,7 +1095,7 @@ public class Api {
         System.out.println(email);
         System.out.println(b);
         if(b != null) {
-            return ResponseEntity.ok(iUser.findByEmail(email));
+            return ResponseEntity.ok(iUser.findByEmail(email+emailtwo));
         }
         else
             System.out.println(email);
