@@ -1089,7 +1089,7 @@ public class Api {
             return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/getUtilisateurByEmail/{email}")
+    @GetMapping("/getUtilisateurByEmail/{email:.+}")
     public ResponseEntity<?> getUserByEmail (@PathVariable("email") String email)  {
         Utilisateur b= iUser.findByEmail(email);
         Utilisateur b1 = iUser.getOne((long)358);
