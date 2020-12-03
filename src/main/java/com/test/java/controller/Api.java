@@ -6,7 +6,6 @@ import com.test.java.message.ResponseMessage;
 import com.test.java.model.*;
 import com.test.java.service.FileStorageService;
 import com.test.java.service.UserDetailsServiceImpl;
-import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
@@ -1091,7 +1090,7 @@ public class Api {
     }
 
     @GetMapping("/getUtilisateurByEmail/{email}")
-    public ResponseEntity<?> getUserByEmail (@PathVariable("email") Email email)  {
+    public ResponseEntity<?> getUserByEmail (@PathVariable("email") String email)  {
         Utilisateur b = new Utilisateur();
         b = iUser.findByEmail(email);
         if(b != null) {
