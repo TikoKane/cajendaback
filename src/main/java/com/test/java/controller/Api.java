@@ -1103,7 +1103,7 @@ public class Api {
     }
 
 
-    @GetMapping("/getUtilisateurByEmail/{email}")
+    @GetMapping("/getUtilisateurByEmai/{email}")
     public ResponseEntity<?> getUserByEmai (@PathVariable("email") String email)  {
         System.out.println(email);
         List<Utilisateur> user= iUser.findAll();
