@@ -23,6 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cae8a54a-a3fe-4312-9cd6-3d3f0fc33686" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/java/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/java/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="1105" column="38" selection-start-line="1105" selection-start-column="38" selection-end-line="1105" selection-end-column="38" />
+            <state relative-caret-position="170">
+              <caret line="1095" selection-start-line="1095" selection-end-line="1095" />
             </state>
           </provider>
         </entry>
@@ -47,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/test/java/config/WebSecurityConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="244">
-              <caret line="52" column="575" selection-start-line="52" selection-start-column="575" selection-end-line="52" selection-end-column="575" />
+              <caret line="52" column="555" selection-start-line="52" selection-start-column="555" selection-end-line="52" selection-end-column="555" />
             </state>
           </provider>
         </entry>
@@ -66,6 +67,7 @@
     <findStrings>
       <find>Reques</find>
       <find>Request</find>
+      <find>RequestP</find>
       <find>email</find>
     </findStrings>
   </component>
@@ -277,12 +279,12 @@
       <workItem from="1606955334845" duration="1787000" />
       <workItem from="1606957147964" duration="429000" />
       <workItem from="1606958003333" duration="1432000" />
-      <workItem from="1607013349985" duration="3160000" />
+      <workItem from="1607013349985" duration="4673000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3160000" />
+    <option name="totallyTimeSpent" value="4673000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="34" width="1453" height="783" extended-state="6" />
@@ -295,7 +297,7 @@
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Capture Tool" />
       <window_info id="Web" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24946237" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24946237" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Terminal" weight="0.32924962" />
@@ -307,7 +309,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32924962" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32924962" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -461,14 +463,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/test/java/config/WebSecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
-          <caret line="52" column="575" selection-start-line="52" selection-start-column="575" selection-end-line="52" selection-end-column="575" />
+          <caret line="52" column="555" selection-start-line="52" selection-start-column="555" selection-end-line="52" selection-end-column="555" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/test/java/controller/Api.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="1105" column="38" selection-start-line="1105" selection-start-column="38" selection-end-line="1105" selection-end-column="38" />
+        <state relative-caret-position="170">
+          <caret line="1095" selection-start-line="1095" selection-end-line="1095" />
         </state>
       </provider>
     </entry>
