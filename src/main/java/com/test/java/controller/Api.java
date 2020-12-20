@@ -7,6 +7,7 @@ import com.test.java.model.*;
 import com.test.java.service.FileStorageService;
 import com.test.java.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.sql.Date;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +41,10 @@ public class Api {
 
     @Autowired
     ITypePaiement iTypePaiement;
+
+    @Autowired
+    IVid iVid;
+
 
     // Affichage de tous les types paiements
 
@@ -1164,6 +1173,40 @@ public class Api {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }
+    @Value("${pathFile}")
+    String UPLOADED_FOLDER;
+    @PostMapping("/import")
+    public ResponseEntity<?> mapReapExcelDatatoDB(@RequestParam("file") MultipartFile file) throws IOException {
+
+//        // Creating a Workbook from an Excel file (.xls or .xlsx)
+//        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
+//
+//        // Retrieving the number of sheets in the Workbook
+//        System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
+//        return  "Workbook has " + workbook.getNumberOfSheets() + " Sheets : ";
+Vid v = new Vid();
+        String time = Long.toString(new Date().getTime());
+        String name = time +"_" + "LIMISTIK";
+        String path = UPLOADED_FOLDER + name+".";
+        String[] fileFrags = file.getOriginalFilename().split("\\.");
+        String extension = fileFrags[fileFrags.length-1];
+
+        byte[] bytes = file.getBytes();
+        Path path2 = Paths.get(path+extension);
+        System.out.println(path2);
+        Files.write(path2, bytes);
+
+        v.setBytes(bytes);
+        v.setExtension(extension);
+        v.setName(name);
+        v.setPath(path+extension);
+        v.setTime(time);
+        iVid.save(v);
+
+        return ResponseEntity.ok(iVid.findAll());
+
+
+    }
 
     @GetMapping("/files")
     public ResponseEntity<List<ResponseFile>> getListFiles() {
@@ -1176,7 +1219,7 @@ public class Api {
 
             return new ResponseFile(
                     dbFile.getName(),
-                    fileDownloadUri,
+                    fileDownloadUri+dbFile.getType(),
                     dbFile.getType(),
                     dbFile.getData().length);
         }).collect(Collectors.toList());
