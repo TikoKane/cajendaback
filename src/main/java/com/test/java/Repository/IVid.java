@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface IVid extends JpaRepository<Vid, Long> {
 
-    @Query("SELECT r FROM Video r where r.id = :x")
+    @Query("SELECT r FROM Vid r where r.id = :x")
     public Vid getVideoById(@Param(value = "x") Long id);
 }

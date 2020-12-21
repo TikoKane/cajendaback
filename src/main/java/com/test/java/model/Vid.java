@@ -28,6 +28,8 @@ public class Vid {
 
     private String path;
 
+    private String pathimages;
+
     private String extension;
 
 
@@ -51,6 +53,14 @@ public class Vid {
 
     public String getName() {
         return name;
+    }
+
+    public String getPathimages() {
+        return pathimages;
+    }
+
+    public void setPathimages(String pathimages) {
+        this.pathimages = pathimages;
     }
 
     public void setName(String name) {

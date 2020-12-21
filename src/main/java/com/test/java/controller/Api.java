@@ -1175,28 +1175,37 @@ public class Api {
     }
     @Value("${pathFile}")
     String UPLOADED_FOLDER;
-    @PostMapping("/import")
-    public ResponseEntity<?> mapReapExcelDatatoDB(@RequestParam("file") MultipartFile file) throws IOException {
 
-//        // Creating a Workbook from an Excel file (.xls or .xlsx)
-//        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
-//
-//        // Retrieving the number of sheets in the Workbook
-//        System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
-//        return  "Workbook has " + workbook.getNumberOfSheets() + " Sheets : ";
-Vid v = new Vid();
+    @Value("${pathFile}")
+    String UPLOADED_FOLDER2;
+
+    @PostMapping("/import")
+    public ResponseEntity<?> mapReapExcelDatatoDB(@RequestParam("file") MultipartFile file,@RequestParam("files") MultipartFile files) throws IOException {
+
+
+         Vid v = new Vid();
         String time = Long.toString(new Date().getTime());
         String name = time +"_" + "LIMISTIK";
-        String path = UPLOADED_FOLDER + name+".";
+        String path = UPLOADED_FOLDER +"\\video\\"+ name+".";
+        String pat = UPLOADED_FOLDER +"\\image\\"+ name+".";
         String[] fileFrags = file.getOriginalFilename().split("\\.");
         String extension = fileFrags[fileFrags.length-1];
+
+        String[] fileFrags2 = files.getOriginalFilename().split("\\.");
+        String extension2 = fileFrags2[fileFrags2.length-1];
 
         byte[] bytes = file.getBytes();
         Path path2 = Paths.get(path+extension);
         System.out.println(path2);
         Files.write(path2, bytes);
 
+        byte[] bytes2 = files.getBytes();
+        Path path3 = Paths.get(pat+extension2);
+        System.out.println(path3);
+        Files.write(path3, bytes2);
+
         v.setBytes(bytes);
+        v.setPathimages(pat+extension2);
         v.setExtension(extension);
         v.setName(name);
         v.setPath(path+extension);
@@ -1209,40 +1218,26 @@ Vid v = new Vid();
     }
 
     @GetMapping("/files")
-    public ResponseEntity<List<ResponseFile>> getListFiles() {
-        List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> {
-            String fileDownloadUri = ServletUriComponentsBuilder
-                    .fromCurrentContextPath()
-                    .path("/files/")
-                    .path(dbFile.getId())
-                    .toUriString();
+    public ResponseEntity<?> getListFiles() {
 
-            return new ResponseFile(
-                    dbFile.getName(),
-                    fileDownloadUri+dbFile.getType(),
-                    dbFile.getType(),
-                    dbFile.getData().length);
-        }).collect(Collectors.toList());
-
-        return ResponseEntity.status(HttpStatus.OK).body(files);
+        return ResponseEntity.status(HttpStatus.OK).body(iVid.findAll());
     }
 
     @GetMapping("/files/{id}")
-    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-        FileDB fileDB = storageService.getFile(id);
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
-                .body(fileDB.getData());
+    public ResponseEntity<?> getFileById(@PathVariable("id") long id) {
+        Vid v = iVid.getVideoById(id);
+      if(v!=null)
+        return ResponseEntity.ok(iVid.getOne(id));
+      else
+          return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/deletefiles/{id}")
-    public ResponseEntity<byte[]> deleteFile(@PathVariable String id) {
-       FileDB fileDB = storageService.getFile(id);
-
-        FileDBRepository.delete(fileDB);
-
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/deletefiles/{id}")
+    public ResponseEntity<?> DeleteFileById(@PathVariable("id") long id) {
+        Vid v = iVid.getVideoById(id);
+        System.out.println(v.toString());
+        iVid.delete(v);
+        return ResponseEntity.accepted().build();
     }
 }
 
