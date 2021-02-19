@@ -1182,7 +1182,6 @@ public class Api {
     @PostMapping("/import")
     public ResponseEntity<?> mapReapExcelDatatoDB(@RequestParam("file") MultipartFile file,@RequestParam("files") MultipartFile files) throws IOException {
 
-
          Vid v = new Vid();
         String time = Long.toString(new Date().getTime());
         String name = time +"_" + "LIMISTIK";
