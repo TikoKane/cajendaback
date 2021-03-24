@@ -44,7 +44,7 @@ export class AjoutProduitComponent implements OnInit {
   listecategorie;
   ngOnInit() {
 
-    this.resetForm();
+    this.resetForm()
     
     this.serviceCat.getAllCategorieByMagasin(localStorage.getItem('idmagasin')).subscribe(data=>{
       this.listecategorie=data;
@@ -98,9 +98,10 @@ if(form!=null)
     this.service.prod={
 
       libelle:'',
-      categorie_id:0
+      categorie_id:''
     }
     }
+
     AjouterProduit(form :NgForm){
     // console.log(form);
       this.insertFormulaire(form);

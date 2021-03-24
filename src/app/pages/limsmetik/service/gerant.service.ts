@@ -5,7 +5,7 @@ import { Gerant, ChangeMotDePasse } from './general.model';
   providedIn: 'root'
 })
 export class GerantService {
-  private host: string = 'https://lamine.alwaysdata.net/api';
+  private host: string = 'http://samastock.alwaysdata.net/bakary/api';
   constructor(private http:HttpClient) { }
   ger : Gerant;
   up : ChangeMotDePasse;
@@ -28,6 +28,7 @@ export class GerantService {
   insertGerant(ger:Gerant,idMagasin){
     return this.http.post(this.host+'/register?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'password='+"passer"+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);
   }
+  
   updateGerant(ger:Gerant,id,idMagasin){
 
     return this.http.put(this.host+'/user/updateById/'+id+'?nom='+ger.nom+'&'+'prenom='+ger.prenom+'&'+'tel='+ger.tel+'&'+'login='+ger.login+'&'+'email='+ger.email+'&'+'typeUser_id='+ger.typeUser_id+'&'+'magasin_id='+idMagasin+"&token="+localStorage.getItem('token'),Gerant);

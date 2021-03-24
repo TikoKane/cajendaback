@@ -6,32 +6,33 @@
 
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Achat avec Fournisseur</nb-card-header>
+            <nb-card-header style="text-align: center;background-color: #2d8ac7"><h6> Achat avec fournisseur de nouveaux produits</h6></nb-card-header>
             <nb-card-body>
               <form #f="ngForm"  (ngSubmit)="onLogin(f)">
 
                 <!--            version autocomplete categorie -->
                 <div class="form-group">
                   <label  class="label">Catégorie</label>
-                  <ng-select [items]="CategorieAuto | async"
+                  <ng-select [items]="categorie"
                              bindLabel="libelle"
                              bindValue="id"
-                             autofocus
                              [ngModelOptions]="{standalone: true}"
                              [(ngModel)]="contenue.idcategorie"
-                             (ngModelChange)="recuperation($event)">
+                             (ngModelChange)="recuperation($event)"
+                             required="required">
                   </ng-select>
                 </div>
-                <div class="form-group"*ngIf="produit">
+                <div class="form-group"*ngIf="(produit | json) != '{}'">
                   <label  class="label">Produit</label>
-                  <ng-select [items]="ProduitAuto | async"
+                  <ng-select [items]="produit"
                              bindLabel="libelle"
                              bindValue="id"
-                             autofocus
                              [ngModelOptions]="{standalone: true}"
                              [(ngModel)]="contenue.idproduit"
-                             (ngModelChange)="recuperation($event)">
+                             (ngModelChange)="recuperation($event)"
+                             required="required">
                   </ng-select>
+
                 </div>
 
 <!--                version normale-->
@@ -50,14 +51,15 @@
 <!--                </div>-->
                 <div class="form-group" style="text-align: center">
                   <label  class="label">Quantité</label>
-                  <input type="number" nbInput fullWidth status="info"  placeholder="Entrer la quantité" name="Quantite" [(ngModel)]="contenue.quantite" min="1">
+                  <input type="number" nbInput fullWidth status="info" required="required"  placeholder="Entrer la quantité" name="Quantite" [(ngModel)]="contenue.quantite" min="1">
                 </div >
                 <div class="form-group" style="text-align: center">
                   <label  class="label">Prix unitaire</label>
-                  <input type="number" nbInput fullWidth status="info"  placeholder="Entrer le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu" min="1">
+                  <input type="number" nbInput fullWidth status="info"  required="required" placeholder="Entrer le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu" min="1">
                 </div>
 
-                <button [disabled]="!f.valid" type='"submit" 'nbButton status='success'>Submit</button>
+                <button type='reset'nbButton status='danger'>Annuler</button>
+                <button type='submit'nbButton status='success' [disabled]="!f.valid">Valider</button>
                 <br>
                 <br>
                 <br>
@@ -80,13 +82,13 @@
                   <td>{{t.libelle}}</td>
                   <td>{{t.quantite}}</td>
                   <td>{{t.prixUnitaire}}</td>
-                  <td>{{t.montant}}</td>
+                  <td>{{t.montant}} FCFA</td>
                   <td><a class='btn btn-danger btn-xs' (click)="suprimer(t.produit_id)"><i class='fa fa-trash-o'></i> Supprimer </a></td>
                 </tr>
                 <tr>
                   <td colspan="4" ><b>TOTAL:</b></td>
 
-                  <td><b>{{montant[0].total}}</b></td>
+                  <td ><b>    {{montant[0].total}} FCFA</b></td>
                 </tr>
 
                 </tbody>
@@ -97,8 +99,8 @@
           </nb-card>
 
         </div>
-        <button nbButton disabled nbStepperNext >prev</button>
-        <button nbButton nbStepperNext [disabled]="!valider">next</button>
+        <button nbButton disabled nbStepperNext >Précédent</button>
+        <button nbButton nbStepperNext status="success" [disabled]="!valider">Suivant</button>
       </nb-step>
       <nb-step [label]='labelTwo'>
         <ng-template #labelTwo>Second step</ng-template>
@@ -113,25 +115,25 @@
                   <form #fff="ngForm" (ngSubmit)="validerAchatFourniseurParticulier(fff)">
                     <div class="form-group">
                       <label  class="label">Telephone</label>
-                      <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="personne.telephone" (ngModelChange)="getParticulierbyTel($event)" placeholder="Enter le numero de telephone">
+                      <input type="number" nbInput fullWidth status="info" name="telephone" [(ngModel)]="particulier.telephone" (ngModelChange)="getParticulierbyTel($event)" placeholder="Enter le numero de telephone">
                     </div>
                     <div class="form-group">
                       <label  class="label">Prenon</label>
-                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Prenom" required="required"  [(ngModel)]="personne.prenom" placeholder="Enter le prenom">
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Prenom" required="required"  [(ngModel)]="particulier.prenom" placeholder="Enter le prenom">
                     </div>
                     <div class="form-group">
                       <label  class="label">Nom</label>
-                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Nom" required="required"  [(ngModel)]="personne.nom"   placeholder="Enter le nom">
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Nom" required="required"  [(ngModel)]="particulier.nom"   placeholder="Enter le nom">
                     </div>
 
                     <div class="form-group">
                       <label  class="label">Adresse</label>
-                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="personne.adresse" placeholder="Enter l'adresse">
+                      <input type="text" nbInput fullWidth status="info" [disabled]="trouve" name="Adresse" required="required" [(ngModel)]="particulier.adresse" placeholder="Enter l'adresse">
                     </div>
 
                     <div class=" col-md-offset-7">
 
-                      <button type='submit' [disabled]="!fff.valid" nbButton status='success'>Submit</button>
+                      <button type='submit' [disabled]="!fff.valid" nbButton status='success'>Valider Achat</button>
                     </div>
                     <br>
                     <br>
@@ -165,7 +167,7 @@
 
                     <div class=" col-md-offset-7">
 
-                      <button type='submit' [disabled]="!ff.valid"  nbButton status='success'>Submit</button>
+                      <button type='submit' [disabled]="!ff.valid"  nbButton status='success'>Valider Achat</button>
                     </div>
                     <br>
                     <br>
@@ -178,8 +180,8 @@
 
             </div>
           </div>
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext >next</button>
+          <button nbButton nbStepperNext [disabled]="true" style="float: right;">Suivant</button>
+          <button nbButton nbStepperPrevious style="float: right;">Précédent</button>
         </div >
       </nb-step>
     </nb-stepper>

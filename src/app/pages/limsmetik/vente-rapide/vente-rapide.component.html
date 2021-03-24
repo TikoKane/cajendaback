@@ -2,18 +2,17 @@
   <nb-card-body>
     <div class="">
       <nb-card >
-        <nb-card-header style="background-color: #2d8ac7; text-align: center;">Vente rapide</nb-card-header>
+        <nb-card-header style="text-align: center;background-color: #2d8ac7"><h6> Vente Rapide</h6></nb-card-header>
         <nb-card-body>
 
           <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
 <!--            version autocomplete categorie -->
             <div class="form-group">
               <label  class="label">Catégorie</label>
-              <ng-select [items]="CategorieAuto | async"
+              <ng-select [items]="categorie "
                                    bindLabel="libelle"
                                    bindValue="id"
-                                   autofocus
-                                   [ngModelOptions]="{standalone: true}"
+                                    [ngModelOptions]="{standalone: true}"
                                    [(ngModel)]="contenue.idcategorie"
                                    (ngModelChange)="recuperation($event)">
             </ng-select>
@@ -27,14 +26,14 @@
 <!--            </div>-->
 
 <!--            version auto-->
-            <div class="form-group"*ngIf="produit">
+            <div class="form-group" *ngIf="(produit | json) != '{}'">
               <label  class="label">Produit</label>
-              <ng-select [items]="ProduitAuto | async"
+              <ng-select [items]="produit"
                          bindLabel="libelle"
                          bindValue="id"
-                         autofocus
                          [ngModelOptions]="{standalone: true}"
                          [(ngModel)]="contenue.idproduit"
+
                          (ngModelChange)="recuperation($event)">
               </ng-select>
             </div>
@@ -56,8 +55,8 @@
               <input type="number" nbInput fullWidth status="info" required="required" placeholder="Entrer le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu" min="1">
             </div>
             <div class="buttons-row" style="text-align: center">
-            <button type='reset'nbButton status='danger' class="btn">Annuler</button>
-            <button type='submit'nbButton status='success' [disabled]="!f.valid" class="btn">Valider</button>
+              <button type='reset'nbButton status='danger' (click)="resetForm()" class="btn">Annuler</button>
+              <button type='submit'nbButton status='success' [disabled]="!f.valid" class="btn">Valider</button>
             </div>
 
 
@@ -78,7 +77,7 @@
             </tr>
             </thead>
             <tbody style='background-color:white'>
-            <tr *ngFor="let t of tableau;let i=index" >
+            <tr  *ngFor="let t of tableau;let i=index" >
               <th scope='row'>{{i+1}}</th>
               <td>{{t.libelle}}</td>
               <td>{{t.quantite}}</td>
@@ -90,7 +89,7 @@
             <tr>
               <td colspan='4' ><b>TOTAL:</b></td>
 
-              <td><b>{{montant}}</b></td>
+              <td *ngFor="let t of montant"><b>{{t.total}}</b></td>
             </tr>
 
             </tbody>
@@ -100,7 +99,7 @@
           <br>
           <div class="buttons-row" *ngIf="tableau">
             <button nbButton status="danger" (click)="anullerVente()">Annuler</button>
-            <button nbButton status="primary" name="venteEntreprise" [disabled]="!valider" (click)="validerVenteRapide()">VALIDER VENTE</button>
+            <button nbButton status="success" name="venteEntreprise" [disabled]="!valider" (click)="validerVenteRapide()">VALIDER VENTE</button>
           </div>
         </nb-card-body>
       </nb-card>

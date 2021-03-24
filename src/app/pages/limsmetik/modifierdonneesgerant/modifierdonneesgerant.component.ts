@@ -89,20 +89,12 @@ export class ModifierdonneesgerantComponent implements OnInit {
 
  
   ngOnInit() {
-    this.ger={
-      email:'',
-      login:'',
-      nom:'',
-      password:'',
-      prenom:'',
-      tel:'',
-      typeUser_id:0,
-    }
+   
     this.id = localStorage.getItem('id');
-
+ 
     this.service.GetGerantById(this.id).subscribe((data) => {
       this.modifGerant = data;
-     
+   
     }, (err) => {
       console.log(err);
     });

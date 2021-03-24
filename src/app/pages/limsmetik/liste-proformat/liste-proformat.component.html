@@ -2,12 +2,12 @@
   <nb-card-body>
     <div class="inner-addon left-addon">
       <i class="glyphicon glyphicon-search"></i>
-      <input type="text" class="form-control" placeholder="RECHERCHE PAR NOM CLIENT..." [(ngModel)]="filterString"/>
+      <input type="text" class="form-control" placeholder="RECHERCHE PAR DATE..." [(ngModel)]="filterString"/>
     </div>
     <br>
     <div class="">
       <nb-card>
-        <nb-card-header style="background-color: #2d8ac7">Caisse journalière</nb-card-header>
+        <nb-card-header style="text-align: center;background-color: #2d8ac7"> <b><h6>Liste des factures proforma</h6></b></nb-card-header>
         <nb-card-body>
           <table class='table table-bordered'>
             <thead style='background-color: #2d8ac7'>
@@ -21,14 +21,14 @@
             </tr>
             </thead>
             <tbody style='background-color:white' >
-            <tr *ngFor="let t of (tableau | orderBy:order:ascending  | filterCaisseJournaliere: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index" >
+            <tr *ngFor="let t of (tableau | orderBy:order:ascending  | listeProformatFilter: filterString) | paginate:{ itemsPerPage:10,currentPage:p};let i=index" >
               <th scope='row'>{{i+1}}</th>
-              <td>{{t.dateVente}}</td>
-              <td *ngIf="t.prenomClient && t.prenomClient=='anonyme'">{{t.nomClient}}</td>
-              <td *ngIf="t.nomClient">{{t.prenomClient }} {{t.nomClient}}</td>
-              <td *ngIf="t.raisonSocialClient"> {{t.raisonSocialClient}}</td>
-              <td>{{t.prenom }} {{t.nom}}</td>
-              <td><button nbButton status="success" (click)="gotoFacture(t.id)">Voir Facture Proforma</button>  </td>
+              <td>{{t?.dateVente}}</td>
+              <td *ngIf="t.prenomClient && t.prenomClient=='anonyme'">{{t?.nomClient}}</td>
+              <td *ngIf="t.nomClient">{{t?.prenomClient }} {{t?.nomClient}}</td>
+              <td *ngIf="t.raisonSocialClient"> {{t?.raisonSocialClient}}</td>
+              <td>{{t?.prenom }} {{t?.nom}}</td>
+              <td><button nbButton status="success" (click)="gotoFacture(t?.id)"><i class="fa fa-eye" aria-hidden="true"> Voir Facture Proforma</i> </button>  </td>
 
             </tr>
             </tbody>

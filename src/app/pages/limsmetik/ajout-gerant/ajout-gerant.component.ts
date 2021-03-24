@@ -96,7 +96,7 @@ if(form!=null)
       email:'',
       password:'',
       tel:'',
-      typeUser_id:0,
+      typeUser_id:'',
       login:''
     }
     }

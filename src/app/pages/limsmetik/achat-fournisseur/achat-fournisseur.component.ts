@@ -4,7 +4,7 @@ import {AchatProduitService} from "../service/achat-produit.service";
 import {VenteProduitService} from "../service/vente-produit.service";
 import {NbToastrService} from "@nebular/theme";
 import {Router} from "@angular/router";
-import {Contenue, Particulier, Personne} from "../../../users.model";
+import {Contenue, Entreprise, Particulier, Personne} from "../../../users.model";
 
 @Component({
   selector: 'ngx-achat-fournisseur',
@@ -12,7 +12,7 @@ import {Contenue, Particulier, Personne} from "../../../users.model";
   styleUrls: ['./achat-fournisseur.component.scss']
 })
 export class AchatFournisseurComponent implements OnInit {
-  categorie;
+  categorie={};
   valeur;
   tableau;
   montant;
@@ -31,17 +31,14 @@ export class AchatFournisseurComponent implements OnInit {
   }
 
   test: string = '0';
-  personne: Personne = {
+  particulier: Particulier = {
     telephone: '',
     nom: '',
     prenom: '',
-    raisonSocial: '',
     adresse: ''
   };
-  Entreprise: Personne = {
+  Entreprise: Entreprise = {
     telephone: '',
-    nom: '',
-    prenom: '',
     raisonSocial: '',
     adresse: ''
   };
@@ -52,13 +49,10 @@ export class AchatFournisseurComponent implements OnInit {
     pu: ''
   };
 
-  produit;
-  CategorieAuto;
-  ProduitAuto;
+  produit={};
 
   ngOnInit() {
 
-    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
 
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data;
@@ -109,7 +103,6 @@ export class AchatFournisseurComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
-    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa;
     }, error1 => {
@@ -145,10 +138,11 @@ export class AchatFournisseurComponent implements OnInit {
     this.contenue.pu = '';
     this.contenue.quantite = '';
     this.contenue.idproduit = '';
-    this.personne.telephone = '';
-    this.personne.adresse = '';
-    this.personne.prenom = '';
-    this.personne.nom = '';
+    this.particulier.telephone = '';
+    this.particulier.adresse = '';
+    this.particulier.prenom = '';
+    this.particulier.nom = '';
+
 
   }
 
@@ -169,21 +163,22 @@ export class AchatFournisseurComponent implements OnInit {
     this.contenue.idproduit = '';
     this.Entreprise.telephone = '';
     this.Entreprise.adresse = '';
-    this.Entreprise.prenom = '';
-    this.Entreprise.nom = '';
+    this.Entreprise.raisonSocial='';
+    this.Entreprise.telephone='';
 
   }
 
   getParticulierbyTel($event: {}) {
-    this.test = this.personne.telephone;
-    this.serviceVente.getClientBytel(this.test).subscribe(dataa => {
+    this.test = this.particulier.telephone;
+    this.serviceVente.getFournisseurBytel(this.test).subscribe(dataa => {
       this.valeur = dataa;
-      if (this.valeur['Client ']) {
+      console.log(this.valeur)
+      if (this.valeur['Fournisseur']) {
         this.trouve = true;
-        this.personne.adresse = this.valeur['Client '].adresseClient;
-        this.personne.nom = this.valeur['Client '].nomClient;
-        this.personne.prenom = this.valeur['Client '].prenomClient;
-        this.personne.telephone = this.valeur['Client '].telClient;
+        this.particulier.adresse = this.valeur['Fournisseur'].adresseFournisseur;
+        this.particulier.nom = this.valeur['Fournisseur'].nomFournisseur;
+        this.particulier.prenom = this.valeur['Fournisseur'].prenomFournisseur;
+        this.particulier.telephone = this.valeur['Fournisseur'].telFournisseur;
       } else {
         this.trouve = false;
       }
@@ -195,15 +190,14 @@ export class AchatFournisseurComponent implements OnInit {
   getParticulierbyTelEntre($event: {}) {
     this.test = this.Entreprise.telephone;
     console.log(this.test);
-    this.serviceVente.getClientBytel(this.test).subscribe(dataa => {
+    this.serviceVente.getFournisseurBytel(this.test).subscribe(dataa => {
       console.log(dataa);
       this.valeur = dataa;
-      if (this.valeur['Client ']) {
+      if (this.valeur['Fournisseur']) {
         this.trouve = true;
-        this.Entreprise.adresse = this.valeur['Client '].adresseClient;
-        this.Entreprise.nom = this.valeur['Client '].nomClient;
-        this.Entreprise.prenom = this.valeur['Client '].prenomClient;
-        this.Entreprise.telephone = this.valeur['Client '].telClient;
+        this.Entreprise.adresse = this.valeur['Fournisseur'].adresseFournisseur;
+        this.Entreprise.raisonSocial = this.valeur['Fournisseur'].raisonSocial;
+        this.Entreprise.telephone = this.valeur['Fournisseur'].telFournisseur;
       } else {
         this.trouve = false;
       }
@@ -238,12 +232,16 @@ export class AchatFournisseurComponent implements OnInit {
 
   validerAchatFourniseurParticulier(fff: NgForm) {
 
-    this.serviceAchat.validerAchatFournisseurParticulier(this.personne).subscribe(resp => {
+    this.serviceAchat.validerAchatFournisseurParticulier(this.particulier).subscribe(resp => {
       console.log(resp);
-          this.good("achat réussi avec succès");
-          this.reloadComponent();
-          this.valider = false;
-       this.route.navigate(['/pages/limsmetik/choixAchat']);
+      if (resp['success']==true){
+        this.good("achat réussi avec succès");
+        this.reloadComponent();
+        this.valider = false;
+        this.route.navigate(['/pages/limsmetik/choixAchat']);
+      } else{
+        this.valider = true;this.bad()
+      }
 
     }, error1 => {
       this.bad()
@@ -253,12 +251,15 @@ export class AchatFournisseurComponent implements OnInit {
 
   validerAchatFourniseurEntrepreise(ff: NgForm) {
     this.serviceAchat.validerAchatFournisseurEntreprise(this.Entreprise).subscribe(resp => {
-      console.log(resp['success']);
-
+      if(resp['success']==true){
         this.good("achat réussi avec succès");
         this.reloadComponentEntreprise();
         this.valider = false;
-      this.route.navigate(['/pages/limsmetik/choixAchat']);
+        this.route.navigate(['/pages/limsmetik/choixAchat']);
+      }
+       else {
+        this.bad();this.valider = true;
+      }
 
     }, error1 => {
       this.bad()

@@ -6,8 +6,6 @@ import {Cat, Contenue} from "../../../users.model";
 import {Router} from "@angular/router";
 import {NbToastrService} from "@nebular/theme";
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {startWith, map} from 'rxjs/operators';
 
 
 export interface User {
@@ -25,13 +23,11 @@ export class VenteRapideComponent implements OnInit {
 
   myControl = new FormControl();
   myControl1 = new FormControl();
-
-
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  getproduit;
-  categorie;
+  categorie = {};
+  produit = {};
   tableau;
   montant;
   valider: boolean = false;
@@ -54,19 +50,15 @@ export class VenteRapideComponent implements OnInit {
     quantite: '',
     pu: ''
   };
-  produit;
-  CategorieAuto;
-  ProduitAuto;
 
   ngOnInit() {
-
-    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
+    console.log(this.produit)
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data
-      // console.log(data)
     }, error1 => {
       console.log(error1);
     });
+
 
     this.serviceAchat.getAllproduitAjouter().subscribe(data => {
       this.tableau = data['AjoutProduit ']
@@ -95,7 +87,6 @@ export class VenteRapideComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
-    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa
     }, error1 => {
@@ -165,7 +156,7 @@ export class VenteRapideComponent implements OnInit {
       console.log(error1);
     });
     this.serviceAchat.getTotalMontantAchete().subscribe(data => {
-      this.montant = data['totalMontant'][0].total
+      this.montant = data['totalMontant']
     }, error1 => {
       console.log(error1);
     });
@@ -195,6 +186,12 @@ export class VenteRapideComponent implements OnInit {
     this.reloadComponent();
   }
 
+  resetForm() {
+    this.contenue.idcategorie = '';
+    this.contenue.pu = '';
+    this.contenue.quantite = '';
+    this.contenue.idproduit = '';
+  }
 
   validerVenteRapide() {
     this.serviceVente.validerventeRapide().subscribe(resp => {

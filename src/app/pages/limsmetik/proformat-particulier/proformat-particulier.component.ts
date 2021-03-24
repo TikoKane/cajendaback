@@ -16,7 +16,7 @@ export class ProformatParticulierComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  categorie;tableau;montant; string;valeur;donnees;valider:boolean=false;trouve:boolean=false;
+  categorie={};tableau;montant; string;valeur;donnees;valider:boolean=false;trouve:boolean=false;
   constructor(private fb: FormBuilder,private serviceAchat:AchatProduitService,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) {
     this.serviceAchat.annulerAchat().subscribe(resp=>{this.reloadComponent();},error1 => {this.badd();});
   }
@@ -33,11 +33,8 @@ export class ProformatParticulierComponent implements OnInit {
     quantite:'',
     pu:''
   };
-  produit;
-  CategorieAuto;
-  ProduitAuto;
+  produit={};
   ngOnInit() {
-    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data},error1=>{console.log(error1);});
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit ']},error1 => {console.log(error1);});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'][0].total},error1 => {console.log(error1);});
@@ -57,7 +54,6 @@ export class ProformatParticulierComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test=this.contenue.idcategorie;
-    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa},error1 => {console.log(error1);});
 
   }
@@ -94,7 +90,12 @@ export class ProformatParticulierComponent implements OnInit {
     this.particulier.nom='';
 
   }
-
+  resetForm(){
+    this.contenue.idcategorie='';
+    this.contenue.pu='';
+    this.contenue.quantite='';
+    this.contenue.idproduit='';
+  }
   anullerVente() {
     this.serviceVente.annulerVente().subscribe(resp=>{this.reloadComponent();this.valider=false;this.trouve=false;},error1 => {this.bad(error1);});
   }

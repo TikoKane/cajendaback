@@ -1,23 +1,23 @@
 <div class="lists row">
   <div class="col-md-8">
     <nb-card class="list-card" style="margin-left: 40%;">
-      <nb-card-header>Infos du compte</nb-card-header>
+      <nb-card-header style="text-align: center;"><b><u> Infos du compte </u></b></nb-card-header>
       <nb-card-body >
         <nb-list>
           <nb-list-item >
-            <b>Nom</b> : {{gerant.nom}}
+            <b>Nom</b> : {{gerant?.nom}}
           </nb-list-item>
           <nb-list-item >
-            <b>Prénom</b> : {{gerant.prenom}}
+            <b>Prénom</b> : {{gerant?.prenom}}
           </nb-list-item>
           <nb-list-item >
-            <b>Téléphone</b> : {{gerant.tel}}
+            <b>Téléphone</b> : {{gerant?.tel}}
           </nb-list-item>
           <nb-list-item >
-            <b>Email</b> : {{gerant.email}}
+            <b>Email</b> : {{gerant?.email}}
           </nb-list-item>
           <nb-list-item >
-            <b>Login</b> : {{gerant.login}}
+            <b>Login</b> : {{gerant?.login}}
           </nb-list-item>
           <nb-list-item >
             <b>Type de gérant</b> : {{type}}
@@ -25,9 +25,9 @@
         </nb-list>
         <br>
         <div class="col-md-4">
-          <div><button  nbButton status="primary" (click)="modifier()">
+          <div class="col align-self-center"><button  nbButton status="warning" (click)="modifier()"><i class="fa fa-edit" aria-hidden="true">
             Modifier les données
-          </button></div>
+          </i></button></div>
         </div>
       </nb-card-body>
     </nb-card>

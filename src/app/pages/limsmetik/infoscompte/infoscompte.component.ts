@@ -24,7 +24,7 @@ export class InfoscompteComponent implements OnInit {
 
     this.serviceGerant.GetGerantById(this.ger).subscribe((data) => {
       this.gerant = data;
-     console.log(this.gerant);
+  //   console.log(this.gerant);
     }, (err) => {
       console.log(err);
     });

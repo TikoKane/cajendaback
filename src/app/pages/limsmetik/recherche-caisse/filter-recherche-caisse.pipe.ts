@@ -9,6 +9,6 @@ export class FilterRechercheCaissePipe implements PipeTransform {
     if (!values || !values.length) return [];
     if (!filterRechercheCaisse) return values;
     // Filter items array, items which match will return true
-    return values.filter(v => v.nom.toLowerCase().indexOf(filterRechercheCaisse.toLowerCase()) !== -1);
+    return values.filter(v => v.prenomClient.toLowerCase().indexOf(filterRechercheCaisse.toLowerCase()) !== -1);
   }
 }

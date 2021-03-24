@@ -6,11 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class FilterCaisseJournalierePipe implements PipeTransform {
 
-  public transform(values: any[], filterCaisseMensuelle: string): any[] {
+  public transform(values: any[], filterCaisseJournaliere: string): any[] {
     if (!values || !values.length) return [];
-    if (!filterCaisseMensuelle) return values;
+    if (!filterCaisseJournaliere) return values;
     // Filter items array, items which match will return true
-    return values.filter(v => v.nomClient.toLowerCase().indexOf(filterCaisseMensuelle.toLowerCase()) !== -1);
+    return values.filter(v => v.prenomClient.toLowerCase().indexOf(filterCaisseJournaliere.toLowerCase()) !== -1);
   }
 
 }

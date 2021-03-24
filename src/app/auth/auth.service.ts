@@ -8,7 +8,7 @@ import {Users} from '../users.model';
 export class AuthService {
 
   value: Users;
-  private host: string = 'https://lamine.alwaysdata.net/api';
+  private host: string = 'http://samastock.alwaysdata.net/bakary/api';
   isLoggedIn = false;
   role: number;
 

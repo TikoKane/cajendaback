@@ -5,7 +5,7 @@ export class Gerant {
     login:string;
     email:string;
     password:string;
-    typeUser_id:number;
+    typeUser_id:string;
     
     }
     
@@ -30,6 +30,6 @@ export class Gerant {
             
         export class Produit {
             libelle:string;
-            categorie_id:number; 
+            categorie_id:string; 
             }
             

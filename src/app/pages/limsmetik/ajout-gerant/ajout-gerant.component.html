@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <nb-card class="inline-form-card">
-      <nb-card-header>Ajout gérant</nb-card-header>
+      <nb-card-header style="text-align: center;"><h4><b>  Ajout d'un gérant </b></h4> </nb-card-header>
       <nb-card-body>
         <form #form="ngForm" (ngSubmit)="AjouterGerant(form)">
           <div class="form-group row">
@@ -38,7 +38,7 @@
           <div class="form-group row">
             <label class="col-sm-3 label">Type gérant</label>
             <div class="col-sm-9">
-              <select name="typeUser_id" id="typeGerant" [(ngModel)]="service.ger.typeUser_id"  class="col-sm-12 form-control"  fullWidth >
+              <select name="typeUser_id" id="typeGerant" [(ngModel)]="service.ger.typeUser_id"  class="col-sm-12 form-control"  fullWidth required>
                 <option *ngFor="let user of listetpeUser" [value]="user.id" >{{user.libelle}}</option>
               </select>
 
@@ -46,7 +46,7 @@
           </div>
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
-              <button [disabled]="!form.valid" type="submit" nbButton status="success">Sign in</button>
+              <button [disabled]="!form.valid" type="submit" nbButton status="success"><i class="fa fa-check"> Valider</i></button>
             </div>
           </div>
         </form>

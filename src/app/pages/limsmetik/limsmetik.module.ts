@@ -71,6 +71,7 @@ import { ChangerMotDePasseComponent } from './changer-mot-de-passe/changer-mot-d
 import { ListeProformatComponent } from './liste-proformat/liste-proformat.component';
 import { FactureProformatComponent } from './facture-proformat/facture-proformat.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ListeProformatFilterPipe } from './liste-proformat/liste-proformat-filter.pipe';
 
 
 @NgModule({
@@ -161,6 +162,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ChangerMotDePasseComponent,
     ListeProformatComponent,
     FactureProformatComponent,
+    ListeProformatFilterPipe,
 
   ],
 })

@@ -22,6 +22,7 @@ export class FactureComponent implements OnInit {
   infoClient: any;
   magasin: any;
   MontantHT:number;
+tva=false;
 
   constructor(private servieCaisse:CaisseService,private  route:ActivatedRoute) { }
 
@@ -55,7 +56,12 @@ export class FactureComponent implements OnInit {
     }
   }
 
-
+changeTva(){
+    this.tva=true;
+  }
+  changeTva1(){
+    this.tva=false;
+  }
   isParticulier() {
     return this.infoClient['client'].raisonSocialClient==null && this.infoClient['client'].prenomClient!=null && this.infoClient['client'].nomClient!='anonyme'
   }

@@ -1,7 +1,7 @@
 <div class="lists row">
   <div class="col-md-8">
     <nb-card class="list-card" style="margin-left: 40%;">
-      <nb-card-header>Changement de mot de passe</nb-card-header>
+      <nb-card-header style="text-align: center;"><b><u> Changement de mot de passe </u></b></nb-card-header>
       <nb-card-body >
 <form #form="ngForm" (ngSubmit)="resetPass(form)" aria-labelledby="title">
 
@@ -17,8 +17,8 @@
 
   <button
   [disabled]="!form.valid" type="submit" nbButton status="success"
-      >
-    Changer le mot de passe
+      style="text-align: center;"><i class="fa fa-check" aria-hidden="true">
+    Changer le mot de passe</i>
   </button>
 </form>
       </nb-card-body>

@@ -18,11 +18,15 @@
                 </tr>
                 <tr>
                   <th>Adresse  : </th>
-                  <td> {{adresseFournisseur}}</td>
+                  <td  *ngIf="isParticulier()"> {{adresseFournisseur}}</td>
+                  <td  *ngIf="isEntreprise()"> {{adresseFournisseur}}</td>
+                  <td *ngIf="isSimple()">anonyme</td>
                 </tr>
                 <tr>
                   <th>Téléphone : </th>
-                  <td>{{telephoneFourniseur}}</td>
+                  <td  *ngIf="isParticulier()">{{telephoneFourniseur}}</td>
+                  <td  *ngIf="isEntreprise()">{{telephoneFourniseur}}</td>
+                  <td *ngIf="isSimple()">anonyme</td>
                 </tr>
                 <tr>
                   <th>Type client :</th>

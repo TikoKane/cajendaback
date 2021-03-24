@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CaisseService {
 
-  private host:string ="https://lamine.alwaysdata.net/api";
+  private host: string = 'http://samastock.alwaysdata.net/bakary/api';
   constructor(private http:HttpClient) { }
 
   caissejournaliere(idM){

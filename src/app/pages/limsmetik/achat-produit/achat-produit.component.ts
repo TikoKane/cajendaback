@@ -12,7 +12,7 @@ import {NbToastrService} from "@nebular/theme";
 })
 
 export class AchatProduitComponent implements OnInit {
-  categorie;
+  categorie={};
   tableau;montant;firstForm: FormGroup;valider:boolean=false;
   secondForm: FormGroup;
   thirdForm: FormGroup;
@@ -27,12 +27,9 @@ export class AchatProduitComponent implements OnInit {
     quantite:'',
     pu:''
   };
-  CategorieAuto;
-  ProduitAuto;
-  produit;
+  produit={};
   ngOnInit() {
 
-    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data=>{this.categorie=data; },error1=>{console.log(error1);});
     this.serviceAchat.getAllproduitAjouter().subscribe(data=>{this.tableau=data['AjoutProduit '];},error1 => {console.log(error1);});
     this.serviceAchat.getTotalMontantAchete().subscribe(data=>{this.montant=data['totalMontant'];},error1 => {console.log(error1);});
@@ -60,7 +57,6 @@ export class AchatProduitComponent implements OnInit {
   recuperation($event: Event) {
 
     this.test=this.contenue.idcategorie;
-    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa=>{this.produit=dataa;},error1 => {console.log(error1);this.bad()});
 
   }
@@ -69,7 +65,7 @@ export class AchatProduitComponent implements OnInit {
 
   }
   bad() {
-    this.toastr.danger("erreur",'error');
+    this.toastr.danger("erreur veuillez contacter l'administratreurs",'error');
 
   }
 
@@ -83,14 +79,19 @@ export class AchatProduitComponent implements OnInit {
     this.contenue.idproduit='';
 
   }
-
+  resetForm(){
+    this.contenue.idcategorie='';
+    this.contenue.pu='';
+    this.contenue.quantite='';
+    this.contenue.idproduit='';
+  }
   suprimer(produit_id: any) {
     this.serviceAchat.deleteAjoutProduit(produit_id).subscribe(resp=>{this.reloadComponent()},error1 => {console.log(error1)});
     this.reloadComponent();
   }
 
   validerAchat() {
-    this.serviceAchat.validerAchat().subscribe(resp=>{ this.good("achat réussi avec succès");this.reloadComponent();this.valider=false;},error1 => {this.bad()});
+    this.serviceAchat.validerAchat().subscribe(resp=>{ if(resp['success']==true){this.good("achat réussi avec succès");this.reloadComponent();this.valider=false;}else{this.bad();this.reloadComponent()} this.reloadComponent();},error1 => {this.bad()});
 
   }
 

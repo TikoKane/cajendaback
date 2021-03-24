@@ -59,7 +59,7 @@ listecategorie;
         this.service.prod={
          
           libelle:'',
-          categorie_id:0
+          categorie_id:''
         }
         }
 

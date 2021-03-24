@@ -6,27 +6,26 @@
 
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Vente Entreprise</nb-card-header>
+            <nb-card-header style="background-color: #2d8ac7">Facture proformat entreprise</nb-card-header>
             <nb-card-body>
               <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
                 <!--            version autocomplete categorie -->
                 <div class="form-group">
                   <label  class="label">Catégorie</label>
-                  <ng-select [items]="CategorieAuto | async"
+                  <ng-select [items]="categorie"
                              bindLabel="libelle"
                              bindValue="id"
-                             autofocus
+                             required="required"
                              [ngModelOptions]="{standalone: true}"
                              [(ngModel)]="contenue.idcategorie"
                              (ngModelChange)="recuperation($event)">
                   </ng-select>
                 </div>
-                <div class="form-group"*ngIf="produit">
+                <div class="form-group"*ngIf="(produit | json) != '{}'">
                   <label  class="label">Produit</label>
-                  <ng-select [items]="ProduitAuto | async"
+                  <ng-select [items]="produit"
                              bindLabel="libelle"
                              bindValue="id"
-                             autofocus
                              [ngModelOptions]="{standalone: true}"
                              [(ngModel)]="contenue.idproduit"
                              (ngModelChange)="recuperation($event)">
@@ -59,8 +58,8 @@
                   <input type="number" nbInput fullWidth status="info" required="required" placeholder="Enter le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
                 </div>
                 <div class=" col-md-offset-7">
-                  <button type='reset'nbButton status='danger'>Annuler</button>
-                  <button type='submit'nbButton status='success' [disabled]="!f.valid">Submit</button>
+                  <button type='reset'nbButton (click)="resetForm()" status='danger'>Annuler</button>
+                  <button type='submit'nbButton status='success' [disabled]="!f.valid">Valider</button>
                 </div>
                 <br>
                 <br>
@@ -102,8 +101,8 @@
           </nb-card>
 
         </div>
-        <button nbButton disabled nbStepperNext>prev</button>
-        <button nbButton nbStepperNext [disabled]="!valider">next</button>
+        <button nbButton status="success"  nbStepperNext [disabled]="!valider" style="float: right;">suivant</button>
+        <button nbButton disabled nbStepperNext style="float: right;" >précédent</button>
       </nb-step>
       <nb-step [label]='labelTwo'>
         <ng-template #labelTwo>Second step</ng-template>
@@ -129,7 +128,7 @@
 
                 <div class=" col-md-offset-7">
 
-                  <button type='submit'nbButton status='success' [disabled]="!ff.valid" name="venteEntreprise" (click)="validervente()">Submit</button>
+                  <button type='submit'nbButton status='success' [disabled]="!ff.valid" name="venteEntreprise" (click)="validervente()">Valider Facture</button>
                 </div>
                 <br>
                 <br>
@@ -143,8 +142,8 @@
           </nb-card>
 
         </div>
-        <button nbButton nbStepperPrevious>prev</button>
-        <button nbButton nbStepperNext>next</button>
+        <button nbButton nbStepperNext [disabled]="true" style="float: right;">suivant</button>
+        <button nbButton nbStepperPrevious style="float: right;">précédent</button>
       </nb-step>
     </nb-stepper>
   </nb-card-body>

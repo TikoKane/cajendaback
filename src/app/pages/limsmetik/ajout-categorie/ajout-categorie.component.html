@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col-md-12">
     <nb-card class="inline-form-card">
-      <nb-card-header>Ajout catégorie</nb-card-header>
+      <nb-card-header style="text-align: center;"><h4><b>  Ajout d'une catégorie </b></h4> </nb-card-header>
       <nb-card-body>
         <form #form="ngForm" (ngSubmit)="AjouterCategorie(form)">
           <div class="form-group row">
-            <label  class="label col-sm-3 col-form-label">Libellé catégorie</label>
+            <label  class="label col-sm-3 col-form-label">Libellé de la catégorie</label>
             <div class="col-sm-9">
-              <input type="text" #libelle="ngModel" id="first-name"  placeholder="Libellé" name="libelle" [(ngModel)]="service.cat.libelle" nbInput fullWidth  required="required" minlength="2" maxlength="50" size="50">
+              <input type="text" #libelle="ngModel" id="first-name"  placeholder="Entrer le libellé de la catégorie" name="libelle" [(ngModel)]="service.cat.libelle" nbInput fullWidth  required="required" minlength="2" maxlength="50" size="50">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
-              <button [disabled]="!form.valid" type="submit"  nbButton status="success">Ajouter</button>
+              <button [disabled]="!form.valid" type="submit"  nbButton status="success"><i class="fa fa-check"> Valider</i></button>
             </div>
           </div>
         </form>

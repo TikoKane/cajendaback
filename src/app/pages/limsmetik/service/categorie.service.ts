@@ -6,7 +6,7 @@ import { Categorie } from './general.model';
   providedIn: 'root'
 })
 export class CategorieService {
-  private host:string ="https://lamine.alwaysdata.net/api";
+  private host: string = 'http://samastock.alwaysdata.net/bakary/api';
   constructor(private http:HttpClient) { }
   cat : Categorie;
   getAllCategorieByMagasin(id){

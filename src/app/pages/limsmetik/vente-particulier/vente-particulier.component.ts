@@ -16,7 +16,7 @@ export class VenteParticulierComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  categorie;
+  categorie={};
   tableau;
   montant;
   string;
@@ -48,13 +48,10 @@ export class VenteParticulierComponent implements OnInit {
     quantite: '',
     pu: ''
   };
-  produit;
-  CategorieAuto;
-  ProduitAuto;
+  produit={};
 
   ngOnInit() {
 
-    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data
     }, error1 => {
@@ -86,7 +83,6 @@ export class VenteParticulierComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
-    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa
     }, error1 => {
@@ -186,6 +182,13 @@ export class VenteParticulierComponent implements OnInit {
     }, error1 => {
       console.log(error1)
     });
+  }
+
+  resetForm(){
+    this.contenue.idcategorie = '';
+    this.contenue.pu = '';
+    this.contenue.quantite = '';
+    this.contenue.idproduit = '';
   }
 
   suprimer(produit_id: any) {

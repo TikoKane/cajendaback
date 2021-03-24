@@ -61,7 +61,7 @@ export class ListeGerantComponent implements OnInit {
     this.magasin = localStorage.getItem('idmagasin');
     this.service.getAllGerantByMagasin(this.magasin).subscribe((data) => {
       this.gerant = data;
-  
+   //  console.log(data);
     }, (err) => {
       console.log(err);
     });
@@ -178,7 +178,7 @@ export class ListeGerantComponent implements OnInit {
 
     this.service.GetGerantById(this.id).subscribe((data) => {
       this.modifGerant = data;
-     
+    
     }, (err) => {
       console.log(err);
     });
@@ -198,16 +198,16 @@ export class ListeGerantComponent implements OnInit {
   }
 
   modiformulaire(form: NgForm) {
-
+this.service.ger.login=localStorage.getItem("login");
     this.service.updateGerant(form.value, this.id,localStorage.getItem('idmagasin')).subscribe(res => {
         if (res['success'] == false) {
-          console.log(this.modifGerant)
+         // console.log(this.modifGerant)
           this.showToastErreur(this.status2, this.title2, this.content2);
 
         } else {
 
           if (res['user'] != "") {
-            console.log(this.modifGerant)
+          //  console.log(this.modifGerant)
             this.showToast(this.status, this.title, this.content);
             this.resetForm(form);
             this.magasin = localStorage.getItem('idmagasin');

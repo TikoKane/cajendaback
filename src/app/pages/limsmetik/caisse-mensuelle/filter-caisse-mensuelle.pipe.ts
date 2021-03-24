@@ -10,7 +10,7 @@ export class FilterCaisseMensuellePipe implements PipeTransform {
     if (!values || !values.length) return [];
     if (!filterCaisseMensuelle) return values;
     // Filter items array, items which match will return true
-    return values.filter(v => v.dateVente.toLowerCase().indexOf(filterCaisseMensuelle.toLowerCase()) !== -1);
+    return values.filter(t => t.prenomClient.toLowerCase().indexOf(filterCaisseMensuelle.toLowerCase()) !== -1);
   }
 
 }

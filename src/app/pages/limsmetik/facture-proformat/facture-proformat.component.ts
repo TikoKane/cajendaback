@@ -24,6 +24,7 @@ export class FactureProformatComponent implements OnInit {
   infoClient: any;
   magasin: any;
   MontantHT:number;
+tva=false;
 
   constructor(private servieCaisse:CaisseService,private  route:ActivatedRoute,private serviceVente:VenteProduitService, private toastr: NbToastrService, public router: Router) { }
 
@@ -59,6 +60,12 @@ export class FactureProformatComponent implements OnInit {
   baddd(){
     this.toastr.danger('quantité indisponible', "Erreur de la validation");
 
+  }
+changeTva(){
+    this.tva=true;
+  }
+  changeTva1(){
+    this.tva=false;
   }
 
   isParticulier() {

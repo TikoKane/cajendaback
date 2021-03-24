@@ -21,25 +21,22 @@
            <div class="text-right">
 
               </div>
-              <button nbButton status="success"
+              <button nbButton status="info"
                             [useExistingCss]="true"
                             styleSheetFile="../../../../assets/bootstrap.css,../../../../assets/bootstrap.min.css"
                             printSectionId="print-section"
                             ngxPrint  ><i class="fa fa-print">IMPRIMER </i></button> &nbsp;
-           <!-- <button nbButton status="info"
-                            [useExistingCss]="true"
-                            styleSheetFile="../../../../assets/bootstrap.css,../../../../assets/bootstrap.min.css"
-                            printSectionId="print-section"
-                            ngxPrint  ><i class="fa fa-print">Mail </i></button>-->
+           <button nbButton status="warning" (click)="changeTva()" *ngIf="!this.tva"><i class="fa fa-eye"> Afficher TVA</i></button>
+              <button nbButton status="danger" (click)="changeTva1()"*ngIf="this.tva" ><i class="fa fa-eye-slash">Masquer TVA</i></button>
               <hr>
             </div>
             <div class="x_content"  id="print-section" >
               <div class="row">
-              <div class="col-md-4">
-                <img src="../../../../assets/limsmetik.jpg" width="180px">
-                <br>
-                <b>LimsMetik developers team </b>
-              </div>
+                <div class="col-md-4">
+                  <img src="../../../../assets/1601173855286.png" width="150px">
+                  <br>
+                  <b>La Lumiere du Senegal</b>
+                </div>
               <div   class="col-md-4" style="margin-left: 8%;">
                 <img *ngIf="infoFacture['promo']>0" src="../../../../assets/promo.jpg" width="120px" >
               </div>
@@ -63,11 +60,15 @@
                   </tr>
                   <tr>
                     <th>Adresse  : </th>
-                    <td> {{infoClient['client'].adresseClient}}</td>
+                    <td *ngIf="isParticulier()"> {{infoClient['client'].adresseClient}}</td>
+                    <td *ngIf="isEntreprise()"> {{infoClient['client'].adresseClient}}</td>
+                    <td *ngIf="isSimple()">{{infoClient['client'].nomClient}}</td>
                   </tr>
                   <tr>
                     <th>Téléphone : </th>
-                    <td>{{infoClient['client'].telClient}} </td>
+                    <td *ngIf="isParticulier()">{{infoClient['client'].telClient}}</td>
+                    <td *ngIf="isEntreprise()">{{infoClient['client'].telClient}}</td>
+                    <td *ngIf="isSimple()">{{infoClient['client'].nomClient}}</td>
                   </tr>
                   <tr>
                     <th>Type client :</th>
@@ -136,23 +137,29 @@
                     <td ><b class="total"></b></td>
                     <td></td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="this.tva">
                     <td  ><b class="total"> Prix HT:</b></td>
                     <td><b> {{MontantHT | currency:"XAF":"symbol":'3.0':'fr'}}</b> </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="this.tva">
                     <td  ><b class="total"> TVA:</b></td>
                     <td><b> {{MontantTva | currency:"XAF":"symbol":'3.0':'fr'}}</b></td>
                   </tr>
                   <tr>
-                    <td  ><b class="total"> Prix Total TTC:</b></td>
+                    <td  ><b class="total"> Prix Total :</b></td>
                     <td><b> {{MontantAPayer | currency:"XAF":"symbol":'3.0':'fr'}}</b></td>
                   </tr>
                   </tbody>
                 </table>
                 <div class="notices">
-                  <b><div>IMPORTANT:</div></b>
-                  <div class="notice"><b>Tout produit vendu au-delà de 24h ne sera ni échangé, ni remboursé </b></div>
+                  <div><b>IMPORTANT:</b></div>
+                  <div class="notice">
+                    <b>Aucun retour ne sera accepté au-delà de 24h</b>
+                    <br>La Lumiere du Senegal votre partenaire de confiance
+                    <br>Adresse: 35 .AV Petersen x Lyser-Dakar ; mail: Lalumieredusenegal221@gmail.com
+                    <br> Contact +221338246561 / 707098953 / 776690024
+                    <b class="signature">Signature</b>
+                  </div>
                 </div>
                 <footer>
                   <div class="footerr">

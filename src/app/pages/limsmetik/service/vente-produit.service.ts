@@ -6,7 +6,7 @@ import {Contenue, Entreprise, Particulier, ContenuePromo} from "../../../users.m
   providedIn: 'root'
 })
 export class VenteProduitService {
-  private host:string ="https://lamine.alwaysdata.net/api";
+  private host: string = 'http://samastock.alwaysdata.net/bakary/api';
   constructor(private http:HttpClient) { }
   getStok(idmagasin){
     return this.http.get(this.host+"/stockproduit/bymagasin/"+idmagasin+"?token="+localStorage.getItem('token'));
@@ -14,6 +14,10 @@ export class VenteProduitService {
   }
   getClientBytel(tel){
     return this.http.get(this.host+"/client/byphone/"+tel+"?token="+localStorage.getItem('token'));
+
+  }
+  getFournisseurBytel(tel){
+    return this.http.get(this.host+"/fournisseur/byphone/"+tel+"?token="+localStorage.getItem('token'));
 
   }
 

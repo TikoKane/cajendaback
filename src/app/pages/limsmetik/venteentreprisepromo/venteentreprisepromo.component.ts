@@ -17,7 +17,7 @@ export class VenteentreprisepromoComponent implements OnInit {
   secondForm: FormGroup;
   thirdForm: FormGroup;
 
-  categorie;
+  categorie={};
   tableau;
   montant;
   string;
@@ -47,12 +47,9 @@ export class VenteentreprisepromoComponent implements OnInit {
     raisonSocial: '',
     adresse: ''
   };
-  produit;
-  CategorieAuto;
-  ProduitAuto;
+  produit={};
 
   ngOnInit() {
-    this.CategorieAuto = this.serviceAchat.getCate(localStorage.getItem('idmagasin'));
     this.serviceAchat.getAllcategorie(localStorage.getItem('idmagasin')).subscribe(data => {
       this.categorie = data;
     }, error1 => {
@@ -84,7 +81,6 @@ export class VenteentreprisepromoComponent implements OnInit {
 
   recuperation($event: Event) {
     this.test = this.contenue.idcategorie;
-    this.ProduitAuto= this.serviceAchat.getPro(this.test);
     this.serviceAchat.getAllproduitBycategorie(this.test).subscribe(dataa => {
       this.produit = dataa;
     }, error1 => {

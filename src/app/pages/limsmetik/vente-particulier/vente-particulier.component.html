@@ -6,27 +6,25 @@
 
         <div class=".col-md-4 .offset-md-4">
           <nb-card>
-            <nb-card-header style="background-color: #2d8ac7">Vente particulier</nb-card-header>
+            <nb-card-header style="text-align: center;background-color: #2d8ac7"><h6> Vente Particulier</h6></nb-card-header>
             <nb-card-body>
               <form #f="ngForm"  (ngSubmit)="onLogin(f)" >
                 <!--            version autocomplete categorie -->
                 <div class="form-group">
                   <label  class="label">Catégorie</label>
-                  <ng-select [items]="CategorieAuto | async"
+                  <ng-select [items]="categorie"
                              bindLabel="libelle"
                              bindValue="id"
-                             autofocus
                              [ngModelOptions]="{standalone: true}"
                              [(ngModel)]="contenue.idcategorie"
                              (ngModelChange)="recuperation($event)">
                   </ng-select>
                 </div>
-                <div class="form-group"*ngIf="produit">
+                <div class="form-group" *ngIf="(produit | json) != '{}'">
                   <label  class="label">Produit</label>
-                  <ng-select [items]="ProduitAuto | async"
+                  <ng-select [items]="produit"
                              bindLabel="libelle"
                              bindValue="id"
-                             autofocus
                              [ngModelOptions]="{standalone: true}"
                              [(ngModel)]="contenue.idproduit"
                              (ngModelChange)="recuperation($event)">
@@ -54,11 +52,11 @@
                   <label  class="label">Prix unitaire</label>
                   <input type="number" min="1" nbInput fullWidth status="info" required="required" placeholder="Entrer le prix unitaire" name="PrixUnitaire" [(ngModel)]="contenue.pu">
                 </div>
-             
-                <div class=" col-md-offset-7">
-                <button type='reset'nbButton status='danger'>Annuler</button>
-                <button type='submit'  nbButton status='success' [disabled]="!f.valid">Valider</button>
-                 </div>
+
+                <div class="buttons-row" style="text-align: center">
+                  <button type='submit'nbButton status='danger' (click)="resetForm()" class="btn">Annuler</button>
+                  <button type='submit'nbButton status='success' [disabled]="!f.valid" class="btn">Valider</button>
+                </div>
                 <br>
                 <br>
                 <br>
